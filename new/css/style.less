@@ -1,0 +1,420 @@
+/*map3.less*/
+/*aaa*/
+@import 'variables.less';
+@import 'mixins.less';
+@import 'boilerplate.less';
+
+html { 
+	height: 100%;
+	font-family:helvetica, arial, sans-serif;
+	font-size:10px;
+	overflow:hidden;
+	/*font-smooth:always;
+	-webkit-font-smooth:antialiased;
+	-webkit-font-smoothing:subpixel-antialiased;*/
+}
+body { 
+	height: 100%; 
+	/*width:100%;*/
+	margin: 0; 
+	padding: 0;
+	overflow:hidden; 
+}
+header,footer {
+	display:block;
+	clear: both;
+	width: 100%;
+	background: #333;
+}
+::selection, ::-moz-selection {
+	//background:#0689E8;
+	background:#056CB6;
+}
+ 
+/*@import 'header.less';*/
+
+#map_canvas { 
+	float:left; 
+	display:block;
+	height:100%;
+	width:100%;
+	//.transition(width, 500ms);
+}
+
+#menu { 
+	display:block;
+	background: #326BA9; 
+	float:right; 
+	width:240px;
+	//.transition(width, 500ms); 
+	list-style:none; 
+	padding:10px; 
+	height: 100%;
+	overflow: auto;
+	position: relative; 
+	box-shadow: 0px 0px 20px #000;
+	&> a {
+		text-decoration:none;
+		display: block;
+		margin: 10px 0 20px;
+		// padding: 10px 0;
+		position: relative;
+		&> img {
+			float:left;
+			padding-left:5px;
+		}
+	}
+	#menu_tab {
+		display:none;
+	}
+	#title {
+		// text-align: center;
+		text-shadow: 2px 2px 7px #111;
+		font-size: 23px;
+		color: white;
+		padding: 0 0 0 8px;
+		margin: 0px;
+		font-weight:300;
+		display: inline;
+	}
+	// h1 {
+	// 	color: white;
+	// 	font-weight: 300;
+	// 	font-size: 18px;
+	// }
+	h2 {
+		margin-left:10px;
+	}
+	.marker_category {
+		clear:both;
+		display: block;
+		margin: 15px 0;
+		/*padding: 4px 10px;*/
+		/*border: 1px solid #DDD;
+		background: white;*/
+		box-shadow: 0px 2px 10px #555;
+		box-shadow: 0 1px 2px rgba(0,0,0,.2);
+		border-radius:5px;
+		color: #606060;
+		overflow: hidden;
+		border: solid 1px #b7b7b7;
+		background: #fff;
+		background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dddddd));
+		background: -moz-linear-gradient(top,  #fff,  #dddddd);
+		filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd');
+		&::hover {
+			// background: #cccccc;
+			// background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#cccccc));
+			// background: -moz-linear-gradient(top,  #fff,  #cccccc);
+			// filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc');
+		}
+		&:active {
+			//color: #999;
+			// background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#fff));
+			// background: -moz-linear-gradient(top,  #ededed,  #fff);
+			// filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
+		}
+		img.cat_icon {
+			position:relative;
+			left:0px;
+			top:0px;
+			margin-right: 10px;
+			top: -3px;
+		}
+		span.cat_indicator {
+			float: right;
+			top: 14px;
+			position: absolute;
+			right: 17px;
+			width: 10px;
+			height: 6px;
+			cursor: pointer;
+			background: url('../images/interface/toggle_arrow-3.png') no-repeat;
+			background-position: 0 0;
+			&.active {
+				background-position: 0 -6px;
+			}
+		}
+		&> a {
+			color: #333;
+			display: block;
+			font-size: 17px;
+			font-weight: bold;
+			margin: 6px 0;
+			padding: 6px 3px 1px;
+			text-decoration: none;
+			position: relative;
+			text-shadow: 0px 1px 0px white;
+			outline: none;
+			&:hover, &:active, &:visited{
+				outline:none;
+				border:0px;
+			}
+		}
+		div {
+			border-top: 1px dashed #DEDEDE;
+			background: #EFEFEF;
+			&.hidden {
+				display:none;
+				visibility: hidden;
+			}
+			&.cat_description {
+				margin-bottom:5px;
+				padding: 10px 10px 0px;
+			}
+			.inner_desc {
+				border:1px solid #dedede;
+				background:white;
+				padding:10px;
+				color: #888;
+				font: 11px/134% Helvetica, Arial, sans-serif;
+				border-radius:5px;
+				a.cat_link {
+					display:block;
+					margin-top:5px;
+				}
+			}
+		}
+		img {
+			width:20px;
+			padding-left:10px;
+			margin-top: 5px;
+		}
+		span.object_name, span.polygon_name {
+			position: relative;
+			margin-left: 10px;
+			display: inline-block;
+			width: 60%;
+			vertical-align: top;
+			margin-top: 5px;
+			min-height: 17px;
+			padding:4px 0 12px;
+			text-shadow: 0px 1px 0px white;
+			&:hover{
+				text-shadow:none;
+			}
+		}
+		.polygon_list {
+			.polygon_key {
+				width: 20px;
+				height: 19px;
+				float: left;
+				margin:5px 0px 5px 10px;
+				border: 2px solid;
+			}
+			img {
+				padding: 2px 0px 2px 9px;
+			}
+		}
+	}
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0 0 5px 0;
+		&.object_list{
+			li { 
+				padding-top:5px;
+				//text-shadow: white 0 1px 0;
+				.transition(background,0.2s);
+				&:hover, &.active_item{ 
+					background:#999; 
+					text-shadow: none;
+					color:#fff; 
+					cursor:pointer; 
+					cursor:hand;
+					span {
+						text-shadow: none;
+					}
+				}
+			}
+		}
+		&.polygon_list{
+			li {
+				span {
+					padding-top:0;
+				}
+			}
+		}
+	}
+	#feedback {
+		color:white;
+		text-align: center;
+		font-size:12px;
+		display:block;
+	}
+	#updated {
+		text-align: center;
+	}
+}
+.infopane {
+	display:block;
+	/*height:inherit;
+	width:inherit;*/
+	//margin: 10px;
+	padding: 10px;
+	img {
+		float: right;
+		margin: 0px 10px 10px 10px;
+	}
+	div {
+		display: block;
+		/*height: inherit;*/
+    	position: relative;
+	}
+	&#campustour_info {
+		min-height:350px;
+	}
+}
+
+.white {
+	color: #606060;
+	border: solid 1px #b7b7b7;
+	background: #fff;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
+	background: -moz-linear-gradient(top,  #fff,  #ededed);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
+}
+.white:hover {
+	background: #ededed;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
+	background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dcdcdc');
+}
+.white:active {
+	color: #999;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#fff));
+	background: -moz-linear-gradient(top,  #ededed,  #fff);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
+}
+.ie9,.ie8,.ie7 {
+	#menu {
+		.marker_category {
+			border-radius:0px;
+		}
+	}
+}
+
+/* #Mobile View */
+
+#mobile {
+  	#map_canvas {
+  		width:100%;
+  		position:absolute;
+  	}
+  	#menu {
+  		width:80%;
+  		position: absolute;
+			right: 0;
+			-webkit-transform: translate3d(0, 0, 0);
+			-webkit-backface-visibility: hidden;
+		  -webkit-perspective: 1000;
+			.transition(right, 500ms, linear);
+			overflow:scroll !important;
+			overflow-x: visible !important;
+			overflow-y: visible !important;
+			border-left: 3px solid silver;
+			#title{
+				text-shadow:none;
+				top: 5px;
+				position: relative;
+			}
+			#menu_container {
+	  		overflow:scroll;
+	  		overflow-x: scroll !important;
+				overflow-y: scroll !important;
+	  		display: block;
+				position: relative;
+				height: 95%;
+				padding: 0 0 10px;
+				.marker_category{
+					background:white;
+					box-shadow: none;
+					// &> div{
+					// 	display:block;
+					// 	height:100%;
+					// }
+					&:hover {
+						background: white;
+					}
+					&:active {
+						background: white;
+					}
+					.inner_desc {
+						font-size:12px;
+					}
+					.cat_menu {
+						// display:block;
+						// visibility: visible;
+						// height:100%;
+						// &.hidden{
+						// 	height:0%;
+						// }
+					}
+				}
+				.object_name, .polygon_name {
+					font-size: 14px;
+					padding: 2px 0 12px;
+					text-shadow:none;
+				}
+	  	}
+	  	#menu_tab {
+	  		// width:40px;
+	  		width:95px;
+	  		height: 100px;
+	  		position: absolute;
+	  		display:block;
+				// left:-43px;
+				left:-95px;
+
+				&:hover{
+					cursor: pointer;
+				}
+				#inner_tab{
+					display: block;
+					position: relative;
+					height: 100%;
+					left: 50px;
+					width: 42px;
+
+					// .opacity(100);
+					border-radius: 10px 0px 0px 10px;
+					border-top: 3px solid silver;
+					border-left: 3px solid silver;
+					border-bottom: 3px solid silver;
+					box-shadow: -10px 0px 11px rgba(0, 0, 0, 0.5);
+					//cross-browser background gradient >>
+					background: #326BA9; /* Old browsers */
+					background: -moz-linear-gradient(left,  #649ae0 0%, #326ba9 100%); /* FF3.6+ */
+					background: -webkit-gradient(linear, left top, right top, color-stop(0%,#649ae0), color-stop(100%,#326ba9)); /* Chrome,Safari4+ */
+					background: -webkit-linear-gradient(left,  #649ae0 0%,#326ba9 100%); /* Chrome10+,Safari5.1+ */
+					background: -o-linear-gradient(left,  #649ae0 0%,#326ba9 100%); /* Opera 11.10+ */
+					background: -ms-linear-gradient(left,  #649ae0 0%,#326ba9 100%); /* IE10+ */
+					background: linear-gradient(to right,  #649ae0 0%,#326ba9 100%); /* W3C */
+					filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#649ae0', endColorstr='#326ba9',GradientType=1 ); /* IE6-9 */
+					#arrow {
+						//menu open is default
+						position: relative;
+						top: 37px;
+						left: 15px;
+						width:13px;
+						height:22px;
+						overflow:hidden;
+						background-image:url(../images/interface/menu-open-tab.png);
+						background-repeat:no-repeat;
+						background-position:-13px 0px;
+					}
+				}
+	  	}
+	  	&.closed {
+	  		#menu_tab {
+		  		#arrow {
+		  			background-position:0px 0;
+		  			left:12px;
+		  		}
+		  	}
+	  	}
+		}
+  }
+  .spammy-indicator{
+  	color:black !important;
+  }
