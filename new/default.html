@@ -1,79 +1,86 @@
-<!doctype html>
-<!-- Campus Map Created By Jakob Anderson 
-     (jakob@jakobanderson.com / www.jakobanderson.com) 
-     For BYU-Idaho University Communications, 2012 -->
+<!DOCTYPE html>
+<!-- BYU-Idaho Campus Map made by Jakob Anderson -->
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-	<head>
-		<meta charset="utf-8">
+<!-- Consider specifying the language of your content by adding the `lang` attribute to <html> -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en-US"> <!--<![endif]-->
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>BYU-Idaho Campus Map</title>
+      <meta name="description" content="">
+      <!-- Mobile viewport optimized: h5bp.com/viewport -->
+      <meta name="viewport" content="width=device-width">
+      <link rel="stylesheet" href="css/style.css">
+      <script src="js/libs/modernizr-2.6.1.min.js"></script>
+  </head>
+  <body>
+    <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+         chromium.org/developers/how-tos/chrome-frame-getting-started -->
+    <!--[if lt IE 7]><p class="chromeframe">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
-  		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- Add your site or application content here -->
+    <h1 id="title">Campus Map</h1>
+    <div id="container">
+        <div id="menu">
+            <h1>Menu</h1>
+            <nav id="categories"></nav>
+            <a id="feedback" target="_blank" href="http://www.byui.edu/feedback/maps">Feedback &raquo; </a>
+            <p id="updated" class="spammy-indicator">Last updated 07.25.2012</p>
+        </div>
+        <div id="map_canvas"></div>
+    </div>
+    
+    <!-- Trying to get by without jQuery until I absolutely have to use it -->
+    <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>-->
 
-		<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
-		
-		<!-- Mobile viewport optimized: h5bp.com/viewport -->
-  		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" ;="">
-  		<!-- work in a way to make the app detect whether its mobile or not to only do current location detection on mobile -->
-			<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&sensor=false"></script>
-			
-			
-		<title>BYU-Idaho Campus Map</title>
+    <!-- scripts concatenated and minified via build script -->
+    <script type="text/javascript" src="js/script.js"></script>
+    <!-- end scripts -->
+    
+    <!-- asynchronous script loading of all analytics resources -->
+    <script type="text/javascript">   
+      //Insert omniture code asynchronously
+      function loadScript(src, callback) {
+        var head = document.getElementsByTagName('head')[0],
+          script = document.createElement('script');
+            done = false;
+        script.setAttribute('src', src);
+        script.setAttribute('type', 'text/javascript');
+        script.setAttribute('charset', 'utf-8');
+        script.onload = script.onreadstatechange = function() {
+          if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+            done = true;
+            script.onload = script.onreadystatechange = null;
+            if (callback) {
+              callback();
+            }
+          }
+        }
+        head.insertBefore(script, head.firstChild);
+      }
 
-		<!-- favicon section for all device types -->
-		<!-- For iPhone 4 with high-resolution Retina display: -->
-		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
-		<!-- For first-generation iPad: -->
-		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
-		<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-		<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
-		<link rel="icon" href="favicon.ico" />
+      // load the file and display an alert dialog once the script has been loaded
+      loadScript('js/libs/s_code.js', function() {});
+      loadScript('js/libs/omniture_code.js', function() {});
 
-		<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-		<script type="text/javascript" src="js/libs/modernizr-2.5.3.min.js"></script>
+      //Insert google analytics asynchronously
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12079604-6']);
+      _gaq.push(['_trackPageview']);
 
-	</head>
-	<body>
-		<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
-       		chromium.org/developers/how-tos/chrome-frame-getting-started -->
-		<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-			<div id="preview"></div>
-	  	<div id="map_canvas"></div>
-	  	<div id="menu" class="swipe" style="float:right">
-	  		<div id="menu_tab"class="swipe">
-	  			<div id="inner_tab">
-	  				<div class="swipe" id="arrow">&nbsp;</div>
-	  			</div>
-	  		</div>
-	  		<div id="menu_container" class="swipe">
-		  		<a href="http://www.byui.edu/"><img src="images/interface/byuilogo.png" alt="Brigham Young University Logo" height="41" width="70"></a>
-		  		<h1 id="title">Campus Map</h1>
-			  	<nav id="categories"></nav>
-			  	<a id="feedback" target="_blank" href="http://www.byui.edu/feedback/maps">Feedback &raquo; </a>
-			  	<p id="updated" class="spammy-indicator">Last updated 07.25.2012</p>
-		  	</div><!-- /menu_container -->
-	  	</div>
-	</body>
-	<script type="text/javascript" src="js/libs/jquery-1.7.min.js"></script>
-	<!--<script type="text/javascript" src="js/libs/jquery.jswipe.js"></script>-->
-  <script type="text/javascript" src="js/script.js"></script>
+      (function() {
+      var ga = document.createElement('script'); 
+      ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; 
+      s.parentNode.insertBefore(ga, s);
+      })();
 
-  <script type="text/javascript" src="js/libs/s_code.js"></script>
-  <!--<script type="text/javascript" src="js/libs/jquery.wipetouch.js"></script>-->
-  <script type="text/javascript" src="js/libs/omniture_code.js"></script>
-  <script type="text/javascript">
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-12079604-6']);
-	  _gaq.push(['_trackPageview']);
-
-	  (function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-	</script>
-
+    </script>
+  </body>
 </html>
