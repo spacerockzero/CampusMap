@@ -1,0 +1,158 @@
+/* BYU-Idaho Campus Map Custom Styles */
+
+/****************/
+/* Global items */
+/****************/
+body, html {
+  height: 100%;
+  width: 100%;
+	font: 12px/18px Helvetica, Arial, Verdana, sans-serif;
+	// font: 12px/18px 'Open Sans', Helvetica, Arial, Verdana, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust:90%;
+	zoom:1;
+	overflow:hidden;
+}
+body{
+
+}
+
+/************************************************************/
+/*                                                          */
+/*  Global classes                                          */
+/*                                                          */
+/************************************************************/
+.hide{
+	display:none;
+	-webkit-transform: translateZ(0);
+}
+.unhide{
+	display:block;
+	-webkit-transform: translateZ(0);
+}
+
+/************************************************************/
+/*                                                          */
+/*  Mobile and global styles                                */
+/*  - "Mobile-First Strategy"                               */
+/*  - Everything is light and mobile-optimized by default,  */
+/*  - then can be progressively enhanced for desktops       */
+/*  - once detected.                                        */
+/*                                                          */
+/************************************************************/
+
+	/************************************************************/
+	/*                                                          */
+	/*  Heading bar                                             */
+	/*  - contains the heading/branding,                        */
+	/*  - as well as the menu toggle button                     */
+	/*                                                          */
+	/************************************************************/
+	#title{
+		color: white;
+		// height: 25px;
+		height: 35px;
+		display: block;
+		margin:0 auto;
+		position:relative;
+		background:@byui_med_blue;
+		padding: 14px 0 10px;
+		border-bottom: 2px solid #DDD;
+		.box_gradient_3stop(#3a5284, #2d416a, #202f4f);
+	}
+	#heading{
+		margin:5px 0 0 0;
+		text-align: center;
+		color:#fff;
+		font-weight: 100;
+		font-size: 25px;
+		text-shadow: 0 1px 0 #333;
+	}
+	#menu_button{
+		display: block;
+		position: absolute;
+		width:50px;
+		top: 12px;
+		right: 11px;
+		text-decoration: none;
+		color: #222;
+		padding: 7px 13px 7px;
+	}
+
+	/***********************************/
+	/*                                 */
+	/*  Lower Container                */
+	/*  - will contain the map canvas  */
+	/*  - and the category menu        */
+	/*                                 */
+	/***********************************/
+	#container{
+		height: 100%;
+  	width: 100%;
+		display: block;
+		color:black;
+		position:absolute;
+		overflow:auto;
+	}
+	#menu{
+		display:none;
+		z-index: 1;
+		position: absolute;
+		// height: 100%;
+		width: 100%;
+		// top: 60px;
+		right: 0;
+		background-color: white;
+	}
+	#inner_menu{
+		padding:20px;
+	}
+	#menu_title {
+		margin:0 0 10px;
+	}
+	#map_canvas {
+	  width: 100%; 
+	  height: 100%;
+	  position:absolute;
+	}
+
+//exceptions for very narrow screens:
+@media only screen and (max-width: 460px) {
+	#heading{
+		margin:5px 0 0 15px;
+		text-align: left;
+		font-size: 20px;
+	}
+}
+/**************************************/
+/*                                    */
+/*  Desktop style overwrites          */
+/*  - "Mobile-First"                  */
+/*  - Desktop rules overwrite         */
+/*  - specific style changes          */
+/*  - targeted at just desktop users  */
+/*                                    */
+/**************************************/
+
+/*styles for 800px and up!*/
+// @media only screen and (min-width: 451px) {
+// 	html{
+		
+// 	  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+	  
+// 	}
+// 	#heading{
+		
+// 	}
+// 	// #menu{
+// 	// 	position:relative;
+// 	// 	width:20%;
+// 	// 	height: 91%;
+// 	// 	width: 22%;
+// 	// }
+// 	// #map_canvas {
+// 	// 	position:absolute;
+// 	//   width: 80%;   
+// 	// }
+// // }
+// }/*/mediaquery*/

@@ -1,14 +1,32 @@
 /*  BYU-I Campus Map                */
 /*  powered by Google Maps API v3   */
-/*  Revised:  07.30.2012            */
+/*  Revised:  08.01.2012            */
+
+// JS Lint Options (remove after deployment)
 /*jslint white:true, browser: true */
 /*global google*/
 
 // Cache global objects as local variables
 var doc = document;
+
+// control object holds the current states and values of the app
 var control = {
-  menuState: 1
+  menuState: 0,
+  currentDevice: 0
 };
+
+// Detect and set device in control object
+  function detectDevice(){
+    if(!doc.getElementById('desktop')){
+      return 0;
+    } else {
+      return 1;
+    }
+  }
+  // Detect and set device in control object
+  control.currentDevice = detectDevice();
+
+
 
 // Init
   // Show Loading Animation (progress?)
@@ -48,21 +66,32 @@ var control = {
   // ToggleMenu
   function toggleMenu(){
     var menuState = control.menuState,
+   menu_indicator = doc.getElementById('menu_indicator'),
              menu = doc.getElementById('menu');
     if(menuState === 0){
       // Toggle menu visibility on
-      menu.className = "unhide";
+      //menu.className = "unhide";
+      menu.style.display = "block";
+      menu_indicator.innerHTML = "-";
       // Set current state of menu visibility in control object
       control.menuState = 1;
     } else {
       // Toggle menu visibility off
-      menu.className = "hide";
+      //menu.className = "hide";
+      menu.style.display = "none";
+      menu_indicator.innerHTML = "+";
       // Set current state of menu visibility in control object
       control.menuState = 0;
     }
-    
   }
   
   // ShowHideCategory
   // ToggleMobileDesktop
+
+
   // Search
+
+
+
+
+
