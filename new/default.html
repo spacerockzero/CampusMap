@@ -14,24 +14,25 @@
       <meta name="description" content="">
       <!-- Mobile viewport optimized: h5bp.com/viewport -->
       <meta name="viewport" content="width=device-width">
-      <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="css/main.css">
-      <script src="js/libs/modernizr-2.6.1.min.js"></script>
+      <!--<script src="js/libs/modernizr-2.6.1.min.js"></script>-->
   </head>
 
-  <body onload="initialize()" id="desktop">
+  <body onload="initialize()" id="desktop1">
 
     <div id="title">
       <h1 id="heading">BYU-Idaho Campus Map</h1>
-      <a id="menu_button" href="#" title="Open Menu"></a>
+      <a id="menu_button" href="#" title="Open Menu" onclick="toggleMenu()"></a>
     </div>
 
     <div id="container">
-        <div id="menu">
+        <div id="menu" class="unhide">
+          <div id="inner_menu">
             <h2 id="menu_title">Menu</h2>
             <nav id="categories"></nav>
             <a id="feedback" target="_blank" href="http://www.byui.edu/feedback/maps">Feedback &raquo; </a>
             <p id="updated" class="spammy-indicator">Last updated 07.25.2012</p>
+          </div>
         </div>
         <div id="map_canvas"></div>
     </div>
@@ -39,7 +40,7 @@
     <!-- scripts concatenated and minified via build script -->
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&sensor=false"></script>
     <script type="text/javascript" src="js/script.js"></script>
-    <!-- end scripts -->
+    <!-- end script imports -->
     <script type="text/javascript">
       var doc = document;
       var desktop = doc.getElementById('desktop');

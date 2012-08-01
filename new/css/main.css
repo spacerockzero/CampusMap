@@ -503,6 +503,17 @@ body {
 }
 /************************************************************/
 /*                                                          */
+/*  Global classes                                          */
+/*                                                          */
+/************************************************************/
+.hide {
+  display: none;
+}
+.unhide {
+  display: block;
+}
+/************************************************************/
+/*                                                          */
 /*  Mobile and global styles                                */
 /*  - "Mobile-First Strategy"                               */
 /*  - Everything is light and mobile-optimized by default,  */
@@ -510,13 +521,13 @@ body {
 /*  - once detected.                                        */
 /*                                                          */
 /************************************************************/
-/*****************************************/
-/*                                       */
-/*  Heading bar                          */
-/*  - contains the heading/branding,     */
-/*  - as well as the menu toggle button  */
-/*                                       */
-/*****************************************/
+/************************************************************/
+/*                                                          */
+/*  Heading bar                                             */
+/*  - contains the heading/branding,                        */
+/*  - as well as the menu toggle button                     */
+/*                                                          */
+/************************************************************/
 #title {
   color: white;
   height: 25px;
@@ -581,12 +592,14 @@ body {
 #menu {
   z-index: 1;
   position: absolute;
-  height: 91%;
-  width: 22%;
+  height: 95%;
+  width: 100%;
   top: 51px;
   right: 0;
-  padding: 20px;
   background-color: white;
+}
+#inner_menu {
+  padding: 20px;
 }
 #menu_title {
   margin: 0 0 10px;

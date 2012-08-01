@@ -6,6 +6,9 @@
 
 // Cache global objects as local variables
 var doc = document;
+var control = {
+  menuState: 1
+};
 
 // Init
   // Show Loading Animation (progress?)
@@ -43,7 +46,23 @@ var doc = document;
 
 // Events
   // ToggleMenu
-
+  function toggleMenu(){
+    var menuState = control.menuState,
+             menu = doc.getElementById('menu');
+    if(menuState === 0){
+      // Toggle menu visibility on
+      menu.className = "unhide";
+      // Set current state of menu visibility in control object
+      control.menuState = 1;
+    } else {
+      // Toggle menu visibility off
+      menu.className = "hide";
+      // Set current state of menu visibility in control object
+      control.menuState = 0;
+    }
+    
+  }
+  
   // ShowHideCategory
   // ToggleMobileDesktop
   // Search
