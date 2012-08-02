@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <!-- BYU-Idaho Campus Map made by Jakob Anderson -->
+<!-- Version: 1.0 Revision 1 -->
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!-- Consider specifying the language of your content by adding the `lang` attribute to <html> -->
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -43,51 +44,49 @@
     <div id="container">
         <div id="menu">
           <div id="inner_menu">
-            <h2 id="menu_title">Menu</h2>
+            <!-- <h2 id="menu_title">Menu</h2> -->
             <nav id="categories">
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-              <h3>Buildings</h3>
-            </nav>
-            <a id="feedback" target="_blank" href="http://www.byui.edu/feedback/maps">Feedback &raquo; </a>
-            <p id="updated" class="spammy-indicator">Last updated 08.01.2012</p>
-          </div>
-        </div>
+              <div class="category">
+                <h3>Buildings</h3>
+                <div
+                <div class="cat_container">
+
+                </div>
+              </div>
+              <div class="category">
+                <h3>Parking</h3>
+                <div class="cat_container">
+                </div>
+              </div>
+              <div class="category">
+                <h3>Food &amp; Dining</h3>
+                <div class="cat_container">
+                </div>
+              </div>
+              <div class="category">
+                <h3>Vending Machines</h3>
+                <div class="cat_container">
+                </div>
+              </div>
+              <div class="category">
+                <h3>Playfields</h3>
+                <div class="cat_container">
+                </div>
+              </div>
+              <div class="category">
+                <h3>Webcams</h3>
+                <div class="cat_container">
+                </div>
+              </div>
+            </nav><!-- // categories -->
+            
+          </div><!-- // inner menu -->
+        </div><!-- // menu -->
         <div id="map_canvas"></div>
+    </div><!-- // container -->
+    <div id="notification">
+      <p id="updated">Last updated <br/>08.02.2012</p>
+      <a id="feedback" class="box" target="_blank" href="http://www.byui.edu/feedback/maps">Feedback &raquo; </a>
     </div>
     
     <!-- scripts concatenated and minified via build script -->
