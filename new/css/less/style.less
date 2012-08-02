@@ -4,6 +4,7 @@
 /* Global items */
 /****************/
 body, html {
+	margin:0;
   height: 100%;
   width: 100%;
 	font: 12px/18px Helvetica, Arial, Verdana, sans-serif;
@@ -50,32 +51,65 @@ body{
 	/************************************************************/
 	#title{
 		color: white;
-		// height: 25px;
-		height: 35px;
+		height: 57px;
 		display: block;
 		margin:0 auto;
 		position:relative;
-		background:@byui_med_blue;
-		padding: 14px 0 10px;
+		background:@byui_dark_blue;
 		border-bottom: 2px solid #DDD;
 		.box_gradient_3stop(#3a5284, #2d416a, #202f4f);
 	}
+	.no-cssgradients #title{
+		background:url(../img/interface/title_bg.png);
+		background-repeat:repeat-x;
+	}
 	#heading{
-		margin:5px 0 0 0;
+		margin:0;
 		text-align: center;
 		color:#fff;
 		font-weight: 100;
 		font-size: 25px;
 		text-shadow: 0 1px 0 #333;
+		padding: 19px 0 10px;
+	}
+	.lt-ie8 #heading{
+
+	}
+	// #nav_group{
+	// 	display: block;
+	// 	position: absolute;
+	// 	top: 12px;
+	// 	right: 11px;
+	// }
+	#device_type{
+		display: block;
+		position: absolute;
+		top: 12px;
+		left: 11px;
+		background:url(../img/interface/device-type-sprite.png);
+		background-position:0 0;
+		background-repeat:no-repeat;
+		width: 32px;
+		height: 32px;
+	}
+	#mobile #device_type{
+		.transition(background-position,300ms);
+		background-position:0 0;
+	}
+	#desktop #device_type{
+		.transition(background-position,300ms);
+		background-position:0 -32px;
 	}
 	#menu_button{
 		display: block;
 		position: absolute;
-		width:50px;
 		top: 12px;
 		right: 11px;
-		text-decoration: none;
+		// display:block;
+		// float:left;
+		width:50px;
 		color: #222;
+		text-decoration: none;
 		padding: 7px 13px 7px;
 	}
 
@@ -119,7 +153,7 @@ body{
 //exceptions for very narrow screens:
 @media only screen and (max-width: 460px) {
 	#heading{
-		margin:5px 0 0 15px;
+		margin:0 0 0 55px;
 		text-align: left;
 		font-size: 20px;
 	}
@@ -134,25 +168,22 @@ body{
 /*                                    */
 /**************************************/
 
-/*styles for 800px and up!*/
-// @media only screen and (min-width: 451px) {
-// 	html{
-		
-// 	  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
-	  
-// 	}
-// 	#heading{
-		
-// 	}
-// 	// #menu{
-// 	// 	position:relative;
-// 	// 	width:20%;
-// 	// 	height: 91%;
-// 	// 	width: 22%;
-// 	// }
-// 	// #map_canvas {
-// 	// 	position:absolute;
-// 	//   width: 80%;   
-// 	// }
-// // }
-// }/*/mediaquery*/
+#desktop{
+	
+	html{
+	  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+	}
+	#container{
+		overflow:hidden;
+	}
+	#heading{
+	}
+	#menu{
+		width:22%;
+		height: 100%;
+		overflow: auto;
+	}
+	#map_canvas {
+	}
+}
+

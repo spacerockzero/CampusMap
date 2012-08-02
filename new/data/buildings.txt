@@ -1,0 +1,333 @@
+{
+    "buildings": [
+      {
+        "name": "AGM - Ag. Engineering Bldg.",
+        "code": "AGM",
+        "lat":  43.813304,
+        "lon": -111.783140,
+        "img": "AGM-AgEngineeringBldg.jpg",
+        "info": "Lab area for Department of Agribusiness, Plant & Animal Science."
+      },
+      {
+        "name": "ASB - Auxiliary Services Bldg.",
+        "code": "ASB",
+        "lat":  43.814100,
+        "lon": -111.783147,
+        "img": "ASB-AuxiliaryServicesBldg.jpg",
+        "info": "Division of Continuing Education, University Press, a Copy Spot, the university's central warehouse, purchasing and travel offices."
+      },
+      {
+        "name": "AUS - Mark Austin Technical & Engineering Bldg.",
+        "code": "AUS",
+        "lat":  43.815756,
+        "lon": -111.784646,
+        "img": "AUS-MarkAustinTechnicalEngineeringBldg.jpg",
+        "info": "Department of Architecture & Construction, Department of Automotive Technology, Department of Computer Science and Engineering, and Department of Mechanical Engineering."
+      },
+      {
+        "name": "BCTR - BYU-Idaho Center",
+        "code": "BCTR",
+        "lat":  43.818514,
+        "lon": -111.785046,
+        "img": "BCTR.jpg",
+        "info": "The 435,000-square-foot building, containing a 15,000-seat auditorium and a multi-purpose area large enough for 10 full basketball courts, opened following a dedication on Dec. 17, 2010.",
+        "link": "http://www2.byui.edu/BYUIdahoCenter/"
+      },
+      {
+        "name": "BEN - Ezra Taft Benson Agricultural & Biological Sciences Bldg.",
+        "code": "BEN",
+        "lat":  43.815441,
+        "lon": -111.783076,
+        "img": "BEN-EzraTaftBensonAgriculturalBiologicalSciencesBldg.jpg",
+        "info": "Department of Biology, Department of Horticulture, laboratories, greenhouses, horticulture outlet for studio flowers and plant sales, and the Wildlife Museum."
+      },
+      {
+        "name": "BID - Biddulph Hall (men)",
+        "code": "BID",
+        "lat":  43.817054,
+        "lon": -111.785123,
+        "img": "BID-BiddulphHallmen.jpg",
+        "info": "Men's housing."
+      },
+      {
+        "name": "BRN - Barnes Hall (women)",
+        "code": "BRN",
+        "lat":  43.819171,
+        "lon": -111.778768,
+        "img": "BRN-BarnesHallwomen.jpg",
+        "info": "Women's housing."
+      },
+      {
+        "name": "CHP - Chapman Hall (men)",
+        "code": "CHP",
+        "lat":  43.818202,
+        "lon":  -111.780259,
+        "img": "CHP-ChapmanHallmen.jpg",
+        "info": "Men's housing."
+      },
+      {
+        "name": "CLK - John L. Clarke Bldg.",
+        "code": "CLK",
+        "lat":  43.820179,
+        "lon":  -111.781751,
+        "img": "CLK-JohnLClarkeBldg.jpg",
+        "info": "Department of Health Science, Department of Interior Design, Department of Nursing, Department of Home and Family, preschool for the child development program, Testing Services."
+      },
+      {
+        "name": "CML - Construction Management Lab",
+        "code": "CML",
+        "lat":  43.815239,
+        "lon":  -111.787772,
+        "info": "Lab area for Department of Department of Architecture and Construction."
+      },
+      {
+        "name": "HIN - Gordon B. Hinckley Bldg.",
+        "code": "HIN",
+        "lat":  43.815841,
+        "lon":  -111.779900,
+        "img": "HIN-GordonBHinckleyBldg.jpg",
+        "info": "Department of Teacher Education, faculty offices, Institute classes, and a stake center."
+      },
+      {
+        "name": "HRT - John W. Hart Physical Education Bldg.",
+        "code": "HRT",
+        "lat":  43.819535,
+        "lon": -111.785311,
+        "img": "HRT-JohnWHartPhysicalEducationBldg.jpg",
+        "info": "Department of Exercise & Sports Science, Main Gymnasium/Hart Auditorium, Auxiliary Gym, field house, swimming pool, racquetball courts, dressing rooms, physical fitness and wellness centers.",
+        "link": "http://www2.byui.edu/HartBuilding/"
+      },
+      {
+        "name": "HTG - Heating Plant",
+        "code": "HTG",
+        "lat":  43.817298,
+        "lon":  -111.786003,
+        "img": "HTG-HeatingPlant.jpg",
+        "info": "BYU-Idaho support facility for heating and hot water."
+      },
+      {
+        "name": "KER - Kerr Hall (women)",
+        "code": "KER",
+        "lat":  43.819258,
+        "lon":  -111.779575,
+        "img": "KER-KerrHallwomen.jpg",
+        "info": "Women's housing."
+      },
+      {
+        "name": "KIM - Spencer W. Kimball Student & Admin. Services Bldg.",
+        "code": "KIM",
+        "lat":  43.817071,
+        "lon":  -111.781492,
+        "img": "KIM-SpencerWKimballStudentAdminServicesBldg.jpg",
+        "info": "Academic Administrative Services, Accounting Office, Admissions Office, Alumni Office, Career & Academic Advising, Cashier and Ticket Services, Dean of Students Office, Executive Offices, Financial Services, Housing Office, Human Resources, International Services, Internship and Career Services, Police, Registrar & Records Office, Scholarships Office, Student Honor Office, and University Relations Office."
+      },
+      {
+        "name": "KRK - Oscar A. Kirkham Bldg.",
+        "code": "KRK",
+        "lat":  43.821114,
+        "lon":  -111.781479,
+        "img": "KRK-OscarAKirkhamBldg.jpg",
+        "info": "Department of Dance, Kirkham Auditorium, Arena Theater, and ceramics and sculpture studios."
+      },
+      {
+        "name": "LAM - Lamprecht Hall",
+        "code": "LAM",
+        "lat":  43.818234,
+        "lon":  -111.779517,
+        "img": "LAM-LamprechtHallwomen.jpg",
+        "info": "Women's housing."
+      },
+      {
+        "name": "MC  - Hyrum Manwaring Student Center",
+        "code": "MC",
+        "lat":  43.818356,
+        "lon":  -111.782436,
+        "img": "MC.jpg",
+        "info": "Bookstore, Food Services and catering office, bowling alley, ballrooms, the ID Center, Lost and Found, and Scheduling Office."
+      },
+      {
+        "name": "MCK - David O. McKay Library",
+        "code": "MCK",
+        "lat":  43.819310,
+        "lon":  -111.783182,
+        "img": "MCK-DavidOMcKayLibrary.jpg",
+        "info": "Department of Academic Learning, book collection, e-book collection, periodicals, computers labs, Family History Center,  archives, a Copy Spot, a special exhibition area, instructional technology labs, equipment checkout and rental, and a self-serve recording room.",
+        "link": "http://www.lib.byui.edu/"
+      },
+      {
+        "name": "PER - Perkins Hall (women)",
+        "code": "PER",
+        "lat":  43.819253,
+        "lon":  -111.780264,
+        "img": "PER-PerkinsHallwomen.jpg",
+        "info": "Women's housing."
+      },
+      {
+        "name": "PPG - Physical Plant Grounds Construction & Sign Shop",
+        "code": "PPG",
+        "lat":  43.815277,
+        "lon":  -111.786379,
+        "img": "PPG-PhysicalPlantGroundsConstructionSignShop.jpg",
+        "info": "BYU-Idaho support facility for landscaping, ground maintenance and signage."
+      },
+      {
+        "name": "PPO - Physical Plant Office Bldg.",
+        "code": "PPO",
+        "img": "PPO.jpg",
+        "lat":  43.816114,
+        "lon": -111.785559,
+        "info": "Physical Facilities Office and administrative offices for buildings and grounds, custodial, media services, telecommunications, safety, and support services."
+      },
+      {
+        "name": "PPS - Physical Plant Shop Bldg.",
+        "code": "PPS",
+        "lat": 43.81594597634651,
+        "lon": -111.7859443479993,
+        "img": "PPS.jpg",
+        "info": "Central shops for carpentry; electrical; fleet services; heating, ventilation, and air conditioning; locks and keys; and plumbing and mechanical operations."
+      },
+      {
+        "name": "PWS - Plumbing & Welding Shop",
+        "code": "PWS",
+        "lat":  43.81526579736887,
+        "lon":  -111.7853107728127,
+        "info": "Central shop for plumbing and welding services."
+      },
+      {
+        "name": "Rexburg Temple",
+        "code": "RexburgTemple",
+        "lat": 43.810832416805,
+        "lon": -111.7784921749187,
+        "img": "Rexburg-Temple.jpg",
+        "info": "Owned and operated by The Church of Jesus Christ of Latter-day Saints.",
+        "link": "http://www.lds.org/church/temples/rexburg-idaho?lang=eng"
+      },
+      {
+        "name": "RGS - Radio and Graphic Services Bldg.",
+        "code": "RGS",
+        "lat":   43.817248,
+        "lon":  -111.779400,
+        "img": "RGS-RadioandGraphicServicesBldg.jpg",
+        "info": "University Communications, KBYI FM 100.5, KBYR 91.5, Creative Services (graphic design and photography)."
+      },
+      {
+        "name": "RIC - Ricks Hall (women)",
+        "code": "RIC",
+        "lat":  43.81812607978744,
+        "lon":  -111.778914594058,
+        "img": "RIC-RicksHallwomen.jpg",
+        "info": "Women's housing."
+      },
+      {
+        "name": "RIG - Rigby Hall (faculty offices)",
+        "code": "RIG",
+        "lat":  43.81696924342953,
+        "lon":  -111.7841900066221,
+        "img": "RIG-RigbyHallfacultyoffices.jpg",
+        "info": "Faculty offices, Student Orientation Office."
+      },
+      {
+        "name": "RKS - Thomas E. Ricks Bldg.",
+        "code": "RKS",
+        "lat":  43.81514466531412,
+        "lon": -111.7812015011548,
+        "img": "RKS-ThomasERicksBldg.jpg",
+        "info": "Department of History, Geography and Political Science; Department of Mathematics; Department of Psychology; and Department of Sociology and Social Work."
+      },
+      {
+        "name": "ROM - George S. Romney Bldg.",
+        "code": "ROM",
+        "lat":   43.819988,
+        "lon":  -111.783261,
+        "img": "ROM-GeorgeSRomneyBldg.jpg",
+        "info": "Department of Chemistry, Department of Geology, Department of Recreation Leadership, Department of Physics, the planetarium, hall displays, and the Geology Museum."
+      },
+      {
+        "name": "SHC - Student Health & Counseling Center",
+        "code": "SHC",
+        "lat":  43.81681618820919,
+        "lon":  -111.7792542421602,
+        "img": "SHC-StudentHealthCounselingCenter.jpg",
+        "info": "Student Health Center (pharmacy, laboratory, x-ray and orthopedic services), Student Counseling Center (individual, group, and marital counseling).",
+        "link": "http://www.byui.edu/health-center"
+      },
+      {
+        "name": "SMI - Joseph Fielding Smith Bldg.",
+        "code": "SMI",
+        "lat": 43.81920193746524,
+        "lon": -111.7815120835109,
+        "img": "SMI-JosephFieldingSmithBldg.jpg",
+        "info": "Department of Accounting, Department of Business Management, Department of Economics, Department of Computer Information Technology, Department of Foreign Languages & Literatures, Online Testing Center."
+      },
+      {
+        "name": "SNO - Eliza R. Snow Performing Arts Center",
+        "code": "SNO",
+        "lat":   43.821094,
+        "lon":  -111.783580,
+        "img": "SNO-ElizaRSnowPerformingArtsCenter.jpg",
+        "info": "Department of Music, Department of Theatre, Barrus Concert Hall, Recital Hall, Snow Drama Theater, Blackbox Theatre, and costume shop.",
+        "link": "http://www2.byui.edu/music/"
+      },
+      {
+        "name": "SPO - Jacob Spori Bldg.",
+        "code": "SPO",
+        "lat":   43.820767,
+        "lon": -111.782499,
+        "img": "SPO-JacobSporiBldg.jpg",
+        "info": "Department of Communication, Department of Art, art galleries, and artifacts from original Spori Building."
+      },
+      {
+        "name": "STA - BYU-Idaho Stadium",
+        "code": "STA",
+        "lat": 43.820806,
+        "lon": -111.786127,
+        "img": "STA-BYU-IdahoStadium.jpg",
+        "info": "Location of the Outdoor Resource Center. Equipment rentals and retail sales."
+      },
+      {
+        "name": "TAY - John Taylor Bldg.",
+        "code": "TAY",
+        "img": "TAY.jpg",
+        "lat":   43.816868,
+        "lon":  -111.782552,
+        "info": "Department of Religious Education, Department of Humanities & Philosophy, campus stake center, student commons area."
+      },
+      {
+        "name": "TRG - Thomas E. Ricks Memorial Gardens",
+        "code": "TRG",
+        "lat": 43.81582205080509,
+        "lon": -111.7815419421354,
+        "img": "TRG-ThomasERicksMemorialGardens.jpg",
+        "info": "A horticulture research area, picnic structure, reception area, test gardens, fruit tree orchard, flowerbeds, and a native garden."
+      },
+      {
+        "name": "TRK - BYU-I Track & Field",
+        "code": "TRK",
+        "lat":  43.820805,
+        "lon": -111.785301,
+        "img": "BYU-IdahoTrack.jpg",
+        "info": "A horticulture research area, picnic structure, reception area, test gardens, fruit tree orchard, flowerbeds, and a native garden."
+      },
+      {
+        "name": "University Stake Center",
+        "code": "UniversityStakeCenter",
+        "lat": 43.81091259491949,
+        "lon": -111.7810747356341,
+        "info": "Meetinghouse for The Church of Jesus Christ of Latter-day Saints."
+      },
+      {
+        "name": "UV  - University Village (families)",
+        "code": "UV",
+        "img": "University-Village.jpg",
+        "lat": 43.81043018645631,
+        "lon": -111.7880177484073,
+        "info": "Family housing."
+      },
+      {
+        "name": "VOS - Vehicle Operations Service Station",
+        "code": "VOS",
+        "lat": 43.81528245659366,
+        "lon": -111.7859468775369,
+        "info": "Support area for the university's fleet services."
+      }
+    ],

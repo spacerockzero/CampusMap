@@ -17,16 +17,56 @@ var control = {
 
 // Detect and set device in control object
   function detectDevice(){
-    if(!doc.getElementById('desktop')){
+    var width = doc.body.offsetWidth;
+    if(width < 800){
       return 0;
     } else {
       return 1;
     }
   }
-  // Detect and set device in control object
-  control.currentDevice = detectDevice();
+  // Set and Toggle Device
+  function setDevice(changeTo){
+    var deviceIndicator = doc.getElementById('device_type'),
+                   body = doc.getElementsByTagName("body")[0];
+    if (changeTo === 0){
+      // Set to Mobile
+        // Set the body id
+        body.setAttribute("id","mobile");
+        // set new control value
+        control.currentDevice = 0;
+        console.log("Mobile mode set");
+    } else {
+      // Set to Desktop
+        // Set the body id
+        body.setAttribute("id","desktop");
+        //set new control value
+        control.currentDevice = 1;
+        console.log("desktop mode set");
+    }
+  }
+  function toggleDevice(){
+    var current = control.currentDevice;
+    if (current === 0){
+      // set device as desktop
+      setDevice(1);
+    } else {
+      // set device as mobile
+      setDevice(0);
+    }
+  }
+  // Detect and set browser attributes in control object
+    // Detect and set device in control object
+    control.currentDevice = detectDevice();
+    if (control.currentDevice === 0){
+      //set mobile
+      setDevice(0);
+    } else {
+      //set desktop
+      setDevice(1);
+    }
 
-
+// GatherData functions
+// LoadPopulateShowCategories functions
 
 // Init
   // Show Loading Animation (progress?)
@@ -59,35 +99,44 @@ var control = {
   // run LoadPopulateShowCategories Stack
   // Hide Loading Animation
 
-// GatherData
-// LoadPopulateShowCategories
+
 
 // Events
-  // ToggleMenu
-  function toggleMenu(){
-    var menuState = control.menuState,
-   menu_indicator = doc.getElementById('menu_indicator'),
-             menu = doc.getElementById('menu');
-    if(menuState === 0){
-      // Toggle menu visibility on
-      //menu.className = "unhide";
-      menu.style.display = "block";
-      menu_indicator.innerHTML = "-";
-      // Set current state of menu visibility in control object
-      control.menuState = 1;
-    } else {
+  // SetMenu
+  function setMenu(newState){
+   var menu_indicator = doc.getElementById('menu_indicator'),
+                 menu = doc.getElementById('menu');
+    if(newState === 0){
       // Toggle menu visibility off
-      //menu.className = "hide";
       menu.style.display = "none";
+      // Toggle indicator
       menu_indicator.innerHTML = "+";
       // Set current state of menu visibility in control object
       control.menuState = 0;
+    } else {
+      // Toggle menu visibility on
+      menu.style.display = "block";
+      // Toggle indicator
+      menu_indicator.innerHTML = "-";
+      // Set current state of menu visibility in control object
+      control.menuState = 1;
+    }
+  }
+  // ToggleMenu
+  function toggleMenu(){
+    var menuState = control.menuState;
+    if(menuState === 0){
+      // Toggle menu visibility on
+      setMenu(1);
+    } else {
+      // Toggle menu visibility off
+      setMenu(0);
     }
   }
   
   // ShowHideCategory
-  // ToggleMobileDesktop
 
+  
 
   // Search
 
