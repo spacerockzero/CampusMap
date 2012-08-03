@@ -120,9 +120,42 @@
     
     <!-- scripts concatenated and minified via build script -->
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&amp;sensor=false"></script>
+
+    <!-- jQuery loaded asynchronously only for desktop users -->
+    <script type="text/javascript">  
+      var doc = document,
+       bodyID = doc.getElementsByTagName('body')[0].getAttribute('id');
+
+      if(bodyID === "desktop"){
+        // async script loading function
+        function loadScript(src, callback) {
+          var head = document.getElementsByTagName('head')[0],
+            script = document.createElement('script');
+              done = false;
+          script.setAttribute('src', src);
+          script.setAttribute('type', 'text/javascript');
+          script.setAttribute('charset', 'utf-8');
+          script.onload = script.onreadstatechange = function() {
+            if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+              done = true;
+              script.onload = script.onreadystatechange = null;
+              if (callback) {
+                callback();
+              }
+            }
+          }
+          head.insertBefore(script, head.firstChild);
+        }
+
+        // load the file and display an alert dialog once the script has been loaded
+        loadScript('js/libs/jquery-1.7.2.min.js', function() {});
+
+      }
+    </script>
+
     <script type="text/javascript" src="js/script.js"></script>
     <!-- end script imports -->
     
-
+    
   </body>
 </html>

@@ -4,7 +4,7 @@
 
 // JS Lint Options (remove after deployment)
 /*jslint white:true, browser: true */
-/*global google*/
+/*global google, jQuery, $*/
 
 // Cache global objects as local variables
 var doc = document;
@@ -12,7 +12,8 @@ var doc = document;
 // control object holds the current states and values of the app
 var control = {
   menuState: 0,
-  currentDevice: 0
+  currentDevice: 0,
+  jQueryLoaded: 0
 };
 
 // Detect and set device in control object
@@ -24,6 +25,7 @@ var control = {
       return 1;
     }
   }
+
   // Set and Toggle Device
   function setDevice(changeTo){
     var deviceIndicator = doc.getElementById('device_type'),
@@ -44,6 +46,7 @@ var control = {
         console.log("desktop mode set");
     }
   }
+
   function toggleDevice(){
     var current = control.currentDevice;
     if (current === 0){
@@ -54,9 +57,9 @@ var control = {
       setDevice(0);
     }
   }
+
   // Detect and set browser attributes in control object
     // Detect and set device in control object
-    control.currentDevice = detectDevice();
     if (control.currentDevice === 0){
       //set mobile
       setDevice(0);
@@ -65,6 +68,21 @@ var control = {
       setDevice(1);
     }
 
+  // Detect jQuery
+  function detectjQuery(){
+    if(typeof jQuery === 'undefined'){
+      return 0;
+    } else {
+      return 1;
+    }
+  }
+
+// Gather data and set all controls
+  function setAllControls(){
+    control.currentDevice = detectDevice();
+    control.jQueryLoaded = detectjQuery();
+  }
+  
 // GatherData functions
 // LoadPopulateShowCategories functions
 
@@ -73,9 +91,10 @@ var control = {
   // Detect Device/Size
   
   // Set map default options
-  var myLatlng = new google.maps.LatLng( 43.815045, -111.783515);
-  var myOptions = {
-    //maxZoom: 18,
+  var myLatlng,
+      myOptions;
+  myLatlng = new google.maps.LatLng( 43.815045, -111.783515);
+  myOptions = {
     zoom: 16,
     center: myLatlng,
     mapTypeId: google.maps.MapTypeId.HYBRID,
@@ -89,6 +108,7 @@ var control = {
 
   // Create Map Object
   function initialize() {
+    setAllControls();
     var map;
     map = new google.maps.Map(doc.getElementById('map_canvas'), myOptions);
   }//end initialize()
@@ -104,18 +124,31 @@ var control = {
 // Events
   // SetMenu
   function setMenu(newState){
+   
    var menu_indicator = doc.getElementById('menu_indicator'),
-                 menu = doc.getElementById('menu');
+                 menu = doc.getElementById('menu'),
+         jQueryLoaded = control.jQueryLoaded;
+    if(jQueryLoaded === 1){
+      menu = $('#menu');
+    }
     if(newState === 0){
       // Toggle menu visibility off
-      menu.style.display = "none";
+      if(jQueryLoaded === 0){
+        menu.style.display = "none";
+      } else {
+        menu.fadeOut(200);
+      }
       // Toggle indicator
       menu_indicator.innerHTML = "+";
       // Set current state of menu visibility in control object
       control.menuState = 0;
     } else {
       // Toggle menu visibility on
-      menu.style.display = "block";
+      if(jQueryLoaded === 0){
+        menu.style.display = "block";
+      }else{
+        menu.fadeIn(200);
+      }
       // Toggle indicator
       menu_indicator.innerHTML = "-";
       // Set current state of menu visibility in control object
@@ -124,6 +157,7 @@ var control = {
   }
   // ToggleMenu
   function toggleMenu(){
+    console.time("toggleMenu");
     var menuState = control.menuState;
     if(menuState === 0){
       // Toggle menu visibility on
@@ -132,6 +166,7 @@ var control = {
       // Toggle menu visibility off
       setMenu(0);
     }
+    console.timeEnd("toggleMenu");
   }
   
   // ShowHideCategory

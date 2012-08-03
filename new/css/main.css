@@ -699,7 +699,7 @@ a:visited {
   overflow: auto;
 }
 #menu {
-  display: block;
+  display: none;
   z-index: 1;
   position: absolute;
   width: 100%;
