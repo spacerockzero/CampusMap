@@ -523,19 +523,20 @@ input[type="submit"].btn.btn-mini {
 /****************/
 /* Global items */
 /****************/
-body,
 html {
   margin: 0;
   height: 100%;
   width: 100%;
-  font: 12px/18px Helvetica, Arial, Verdana, sans-serif;
+  font: 14px/1.3em Helvetica, Arial, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  -webkit-text-size-adjust: 80%;
+  -webkit-text-size-adjust: 90%;
   zoom: 1;
-  overflow: hidden;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  position: relative;
+}
+body {
+  margin: 0;
+  height: inherit;
+  width: inherit;
 }
 a img {
   border: none;
@@ -691,6 +692,7 @@ a:visited {
   color: #222;
   text-decoration: none;
   padding: 6px;
+  font-size: 14px;
 }
 /***********************************/
 /*                                 */
@@ -703,14 +705,14 @@ a:visited {
   height: 100%;
   width: 100%;
   display: block;
-  color: black;
   position: absolute;
+  color: black;
   overflow: auto;
 }
 #menu {
   -webkit-transform: translate3d(0, 0, 0);
   display: none;
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   width: 100%;
   right: 0;
@@ -796,6 +798,7 @@ a:visited {
   width: 100%;
   height: 100%;
   position: absolute;
+  z-index: 1;
 }
 #notification {
   display: block;
@@ -803,11 +806,13 @@ a:visited {
   bottom: 9px;
   left: 3px;
   margin: 0;
+  z-index: 1;
 }
 #feedback {
   color: #222;
   text-decoration: none;
   padding: 7px 13px 7px;
+  font-size: 14px;
 }
 #updated {
   font-size: 9px;
@@ -818,9 +823,12 @@ a:visited {
 }
 @media only screen and (max-width: 460px) {
   #heading {
-    margin: 0 0 0 45px;
+    margin: 0 0 0 37px;
     text-align: left;
     font-size: 20px;
+  }
+  #device_type {
+    left: 4px;
   }
 }
 /**************************************/
@@ -832,6 +840,11 @@ a:visited {
 /*  - targeted at just desktop users  */
 /*                                    */
 /**************************************/
+#desktop html,
+#desktop body {
+  font: 13px/1.3em Helvetica, Arial, Verdana, sans-serif;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
 #desktop #container {
   overflow: hidden;
 }
@@ -842,8 +855,11 @@ a:visited {
   box-shadow: inset 10px 0px 30px #121212;
 }
 #desktop .category_name {
-  top: -7px;
+  top: -8px;
   font-size: 15px;
+}
+#desktop .cat_info {
+  font-size: 13px;
 }
 #desktop .cat_icon {
   height: 20px;

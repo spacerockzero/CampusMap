@@ -128,21 +128,20 @@ function setHeight(object, height){
     }
   }
 
-  // function getMapHeight(){
-  //   //get heights of elements
-  //   // var bodyHeight = detectHeight(body),
-  //   //    titleHeight = 57,
-  //   //      mapHeight = (((bodyHeight - titleHeight) / bodyHeight) * 100) + "%";
-  //   var containerHeight = 
-  //   return containerHeight;
-  // }
+  function getMapHeight(){
+    //get heights of elements
+    var bodyHeight = detectHeight(body),
+       titleHeight = 57,
+         mapHeight = (bodyHeight - titleHeight) + "px";
+    return mapHeight;
+  }
 
 // Gather data and set all controls
   function setAllControls(){
     control.currentDevice = detectDevice();
     setCurrentDevice();
-    //setHeight(container,getMapHeight());
-    //setHeight(canvas,getMapHeight());
+    setHeight(container,getMapHeight());
+    setHeight(canvas,getMapHeight());
     loadjQuery();
   }
 
@@ -193,35 +192,48 @@ function setHeight(object, height){
    
    var menu_indicator = doc.getElementById('menu_indicator'),
                  menu = doc.getElementById('menu'),
+         notification = doc.getElementById('notification'),
          jQueryLoaded = control.jQueryLoaded;
     
     if(jQueryLoaded === 1){
       menu = $('#menu');
+      notification = $('#notification');
     }
     
     if(newState === 0){
       // Toggle menu visibility off
       if(jQueryLoaded === 0){
+        // Hide Menu
         menu.style.display = "none";
+        // Show notification div
+        notification.style.display = "block";
       } else {
+        // Hide Menu with fade transition
         menu.fadeOut(200);
+        // Show notification div with fade transition
+        notification.fadeIn(200);
       }
       // Toggle indicator
       menu_indicator.innerHTML = "+";
       // Set current state of menu visibility in control object
       control.menuState = 0;
+      
     } 
     else {
       // Toggle menu visibility on
       if(jQueryLoaded === 0){
         menu.style.display = "block";
+        // Hide notification div
+        notification.style.display = "none";
       }else{
         menu.fadeIn(200);
+        notification.fadeOut(200);
       }
       // Toggle indicator
       menu_indicator.innerHTML = "-";
       // Set current state of menu visibility in control object
       control.menuState = 1;
+      
     }
   }
 
@@ -246,28 +258,43 @@ function setHeight(object, height){
   // Search
 
   // Event Listeners and binding
-  // function resizeStack(){
-  //   setAllControls();
-  // }
-  // window.onResize = resizeStack;
-  // window.onorientationchange = function()
-  // {
-  //   setAllControls();
-  // };
-  // Function to change the content of t2
-  function updateContainerHeight() {
-    //window.alert("resizing!");
-    var height = detectHeight(container);
-    setHeight(container, height);
-    console.log("resizing, height = " + height);    
+  function resizeStack(){
+    setHeight(container,getMapHeight());
+    setHeight(canvas,getMapHeight());
   }
- 
-  // // Function to add event listener to t
-  // function load() { 
-  //   window.addEventListener("resize", updateContainerHeight, false); 
-  // } 
- 
-  // document.addEventListener("DOMContentLoaded", load, false);
-  window.addEventListener('resize', updateContainerHeight, false);
+  //window.onResize = resizeStack;
+  window.addEventListener('resize', resizeStack, false);
+
+  if( window.addEventListener ){
+      window.addEventListener('resize', resizeStack, false);
+  }
+
+//   (function( win ){
+//   var doc = win.document;
+    
+//   // If there's a hash, or addEventListener is undefined, stop here
+//   if( !(location.hash && win.addEventListener) ){
+//     //scroll to 1
+//     window.scrollTo( 0, 1 );
+//     var scrollTop = 1,
+//       getScrollTop = function(){
+//         return win.pageYOffset || doc.compatMode === "CSS1Compat" && doc.documentElement.scrollTop || doc.body.scrollTop || 0;
+//       },
+//       //reset to 0 on bodyready, if needed
+//       bodycheck = setInterval(function(){
+//         if( doc.body ){
+//           clearInterval( bodycheck );
+//           scrollTop = getScrollTop();
+//           win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+//         } 
+//       }, 15 );
+//     win.addEventListener( "load", function(){
+//       setTimeout(function(){
+//           //reset to hide addr bar at onload
+//           win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+//       }, 0);
+//     } );
+//   }
+// })( this );
 
 
