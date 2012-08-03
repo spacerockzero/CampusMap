@@ -13,6 +13,8 @@ body, html {
 	-webkit-text-size-adjust:80%;
 	zoom:1;
 	overflow:hidden;
+	overflow-x:hidden;
+	overflow-y:hidden;
 }
 body{
 
@@ -39,6 +41,13 @@ a:visited {
 .unhide{
 	display:block;
 	-webkit-transform: translateZ(0);
+}
+.scrolling {
+	overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.scrolling * {
+  -webkit-transform: translate3d(0,0,0);
 }
 .box {
 	margin: 0 0 18px;
@@ -124,7 +133,6 @@ a:visited {
 		width:50px;
 		color: #222;
 		text-decoration: none;
-		// padding: 7px 13px 7px;
 		padding: 6px;
 	}
 
@@ -144,6 +152,7 @@ a:visited {
 		overflow:auto;
 	}
 	#menu{
+		-webkit-transform: translate3d(0, 0, 0);
 		display:none;
 		z-index: 1;
 		position: absolute;
@@ -198,7 +207,7 @@ a:visited {
 	  width: 100%; 
 	  height: 100%;
 	  position:absolute;
-	  border-right:1px solid #142833;
+	  // border-right:1px solid #142833;
 	}
 	#notification{
 		display:block;

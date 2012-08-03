@@ -12,20 +12,6 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>BYU-Idaho Campus Map</title>
-      <!--<script type="text/javascript">
-        WebFontConfig = {
-          google: { families: [ 'Open+Sans:300:latin' ] }
-        };
-        (function() {
-          var wf = document.createElement('script');
-          wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-          wf.type = 'text/javascript';
-          wf.async = 'true';
-          var s = document.getElementsByTagName('script')[0];
-          s.parentNode.insertBefore(wf, s);
-        })(); 
-      </script>-->
       <meta name="description" content="">
       <!-- Mobile viewport optimized: h5bp.com/viewport -->
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
@@ -41,8 +27,8 @@
       <a id="menu_button" class="btn" href="#" title="Open Menu" onmousedown="toggleMenu(); return false;">Menu <span id="menu_indicator">+</span></a>
     </div>
 
-    <div id="container">
-        <div id="menu">
+    <div id="container" name="container">
+        <div id="menu" name="menu" class="scrolling">
           <div id="inner_menu">
             <!-- <h2 id="menu_title">Menu</h2> -->
             <nav id="categories">
@@ -54,7 +40,7 @@
                 </a>
                 <div class="cat_container">
                   <div class="cat_info">
-                    <p>Located on the 430-acre campus are numerous buildings design to meet the diverse needs of teh students and employees. While building names often remind of historic legacy, the structures are modern facilities that reflect the wholesome academic, cultural, social and spiritual environment of BYU-Idaho.</p>
+                    <p>Located on the 430-acre campus are numerous buildings design to meet the diverse needs of the students and employees. While building names often remind of historic legacy, the structures are modern facilities that reflect the wholesome academic, cultural, social and spiritual environment of BYU-Idaho.</p>
                     <!-- <br/> -->
                     <a href="http://www2.byui.edu/bldgsgrnds/">Buildings &amp; Grounds website</a>
                   </div>
@@ -120,38 +106,6 @@
     
     <!-- scripts concatenated and minified via build script -->
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&amp;sensor=false"></script>
-
-    <!-- jQuery loaded asynchronously only for desktop users -->
-    <script type="text/javascript">  
-      var doc = document,
-       bodyID = doc.getElementsByTagName('body')[0].getAttribute('id');
-
-      if(bodyID === "desktop"){
-        // async script loading function
-        function loadScript(src, callback) {
-          var head = document.getElementsByTagName('head')[0],
-            script = document.createElement('script');
-              done = false;
-          script.setAttribute('src', src);
-          script.setAttribute('type', 'text/javascript');
-          script.setAttribute('charset', 'utf-8');
-          script.onload = script.onreadstatechange = function() {
-            if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
-              done = true;
-              script.onload = script.onreadystatechange = null;
-              if (callback) {
-                callback();
-              }
-            }
-          }
-          head.insertBefore(script, head.firstChild);
-        }
-
-        // load the file and display an alert dialog once the script has been loaded
-        loadScript('js/libs/jquery-1.7.2.min.js', function() {});
-
-      }
-    </script>
 
     <script type="text/javascript" src="js/script.js"></script>
     <!-- end script imports -->

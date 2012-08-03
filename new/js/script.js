@@ -4,10 +4,13 @@
 
 // JS Lint Options (remove after deployment)
 /*jslint white:true, browser: true */
-/*global google, jQuery, $*/
+/*global google, jQuery, $, done*/
 
 // Cache global objects as local variables
-var doc = document;
+  var doc = document,
+container = doc.getElementById('container'),
+     body = doc.getElementsByTagName('body')[0],
+   canvas = doc.getElementById('map_canvas');
 
 // control object holds the current states and values of the app
 var control = {
@@ -16,6 +19,43 @@ var control = {
   jQueryLoaded: 0
 };
 
+/**********************/
+/*  Global Functions  */
+/**********************/
+
+// Asynchronous script loader function
+function loadScript(src, callback) {
+  var head = document.getElementsByTagName('head')[0],
+    script = document.createElement('script');
+      done = false;
+  script.setAttribute('src', src);
+  script.setAttribute('type', 'text/javascript');
+  script.setAttribute('charset', 'utf-8');
+  script.onload = script.onreadstatechange = function() {
+    if (!done && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {
+      done = true;
+      script.onload = script.onreadystatechange = null;
+      if (callback) {
+        callback();
+      }
+    }
+  }
+  head.insertBefore(script, head.firstChild);
+}
+
+// Detect object height
+function detectHeight(object){
+  return object.offsetHeight;
+}
+
+//set object height
+function setHeight(object, height){
+  object.style.height = height;
+}
+
+/****************************************************/
+/*  Device & Feature Detection & Setting Functions  */
+/****************************************************/
 // Detect and set device in control object
   function detectDevice(){
     var width = doc.body.offsetWidth;
@@ -58,6 +98,7 @@ var control = {
     }
   }
 
+  function setCurrentDevice(){
   // Detect and set browser attributes in control object
     // Detect and set device in control object
     if (control.currentDevice === 0){
@@ -67,6 +108,16 @@ var control = {
       //set desktop
       setDevice(1);
     }
+  }  
+
+  function loadjQuery(){
+    // load jQuery if desktop device
+    if(control.currentDevice === 1){
+      // load the file and display an alert dialog once the script has been loaded
+      loadScript('js/libs/jquery-1.7.2.min.js', function() {});
+      control.jQueryLoaded = 1;
+    }
+  }
 
   // Detect jQuery
   function detectjQuery(){
@@ -77,12 +128,26 @@ var control = {
     }
   }
 
+  // function getMapHeight(){
+  //   //get heights of elements
+  //   // var bodyHeight = detectHeight(body),
+  //   //    titleHeight = 57,
+  //   //      mapHeight = (((bodyHeight - titleHeight) / bodyHeight) * 100) + "%";
+  //   var containerHeight = 
+  //   return containerHeight;
+  // }
+
 // Gather data and set all controls
   function setAllControls(){
     control.currentDevice = detectDevice();
-    control.jQueryLoaded = detectjQuery();
+    setCurrentDevice();
+    //setHeight(container,getMapHeight());
+    //setHeight(canvas,getMapHeight());
+    loadjQuery();
   }
-  
+
+
+
 // GatherData functions
 // LoadPopulateShowCategories functions
 
@@ -93,6 +158,7 @@ var control = {
   // Set map default options
   var myLatlng,
       myOptions;
+
   myLatlng = new google.maps.LatLng( 43.815045, -111.783515);
   myOptions = {
     zoom: 16,
@@ -128,9 +194,11 @@ var control = {
    var menu_indicator = doc.getElementById('menu_indicator'),
                  menu = doc.getElementById('menu'),
          jQueryLoaded = control.jQueryLoaded;
+    
     if(jQueryLoaded === 1){
       menu = $('#menu');
     }
+    
     if(newState === 0){
       // Toggle menu visibility off
       if(jQueryLoaded === 0){
@@ -142,7 +210,8 @@ var control = {
       menu_indicator.innerHTML = "+";
       // Set current state of menu visibility in control object
       control.menuState = 0;
-    } else {
+    } 
+    else {
       // Toggle menu visibility on
       if(jQueryLoaded === 0){
         menu.style.display = "block";
@@ -155,6 +224,7 @@ var control = {
       control.menuState = 1;
     }
   }
+
   // ToggleMenu
   function toggleMenu(){
     console.time("toggleMenu");
@@ -175,7 +245,29 @@ var control = {
 
   // Search
 
-
-
+  // Event Listeners and binding
+  // function resizeStack(){
+  //   setAllControls();
+  // }
+  // window.onResize = resizeStack;
+  // window.onorientationchange = function()
+  // {
+  //   setAllControls();
+  // };
+  // Function to change the content of t2
+  function updateContainerHeight() {
+    //window.alert("resizing!");
+    var height = detectHeight(container);
+    setHeight(container, height);
+    console.log("resizing, height = " + height);    
+  }
+ 
+  // // Function to add event listener to t
+  // function load() { 
+  //   window.addEventListener("resize", updateContainerHeight, false); 
+  // } 
+ 
+  // document.addEventListener("DOMContentLoaded", load, false);
+  window.addEventListener('resize', updateContainerHeight, false);
 
 
