@@ -8,6 +8,7 @@
 
 // Cache global objects as local variables
   var doc = document,
+      win = window,
 container = doc.getElementById('container'),
      body = doc.getElementsByTagName('body')[0],
    canvas = doc.getElementById('map_canvas');
@@ -15,11 +16,13 @@ container = doc.getElementById('container'),
 // control object holds the current states and values of the app
 var control = {
   menuState: 0,
-  currentDevice: 0
+  currentDevice: 0,
+  jQueryLoaded: 0
 };
 
 // object to hold category names, settings, and control info
-var categories = {};
+var categoryInfo, 
+    categories;
 
 /**********************/
 /*  Global Functions  */
@@ -68,7 +71,7 @@ function setHeight(object, height){
     }
   }
 
-  // Set and Toggle Device
+  // Set Device
   function setDevice(changeTo){
     var deviceIndicator = doc.getElementById('device_type'),
                    body = doc.getElementsByTagName("body")[0];
@@ -89,6 +92,7 @@ function setHeight(object, height){
     }
   }
 
+  // Toggle between device types
   function toggleDevice(){
     var current = control.currentDevice;
     if (current === 0){
@@ -100,8 +104,8 @@ function setHeight(object, height){
     }
   }
 
-  function setCurrentDevice(){
   // Detect and set browser attributes in control object
+  function setCurrentDevice(){
     // Detect and set device in control object
     if (control.currentDevice === 0){
       //set mobile
@@ -112,15 +116,28 @@ function setHeight(object, height){
     }
   }  
 
+  // Detect jQuery    
+  function detectjQuery(){    
+    if(typeof jQuery === 'undefined'){   
+      return 0;
+    } else {
+      return 1;
+    } 
+  }
+
+  //get heights of elements
   function getMapHeight(){
-    //get heights of elements
     var bodyHeight = detectHeight(body),
        titleHeight = 57,
          mapHeight = (bodyHeight - titleHeight) + "px";
     return mapHeight;
   }
 
-// Set all controls
+
+/****************************************************/
+/*  Set All Controls Functions                      */
+/****************************************************/
+  
   function setAllControls(){
     control.currentDevice = detectDevice();
     setCurrentDevice();
@@ -128,17 +145,36 @@ function setHeight(object, height){
     setHeight(canvas,getMapHeight());
   }
 
-// GatherData functions
-function loadMapData(category) {
+
+/****************************************************/
+/*  Load all Data Functions                         */
+/****************************************************/
+
+function loadCategoryInfoFile() {
+  var url = 'data/categories.txt';
   $.ajax({
-    url: 'data/' + category + '.txt',
+    dataType: "json",
+    url: url,
     success: function(data) {
-      $('#categories').html(data);
-      alert('Load was performed.');
+      //add new data to global objects
+      //categories = data;
+      console.log(data);
     }
   });
 }
-//console.log(loadMapData('buildings'));
+
+function loadCategoryFile(category) {
+  var url = 'data/' + category + '.txt';
+  $.ajax({
+    dataType: "json",
+    url: url,
+    success: function(data) {
+      //add new data to global objects
+      categories += data;
+    }
+  });
+}
+
 // LoadPopulateShowCategories functions
 
 // Init
@@ -181,16 +217,33 @@ function loadMapData(category) {
   // SetMenu
   function setMenu(newState){
    
-   var menu_indicator = doc.getElementById('menu_indicator'),    
-                 menu = $('#menu'),
-         notification = $('#notification');
+    var menu_indicator = doc.getElementById('menu_indicator'),
+                  menu = doc.getElementById('menu'),     
+          notification = doc.getElementById('notification'),     
+         currentDevice = control.currentDevice;     
+    
+    //selectors for non-mobile jQuery 
+    if(currentDevice !== 0){     
+     menu = $('#menu');     
+     notification = $('#notification');     
+    }
     
     if(newState === 0){
-      // Toggle menu visibility off
+    // Toggle menu visibility off
+      
+      // for mobile
+      if(currentDevice === 0){
+        // Hide Menu
+        menu.style.display = "none";
+        // Show notification div
+        notification.style.display = "block";
+      // for non-mobile
+      } else {
         // Hide Menu with fade transition
         menu.fadeOut(200);
         // Show notification div with fade transition
         notification.fadeIn(200);
+      }
       // Toggle indicator
       menu_indicator.innerHTML = "+";
       // Set current state of menu visibility in control object
@@ -199,8 +252,16 @@ function loadMapData(category) {
     } 
     else {
       // Toggle menu visibility on
+      if(currentDevice === 0){
+        // mobile minimal
+        menu.style.display = "block";
+        // Hide notification div
+        notification.style.display = "none";
+      } else {
+        // non-mobile fancy
         menu.fadeIn(200);
         notification.fadeOut(200);
+      }
       // Toggle indicator
       menu_indicator.innerHTML = "-";
       // Set current state of menu visibility in control object
@@ -211,7 +272,7 @@ function loadMapData(category) {
 
   // ToggleMenu
   function toggleMenu(){
-    console.time("toggleMenu");
+    //console.time("toggleMenu");
     var menuState = control.menuState;
     if(menuState === 0){
       // Toggle menu visibility on
@@ -220,7 +281,7 @@ function loadMapData(category) {
       // Toggle menu visibility off
       setMenu(0);
     }
-    console.timeEnd("toggleMenu");
+    //console.timeEnd("toggleMenu");
   }
   
   // ShowHideCategory
@@ -235,10 +296,12 @@ function loadMapData(category) {
     setHeight(canvas,getMapHeight());
   }
   //window.onResize = resizeStack;
-  window.addEventListener('resize', resizeStack, false);
+  //win.addEventListener('resize', resizeStack, false);
 
-  if( window.addEventListener ){
-      window.addEventListener('resize', resizeStack, false);
-  }
+  if( win.addEventListener ){
+      win.addEventListener('resize', resizeStack, false);
+  }else if (win.attachEvent){
+  win.attachEvent('resize', resizeStack, false);
+}
 
 

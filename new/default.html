@@ -17,7 +17,7 @@
       <!-- Mobile viewport optimized: h5bp.com/viewport -->
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
       <link rel="stylesheet" href="css/main.css">
-      <script src="js/vendor/modernizr-2.6.1.min.js"></script>
+      <script src="js/vendor/modernizr.custom.46328.js"></script>
   </head>
 
   <body onload="initialize()" id="mobile">
@@ -34,7 +34,7 @@
 
             <nav id="categories">
 
-              <!-- <div class="category">
+              <div class="category">
                 <a class="category_bar" href="#">
                   <img class="cat_icon" src="img/icons/blank-colors/blue.png" height="25"/>
                   <span class="category_name">Buildings</span>
@@ -91,7 +91,7 @@
                 </a>
                 <div class="cat_container">
                 </div>
-              </div> -->
+              </div>
 
             </nav><!-- // categories -->
             
@@ -110,6 +110,17 @@
 
     <!-- scripts concatenated and minified via build script? -->
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&amp;sensor=false"></script>
+    <script type="text/javascript">
+    Modernizr.load([
+      // Presentational polyfills
+      {
+        // Logical list of things we would normally need
+        test : Modernizr.json,
+        // Modernizr.load loads css and javascript by default
+        nope : ['js/vendor/json3.min.js']
+      }
+    ]);
+    </script>
     <script type="text/javascript" src="js/script.js"></script>
     <!-- end script imports -->
     
