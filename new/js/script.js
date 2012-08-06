@@ -18,6 +18,9 @@ var control = {
   currentDevice: 0
 };
 
+// object to hold category names, settings, and control info
+var categories = {};
+
 /**********************/
 /*  Global Functions  */
 /**********************/
@@ -117,7 +120,7 @@ function setHeight(object, height){
     return mapHeight;
   }
 
-// Gather data and set all controls
+// Set all controls
   function setAllControls(){
     control.currentDevice = detectDevice();
     setCurrentDevice();
@@ -125,9 +128,19 @@ function setHeight(object, height){
     setHeight(canvas,getMapHeight());
   }
 
-
-
 // GatherData functions
+function loadCategoryData(category) {
+  category += ".txt";
+  $.ajax({
+    url: '/data/',
+    dataType: 'json',
+    data: { "url": category },
+    success: function (data) {
+      alert("success!");
+    }
+  });
+}
+console.log(loadCategoryData('buildings'));
 // LoadPopulateShowCategories functions
 
 // Init
