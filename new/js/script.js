@@ -11,7 +11,9 @@
       win = window,
 container = doc.getElementById('container'),
      body = doc.getElementsByTagName('body')[0],
-   canvas = doc.getElementById('map_canvas');
+   canvas = doc.getElementById('map_canvas'),
+            myLatlng,
+            myOptions;
 
 // control object holds the current states and values of the app
 var control = {
@@ -21,8 +23,9 @@ var control = {
 };
 
 // object to hold category names, settings, and control info
-var categoryInfo, 
-    categories;
+var categoryInfo = [], 
+    mapCategories = [];
+
 
 /**********************/
 /*  Global Functions  */
@@ -149,7 +152,7 @@ function setHeight(object, height){
 /****************************************************/
 /*  Load all Data Functions                         */
 /****************************************************/
-
+// Load all category info from file into categoryInfo array
 function loadCategoryInfoFile() {
   var url = 'data/categories.txt';
   $.ajax({
@@ -158,22 +161,39 @@ function loadCategoryInfoFile() {
     success: function(data) {
       //add new data to global objects
       //categories = data;
-      console.log(data);
+      categoryInfo = data;
     }
-  });
+  })
+  .done(function(){});
 }
 
-function loadCategoryFile(category) {
-  var url = 'data/' + category + '.txt';
+// Load all category info from file into categoryInfo array
+function loadCategoryFile() {
+  
+  // console.log('inside cat file json');
+  console.time('loadCatFile');
+
+  var url = 'data/objectFile.txt';
   $.ajax({
     dataType: "json",
     url: url,
     success: function(data) {
-      //add new data to global objects
-      categories += data;
+      //add new data to global object
+      console.log('successfully pulled json category');
+      mapCategories = data;
     }
+  })
+  .fail(function() {
+    console.log("ajax error"); 
   });
+  console.timeEnd('loadCatFile');
 }
+
+// console.time("loadJSON");
+loadCategoryInfoFile();
+loadCategoryFile();
+
+// console.timeEnd("loadJSON");
 
 // LoadPopulateShowCategories functions
 
@@ -182,8 +202,7 @@ function loadCategoryFile(category) {
   // Detect Device/Size
   
   // Set map default options
-  var myLatlng,
-      myOptions;
+  
 
   myLatlng = new google.maps.LatLng( 43.815045, -111.783515);
   myOptions = {

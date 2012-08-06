@@ -20,7 +20,7 @@
   },
   {
     "ID": 3,
-    "name": "foodanddining",
+    "name": "food",
     "title": "Food & Dining",
     "text": "Food & Dining locations are operated by Food Services for your eating pleasure and convenience.",
     "icon": "rust",
