@@ -129,18 +129,16 @@ function setHeight(object, height){
   }
 
 // GatherData functions
-function loadCategoryData(category) {
-  category += ".txt";
+function loadMapData(category) {
   $.ajax({
-    url: '/data/',
-    dataType: 'json',
-    data: { "url": category },
-    success: function (data) {
-      alert("success!");
+    url: 'data/' + category + '.txt',
+    success: function(data) {
+      $('#categories').html(data);
+      alert('Load was performed.');
     }
   });
 }
-console.log(loadCategoryData('buildings'));
+//console.log(loadMapData('buildings'));
 // LoadPopulateShowCategories functions
 
 // Init
