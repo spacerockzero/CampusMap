@@ -15,8 +15,7 @@ container = doc.getElementById('container'),
 // control object holds the current states and values of the app
 var control = {
   menuState: 0,
-  currentDevice: 0,
-  jQueryLoaded: 0
+  currentDevice: 0
 };
 
 /**********************/
@@ -110,24 +109,6 @@ function setHeight(object, height){
     }
   }  
 
-  function loadjQuery(){
-    // load jQuery if desktop device
-    if(control.currentDevice === 1){
-      // load the file and display an alert dialog once the script has been loaded
-      loadScript('js/libs/jquery-1.7.2.min.js', function() {});
-      control.jQueryLoaded = 1;
-    }
-  }
-
-  // Detect jQuery
-  function detectjQuery(){
-    if(typeof jQuery === 'undefined'){
-      return 0;
-    } else {
-      return 1;
-    }
-  }
-
   function getMapHeight(){
     //get heights of elements
     var bodyHeight = detectHeight(body),
@@ -142,7 +123,6 @@ function setHeight(object, height){
     setCurrentDevice();
     setHeight(container,getMapHeight());
     setHeight(canvas,getMapHeight());
-    loadjQuery();
   }
 
 
@@ -190,29 +170,16 @@ function setHeight(object, height){
   // SetMenu
   function setMenu(newState){
    
-   var menu_indicator = doc.getElementById('menu_indicator'),
-                 menu = doc.getElementById('menu'),
-         notification = doc.getElementById('notification'),
-         jQueryLoaded = control.jQueryLoaded;
-    
-    if(jQueryLoaded === 1){
-      menu = $('#menu');
-      notification = $('#notification');
-    }
+   var menu_indicator = doc.getElementById('menu_indicator'),    
+                 menu = $('#menu'),
+         notification = $('#notification');
     
     if(newState === 0){
       // Toggle menu visibility off
-      if(jQueryLoaded === 0){
-        // Hide Menu
-        menu.style.display = "none";
-        // Show notification div
-        notification.style.display = "block";
-      } else {
         // Hide Menu with fade transition
         menu.fadeOut(200);
         // Show notification div with fade transition
         notification.fadeIn(200);
-      }
       // Toggle indicator
       menu_indicator.innerHTML = "+";
       // Set current state of menu visibility in control object
@@ -221,14 +188,8 @@ function setHeight(object, height){
     } 
     else {
       // Toggle menu visibility on
-      if(jQueryLoaded === 0){
-        menu.style.display = "block";
-        // Hide notification div
-        notification.style.display = "none";
-      }else{
         menu.fadeIn(200);
         notification.fadeOut(200);
-      }
       // Toggle indicator
       menu_indicator.innerHTML = "-";
       // Set current state of menu visibility in control object
@@ -268,33 +229,5 @@ function setHeight(object, height){
   if( window.addEventListener ){
       window.addEventListener('resize', resizeStack, false);
   }
-
-//   (function( win ){
-//   var doc = win.document;
-    
-//   // If there's a hash, or addEventListener is undefined, stop here
-//   if( !(location.hash && win.addEventListener) ){
-//     //scroll to 1
-//     window.scrollTo( 0, 1 );
-//     var scrollTop = 1,
-//       getScrollTop = function(){
-//         return win.pageYOffset || doc.compatMode === "CSS1Compat" && doc.documentElement.scrollTop || doc.body.scrollTop || 0;
-//       },
-//       //reset to 0 on bodyready, if needed
-//       bodycheck = setInterval(function(){
-//         if( doc.body ){
-//           clearInterval( bodycheck );
-//           scrollTop = getScrollTop();
-//           win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
-//         } 
-//       }, 15 );
-//     win.addEventListener( "load", function(){
-//       setTimeout(function(){
-//           //reset to hide addr bar at onload
-//           win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
-//       }, 0);
-//     } );
-//   }
-// })( this );
 
 
