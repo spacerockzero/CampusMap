@@ -7,18 +7,21 @@
 /*global google, jQuery, $, done*/
 
 // Cache global objects as local variables
-    var doc = document,
-        win = window,
-  container = doc.getElementById('container'),
-       body = doc.getElementsByTagName('body')[0],
-     canvas = doc.getElementById('map_canvas'),
-              myLatlng,
-              myOptions,
-              map,
-polygonFile = 'http://www2.byui.edu/Map/parking_data2.xml',
- campusFile = 'http://www2.byui.edu/Map/campus-outline.xml';
+     var doc = document,
+         win = window,
+   container = doc.getElementById('container'),
+        body = doc.getElementsByTagName('body')[0],
+      canvas = doc.getElementById('map_canvas'),
+// categoryDivs = $('.category'),
+               myLatlng,
+               myOptions,
+               map,
+               parkingLayer,
+               infoWindow,
+               campusLayer,
+ polygonFile = 'http://www2.byui.edu/Map/parking_data2.xml',
+  campusFile = 'http://www2.byui.edu/Map/campus-outline.xml';
 
-  var parkingLayer;;
 
 // Control object holds the current states and values of the app
 var control = {
@@ -146,12 +149,11 @@ var categoryInfo = [],
 /*  Set All Controls Functions                      */
 /****************************************************/
   
-  function setAllControls(callback){
+  function setAllControls(){
     control.currentDevice = detectDevice();
     setCurrentDevice();
     setHeight(container,getMapHeight());
     setHeight(canvas,getMapHeight());
-    callback;
   }
 
 
@@ -194,7 +196,7 @@ var categoryInfo = [],
   function loadCatData(callback){
     loadCategoryInfoFile();
     loadCategoryFile();
-    callback;
+    callback();
   }
 
 /****************************************************/
@@ -202,7 +204,7 @@ var categoryInfo = [],
 /****************************************************/
 
   // Populate menu
-  function populateCategories(callback){
+  function populateCategoryInfo(callback){
     //console.time("populateCategories");
     // set target div and html string var to be inserted
     var target = doc.getElementById('categories'),
@@ -211,7 +213,7 @@ var categoryInfo = [],
              i = 0;
 
     while(i<length){
-      html += '<div class="category" onmousedown="categoryToggle(); return false;">';
+      html += '<div class="category" >';
       html +=   '<a class="category_bar" href="#">';
       html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ categoryInfo[i].icon + '.png" height="25"/>';
       html +=     '<span class="category_name">' + categoryInfo[i].title + '</span>';
@@ -225,7 +227,7 @@ var categoryInfo = [],
       html +=     '</div>';
       html +=   '</div>';
       html += '</div>';
-      i++;
+      i += 1;
     }
 
     // insert html back into target with one reflow
@@ -288,38 +290,38 @@ var categoryInfo = [],
     campusLayer.setMap(map);
   }
 
+  function bindCategoryToggle(){
+    $('.category').click(function(){
+      this.children[1].style.height = "100%";
+      // categoryToggle($(this));
+    });
+  }
+
   // Create Map Object
   function initialize() {
     // Run Map setup stack
-    // setOptions(function(){
-    //   setAllControls(function(){
-    //     setMap(function(){
-    //       setInfoWindow(function(){
-    //         setCampusLayer(function(){
-            
-    //         });
-    //       });
-    //     });
-    //   });
-    // });
-
     setOptions();
     setAllControls();
     setMap();
     setInfoWindow();
     setCampusLayer();    
     
-    // Run GatherData Stack
+    // Run GatherData Stack using callback function to serialize the dependent functions
     loadCategoryInfoFile(function(){
-      populateCategories();
+      
+      populateCategoryInfo();
     });
-    loadCategoryFile();
+    loadCategoryFile(function(){
+      populateContent();
+      bindCategoryToggle();
+    });
 
     // Run Populate Categories Stack
 
     // Hide Loading Animation
 
   }//end initialize()
+
 
 
 /****************************************************/
@@ -341,27 +343,33 @@ var categoryInfo = [],
     
     if(newState === 0){
     // Toggle menu visibility off
-      // for mobile
+      
+      // For mobile
       if(currentDevice === 0){
         // Hide Menu, Show notification div
         menu.style.display = "none";
         notification.style.display = "block";
+      
       // for non-mobile
       } else {
         // Hide Menu with fade transition, Show notification div with fade transition
         menu.fadeOut(200);
         notification.fadeIn(200);
       }
+      
       // Toggle indicator, Set current state of menu visibility in control object
       menu_indicator.innerHTML = "+";
       control.menuState = 0; 
     } 
+
     else {
+    
     // Toggle menu visibility on
       if(currentDevice === 0){
         // mobile minimal show menu, hide notification div
         menu.style.display = "block";
         notification.style.display = "none";
+      
       } else {
         // non-mobile fancy
         menu.fadeIn(200);
@@ -388,10 +396,12 @@ var categoryInfo = [],
 /****************************************************/
 /*   Category Toggle                                */
 /****************************************************/
-  
-function categoryToggle(){
 
+function categoryToggle(obj){
+  // obj.addClass('');
+  obj.children[1].style.height = "100%";
 }
+
 
   // Search (needs web service ajax server)
 
@@ -413,10 +423,11 @@ function categoryToggle(){
     var resizeTimeOut = null;
     var resizeFunc = resizeStack();
     window.onresize = function(){
-      if(resizeTimeOut != null) clearTimeout(resizeTimeOut);
+      if(resizeTimeOut !== null) {clearTimeout(resizeTimeOut);}
       resizeTimeOut = setTimeout(resizeStack, 100);
     };
   }
+
 
 
 
