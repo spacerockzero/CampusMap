@@ -15,17 +15,16 @@ container = doc.getElementById('container'),
             myLatlng,
             myOptions;
 
-// control object holds the current states and values of the app
+// Control object holds the current states and values of the app
 var control = {
   menuState: 0,
   currentDevice: 0,
   jQueryLoaded: 0
 };
 
-// object to hold category names, settings, and control info
+// Arrays to hold category names, settings, and control info
 var categoryInfo = [], 
     mapCategories = [];
-
 
 /**********************/
 /*  Global Functions  */
@@ -169,9 +168,6 @@ function loadCategoryInfoFile() {
 
 // Load all category info from file into categoryInfo array
 function loadCategoryFile() {
-  
-  // console.log('inside cat file json');
-  console.time('loadCatFile');
 
   var url = 'data/objectFile.txt';
   $.ajax({
@@ -186,14 +182,9 @@ function loadCategoryFile() {
   .fail(function() {
     console.log("ajax error"); 
   });
-  console.timeEnd('loadCatFile');
+
 }
 
-// console.time("loadJSON");
-loadCategoryInfoFile();
-loadCategoryFile();
-
-// console.timeEnd("loadJSON");
 
 // LoadPopulateShowCategories functions
 
@@ -202,33 +193,42 @@ loadCategoryFile();
   // Detect Device/Size
   
   // Set map default options
-  
-
-  myLatlng = new google.maps.LatLng( 43.815045, -111.783515);
-  myOptions = {
-    zoom: 16,
-    center: myLatlng,
-    mapTypeId: google.maps.MapTypeId.HYBRID,
-    mapTypeControlOptions: {
-      mapTypeIds: [google.maps.MapTypeId.ROADMAP, 
-                   google.maps.MapTypeId.SATELLITE, 
-                   google.maps.MapTypeId.HYBRID, 
-                   google.maps.MapTypeId.TERRAIN]
-    }//end mapTypeControlOptions
-  };//end myOptions
+  function setOptions(){
+    myLatlng = new google.maps.LatLng( 43.815045, -111.783515);
+    myOptions = {
+      zoom: 16,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.HYBRID,
+      mapTypeControlOptions: {
+        mapTypeIds: [google.maps.MapTypeId.ROADMAP, 
+                     google.maps.MapTypeId.SATELLITE, 
+                     google.maps.MapTypeId.HYBRID, 
+                     google.maps.MapTypeId.TERRAIN]
+      }//end mapTypeControlOptions
+    };//end myOptions
+  }
 
   // Create Map Object
   function initialize() {
+    setOptions();
     setAllControls();
     var map;
     map = new google.maps.Map(doc.getElementById('map_canvas'), myOptions);
+    
+    // Create infoWindow Object
+    // Load Campus Boundary Layer
+    
+    // Run GatherData Stack
+      loadCategoryInfoFile();
+      loadCategoryFile();
+
+    // Run LoadPopulateShowCategories Stack
+    // Hide Loading Animation
   }//end initialize()
 
-  // Create infoWindow Object
-  // Load Campus Boundary Layer
-  // run GatherData Stack
-  // run LoadPopulateShowCategories Stack
-  // Hide Loading Animation
+  
+  
+  
 
 
 
@@ -272,9 +272,8 @@ loadCategoryFile();
     else {
       // Toggle menu visibility on
       if(currentDevice === 0){
-        // mobile minimal
+        // mobile minimal show menu, hide notification div
         menu.style.display = "block";
-        // Hide notification div
         notification.style.display = "none";
       } else {
         // non-mobile fancy
@@ -291,7 +290,6 @@ loadCategoryFile();
 
   // ToggleMenu
   function toggleMenu(){
-    //console.time("toggleMenu");
     var menuState = control.menuState;
     if(menuState === 0){
       // Toggle menu visibility on
@@ -300,7 +298,6 @@ loadCategoryFile();
       // Toggle menu visibility off
       setMenu(0);
     }
-    //console.timeEnd("toggleMenu");
   }
   
   // ShowHideCategory
@@ -314,13 +311,18 @@ loadCategoryFile();
     setHeight(container,getMapHeight());
     setHeight(canvas,getMapHeight());
   }
-  //window.onResize = resizeStack;
-  //win.addEventListener('resize', resizeStack, false);
 
   if( win.addEventListener ){
-      win.addEventListener('resize', resizeStack, false);
-  }else if (win.attachEvent){
-  win.attachEvent('resize', resizeStack, false);
-}
+    win.addEventListener('resize', resizeStack, false);
+  } else {
+    var resizeTimeOut = null;
+    var resizeFunc = resizeStack();
+    window.onresize = function(){
+      if(resizeTimeOut != null) clearTimeout(resizeTimeOut);
+      resizeTimeOut = setTimeout(resizeStack, 100);
+    };
+  }
+
+
 
 

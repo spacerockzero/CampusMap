@@ -20,7 +20,7 @@
       <script src="js/vendor/modernizr.custom.46328.js"></script>
   </head>
 
-  <body onload="initialize()" id="mobile">
+  <body id="mobile">
 
     <div id="title">
       <h1 id="heading">BYU-Idaho Campus Map</h1>
@@ -110,18 +110,55 @@
 
     <!-- scripts concatenated and minified via build script? -->
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&amp;sensor=false"></script>
-    <script type="text/javascript">
-    Modernizr.load([
-      // Presentational polyfills
-      {
-        // Logical list of things we would normally need
-        test : Modernizr.json,
-        // Modernizr.load loads css and javascript by default
-        nope : ['js/vendor/json3.min.js']
-      }
-    ]);
-    </script>
     <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript">
+      // Asynchronous script loader function
+      function loadScript(src, callback) {
+        var head = document.getElementsByTagName('head')[0],
+          script = document.createElement('script');
+            done = false;
+        script.setAttribute('src', src);
+        script.setAttribute('type', 'text/javascript');
+        script.setAttribute('charset', 'utf-8');
+        script.onload = script.onreadstatechange = function() {
+          if (!done && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {
+            done = true;
+            script.onload = script.onreadystatechange = null;
+            if (callback) {
+              callback();
+            }
+          }
+        }
+        head.insertBefore(script, head.firstChild);
+      }
+
+      Modernizr.load([
+        // Presentational polyfills
+        {
+          // Logical list of things we would normally need
+          test :  Modernizr.cssgradients,
+          // Modernizr.load loads css and javascript by default
+          nope : 'js/presentational-polyfill.js'
+        },
+        // Functional polyfills
+        {
+          // This just has to be truthy
+          test : Modernizr.json && window.JSON,
+          // socket-io.js and json2.js
+          nope : 'js/functional-polyfills.js',
+          // You can also give arrays of resources to load.
+          //both : [ 'app.js', 'extra.js' ],
+          complete : function () {
+            // Run this after everything in this group has downloaded
+            // and executed, as well everything in all previous groups
+            initialize();
+          }
+        },
+        // Run your analytics after you've already kicked off all the rest
+        // of your app.
+        //'js/post-analytics.js'
+      ]);
+    </script>
     <!-- end script imports -->
     
     
