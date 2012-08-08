@@ -325,14 +325,14 @@ var categoryInfo = [],
     setCampusLayer();    
     
     // Run GatherData Stack using callback function to serialize the dependent functions
-    loadCategoryInfoFile(function(){
+    // loadCategoryInfoFile(function(){
       
-      populateCategoryInfo();
-    });
-    loadCategoryFile(function(){
-      populateContent();
-      bindCategoryToggle();
-    });
+    //   populateCategoryInfo();
+    // });
+    // loadCategoryFile(function(){
+    //   populateContent();
+    //   bindCategoryToggle();
+    // });
 
     // Run Populate Categories Stack
 
