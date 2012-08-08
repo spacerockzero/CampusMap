@@ -218,7 +218,7 @@ var categoryInfo = [],
       html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ categoryInfo[i].icon + '.png" height="25"/>';
       html +=     '<span class="category_name">' + categoryInfo[i].title + '</span>';
       html +=   '</a>';
-      html +=   '<div class="cat_container">';
+      html +=   '<div class="cat_container hide">';
       html +=     '<div class="cat_info">';
       html +=       '<p>';
       html +=         categoryInfo[i].text;
@@ -247,7 +247,7 @@ var categoryInfo = [],
 
 
 /****************************************************/
-/*   Initialize App                             */
+/*   Initialize App                                 */
 /****************************************************/
 
 // Init
@@ -292,8 +292,13 @@ var categoryInfo = [],
 
   function bindCategoryToggle(){
     $('.category').click(function(){
-      this.children[1].style.height = "100%";
-      // categoryToggle($(this));
+      //this.children[1].style.height = "100%";
+
+      var jQueryLoaded = control.jQueryLoaded,
+             child = this.children[1],
+        divClasses = child.className;
+
+      child.className('unhide');
     });
   }
 
@@ -398,8 +403,20 @@ var categoryInfo = [],
 /****************************************************/
 
 function categoryToggle(obj){
-  // obj.addClass('');
-  obj.children[1].style.height = "100%";
+
+  var jQueryLoaded = control.jQueryLoaded,
+             child = obj.children[1],
+        divClasses = child.className;
+
+  // if(jQueryLoaded !== 1){
+  //   if(divClasses !== "hide"){
+  //     child.addClass('hide');
+  //   } else {
+  //     child.addClass('unhide');
+  //   }
+  // } else {
+    child.toggleClass('unhide');
+  // }
 }
 
 

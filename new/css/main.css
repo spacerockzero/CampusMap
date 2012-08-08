@@ -554,10 +554,12 @@ a img {
 .hide {
   display: none;
   -webkit-transform: translatez(0);
+  height: 0;
 }
 .unhide {
   display: block;
   -webkit-transform: translatez(0);
+  height: 100%;
 }
 .scrolling {
   overflow: auto;
