@@ -554,12 +554,18 @@ a img {
 .hide {
   display: none;
   -webkit-transform: translatez(0);
-  height: 0;
 }
 .unhide {
   display: block;
   -webkit-transform: translatez(0);
+}
+.contract {
+  height: 0;
+  -webkit-transform: translatez(0);
+}
+.expand {
   height: 100%;
+  -webkit-transform: translatez(0);
 }
 .scrolling {
   overflow: auto;
@@ -796,7 +802,7 @@ a img {
   color: #4ca4fb;
 }
 .cat_container {
-  height: 0;
+  display: none;
   overflow: hidden;
 }
 #map_canvas {

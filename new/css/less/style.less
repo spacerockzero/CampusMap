@@ -39,12 +39,20 @@ a img{
 .hide{
 	display:none;
 	-webkit-transform: translateZ(0);
-	height:0;
+
 }
 .unhide{
 	display:block;
 	-webkit-transform: translateZ(0);
+
+}
+.contract{
+	height:0;
+	-webkit-transform: translateZ(0);
+}
+.expand{
 	height:100%;
+	-webkit-transform: translateZ(0);
 }
 .scrolling {
 	overflow: auto;
@@ -211,7 +219,7 @@ a img{
 		}
 	}
 	.cat_container{
-		height: 0;
+		display:none;
 		overflow: hidden;
 	}
 	#map_canvas {

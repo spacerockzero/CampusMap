@@ -26,9 +26,9 @@
 // Control object holds the current states and values of the app
 var control = {
   menuState: 0,
-  currentDevice: 0,
-  jQueryLoaded: 0
+  currentDevice: 0
 };
+
 
 // Arrays to hold category names, settings, and control info
 var categoryInfo = [], 
@@ -121,6 +121,7 @@ var categoryInfo = [],
     if (control.currentDevice === 0){
       //set mobile
       setDevice(0);
+
     } else {
       //set desktop
       setDevice(1);
@@ -218,7 +219,7 @@ var categoryInfo = [],
       html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ categoryInfo[i].icon + '.png" height="25"/>';
       html +=     '<span class="category_name">' + categoryInfo[i].title + '</span>';
       html +=   '</a>';
-      html +=   '<div class="cat_container hide">';
+      html +=   '<div class="cat_container">';
       html +=     '<div class="cat_info">';
       html +=       '<p>';
       html +=         categoryInfo[i].text;
@@ -292,13 +293,25 @@ var categoryInfo = [],
 
   function bindCategoryToggle(){
     $('.category').click(function(){
-      //this.children[1].style.height = "100%";
 
-      var jQueryLoaded = control.jQueryLoaded,
-             child = this.children[1],
-        divClasses = child.className;
-
-      child.className('unhide');
+      var device = control.currentDevice,
+           child = this.children[1],
+         display = child.style.display,
+         $jChild = $(this).find('.cat_container');
+      
+      if(display !== 'block'){
+        if(device === 0){
+          child.style.display = "block";
+        } else {
+          $jChild.slideToggle(200);
+        }
+      } else {
+        if(device === 0){
+          child.style.display = "none";
+        } else {
+          $jChild.slideToggle(200);
+        }
+      }
     });
   }
 
@@ -402,22 +415,22 @@ var categoryInfo = [],
 /*   Category Toggle                                */
 /****************************************************/
 
-function categoryToggle(obj){
+// function categoryToggle(obj){
 
-  var jQueryLoaded = control.jQueryLoaded,
-             child = obj.children[1],
-        divClasses = child.className;
+//   var jQueryLoaded = control.jQueryLoaded,
+//              child = obj.children[1],
+//         divClasses = child.className;
 
-  // if(jQueryLoaded !== 1){
-  //   if(divClasses !== "hide"){
-  //     child.addClass('hide');
-  //   } else {
-  //     child.addClass('unhide');
-  //   }
-  // } else {
-    child.toggleClass('unhide');
-  // }
-}
+//   // if(jQueryLoaded !== 1){
+//   //   if(divClasses !== "hide"){
+//   //     child.addClass('hide');
+//   //   } else {
+//   //     child.addClass('unhide');
+//   //   }
+//   // } else {
+//     child.toggleClass('unhide');
+//   // }
+// }
 
 
   // Search (needs web service ajax server)
