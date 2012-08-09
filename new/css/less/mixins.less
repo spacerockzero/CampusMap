@@ -101,6 +101,23 @@
   margin-left: auto;
   margin-right: auto;
 }
+.center-box(@orientation: vertical){
+  /* flexbox, por favor */
+  display: -webkit-box;
+  -webkit-box-orient: @orientation;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+ 
+  display: -moz-box;
+  -moz-box-orient: @orientation;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  
+  display: box;
+  box-orient: @orientation;
+  box-pack: center;
+  box-align: center;
+}
 
 // Sizing shortcuts
 .size(@height: 5px, @width: 5px) {

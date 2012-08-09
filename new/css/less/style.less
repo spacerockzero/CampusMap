@@ -22,6 +22,7 @@ body{
 	margin:0;
 	height:inherit;
 	width:inherit;
+	background: #474747 url(img/interface/gray_speckle.png);
 }
 a {
     outline: 0;
@@ -174,6 +175,7 @@ a img{
 		width: 100%;
 		right: 0;
 		background-color: #202126;
+		background-image:url(../img/interface/light_speckle.png);
 		color:#9da0ab;
 		border-left: 1px solid #2b3e4d;
 	}
@@ -192,6 +194,9 @@ a img{
 	}
 	.category_bar{
 		display:block;
+		cursor:pointer;
+		position: relative;
+		clear: both;
 		text-decoration: none;
 		background:#33383e;
 		.box_gradient_3stop(#43464d, #33383e, #32353c);
@@ -221,6 +226,7 @@ a img{
 	.cat_container{
 		display:none;
 		overflow: hidden;
+		margin-bottom: 20px;
 	}
 	#map_canvas {
 	  width: 100%; 
@@ -256,20 +262,34 @@ a img{
     color:#ddd;
     margin:2px 5px;
     padding:2px;
-    background:#3b3f4a;
-		.box_gradient_3stop(#3b3f4a, #3b3f4a, #32353e);
+    background:#4e5360;
+		.box_gradient_3stop(#4e5360, #3b3f4a, #32353e);
 		//.box_gradient_3stop(rgba(121,126,139, 0.8), rgba(109,114,125, 0.8), rgba(50,53,60, 0.8));
 		border-radius:4px;
 		border-top: 1px solid #555;
 		border-bottom: 1px solid black;
 	}
+	.object:hover,
+	.object:active,
+	.object.active{
+		background:#d1d5e3;
+		color:#111;
+		text-shadow:none;
+		//.box_gradient_3stop(#d1d5e3, #a7aab4, #a7aab4);
+		//.box_gradient_3stop(rgba(121,126,139, 0.8), rgba(109,114,125, 0.8), rgba(50,53,60, 0.8));
+	}
 	.obj_icon{
 		float:left;
+		display:block;
 		margin-right:5px;
 	}
 	.object_name{
+		display:block;
 		float:left;
-		margin-top:3px;
+		margin:3px 0 4px;
+		width: 75%;
+		font-size: 15px;
+		padding: 1px;
 	}
 
 //exceptions for very narrow screens:
@@ -295,12 +315,9 @@ a img{
 /**************************************/
 
 #desktop{
-	
-	html, body{
-		font: 13px/1.3em Helvetica, Arial, Verdana, sans-serif;
-		
-		text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-	}
+	font: 13px/1.3em Helvetica, Arial, Verdana, sans-serif;
+	// text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.9);
 	#container{
 		overflow:hidden;
 	}
@@ -310,7 +327,8 @@ a img{
 		width:250px;
 		height: 100%;
 		overflow: auto;
-		box-shadow: inset 10px 0px 30px #121212;
+		// box-shadow: inset 10px 0px 30px #121212;
+		box-shadow: inset 10px 0px 40px #111;
 	}
 	.category_name{
 		top: -8px;
@@ -322,6 +340,17 @@ a img{
 	.cat_icon{
 		height:20px;
 		margin:5px 3px 5px 5px;
+	}
+	.object{
+
+	}
+	.obj_icon{
+		margin:1px 5px 2px;
+	}
+	.object_name{
+		width: 200px;
+		font-size:12px;
+		padding:0;
 	}
 	#map_canvas {
 	}

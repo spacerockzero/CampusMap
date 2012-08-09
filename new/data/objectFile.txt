@@ -1,5 +1,4 @@
-{
-  "buildings":
+[ 
   [
     {
       "name": "AGM - Ag. Engineering Bldg.",
@@ -332,7 +331,6 @@
       "info": "Support area for the university's fleet services."
     }
   ],
-  "parking":
   [
     {
       "name":         "City Resident Street Parking",
@@ -384,7 +382,6 @@
       "icon":         "free.png"
     }
   ],
-  "food":
   [
     {
       "name": "Café Kimball",
@@ -511,7 +508,6 @@
       "link": "http://www.byui.edu/food-services/locations-and-hours/tuscan-valley"
     }
   ],
-  "vending":
   [
     {
       "name": "AGB (snacks)",
@@ -668,7 +664,6 @@
       "info": "1st floor, off of hallway and commons."
     }
   ],
-  "playfields":
   [
     {
       "name": "4 Plex - Field 1",
@@ -814,7 +809,6 @@
       "info": "Grass fields used for flag football and ultimate frisbee. Recreational area often scheduled for Student Activities."
     }
   ],
-  "webcams":
   [
     {
       "name": "Copy Spot",
@@ -869,4 +863,4 @@
       "link": "http://www2.byui.edu/Horticulture/norman%20work/gardens.htm"
     }      
   ]
-}
+]

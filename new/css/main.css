@@ -539,6 +539,7 @@ body {
   margin: 0;
   height: inherit;
   width: inherit;
+  background: #474747 url(img/interface/gray_speckle.png);
 }
 a {
   outline: 0;
@@ -724,6 +725,7 @@ a img {
   width: 100%;
   right: 0;
   background-color: #202126;
+  background-image: url(../img/interface/light_speckle.png);
   color: #9da0ab;
   border-left: 1px solid #2b3e4d;
 }
@@ -741,6 +743,9 @@ a img {
 }
 .category_bar {
   display: block;
+  cursor: pointer;
+  position: relative;
+  clear: both;
   text-decoration: none;
   background: #33383e;
   background: -webkit-linear-gradient(top, #43464d 0%, #33383e 50%, #32353c 100%);
@@ -804,6 +809,7 @@ a img {
 .cat_container {
   display: none;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 #map_canvas {
   width: 100%;
@@ -839,23 +845,23 @@ a img {
   color: #ddd;
   margin: 2px 5px;
   padding: 2px;
-  background: #3b3f4a;
-  background: -webkit-linear-gradient(top, #3b3f4a 0%, #3b3f4a 50%, #32353e 100%);
+  background: #4e5360;
+  background: -webkit-linear-gradient(top, #4e5360 0%, #3b3f4a 50%, #32353e 100%);
   /* Chrome10+,Safari5.1+ */
 
-  background: -moz-linear-gradient(top, #3b3f4a 0%, #3b3f4a 50%, #32353e 100%);
+  background: -moz-linear-gradient(top, #4e5360 0%, #3b3f4a 50%, #32353e 100%);
   /* FF3.6+ */
 
-  background: -ms-linear-gradient(top, #3b3f4a 0%, #3b3f4a 50%, #32353e 100%);
+  background: -ms-linear-gradient(top, #4e5360 0%, #3b3f4a 50%, #32353e 100%);
   /* IE10+ */
 
-  background: -o-linear-gradient(top, #3b3f4a 0%, #3b3f4a 50%, #32353e 100%);
+  background: -o-linear-gradient(top, #4e5360 0%, #3b3f4a 50%, #32353e 100%);
   /* Opera 11.10+ */
 
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3b3f4a), color-stop(50%, #3b3f4a), color-stop(100%, #32353e));
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4e5360), color-stop(50%, #3b3f4a), color-stop(100%, #32353e));
   /* Chrome,Safari4+ */
 
-  background: linear-gradient(top, #3b3f4a 0%, #3b3f4a 50%, #32353e 100%);
+  background: linear-gradient(top, #4e5360 0%, #3b3f4a 50%, #32353e 100%);
   /* W3C */
 
   border-radius: 4px;
@@ -871,13 +877,25 @@ a img {
 .object:after {
   clear: both;
 }
+.object:hover,
+.object:active,
+.object.active {
+  background: #d1d5e3;
+  color: #111;
+  text-shadow: none;
+}
 .obj_icon {
   float: left;
+  display: block;
   margin-right: 5px;
 }
 .object_name {
+  display: block;
   float: left;
-  margin-top: 3px;
+  margin: 3px 0 4px;
+  width: 75%;
+  font-size: 15px;
+  padding: 1px;
 }
 @media only screen and (max-width: 460px) {
   #heading {
@@ -898,10 +916,9 @@ a img {
 /*  - targeted at just desktop users  */
 /*                                    */
 /**************************************/
-#desktop html,
-#desktop body {
+#desktop {
   font: 13px/1.3em Helvetica, Arial, Verdana, sans-serif;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.9);
 }
 #desktop #container {
   overflow: hidden;
@@ -910,7 +927,7 @@ a img {
   width: 250px;
   height: 100%;
   overflow: auto;
-  box-shadow: inset 10px 0px 30px #121212;
+  box-shadow: inset 10px 0px 40px #111;
 }
 #desktop .category_name {
   top: -8px;
@@ -922,4 +939,12 @@ a img {
 #desktop .cat_icon {
   height: 20px;
   margin: 5px 3px 5px 5px;
+}
+#desktop .obj_icon {
+  margin: 1px 5px 2px;
+}
+#desktop .object_name {
+  width: 200px;
+  font-size: 12px;
+  padding: 0;
 }

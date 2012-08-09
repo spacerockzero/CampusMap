@@ -12,15 +12,14 @@
    container = doc.getElementById('container'),
         body = doc.getElementsByTagName('body')[0],
       canvas = doc.getElementById('map_canvas'),
-// categoryDivs = $('.category'),
                myLatlng,
                myOptions,
                map,
                parkingLayer,
                infoWindow,
                campusLayer,
- polygonFile = 'http://www2.byui.edu/Map/parking_data2.xml',
-  campusFile = 'http://www2.byui.edu/Map/campus-outline.xml';
+ polygonFile = 'http://www2.byui.edu/Map/parking_data.xml',
+  campusFile = 'http://www2.byui.edu/Map/campus_outline.xml';
 
 
 // Control object holds the current states and values of the app
@@ -226,6 +225,7 @@ var categoryInfo = [],
       html +=       '</p>';
       html +=       '<a href="' + categoryInfo[i].link + '">' + categoryInfo[i].title + ' website</a>';
       html +=     '</div>';
+      html +=     '<div id="category_' + i + '"></div>';
       html +=   '</div>';
       html += '</div>';
       i += 1;
@@ -237,8 +237,32 @@ var categoryInfo = [],
     //console.timeEnd("populateCategories");  
   }
 
-  function populateContent(callback){
-    callback;
+  function populateObjectCategory(index){
+    // set target div and html string var to be inserted
+    var target = document.getElementById('category_' + index),
+          html = "",
+        catObj = categoryInfo[index],
+       objData = mapCategories[index],
+         color = catObj.icon,
+        length = objData.length,
+             i = 0;
+
+    while(i<length){
+      html += '<a class="object" href="#">';
+      html +=   '<img  class="obj_icon" src="img/icons/numeral-icons/' + color + '/' + (i+1) + '.png" alt="' + objData[i].name + '" height="25">';
+      html +=   '<div class="object_name">' + objData[i].name + '</div>';
+      html += '</a>';
+      i += 1;
+    }
+    target.innerHTML = html;
+  }
+
+// <a class="object" href="#">
+//   <img  class="obj_icon" src="img/icons/numeral-icons/blue/1.png" alt="AGM - Ag. Engineering Bldg." height="25">
+//   <div class="object_name">AGM - Ag. Engineering Bldg.</div>
+// </a>
+  function populatePolygonCategory(callback){
+
   }
 
   // Show / Toggle Categories
@@ -291,13 +315,19 @@ var categoryInfo = [],
     campusLayer.setMap(map);
   }
 
-  function bindCategoryToggle(){
-    $('.category').click(function(){
 
+/****************************************************/
+/*   Category Toggle                                */
+/****************************************************/
+
+  function bindCategoryToggle(){
+
+    $('.category_bar').click(function(){
+          console.time("clickCategory");
       var device = control.currentDevice,
-           child = this.children[1],
+           child = this.parentNode.children[1],
          display = child.style.display,
-         $jChild = $(this).find('.cat_container');
+         $jChild = $(this).parent().find('.cat_container');
       
       if(display !== 'block'){
         if(device === 0){
@@ -312,7 +342,9 @@ var categoryInfo = [],
           $jChild.slideToggle(200);
         }
       }
+       console.timeEnd("clickCategory");
     });
+
   }
 
   // Create Map Object
@@ -325,17 +357,25 @@ var categoryInfo = [],
     setCampusLayer();    
     
     // Run GatherData Stack using callback function to serialize the dependent functions
-    // loadCategoryInfoFile(function(){
+    loadCategoryInfoFile(function(){
       
-    //   populateCategoryInfo();
-    // });
-    // loadCategoryFile(function(){
-    //   populateContent();
-    //   bindCategoryToggle();
-    // });
+      populateCategoryInfo();
+    });
+    loadCategoryFile(function(){
+      populateObjectCategory(0);
+      populateObjectCategory(2);
+      populateObjectCategory(3);
+      populateObjectCategory(4);
+      populateObjectCategory(5);
+      bindCategoryToggle();
+    });
 
     // Run Populate Categories Stack
-
+    // populateObjectCategory(0);
+    // populateObjectCategory(2);
+    // populateObjectCategory(3);
+    // populateObjectCategory(4);
+    // populateObjectCategory(5);
     // Hide Loading Animation
 
   }//end initialize()
@@ -411,26 +451,6 @@ var categoryInfo = [],
     }
   }
 
-/****************************************************/
-/*   Category Toggle                                */
-/****************************************************/
-
-// function categoryToggle(obj){
-
-//   var jQueryLoaded = control.jQueryLoaded,
-//              child = obj.children[1],
-//         divClasses = child.className;
-
-//   // if(jQueryLoaded !== 1){
-//   //   if(divClasses !== "hide"){
-//   //     child.addClass('hide');
-//   //   } else {
-//   //     child.addClass('unhide');
-//   //   }
-//   // } else {
-//     child.toggleClass('unhide');
-//   // }
-// }
 
 
   // Search (needs web service ajax server)
@@ -457,6 +477,10 @@ var categoryInfo = [],
       resizeTimeOut = setTimeout(resizeStack, 100);
     };
   }
+$(document).load(function(){
+
+});
+ 
 
 
 
