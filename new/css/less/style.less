@@ -86,7 +86,34 @@ a img{
 /*  - once detected.                                        */
 /*                                                          */
 /************************************************************/
-
+	
+	/************************************************************/
+	/*                                                          */
+	/*  Loading Screen                                          */
+	/*  - Stays on top until all init scripts                   */
+	/*  - have completed                                        */
+	/*                                                          */
+	/************************************************************/
+	#loading{
+		display: block;
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		z-index: 3;
+		background: white;
+	}
+	#loading_title{
+		text-align:center;
+	}
+	#loading_text{
+		text-align: center;
+		margin: 30px auto;
+		color: #333;
+	}
+	#loading_img{
+		margin: 0 auto;
+		display: block;
+	}
 	/************************************************************/
 	/*                                                          */
 	/*  Heading bar                                             */
@@ -323,6 +350,12 @@ a img{
 		overflow:hidden;
 	}
 	#heading{
+	}
+	#loading{
+
+	}
+	#loading_text{
+		text-shadow: 1px 1px 2px #777;
 	}
 	#menu{
 		width:250px;

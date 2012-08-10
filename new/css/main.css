@@ -615,6 +615,33 @@ a img {
 /************************************************************/
 /************************************************************/
 /*                                                          */
+/*  Loading Screen                                          */
+/*  - Stays on top until all init scripts                   */
+/*  - have completed                                        */
+/*                                                          */
+/************************************************************/
+#loading {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 3;
+  background: white;
+}
+#loading_title {
+  text-align: center;
+}
+#loading_text {
+  text-align: center;
+  margin: 30px auto;
+  color: #333;
+}
+#loading_img {
+  margin: 0 auto;
+  display: block;
+}
+/************************************************************/
+/*                                                          */
 /*  Heading bar                                             */
 /*  - contains the heading/branding,                        */
 /*  - as well as the menu toggle button                     */
@@ -921,6 +948,9 @@ a img {
 }
 #desktop #container {
   overflow: hidden;
+}
+#desktop #loading_text {
+  text-shadow: 1px 1px 2px #777;
 }
 #desktop #menu {
   width: 250px;

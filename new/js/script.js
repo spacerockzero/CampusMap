@@ -14,14 +14,16 @@
    container = doc.getElementById('container'),
         body = doc.getElementsByTagName('body')[0],
       canvas = doc.getElementById('map_canvas'),
-               doResize,
-               myLatlng,
-               myOptions,
-               map,
-               parkingLayer,
-               infoWindow,
-               campusLayer,
-    iconpath = 'images/icons/numeral-icons/',
+    doResize,
+categoryFile = 'data/categories.txt',
+  objectFile = 'data/objectFile.txt',
+    myLatlng,
+   myOptions,
+         map,
+parkingLayer,
+  infoWindow,
+ campusLayer,
+    iconpath = 'img/icons/numeral-icons/',
  polygonFile = 'http://www2.byui.edu/Map/parking_data.xml',
   campusFile = 'http://www2.byui.edu/Map/campus_outline.xml';
 
@@ -97,13 +99,11 @@ var categoryInfo = [],
         // Set the body id, set new control value
         body.setAttribute("id","mobile");
         control.currentDevice = 0;
-        console.log("Mobile mode set");
     } else {
       // Set to Desktop
         // Set the body id, set new control value
         body.setAttribute("id","desktop");
         control.currentDevice = 1;
-        console.log("desktop mode set");
     }
   }
 
@@ -168,10 +168,10 @@ var categoryInfo = [],
 
   // Load all category info from file into categoryInfo array
   function loadCategoryInfoFile(callback) {
-    var url = 'data/categories.txt';
+
     $.ajax({
       dataType: "json",
-      url: url,
+      url: categoryFile,
       success: function(data) {
         //add new data to global objects
         categoryInfo = data;
@@ -182,13 +182,12 @@ var categoryInfo = [],
 
   // Load all category info from file into categoryInfo array
   function loadCategoryFile(callback) {
-    var url = 'data/objectFile.txt';
     $.ajax({
       dataType: "json",
-      url: url,
+      url: objectFile,
       success: function(data) {
         //add new data to global object
-        console.log('successfully pulled json category');
+        console.log('successfully pulled json categories');
         mapCategories = data;
       }
     })
@@ -250,21 +249,28 @@ var categoryInfo = [],
         catObj = categoryInfo[index],
        objData = mapCategories[index],
          color = catObj.icon,
+          icon,
         length = objData.length,
-             i = 0;
+             i = 0,
+           obj,
+          name,
+           lat,
+           lon,
+        marker;
 
     // begin iterations through menu/marker objects
     while(i<length){
 
-      var obj = objData[i],
-         name = obj.name,
-          lat = obj.lat,
-          lon = obj.lon,
+          obj = objData[i];
+         name = obj.name;
+          lat = obj.lat;
+          lon = obj.lon;
+         icon = iconpath + color + '/' + (i+1) + '.png';
        marker = new google.maps.Marker({
          position: new google.maps.LatLng(lat, lon),
          map: map,
-         title: name
-         //icon: iconpath + (i+1) + ".png"
+         title: name,
+         icon: icon
        });
 
       // Build html string for all DOM to be created for this category 
@@ -368,8 +374,26 @@ var categoryInfo = [],
 
   }
 
+  //populate all categories
+  function runPopulators(){
+    
+    var i = 0,
+   length = categoryInfo.length,
+     type;
+
+    while(i<length){
+      type = categoryInfo[i].type;
+      if(type === 0){
+        populateObjectCategory(i);
+      } else if (type === 1){
+        populatePolygonCategory(i);
+      }
+    }
+
+  }
+
   // Create Map Object
-  function initialize() {
+  function initialize(callback) {
     // Run Map setup stack
     setOptions();
     setAllControls();
@@ -390,15 +414,8 @@ var categoryInfo = [],
       populateObjectCategory(5);
       bindCategoryToggle();
     });
-
-    // Run Populate Categories Stack
-    // populateObjectCategory(0);
-    // populateObjectCategory(2);
-    // populateObjectCategory(3);
-    // populateObjectCategory(4);
-    // populateObjectCategory(5);
-    // Hide Loading Animation
-
+    console.log("before init end");
+    callback;
   }//end initialize()
 
 
@@ -419,36 +436,30 @@ var categoryInfo = [],
      menu = $('#menu');     
      notification = $('#notification');     
     }
-    
+
     if(newState === 0){
     // Toggle menu visibility off
-      
       // For mobile
       if(currentDevice === 0){
         // Hide Menu, Show notification div
         menu.style.display = "none";
         notification.style.display = "block";
-      
       // for non-mobile
       } else {
         // Hide Menu with fade transition, Show notification div with fade transition
         menu.fadeOut(200);
         notification.fadeIn(200);
       }
-      
       // Toggle indicator, Set current state of menu visibility in control object
       menu_indicator.innerHTML = "+";
       control.menuState = 0; 
     } 
-
     else {
-    
     // Toggle menu visibility on
       if(currentDevice === 0){
         // mobile minimal show menu, hide notification div
         menu.style.display = "block";
         notification.style.display = "none";
-      
       } else {
         // non-mobile fancy
         menu.fadeIn(200);
@@ -472,9 +483,36 @@ var categoryInfo = [],
     }
   }
 
+/****************************************************/
+/*   Events & Bindings                              */
+/****************************************************/
 
+function loadComplete(callback){
 
-  // Search (needs web service ajax server)
+    console.log("inside loadComplete");
+
+  var loadingDiv = doc.getElementById('loading'),
+          device = control.currentDevice; 
+  
+  // if(device === 0){
+  //   loadingDiv = $('#loading');
+  // }
+
+  //hide loading message
+  // if(device === 0){
+    // minimal for mobile
+    loadingDiv.style.display = "none";
+  // } else {
+    // fancy and smooth for desktop
+  //   loadingDiv.fadeOut(200);
+  // }
+
+  callback;
+}
+
+  // Search (needs web service ajax server?)
+
+  // URL - Object API ? (Navigate to specific object using an externally shared url)
 
 
 
@@ -488,15 +526,14 @@ var categoryInfo = [],
     setHeight(canvas,getMapHeight());
   }
 
-
   // global map resize event listener
   $win.resize(function(){
     clearTimeout(doResize);
     doResize = setTimeout(function(){resizeStack();}, 100);
   });
 
-  $doc.load(function(){
-
+  $win.load(function(){
+    initialize(function(){loadComplete();});
   });
  
 
