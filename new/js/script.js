@@ -389,6 +389,7 @@ var categoryInfo = [],
       } else if (type === 1){
         populatePolygonCategory(i);
       }
+      i += 1;
     }
 
   }
@@ -413,9 +414,10 @@ var categoryInfo = [],
       populateObjectCategory(3);
       populateObjectCategory(4);
       populateObjectCategory(5);
-      bindCategoryToggle();
+      bindCategoryToggle(function(){
+        loadComplete();
+      });
     });
-    console.log("before init end");
     callback;
   }//end initialize()
 
@@ -535,8 +537,13 @@ function loadComplete(callback){
   });
 
   $win.load(function(){
-    initialize(function(){loadComplete();});
+    initialize(function(){
+      loadComplete();
+    });
   });
+  // $('.object_name').ready(function(){
+  //   loadComplete();
+  // });
  
 
 
