@@ -21,11 +21,7 @@
   </head>
 
   <body id="mobile">
-    <div id="loading">
-      <h1 id="loading_title">BYU-Idaho Campus Map</h1>
-      <p id="loading_text">[ LOADING... ]</p>
-      <img id="loading_img" src="img/interface/loading.gif" alt="Loading Campus Map"/>
-    </div>
+
     <div id="title">
       <h1 id="heading">BYU-Idaho Campus Map</h1>
       <a id="device_type" href="#" onmousedown="toggleDevice(); return false;" title="Switch Device Type"></a>
@@ -33,14 +29,24 @@
     </div>
 
     <div id="container" name="container">
-        <div id="menu" name="menu" style="display:block; z-index: 2; position: absolute; right: 0;">
-          <div id="inner_menu">
-            <nav id="categories"></nav>
-            <!-- // categories -->
-          </div><!-- // inner menu -->
-        </div><!-- // menu -->
-        <div id="map_canvas"></div>
+
+      <div id="menu" name="menu" style="display:block; z-index: 2; position: absolute; right: 0;">
+        <div id="inner_menu">
+          <nav id="categories"></nav>
+          <!-- // categories -->
+        </div><!-- // inner menu -->
+      </div><!-- // menu -->
+
+      <div id="map_canvas"></div>
+
+      <div id="loading">
+        <h1 id="loading_title">BYU-Idaho Campus Map</h1>
+        <p id="loading_text">[ LOADING... ]</p>
+        <img id="loading_img" src="img/interface/loading.gif" alt="Loading Campus Map"/>
+      </div>
+      
     </div><!-- // container -->
+
     <div id="notification">
       <p id="updated">Last updated <br/>08.02.2012</p>
       <a id="feedback" class="box" target="_blank" href="http://www.byui.edu/feedback/maps">Feedback &raquo; </a>
