@@ -9,15 +9,19 @@
 // Cache global objects as local variables
      var doc = document,
          win = window,
+        $doc = $(document),
+        $win = $(window),
    container = doc.getElementById('container'),
         body = doc.getElementsByTagName('body')[0],
       canvas = doc.getElementById('map_canvas'),
+               doResize,
                myLatlng,
                myOptions,
                map,
                parkingLayer,
                infoWindow,
                campusLayer,
+    iconpath = 'images/icons/numeral-icons/',
  polygonFile = 'http://www2.byui.edu/Map/parking_data.xml',
   campusFile = 'http://www2.byui.edu/Map/campus_outline.xml';
 
@@ -31,7 +35,8 @@ var control = {
 
 // Arrays to hold category names, settings, and control info
 var categoryInfo = [], 
-   mapCategories = [];
+   mapCategories = [],
+     markerArray = [];
 
 
 /**********************/
@@ -41,7 +46,7 @@ var categoryInfo = [],
   // Asynchronous script loader function
   function loadScript(src, callback) {
     var head = document.getElementsByTagName('head')[0],
-      script = document.createElement('script');
+      script = document.createElement('script'),
         done = false;
     script.setAttribute('src', src);
     script.setAttribute('type', 'text/javascript');
@@ -238,6 +243,7 @@ var categoryInfo = [],
   }
 
   function populateObjectCategory(index){
+    console.time("populate Category");
     // set target div and html string var to be inserted
     var target = document.getElementById('category_' + index),
           html = "",
@@ -247,23 +253,38 @@ var categoryInfo = [],
         length = objData.length,
              i = 0;
 
+    // begin iterations through menu/marker objects
     while(i<length){
+
+      var obj = objData[i],
+         name = obj.name,
+          lat = obj.lat,
+          lon = obj.lon,
+       marker = new google.maps.Marker({
+         position: new google.maps.LatLng(lat, lon),
+         map: map,
+         title: name
+         //icon: iconpath + (i+1) + ".png"
+       });
+
+      // Build html string for all DOM to be created for this category 
       html += '<a class="object" href="#">';
       html +=   '<img  class="obj_icon" src="img/icons/numeral-icons/' + color + '/' + (i+1) + '.png" alt="' + objData[i].name + '" height="25">';
       html +=   '<div class="object_name">' + objData[i].name + '</div>';
       html += '</a>';
+
       i += 1;
     }
+
     target.innerHTML = html;
+    console.timeEnd("populate Category");
   }
 
-// <a class="object" href="#">
-//   <img  class="obj_icon" src="img/icons/numeral-icons/blue/1.png" alt="AGM - Ag. Engineering Bldg." height="25">
-//   <div class="object_name">AGM - Ag. Engineering Bldg.</div>
-// </a>
   function populatePolygonCategory(callback){
 
   }
+
+  
 
   // Show / Toggle Categories
   function showCategories(callback){
@@ -461,25 +482,22 @@ var categoryInfo = [],
 /*   Events & Bindings                              */
 /****************************************************/
 
-  // Event Listeners and binding
+  // Global Resize Event Function Stack
   function resizeStack(){
     setHeight(container,getMapHeight());
     setHeight(canvas,getMapHeight());
   }
 
-  if( win.addEventListener ){
-    win.addEventListener('resize', resizeStack, false);
-  } else {
-    var resizeTimeOut = null;
-    var resizeFunc = resizeStack();
-    window.onresize = function(){
-      if(resizeTimeOut !== null) {clearTimeout(resizeTimeOut);}
-      resizeTimeOut = setTimeout(resizeStack, 100);
-    };
-  }
-$(document).load(function(){
 
-});
+  // global map resize event listener
+  $win.resize(function(){
+    clearTimeout(doResize);
+    doResize = setTimeout(function(){resizeStack();}, 100);
+  });
+
+  $doc.load(function(){
+
+  });
  
 
 

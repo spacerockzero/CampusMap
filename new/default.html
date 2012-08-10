@@ -78,14 +78,14 @@
           // Logical list of things we would normally need
           test :  Modernizr.cssgradients,
           // Modernizr.load loads css and javascript by default
-          nope : 'js/presentational-polyfill.js'
+          //nope : 'js/presentational-polyfill.js'
         },
         // Functional polyfills
         {
           // This just has to be truthy
           test : Modernizr.json && window.JSON,
           // socket-io.js and json2.js
-          nope : 'js/functional-polyfills.js',
+          //nope : 'js/functional-polyfills.js',
           // You can also give arrays of resources to load.
           //both : [ 'app.js', 'extra.js' ],
           complete : function () {
