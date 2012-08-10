@@ -91,7 +91,7 @@ var categoryInfo = [],
   }
 
   // Set Device
-  function setDevice(changeTo){
+  function setDevice(changeTo, callback){
     var deviceIndicator = doc.getElementById('device_type'),
                    body = doc.getElementsByTagName("body")[0];
     if (changeTo === 0){
@@ -105,6 +105,7 @@ var categoryInfo = [],
         body.setAttribute("id","desktop");
         control.currentDevice = 1;
     }
+    callback;
   }
 
   // Toggle between device types
@@ -524,6 +525,7 @@ function loadComplete(callback){
   function resizeStack(){
     setHeight(container,getMapHeight());
     setHeight(canvas,getMapHeight());
+    setDevice(detectDevice());
   }
 
   // global map resize event listener
