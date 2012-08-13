@@ -511,25 +511,22 @@ function jsFade(eid,time,callback) {
     setOptions();
     setAllControls();
     setMap();
-    // loadProgress(25);
     setInfoWindow();
     setCampusLayer(); 
-    loadProgress(40);   
+    loadProgress(20);   
     
     // Run GatherData Stack using callback function to serialize the dependent functions
     loadCategoryInfoFile(function(){ 
       populateCategoryInfo();
-      loadProgress(60);
     });
+    loadProgress(40);
     loadCategoryFile(function(){
       runPopulators();
-      loadProgress(70);
       bindCategoryToggle();
-      loadProgress(90);
     });
+    loadProgress(90);
     // wait 1 second after reaching this point in the script to execute the loadComplete() function
     win.setTimeout("loadComplete()",1000);        /* This is still running async for now, will load before all init has completed until fixed */
-    // loadProgress(90);
     callback;
   }//end initialize()
 

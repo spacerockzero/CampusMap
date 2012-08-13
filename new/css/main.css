@@ -627,11 +627,11 @@ a img {
   -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
   -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
-  -webkit-transition: width 200ms ease-in-out;
-  -moz-transition: width 200ms ease-in-out;
-  -ms-transition: width 200ms ease-in-out;
-  -o-transition: width 200ms ease-in-out;
-  transition: width 200ms ease-in-out;
+  -webkit-transition: width 700ms ease-in-out;
+  -moz-transition: width 700ms ease-in-out;
+  -ms-transition: width 700ms ease-in-out;
+  -o-transition: width 700ms ease-in-out;
+  transition: width 700ms ease-in-out;
 }
 .blue span {
   background-color: #3a5284;
