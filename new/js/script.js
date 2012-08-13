@@ -75,6 +75,41 @@ var categoryInfo = [],
     object.style.height = height;
   }
 
+function jsFade(eid,time,callback) {
+  var timeToFade = time,
+         element = document.getElementById(eid);
+  
+  if(element === null){
+    return;
+  }
+   
+  if(element.FadeState === null)
+  {
+    if(element.style.opacity === null 
+        || element.style.opacity === '' 
+        || element.style.opacity === '1')
+    {
+      element.FadeState = 2;
+    }
+    else
+    {
+      element.FadeState = -2;
+    }
+  }
+    
+  if(element.FadeState === 1 || element.FadeState === -1)
+  {
+    element.FadeState = element.FadeState === 1 ? -1 : 1;
+    element.FadeTimeLeft = time - element.FadeTimeLeft;
+  }
+  else
+  {
+    element.FadeState = element.FadeState === 2 ? -1 : 1;
+    element.FadeTimeLeft = time;
+    setTimeout("animateFade(" + new Date().getTime() + ",'" + eid + "')", 33);
+  }
+  callback;  
+}
 
 /****************************************************/
 /*  Device & Feature Detection & Setting Functions  */
@@ -212,21 +247,24 @@ var categoryInfo = [],
 
       console.log("inside loadComplete");
 
-    var loadingDiv = doc.getElementById('loading'),
+    var loadingDiv = $('#loading'),
             device = control.currentDevice; 
     
-    if(device === 1){
-      loadingDiv = $('#loading');
-    }
+    // if(device === 1){
+    //   loadingDiv = $('#loading');
+    // }
 
     //hide loading message
-    if(device === 0){
-      // minimal for mobile
-      loadingDiv.style.display = "none";
-    } else {
+    // if(device === 0){
+    //   // minimal for mobile
+    //   jsFade(loadingDiv,999);
+    //   // win.setTimeout("",1000);
+    //   loadingDiv.style.display = 'none';
+
+    // } else {
       // fancy and smooth for desktop
-      loadingDiv.fadeOut(200);
-    }
+      loadingDiv.fadeOut(700);
+    // }
 
     callback;
   }
@@ -238,7 +276,7 @@ var categoryInfo = [],
 
   // Populate menu
   function populateCategoryInfo(callback){
-    //console.time("populateCategories");
+
     // set target div and html string var to be inserted
     var target = doc.getElementById('categories'),
           html = "",
@@ -270,11 +308,11 @@ var categoryInfo = [],
 
     // insert html back into target with one reflow
     target.innerHTML = html; 
-    callback;
-    //console.timeEnd("populateCategories");  
+    callback; 
   }
 
   function populateObjectCategory(index){
+
     console.time("populate Category");
     // set target div and html string var to be inserted
     var target = document.getElementById('category_' + index),
@@ -291,13 +329,10 @@ var categoryInfo = [],
           name,
            lat,
            lon,
-        marker;
-
-        
+        marker;        
 
     // begin iterations through menu/marker objects
     while(i<length){
-
           obj = objData[i];
          name = obj.name;
           lat = obj.lat;
@@ -322,8 +357,11 @@ var categoryInfo = [],
       i += 1;
     }
 
+    // Insert output into the DOM in one action. 
+    // Consider combining all reflow into one function later.
     target.innerHTML = html;
 
+    // Add this category's markers to array of all markers
     allMarkers[index] = markers;
 
     console.timeEnd("populate Category");
@@ -476,7 +514,8 @@ var categoryInfo = [],
       runPopulators();
       bindCategoryToggle();
     });
-    loadComplete();        /* This is still running async for now, will load before all init has completed until fixed */
+    // wait 1 second after reaching this point in the script to execute the loadComplete() function
+    win.setTimeout("loadComplete()",1000);        /* This is still running async for now, will load before all init has completed until fixed */
     callback;
   }//end initialize()
 
@@ -561,9 +600,7 @@ var categoryInfo = [],
   });
 
   $win.load(function(){
-    initialize(function(){
-      loadComplete();
-    });
+    initialize();
   });
   // $('.object_name').ready(function(){
   //   loadComplete();

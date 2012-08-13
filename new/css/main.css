@@ -635,6 +635,7 @@ a img {
   margin: 130px auto 0px;
   color: #333;
   font-size: 18px;
+  text-shadow: 1px 1px 2px #777;
 }
 #loading_img {
   margin: 15px auto 0;
@@ -653,9 +654,30 @@ a img {
   display: block;
   margin: 0 auto;
   position: relative;
-  background: #044f84;
   border-bottom: 1px solid #2b3e4d;
-  background: url(../img/interface/title_bg.png);
+  background: #044f84;
+  background: -webkit-linear-gradient(top, #3a5284 0%, #2d416a 50%, #202f4f 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -moz-linear-gradient(top, #3a5284 0%, #2d416a 50%, #202f4f 100%);
+  /* FF3.6+ */
+
+  background: -ms-linear-gradient(top, #3a5284 0%, #2d416a 50%, #202f4f 100%);
+  /* IE10+ */
+
+  background: -o-linear-gradient(top, #3a5284 0%, #2d416a 50%, #202f4f 100%);
+  /* Opera 11.10+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3a5284), color-stop(50%, #2d416a), color-stop(100%, #202f4f));
+  /* Chrome,Safari4+ */
+
+  background: linear-gradient(top, #3a5284 0%, #2d416a 50%, #202f4f 100%);
+  /* W3C */
+
+  background-repeat: repeat-x;
+}
+.no-cssgradients #title {
+  background: #044f84;
   background-repeat: repeat-x;
 }
 #heading {
@@ -877,6 +899,7 @@ a img {
   border-radius: 4px;
   border-top: 1px solid #555;
   border-bottom: 1px solid black;
+  display: table;
 }
 .object:before,
 .object:after {
@@ -893,19 +916,40 @@ a img {
   background: #d1d5e3;
   color: #111;
   text-shadow: none;
+  background: -webkit-linear-gradient(top, #d1d5e3 0%, #a7aab4 50%, #a7aab4 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -moz-linear-gradient(top, #d1d5e3 0%, #a7aab4 50%, #a7aab4 100%);
+  /* FF3.6+ */
+
+  background: -ms-linear-gradient(top, #d1d5e3 0%, #a7aab4 50%, #a7aab4 100%);
+  /* IE10+ */
+
+  background: -o-linear-gradient(top, #d1d5e3 0%, #a7aab4 50%, #a7aab4 100%);
+  /* Opera 11.10+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d1d5e3), color-stop(50%, #a7aab4), color-stop(100%, #a7aab4));
+  /* Chrome,Safari4+ */
+
+  background: linear-gradient(top, #d1d5e3 0%, #a7aab4 50%, #a7aab4 100%);
+  /* W3C */
+
 }
 .obj_icon {
-  float: left;
   display: block;
   margin-right: 5px;
+  display: table-cell;
+  vertical-align: middle;
 }
 .object_name {
   display: block;
-  float: left;
-  margin: 3px 0 4px;
-  width: 75%;
+  margin: 3px 0 0px;
+  width: 100%;
+  min-height: 35px;
   font-size: 15px;
   padding: 1px;
+  display: table-cell;
+  vertical-align: middle;
 }
 @media only screen and (max-width: 460px) {
   #heading {
@@ -933,9 +977,6 @@ a img {
 }
 #desktop #container {
   overflow: hidden;
-}
-#desktop #loading_text {
-  text-shadow: 1px 1px 2px #777;
 }
 #desktop #menu {
   width: 250px;

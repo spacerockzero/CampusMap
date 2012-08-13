@@ -1,5 +1,10 @@
 /*MIXINS BEGIN*/
-
+.vert-center(@height) {
+  position:absolute; 
+  top:50%; 
+  height:@height; 
+  margin-top:-@height / 2; /* negative half of the height */
+}
 .transition (@affected: all, @transition_time: 0.7s, @easing:ease-in-out) {
     -webkit-transition: @affected @transition_time @easing;
        -moz-transition: @affected @transition_time @easing;
