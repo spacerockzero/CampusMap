@@ -303,8 +303,8 @@ function buildCatObject(i,name,color){
 
       thisCat = categoryInfo[i];
 
-      html += '<div class="category" >';
-      html +=   '<a class="category_bar" href="#" onmousedown="toggleMarkerVisibility(' + i + ', 1); return false;">';
+      html += '<div class="category" id="cat_' + i + '">';
+      html +=   '<a class="category_bar" href="#" >';
       html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ thisCat.icon + '.png" height="25"/>';
       html +=     '<span class="category_name">' + thisCat.title + '</span>';
       html +=   '</a>';
@@ -367,7 +367,7 @@ function buildCatObject(i,name,color){
     }
 
     // Insert output into the DOM in one action. 
-    // Consider combining all reflow into one function later.
+    // Consider combining all reflow into one function with the category builder later.
     target.innerHTML = html;
 
     // Add this category's markers to array of all markers
@@ -379,7 +379,6 @@ function buildCatObject(i,name,color){
   function populatePolygonCategory(callback){
 
   }
-
   
 
   // Show / Toggle Object Category
@@ -462,7 +461,8 @@ function buildCatObject(i,name,color){
 
   function bindCategoryToggle(callback){
 
-    $('.category_bar').click(function(){
+    $('.category_bar').mousedown(function(){
+
           console.time("clickCategory");
       var device = control.currentDevice,
            child = this.parentNode.children[1],
@@ -482,7 +482,9 @@ function buildCatObject(i,name,color){
           $jChild.slideToggle(200);
         }
       }
-       console.timeEnd("clickCategory");
+
+      console.timeEnd("clickCategory");
+
     });
     callback;
   }
@@ -530,7 +532,7 @@ function buildCatObject(i,name,color){
     });
     loadProgress(90);
     // wait 1 second after reaching this point in the script to execute the loadComplete() function
-    win.setTimeout("loadComplete()",1000);        /* This is still running async for now, will load before all init has completed until fixed */
+    win.setTimeout("loadComplete()",1500);        /* This is still running async for now, will load before all init has completed until fixed */
     callback;
   }//end initialize()
 
@@ -611,15 +613,14 @@ function buildCatObject(i,name,color){
   // global map resize event listener
   $win.resize(function(){
     clearTimeout(doResize);
-    doResize = setTimeout(function(){resizeStack();}, 100);
+    doResize = setTimeout(function(){
+      resizeStack();
+    }, 100);
   });
 
   $win.load(function(){
     initialize();
   });
-  // $('.object_name').ready(function(){
-  //   loadComplete();
-  // });
  
 
 
