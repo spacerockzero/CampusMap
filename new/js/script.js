@@ -243,20 +243,24 @@ var categoryInfo = [],
     var target = doc.getElementById('categories'),
           html = "",
         length = categoryInfo.length,
+       thisCat,
              i = 0;
 
     while(i<length){
+
+      thisCat = categoryInfo[i];
+
       html += '<div class="category" >';
-      html +=   '<a class="category_bar" href="#">';
-      html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ categoryInfo[i].icon + '.png" height="25"/>';
-      html +=     '<span class="category_name">' + categoryInfo[i].title + '</span>';
+      html +=   '<a class="category_bar" href="#" onmousedown="toggleMarkerVisibility(' + i + ', 1); return false;">';
+      html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ thisCat.icon + '.png" height="25"/>';
+      html +=     '<span class="category_name">' + thisCat.title + '</span>';
       html +=   '</a>';
       html +=   '<div class="cat_container">';
       html +=     '<div class="cat_info">';
       html +=       '<p>';
-      html +=         categoryInfo[i].text;
+      html +=         thisCat.text;
       html +=       '</p>';
-      html +=       '<a href="' + categoryInfo[i].link + '">' + categoryInfo[i].title + ' website</a>';
+      html +=       '<a href="' + thisCat.link + '">' + thisCat.title + ' website</a>';
       html +=     '</div>';
       html +=     '<div id="category_' + i + '"></div>';
       html +=   '</div>';
@@ -277,7 +281,7 @@ var categoryInfo = [],
           html = "",
         catObj = categoryInfo[index],
        objData = mapCategories[index],
-         array = markerArray,
+    allMarkers = markerArray,
        markers = [],
          color = catObj.icon,
           icon,
@@ -320,7 +324,7 @@ var categoryInfo = [],
 
     target.innerHTML = html;
 
-    array[index] = markers;
+    allMarkers[index] = markers;
 
     console.timeEnd("populate Category");
   }
@@ -332,25 +336,28 @@ var categoryInfo = [],
   
 
   // Show / Toggle Object Category
-  function toggleMarkerVisibility(index,desiredState,callback){
-    var length = markerArray[index].length,
-          i = 0;
+  function toggleMarkerVisibility(index,newState){
+    var array = markerArray[index],
+  arrayLength = array.length,
+            i = 0;
 
-    // Show Markers
-    // if (newState === 1){
-      while(i<length){
-        markerArray[i].visible = true;
+    if(newState === 1){
+      // Show Markers
+      while(i<arrayLength){
+        array[i].setVisible(true);
+        i += 1;
       }
-    // // Hide markers
-    // } else {
-    //   while(i<length){
-    //     markerArray[i].visible = true;
-    //   }
-    // }
+    } else {
+    // Hide markers
+      while(i<arrayLength){
+        array[i].setVisible(false);
+        i += 1;
+      }
+    }
 
-    callback;
   }
 
+// markerArray[catIndex][i].setVisible(false);
   // Show / Toggle Polygon Category
   function showPolygonCategory(callback){
     callback;
@@ -467,20 +474,11 @@ var categoryInfo = [],
     });
     loadCategoryFile(function(){
       runPopulators();
-      // populateObjectCategory(0);
-      // populateObjectCategory(2);
-      // populateObjectCategory(3);
-      // populateObjectCategory(4);
-      // populateObjectCategory(5);
-      bindCategoryToggle(function(){
-        // alert("inside bindCategoryToggle callback");
-        // loadComplete();
-      });
+      bindCategoryToggle();
     });
-    loadComplete();
+    loadComplete();        /* This is still running async for now, will load before all init has completed until fixed */
     callback;
   }//end initialize()
-
 
 
 /****************************************************/
@@ -494,41 +492,31 @@ var categoryInfo = [],
           notification = doc.getElementById('notification'),     
          currentDevice = control.currentDevice;     
     
-    //selectors for non-mobile jQuery 
-    if(currentDevice !== 0){     
+    if(currentDevice !== 0){ /* selectors for non-mobile jQuery */
      menu = $('#menu');     
      notification = $('#notification');     
     }
 
-    if(newState === 0){
-    // Toggle menu visibility off
-      // For mobile
-      if(currentDevice === 0){
-        // Hide Menu, Show notification div
-        menu.style.display = "none";
+    if(newState === 0){               /* Toggle menu visibility off */
+      if(currentDevice === 0){        /* For mobile */
+        menu.style.display = "none";  /* Hide Menu, Show notification div*/
         notification.style.display = "block";
-      // for non-mobile
-      } else {
-        // Hide Menu with fade transition, Show notification div with fade transition
-        menu.fadeOut(200);
+      } else {                        /* for non-mobile */
+        menu.fadeOut(200);            /* Hide Menu with fade transition, Show notification div with fade transition*/
         notification.fadeIn(200);
       }
-      // Toggle indicator, Set current state of menu visibility in control object
-      menu_indicator.innerHTML = "+";
+      menu_indicator.innerHTML = "+";  /* Toggle indicator, Set current state of menu visibility in control object */
       control.menuState = 0; 
     } 
-    else {
-    // Toggle menu visibility on
-      if(currentDevice === 0){
-        // mobile minimal show menu, hide notification div
+    else {                             /* Toggle menu visibility on */
+      if(currentDevice === 0){         /*  mobile minimal show menu, hide notification div*/
         menu.style.display = "block";
         notification.style.display = "none";
-      } else {
-        // non-mobile fancy
+      } else {                         /* non-mobile fancy */
+        
         menu.fadeIn(200);
         notification.fadeOut(200);
-      }
-      // Toggle indicator, Set current state of menu visibility in control object
+      }                                /* Toggle indicator, Set current state of menu visibility in control object */
       menu_indicator.innerHTML = "-";
       control.menuState = 1; 
     }
@@ -537,11 +525,9 @@ var categoryInfo = [],
   // ToggleMenu
   function toggleMenu(){
     var menuState = control.menuState;
-    if(menuState === 0){
-      // Toggle menu visibility on
+    if(menuState === 0){              /* Toggle menu visibility on */
       setMenu(1);
-    } else {
-      // Toggle menu visibility off
+    } else {                          /* Toggle menu visibility off */
       setMenu(0);
     }
   }
