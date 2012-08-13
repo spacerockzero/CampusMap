@@ -40,8 +40,13 @@
       <div id="map_canvas"></div>
 
       <div id="loading">
-        <p id="loading_text">[ LOADING... ]</p>
-        <img id="loading_img" src="img/interface/loading.gif" alt="Loading Campus Map"/>
+        <div id="loading_inside">
+          <p id="loading_text">[ LOADING... ]</p>
+          <div id="loading_bar" class="progress-bar blue stripes">
+            <span id="loading_progress" style="width: 10%"></span>
+          </div>
+          <!-- <img id="loading_progress" src="img/interface/loading.gif" alt="Loading Campus Map"/> -->
+        </div>
       </div>
 
     </div><!-- // container -->
