@@ -1,6 +1,9 @@
-/*  BYU-I Campus Map                */
-/*  powered by Google Maps API v3   */
-/*  Revised:  08.01.2012            */
+/*****************************************************/
+/*   BYU-I Campus Map                                */
+/*   - Author: Jakob Anderson :: jakobanderson.com   */
+/*   - Powered by Google Maps API v3                 */
+/*   - Revised:  08.13.2012                          */
+/*****************************************************/
 
 // JS Lint Options (remove after deployment)
 /*jslint white:true, browser: true */
@@ -32,7 +35,7 @@ parkingLayer,
 var control = {
   menuState: 0,
   currentDevice: 0,
-  categoryState: {}
+  categoryState: []
 };
 
 
@@ -76,41 +79,6 @@ var categoryInfo = [],
     object.style.height = height;
   }
 
-function jsFade(eid,time,callback) {
-  var timeToFade = time,
-         element = document.getElementById(eid);
-  
-  if(element === null){
-    return;
-  }
-   
-  if(element.FadeState === null)
-  {
-    if(element.style.opacity === null 
-        || element.style.opacity === '' 
-        || element.style.opacity === '1')
-    {
-      element.FadeState = 2;
-    }
-    else
-    {
-      element.FadeState = -2;
-    }
-  }
-    
-  if(element.FadeState === 1 || element.FadeState === -1)
-  {
-    element.FadeState = element.FadeState === 1 ? -1 : 1;
-    element.FadeTimeLeft = time - element.FadeTimeLeft;
-  }
-  else
-  {
-    element.FadeState = element.FadeState === 2 ? -1 : 1;
-    element.FadeTimeLeft = time;
-    setTimeout("animateFade(" + new Date().getTime() + ",'" + eid + "')", 33);
-  }
-  callback;  
-}
 
 /****************************************************/
 /*  Device & Feature Detection & Setting Functions  */
@@ -168,15 +136,6 @@ function jsFade(eid,time,callback) {
     }
   }  
 
-  // Detect jQuery    
-  function detectjQuery(){    
-    if(typeof jQuery === 'undefined'){   
-      return 0;
-    } else {
-      return 1;
-    } 
-  }
-
   //get heights of elements
   function getMapHeight(){
     var bodyHeight = detectHeight(body),
@@ -203,6 +162,8 @@ function jsFade(eid,time,callback) {
 /****************************************************/
 
   // Load all category info from file into categoryInfo array
+  // This static file may be replaced by a web service 
+  // returning JSON data at a later time
   function loadCategoryInfoFile(callback) {
 
     $.ajax({
@@ -217,6 +178,8 @@ function jsFade(eid,time,callback) {
   }
 
   // Load all category info from file into categoryInfo array
+  // This static file may be replaced by a web service 
+  // returning JSON data at a later time
   function loadCategoryFile(callback) {
     $.ajax({
       dataType: "json",
@@ -233,6 +196,7 @@ function jsFade(eid,time,callback) {
     });
   }
 
+  // Execution wrapper to time and serialize the data import functions from outside
   function loadCatData(callback){
     loadCategoryInfoFile();
     loadCategoryFile();
@@ -243,48 +207,50 @@ function jsFade(eid,time,callback) {
 /****************************************************/
 /*   Load Progress                                  */
 /****************************************************/
-
+  
+  // alter loading bar's visible progress %
   function loadProgress(percentageComplete){
     var obj = doc.getElementById('loading_progress');
     obj.style.width = percentageComplete + '%';
   }
 
+  // Execute when page, data, and DOM is finished loading, then hide loading div
   function loadComplete(callback){
     loadProgress(100);
-
     var loadingDiv = $('#loading'),
             device = control.currentDevice; 
-    
-      loadingDiv.fadeOut(700);
-
+    loadingDiv.fadeOut(700);
     callback;
   }
+
 
 /****************************************************/
 /*   Create a Marker                                */
 /****************************************************/
 
-function createMarker(lat,lon,name,icon){
+  function createMarker(lat,lon,name,icon){
 
-  var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(lat, lon),
-    visible: false,
-    map: map,
-    title: name,
-    icon: icon
-  });
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(lat, lon),
+      visible: false,
+      map: map,
+      title: name,
+      icon: icon
+    });
 
-  return marker;
-}
+    return marker;
+  }
 
-function buildCatObject(i,name,color){
-  var thishtml = "";
-      thishtml += '<a class="object" href="#">';
-      thishtml +=   '<img  class="obj_icon" src="img/icons/numeral-icons/' + color + '/' + (i+1) + '.png" alt="' + name + '" height="25">';
-      thishtml +=   '<div class="object_name">' + name + '</div>';
-      thishtml += '</a>';
-  return thishtml;
-}
+  function buildCatObject(i,name,color){
+    var thishtml = "";
+        thishtml += '<a class="object" href="#">';
+        thishtml +=   '<img  class="obj_icon" src="img/icons/numeral-icons/' + color + '/' + (i+1) + '.png" alt="' + name + '" height="25">';
+        thishtml +=   '<div class="object_name">' + name + '</div>';
+        thishtml += '</a>';
+    return thishtml;
+  }
+
+
 /****************************************************/
 /*   Populate & Show Categories                     */
 /****************************************************/
@@ -297,7 +263,9 @@ function buildCatObject(i,name,color){
           html = "",
         length = categoryInfo.length,
        thisCat,
-             i = 0;
+         state,
+             i = 0,
+         catID;
 
     while(i<length){
 
@@ -318,6 +286,10 @@ function buildCatObject(i,name,color){
       html +=     '<div id="category_' + i + '"></div>';
       html +=   '</div>';
       html += '</div>';
+
+      // set the global control to read this category as being in a closed state by default
+      control.categoryState[i] = 0;
+
       i += 1;
     }
 
@@ -353,15 +325,12 @@ function buildCatObject(i,name,color){
           lon = obj.lon;
          icon = iconpath + color + '/' + (i+1) + '.png';
 
-       //create new google maps marker 
-       marker = createMarker(lat,lon,name,icon); 
-
+      //create new google maps marker 
+      marker = createMarker(lat,lon,name,icon); 
       // Build html string for all DOM to be created for this category 
       html += buildCatObject(i,name,color);
-
       // push this category's markers to the main global marker array
       markers.push(marker);
-      
       // advance iterator
       i += 1;
     }
@@ -369,23 +338,22 @@ function buildCatObject(i,name,color){
     // Insert output into the DOM in one action. 
     // Consider combining all reflow into one function with the category builder later.
     target.innerHTML = html;
-
     // Add this category's markers to array of all markers
     allMarkers[index] = markers;
 
     console.timeEnd("populate Category");
   }
 
+  //do something with polygon layers' data
   function populatePolygonCategory(callback){
-
+    //do something with polygon layers' data
   }
-  
 
-  // Show / Toggle Object Category
+  // Show / Toggle Object Category markers
   function toggleMarkerVisibility(index,newState){
-    var array = markerArray[index],
-  arrayLength = array.length,
-            i = 0;
+      var array = markerArray[index],
+    arrayLength = array.length,
+              i = 0;
 
     if(newState === 1){
       // Show Markers
@@ -403,9 +371,8 @@ function buildCatObject(i,name,color){
 
   }
 
-// markerArray[catIndex][i].setVisible(false);
-  // Show / Toggle Polygon Category
-  function showPolygonCategory(callback){
+  // Show / Toggle Polygon Category KML layers
+  function togglePolygonVisibility(callback){
     callback;
   }
 
@@ -413,9 +380,6 @@ function buildCatObject(i,name,color){
 /****************************************************/
 /*   Initialize App                                 */
 /****************************************************/
-
-// Init
-  // Show Loading Animation (progress?)
   
   // Set map default options
   function setOptions(){
@@ -455,40 +419,6 @@ function buildCatObject(i,name,color){
   }
 
 
-/****************************************************/
-/*   Category Toggle                                */
-/****************************************************/
-
-  function bindCategoryToggle(callback){
-
-    $('.category_bar').mousedown(function(){
-
-          console.time("clickCategory");
-      var device = control.currentDevice,
-           child = this.parentNode.children[1],
-         display = child.style.display,
-         $jChild = $(this).parent().find('.cat_container');
-      
-      if(display !== 'block'){
-        if(device === 0){
-          child.style.display = "block";
-        } else {
-          $jChild.slideToggle(200);
-        }
-      } else {
-        if(device === 0){
-          child.style.display = "none";
-        } else {
-          $jChild.slideToggle(200);
-        }
-      }
-
-      console.timeEnd("clickCategory");
-
-    });
-    callback;
-  }
-
   //populate all categories
   function runPopulators(callback){
     
@@ -508,31 +438,28 @@ function buildCatObject(i,name,color){
     callback;
   }
 
-  // Create Map Object
+  // Initialize & Execute Map App Stack
   function initialize(callback) {
-
-    // loadProgress(0);
-
     // Run Map setup stack
     setOptions();
     setAllControls();
     setMap();
     setInfoWindow();
     setCampusLayer(); 
-    loadProgress(20);   
+      loadProgress(20);   
     
     // Run GatherData Stack using callback function to serialize the dependent functions
     loadCategoryInfoFile(function(){ 
       populateCategoryInfo();
     });
-    loadProgress(40);
+      loadProgress(40);
     loadCategoryFile(function(){
       runPopulators();
       bindCategoryToggle();
     });
-    loadProgress(90);
+      loadProgress(90);
     // wait 1 second after reaching this point in the script to execute the loadComplete() function
-    win.setTimeout("loadComplete()",1500);        /* This is still running async for now, will load before all init has completed until fixed */
+    win.setTimeout("loadComplete()",1500);        /* This is still running async with timer delay for now, will load before all init has completed until serialization is completed */
     callback;
   }//end initialize()
 
@@ -589,6 +516,64 @@ function buildCatObject(i,name,color){
   }
 
 
+/****************************************************/
+/*   Category Toggle                                */
+/****************************************************/
+
+  function bindCategoryToggle(callback){
+
+    $('.category_bar').mousedown(function(){
+
+      console.time("clickCategory");
+
+      var device = control.currentDevice,
+          parent = this.parentNode,
+           index = parent.id.substr(4),
+        catState = control.categoryState[index],
+           child = parent.children[1],
+         display = child.style.display;         
+      
+      if(device === 1){
+        child = $(this).parent().find('.cat_container');
+      }
+
+      // Toggle Category in Menu
+      if( catState === 0){
+        
+        console.log("inside catToggle if");
+        catState = 1;
+        if(device === 0){
+          child.style.display = "block";
+        } else {
+          child.slideToggle(200);
+        }
+        // Show markers for this category
+        toggleMarkerVisibility(index,1);
+      
+      } else {
+        
+        console.log("inside catToggle else");
+        catState = 0;
+        if(device === 0){
+          child.style.display = "none";
+        } else {
+          child.slideToggle(200);
+        }
+        // Hide markers for this category
+        toggleMarkerVisibility(index,0);
+
+      }
+
+      // Set global control with changes
+      control.categoryState[index] = catState;
+
+
+      console.timeEnd("clickCategory");
+
+    });
+    callback;
+  }
+
   // Search (needs web service ajax server? 
     // May just do a live AJAX node search of the 
     // objectFile Array to live populate results, 
@@ -598,9 +583,8 @@ function buildCatObject(i,name,color){
     // This may also work through the search service, once complete...
 
 
-
 /****************************************************/
-/*   Events & Bindings                              */
+/*   Other Events & Bindings                        */
 /****************************************************/
 
   // Global Resize Event Function Stack
