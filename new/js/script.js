@@ -31,7 +31,8 @@ parkingLayer,
 // Control object holds the current states and values of the app
 var control = {
   menuState: 0,
-  currentDevice: 0
+  currentDevice: 0,
+  categoryState: {}
 };
 
 
@@ -250,31 +251,40 @@ function jsFade(eid,time,callback) {
 
   function loadComplete(callback){
     loadProgress(100);
-      console.log("inside loadComplete");
 
     var loadingDiv = $('#loading'),
             device = control.currentDevice; 
     
-    // if(device === 1){
-    //   loadingDiv = $('#loading');
-    // }
-
-    //hide loading message
-    // if(device === 0){
-    //   // minimal for mobile
-    //   jsFade(loadingDiv,999);
-    //   // win.setTimeout("",1000);
-    //   loadingDiv.style.display = 'none';
-
-    // } else {
-      // fancy and smooth for desktop
       loadingDiv.fadeOut(700);
-    // }
 
     callback;
   }
 
+/****************************************************/
+/*   Create a Marker                                */
+/****************************************************/
 
+function createMarker(lat,lon,name,icon){
+
+  var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(lat, lon),
+    visible: false,
+    map: map,
+    title: name,
+    icon: icon
+  });
+
+  return marker;
+}
+
+function buildCatObject(i,name,color){
+  var thishtml = "";
+      thishtml += '<a class="object" href="#">';
+      thishtml +=   '<img  class="obj_icon" src="img/icons/numeral-icons/' + color + '/' + (i+1) + '.png" alt="' + name + '" height="25">';
+      thishtml +=   '<div class="object_name">' + name + '</div>';
+      thishtml += '</a>';
+  return thishtml;
+}
 /****************************************************/
 /*   Populate & Show Categories                     */
 /****************************************************/
@@ -317,8 +327,6 @@ function jsFade(eid,time,callback) {
   }
 
   function populateObjectCategory(index){
-
-    console.time("populate Category");
     // set target div and html string var to be inserted
     var target = document.getElementById('category_' + index),
           html = "",
@@ -338,27 +346,23 @@ function jsFade(eid,time,callback) {
 
     // begin iterations through menu/marker objects
     while(i<length){
+
           obj = objData[i];
          name = obj.name;
           lat = obj.lat;
           lon = obj.lon;
          icon = iconpath + color + '/' + (i+1) + '.png';
-       marker = new google.maps.Marker({
-         position: new google.maps.LatLng(lat, lon),
-         visible: false,
-         map: map,
-         title: name,
-         icon: icon
-       });
+
+       //create new google maps marker 
+       marker = createMarker(lat,lon,name,icon); 
 
       // Build html string for all DOM to be created for this category 
-      html += '<a class="object" href="#">';
-      html +=   '<img  class="obj_icon" src="img/icons/numeral-icons/' + color + '/' + (i+1) + '.png" alt="' + objData[i].name + '" height="25">';
-      html +=   '<div class="object_name">' + objData[i].name + '</div>';
-      html += '</a>';
+      html += buildCatObject(i,name,color);
 
+      // push this category's markers to the main global marker array
       markers.push(marker);
       
+      // advance iterator
       i += 1;
     }
 
