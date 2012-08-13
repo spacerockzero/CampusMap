@@ -129,12 +129,14 @@ a img{
 		position:relative;
 		background:@byui_dark_blue;
 		border-bottom: 1px solid #2b3e4d;
-		.box_gradient_3stop(#3a5284, #2d416a, #202f4f);
-	}
-	.no-cssgradients #title{
 		background:url(../img/interface/title_bg.png);
 		background-repeat:repeat-x;
+		// .box_gradient_3stop(#3a5284, #2d416a, #202f4f);
 	}
+	// .no-cssgradients #title{
+	// 	background:url(../img/interface/title_bg.png);
+	// 	background-repeat:repeat-x;
+	// }
 	#heading{
 		margin:0;
 		text-align: center;
@@ -142,7 +144,7 @@ a img{
 		font-weight: 100;
 		font-size: 25px;
 		text-shadow: 0 1px 0 #333;
-		padding: 19px 0 10px;
+		padding: 20px 0 10px;
 	}
 	#device_type{
 		display: block;
@@ -194,8 +196,8 @@ a img{
 	}
 	#menu{
 		-webkit-transform: translate3d(0, 0, 0);
-		// display:none;
-		display:block;
+		display:none;
+		// display:block;
 		z-index: 2;
 		position: absolute;
 		.transition(width,200ms);

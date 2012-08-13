@@ -97,13 +97,13 @@ var categoryInfo = [],
     if (changeTo === 0){
       // Set to Mobile
         // Set the body id, set new control value
-        body.setAttribute("id","mobile");
         control.currentDevice = 0;
+        body.setAttribute("id","mobile");
     } else {
       // Set to Desktop
         // Set the body id, set new control value
-        body.setAttribute("id","desktop");
         control.currentDevice = 1;
+        body.setAttribute("id","desktop");
     }
     callback;
   }
@@ -126,7 +126,6 @@ var categoryInfo = [],
     if (control.currentDevice === 0){
       //set mobile
       setDevice(0);
-
     } else {
       //set desktop
       setDevice(1);
@@ -204,6 +203,35 @@ var categoryInfo = [],
     callback();
   }
 
+
+/****************************************************/
+/*   Events & Bindings                              */
+/****************************************************/
+
+  function loadComplete(callback){
+
+      console.log("inside loadComplete");
+
+    var loadingDiv = doc.getElementById('loading'),
+            device = control.currentDevice; 
+    
+    if(device === 1){
+      loadingDiv = $('#loading');
+    }
+
+    //hide loading message
+    if(device === 0){
+      // minimal for mobile
+      loadingDiv.style.display = "none";
+    } else {
+      // fancy and smooth for desktop
+      loadingDiv.fadeOut(200);
+    }
+
+    callback;
+  }
+
+
 /****************************************************/
 /*   Populate & Show Categories                     */
 /****************************************************/
@@ -249,6 +277,8 @@ var categoryInfo = [],
           html = "",
         catObj = categoryInfo[index],
        objData = mapCategories[index],
+         array = markerArray,
+       markers = [],
          color = catObj.icon,
           icon,
         length = objData.length,
@@ -258,6 +288,8 @@ var categoryInfo = [],
            lat,
            lon,
         marker;
+
+        
 
     // begin iterations through menu/marker objects
     while(i<length){
@@ -269,6 +301,7 @@ var categoryInfo = [],
          icon = iconpath + color + '/' + (i+1) + '.png';
        marker = new google.maps.Marker({
          position: new google.maps.LatLng(lat, lon),
+         visible: false,
          map: map,
          title: name,
          icon: icon
@@ -280,10 +313,15 @@ var categoryInfo = [],
       html +=   '<div class="object_name">' + objData[i].name + '</div>';
       html += '</a>';
 
+      markers.push(marker);
+      
       i += 1;
     }
 
     target.innerHTML = html;
+
+    array[index] = markers;
+
     console.timeEnd("populate Category");
   }
 
@@ -293,8 +331,28 @@ var categoryInfo = [],
 
   
 
-  // Show / Toggle Categories
-  function showCategories(callback){
+  // Show / Toggle Object Category
+  function toggleMarkerVisibility(index,desiredState,callback){
+    var length = markerArray[index].length,
+          i = 0;
+
+    // Show Markers
+    // if (newState === 1){
+      while(i<length){
+        markerArray[i].visible = true;
+      }
+    // // Hide markers
+    // } else {
+    //   while(i<length){
+    //     markerArray[i].visible = true;
+    //   }
+    // }
+
+    callback;
+  }
+
+  // Show / Toggle Polygon Category
+  function showPolygonCategory(callback){
     callback;
   }
 
@@ -348,7 +406,7 @@ var categoryInfo = [],
 /*   Category Toggle                                */
 /****************************************************/
 
-  function bindCategoryToggle(){
+  function bindCategoryToggle(callback){
 
     $('.category_bar').click(function(){
           console.time("clickCategory");
@@ -372,11 +430,11 @@ var categoryInfo = [],
       }
        console.timeEnd("clickCategory");
     });
-
+    callback;
   }
 
   //populate all categories
-  function runPopulators(){
+  function runPopulators(callback){
     
     var i = 0,
    length = categoryInfo.length,
@@ -391,7 +449,7 @@ var categoryInfo = [],
       }
       i += 1;
     }
-
+    callback;
   }
 
   // Create Map Object
@@ -404,20 +462,22 @@ var categoryInfo = [],
     setCampusLayer();    
     
     // Run GatherData Stack using callback function to serialize the dependent functions
-    loadCategoryInfoFile(function(){
-      
+    loadCategoryInfoFile(function(){ 
       populateCategoryInfo();
     });
     loadCategoryFile(function(){
-      populateObjectCategory(0);
-      populateObjectCategory(2);
-      populateObjectCategory(3);
-      populateObjectCategory(4);
-      populateObjectCategory(5);
+      runPopulators();
+      // populateObjectCategory(0);
+      // populateObjectCategory(2);
+      // populateObjectCategory(3);
+      // populateObjectCategory(4);
+      // populateObjectCategory(5);
       bindCategoryToggle(function(){
-        loadComplete();
+        // alert("inside bindCategoryToggle callback");
+        // loadComplete();
       });
     });
+    loadComplete();
     callback;
   }//end initialize()
 
@@ -486,36 +546,14 @@ var categoryInfo = [],
     }
   }
 
-/****************************************************/
-/*   Events & Bindings                              */
-/****************************************************/
 
-function loadComplete(callback){
-
-    console.log("inside loadComplete");
-
-  var loadingDiv = doc.getElementById('loading'),
-          device = control.currentDevice; 
-  
-  // if(device === 0){
-  //   loadingDiv = $('#loading');
-  // }
-
-  //hide loading message
-  // if(device === 0){
-    // minimal for mobile
-    loadingDiv.style.display = "none";
-  // } else {
-    // fancy and smooth for desktop
-  //   loadingDiv.fadeOut(200);
-  // }
-
-  callback;
-}
-
-  // Search (needs web service ajax server?)
+  // Search (needs web service ajax server? 
+    // May just do a live AJAX node search of the 
+    // objectFile Array to live populate results, 
+    // and the according markers)
 
   // URL - Object API ? (Navigate to specific object using an externally shared url)
+    // This may also work through the search service, once complete...
 
 
 
