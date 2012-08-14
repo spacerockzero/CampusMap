@@ -62,6 +62,16 @@ a img{
 .scrolling * {
   -webkit-transform: translate3d(0,0,0);
 }
+
+.animate {
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -ms-transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+
 .box {
 	margin: 0 0 18px;
 	padding: 13px 22px 0;
@@ -287,14 +297,14 @@ a img{
 		position:relative;
 		border-bottom: 1px solid #2b3e4d;
 		background:@byui_dark_blue;
-		.box_gradient_3stop(#3a5284, #2d416a, #202f4f);
-		// background:url(../img/interface/title_bg.png);
+		// .box_gradient_3stop(#3a5284, #2d416a, #202f4f);
+		background:url(../img/interface/title_bg.png);
 		background-repeat:repeat-x;
 		
 	}
 	.no-cssgradients #title{
 		background:@byui_dark_blue;
-		// background:url(../img/interface/title_bg.png);
+		background:url(../img/interface/title_bg.png);
 		background-repeat:repeat-x;
 	}
 	#heading{
@@ -358,7 +368,7 @@ a img{
 		-webkit-transform: translate3d(0, 0, 0);
 		display:none;
 		// display:block;
-		z-index: 2;
+		z-index: 9;
 		position: absolute;
 		.transition(width,200ms);
 		width: 100%;
@@ -369,7 +379,6 @@ a img{
 		border-left: 1px solid #2b3e4d;
 	}
 	#inner_menu{
-		// padding:20px;
 		width:100%;
 		overflow:hidden;
 	}
@@ -451,8 +460,8 @@ a img{
     color:#ddd;
     margin:2px 5px;
     padding:2px;
-    background:#4e5360;
-		.box_gradient_3stop(#4e5360, #3b3f4a, #32353e);
+    background:#3b3f4a;
+		// .box_gradient_3stop(#4e5360, #3b3f4a, #32353e);
 		//.box_gradient_3stop(rgba(121,126,139, 0.8), rgba(109,114,125, 0.8), rgba(50,53,60, 0.8));
 		border-radius:4px;
 		border-top: 1px solid #555;
@@ -464,7 +473,7 @@ a img{
 		background:#d1d5e3;
 		color:#111;
 		text-shadow:none;
-		.box_gradient_3stop(#d1d5e3, #a7aab4, #a7aab4);
+		// .box_gradient_3stop(#d1d5e3, #a7aab4, #a7aab4);
 		//.box_gradient_3stop(rgba(121,126,139, 0.8), rgba(109,114,125, 0.8), rgba(50,53,60, 0.8));
 	}
 	.obj_icon{
@@ -475,9 +484,10 @@ a img{
 	.object_name{
 		display:block;
 		float:left;
-		margin: 3px 0 0px;
+		// margin: 3px 0 0px;
+		margin:4px 0 4px;
 		width: 75%;
-		min-height:35px;
+		// min-height:35px;
 		font-size: 15px;
 		padding: 1px;
 	}
@@ -545,7 +555,7 @@ a img{
 		margin:1px 5px 2px;
 	}
 	.object_name{
-		width: 200px;
+		width: 185px;
 		font-size:12px;
 		padding:0;
 	}

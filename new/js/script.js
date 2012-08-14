@@ -540,7 +540,6 @@ var categoryInfo = [],
       // Toggle Category in Menu
       if( catState === 0){
         
-        console.log("inside catToggle if");
         catState = 1;
         if(device === 0){
           child.style.display = "block";
@@ -552,7 +551,6 @@ var categoryInfo = [],
       
       } else {
         
-        console.log("inside catToggle else");
         catState = 0;
         if(device === 0){
           child.style.display = "none";
@@ -566,7 +564,6 @@ var categoryInfo = [],
 
       // Set global control with changes
       control.categoryState[index] = catState;
-
 
       console.timeEnd("clickCategory");
 
@@ -599,7 +596,7 @@ var categoryInfo = [],
     clearTimeout(doResize);
     doResize = setTimeout(function(){
       resizeStack();
-    }, 100);
+    }, 500);
   });
 
   $win.load(function(){

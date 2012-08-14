@@ -573,6 +573,13 @@ a img {
 .scrolling * {
   -webkit-transform: translate3d(0, 0, 0);
 }
+.animate {
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
 .box {
   margin: 0 0 18px;
   padding: 13px 22px 0;
@@ -815,28 +822,12 @@ a img {
   position: relative;
   border-bottom: 1px solid #2b3e4d;
   background: #044f84;
-  background: -webkit-linear-gradient(top, #3a5284 0%, #2d416a 50%, #202f4f 100%);
-  /* Chrome10+,Safari5.1+ */
-
-  background: -moz-linear-gradient(top, #3a5284 0%, #2d416a 50%, #202f4f 100%);
-  /* FF3.6+ */
-
-  background: -ms-linear-gradient(top, #3a5284 0%, #2d416a 50%, #202f4f 100%);
-  /* IE10+ */
-
-  background: -o-linear-gradient(top, #3a5284 0%, #2d416a 50%, #202f4f 100%);
-  /* Opera 11.10+ */
-
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3a5284), color-stop(50%, #2d416a), color-stop(100%, #202f4f));
-  /* Chrome,Safari4+ */
-
-  background: linear-gradient(top, #3a5284 0%, #2d416a 50%, #202f4f 100%);
-  /* W3C */
-
+  background: url(../img/interface/title_bg.png);
   background-repeat: repeat-x;
 }
 .no-cssgradients #title {
   background: #044f84;
+  background: url(../img/interface/title_bg.png);
   background-repeat: repeat-x;
 }
 #heading {
@@ -905,7 +896,7 @@ a img {
 #menu {
   -webkit-transform: translate3d(0, 0, 0);
   display: none;
-  z-index: 2;
+  z-index: 9;
   position: absolute;
   -webkit-transition: width 200ms ease-in-out;
   -moz-transition: width 200ms ease-in-out;
@@ -1035,25 +1026,7 @@ a img {
   color: #ddd;
   margin: 2px 5px;
   padding: 2px;
-  background: #4e5360;
-  background: -webkit-linear-gradient(top, #4e5360 0%, #3b3f4a 50%, #32353e 100%);
-  /* Chrome10+,Safari5.1+ */
-
-  background: -moz-linear-gradient(top, #4e5360 0%, #3b3f4a 50%, #32353e 100%);
-  /* FF3.6+ */
-
-  background: -ms-linear-gradient(top, #4e5360 0%, #3b3f4a 50%, #32353e 100%);
-  /* IE10+ */
-
-  background: -o-linear-gradient(top, #4e5360 0%, #3b3f4a 50%, #32353e 100%);
-  /* Opera 11.10+ */
-
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4e5360), color-stop(50%, #3b3f4a), color-stop(100%, #32353e));
-  /* Chrome,Safari4+ */
-
-  background: linear-gradient(top, #4e5360 0%, #3b3f4a 50%, #32353e 100%);
-  /* W3C */
-
+  background: #3b3f4a;
   border-radius: 4px;
   border-top: 1px solid #555;
   border-bottom: 1px solid black;
@@ -1073,24 +1046,6 @@ a img {
   background: #d1d5e3;
   color: #111;
   text-shadow: none;
-  background: -webkit-linear-gradient(top, #d1d5e3 0%, #a7aab4 50%, #a7aab4 100%);
-  /* Chrome10+,Safari5.1+ */
-
-  background: -moz-linear-gradient(top, #d1d5e3 0%, #a7aab4 50%, #a7aab4 100%);
-  /* FF3.6+ */
-
-  background: -ms-linear-gradient(top, #d1d5e3 0%, #a7aab4 50%, #a7aab4 100%);
-  /* IE10+ */
-
-  background: -o-linear-gradient(top, #d1d5e3 0%, #a7aab4 50%, #a7aab4 100%);
-  /* Opera 11.10+ */
-
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d1d5e3), color-stop(50%, #a7aab4), color-stop(100%, #a7aab4));
-  /* Chrome,Safari4+ */
-
-  background: linear-gradient(top, #d1d5e3 0%, #a7aab4 50%, #a7aab4 100%);
-  /* W3C */
-
 }
 .obj_icon {
   float: left;
@@ -1100,9 +1055,8 @@ a img {
 .object_name {
   display: block;
   float: left;
-  margin: 3px 0 0px;
+  margin: 4px 0 4px;
   width: 75%;
-  min-height: 35px;
   font-size: 15px;
   padding: 1px;
 }
@@ -1154,7 +1108,7 @@ a img {
   margin: 1px 5px 2px;
 }
 #desktop .object_name {
-  width: 200px;
+  width: 185px;
   font-size: 12px;
   padding: 0;
 }
