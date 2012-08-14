@@ -219,7 +219,7 @@ var categoryInfo = [],
     loadProgress(100);
     var loadingDiv = $('#loading'),
             device = control.currentDevice; 
-    loadingDiv.fadeOut(700);
+    loadingDiv.fadeOut(1000);
     callback;
   }
 
@@ -458,8 +458,7 @@ var categoryInfo = [],
       bindCategoryToggle();
     });
       loadProgress(90);
-    // wait 1 second after reaching this point in the script to execute the loadComplete() function
-    win.setTimeout("loadComplete()",1500);        /* This is still running async with timer delay for now, will load before all init has completed until serialization is completed */
+    
     callback;
   }//end initialize()
 
@@ -485,8 +484,8 @@ var categoryInfo = [],
         menu.style.display = "none";  /* Hide Menu, Show notification div*/
         notification.style.display = "block";
       } else {                        /* for non-mobile */
-        menu.fadeOut(200);            /* Hide Menu with fade transition, Show notification div with fade transition*/
-        notification.fadeIn(200);
+        menu.fadeOut(300);            /* Hide Menu with fade transition, Show notification div with fade transition*/
+        notification.fadeIn(300);
       }
       menu_indicator.innerHTML = "+";  /* Toggle indicator, Set current state of menu visibility in control object */
       control.menuState = 0; 
@@ -497,8 +496,8 @@ var categoryInfo = [],
         notification.style.display = "none";
       } else {                         /* non-mobile fancy */
         
-        menu.fadeIn(200);
-        notification.fadeOut(200);
+        menu.fadeIn(300);
+        notification.fadeOut(300);
       }                                /* Toggle indicator, Set current state of menu visibility in control object */
       menu_indicator.innerHTML = "-";
       control.menuState = 1; 
@@ -584,6 +583,14 @@ var categoryInfo = [],
 /*   Other Events & Bindings                        */
 /****************************************************/
 
+  // (function(){
+  //   if(categoryInfo.length !== 0 && markerArray.length !== 0){
+  //     if(categoryInfo.length === markerArray.length){
+  //       loadComplete();
+  //     }
+  //   }
+  // });
+
   // Global Resize Event Function Stack
   function resizeStack(){
     setHeight(container,getMapHeight());
@@ -600,7 +607,7 @@ var categoryInfo = [],
   });
 
   $win.load(function(){
-    initialize();
+    initialize(loadComplete);
   });
  
 

@@ -611,7 +611,6 @@ a img {
   zoom: 1;
   text-shadow: 0px 1px 0px #ffffff;
 }
-/* Progress Bar Style */
 .progress-bar {
   background-color: #1a1a1a;
   height: 25px;
@@ -763,7 +762,6 @@ a img {
     -moz-box-shadow: 0 5px 5px rgba(255, 255, 255, 0.7) inset, 0 -5px 5px rgba(255, 255, 255, 0.7) inset;
   }
 }
-/* End Progress Bar Styling */
 /************************************************************/
 /*                                                          */
 /*  Mobile and global styles                                */
@@ -822,13 +820,6 @@ a img {
   position: relative;
   border-bottom: 1px solid #2b3e4d;
   background: #044f84;
-  background: url(../img/interface/title_bg.png);
-  background-repeat: repeat-x;
-}
-.no-cssgradients #title {
-  background: #044f84;
-  background: url(../img/interface/title_bg.png);
-  background-repeat: repeat-x;
 }
 #heading {
   margin: 0;
@@ -838,6 +829,9 @@ a img {
   font-size: 25px;
   text-shadow: 0 1px 0 #333;
   padding: 20px 0 10px;
+  height: 28px;
+  background: url(../img/interface/title_bg.png);
+  background-repeat: repeat-x;
 }
 #device_type {
   display: block;
@@ -1062,7 +1056,7 @@ a img {
 }
 @media only screen and (max-width: 460px) {
   #heading {
-    margin: 0 0 0 37px;
+    padding-left: 37px;
     text-align: left;
     font-size: 20px;
   }
@@ -1080,9 +1074,12 @@ a img {
 /*                                    */
 /**************************************/
 #desktop {
-  font: 13px/1.3em Helvetica, Arial, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.9);
+}
+#desktop #map_canvas {
+  -webkit-font-smoothing: normal;
+  text-shadow: none;
 }
 #desktop #container {
   overflow: hidden;
