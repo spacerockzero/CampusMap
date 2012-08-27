@@ -48,3 +48,44 @@
       })();
 
     </script>
+
+    <script type="text/javascript">
+
+    // function to load script file and callback script code (do not change)
+    function loadScript(src, callback) {
+        var head = document.getElementsByTagName('head')[0],
+          script = document.createElement('script');
+            done = false;
+        script.setAttribute('src', src);
+        script.setAttribute('type', 'text/javascript');
+        script.setAttribute('charset', 'utf-8');
+        script.onload = script.onreadstatechange = function() {
+          if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+            done = true;
+            script.onload = script.onreadystatechange = null;
+            if (callback) {
+              callback();
+            }
+          }
+        }
+        head.insertBefore(script, head.firstChild);
+      }
+
+      // load the file and run what's inside the function callback once the script has been loaded
+      loadScript('js/libs/s_code.js', function() {});
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

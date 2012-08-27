@@ -27,7 +27,7 @@ parkingLayer,
   infoWindow,
  campusLayer,
     iconpath = 'img/icons/numeral-icons/',
- polygonFile = 'http://www2.byui.edu/Map/parking_data.xml',
+ //polygonFile = 'http://www2.byui.edu/Map/parking_data.xml',
   campusFile = 'http://www2.byui.edu/Map/campus_outline.xml';
 
 
@@ -272,7 +272,11 @@ var categoryInfo = [],
       thisCat = categoryInfo[i];
 
       html += '<div class="category" id="cat_' + i + '">';
-      html +=   '<a class="category_bar" href="#" >';
+      if (categoryInfo[i].type === 0){
+        html +=   '<a class="category_bar" href="#" >';
+      } else {
+        html +=   '<a class="category_bar cat_polygon" href="#" >';
+      }
       html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ thisCat.icon + '.png" height="25"/>';
       html +=     '<span class="category_name">' + thisCat.title + '</span>';
       html +=   '</a>';
@@ -341,13 +345,56 @@ var categoryInfo = [],
     // Add this category's markers to array of all markers
     allMarkers[index] = markers;
 
-    console.timeEnd("populate Category");
   }
 
+
   //do something with polygon layers' data
-  function populatePolygonCategory(callback){
+  function populatePolygonCategory(index,callback){
     //do something with polygon layers' data
+    var target = document.getElementById('category_' + index),
+          html = "",
+        catObj = categoryInfo[index],
+       objData = mapCategories[index],
+      thisData,
+          icon,
+        length = objData.length,
+             i = 0,
+          name,
+  polygonLayer,
+   polygonFile;
+
+    while(i<length){
+
+      thisData = objData[i];
+
+      // write html for category menu
+      html += '<a class="object polygon active_polygon" href="#">';
+      html +=   '<div class="polygon_key" id="poly_' + thisData.name + '" style="border-color:' + thisData.borderColor + ';background-color:' + thisData.fillColor + '">&nbsp;</div>';
+      html +=   '<div class="object_name polygon">' + thisData.name + '</div>';
+      html +=  '</a>';
+
+      // set GoogleEarth KML polygon file path string
+      polygonFile = mapCategories[index].map;
+
+      // load map layer
+      polygonLayer = new google.maps.KmlLayer(polygonFile,
+                        {
+                            suppressInfoWindows: true,
+                            map: map,
+                            preserveViewport: true,
+                            zoom: 18
+                        });
+
+      markerArray[index] = polygonLayer;
+
+      i += 1;
+    }
+
+    // write all new html for this category to DOM in one instant reflow
+    target.innerHTML = html;
+
   }
+
 
   // Show / Toggle Object Category markers
   function toggleMarkerVisibility(index,newState){
@@ -372,7 +419,22 @@ var categoryInfo = [],
   }
 
   // Show / Toggle Polygon Category KML layers
-  function togglePolygonVisibility(callback){
+  function togglePolygonVisibility(index,callback){
+    var layer = markerArray[index],
+       active = $(this).hasClass('active_polygon');
+    //Hide this layer's polygons
+    if (active === true) {
+      layer.setMap(null);
+      //$(this).toggleClass('active_polygon');
+      console.log($(this).className);
+    }
+    //Show this layer's polygons
+    else {
+      layer.setMap(map);
+      //$(this).toggleClass('active_polygon');
+      console.log($(this).className);
+    }
+
     callback;
   }
 
@@ -447,7 +509,6 @@ var categoryInfo = [],
     setInfoWindow();
     setCampusLayer(); 
       loadProgress(20);   
-    
     // Run GatherData Stack using callback function to serialize the dependent functions
     loadCategoryInfoFile(function(){ 
       populateCategoryInfo();
@@ -458,7 +519,6 @@ var categoryInfo = [],
       bindCategoryToggle();
     });
       loadProgress(90);
-    
     callback;
   }//end initialize()
 
@@ -530,36 +590,47 @@ var categoryInfo = [],
            index = parent.id.substr(4),
         catState = control.categoryState[index],
            child = parent.children[1],
-         display = child.style.display;         
+         display = child.style.display,
+         polygon = $(this).hasClass('cat_polygon');         
       
       if(device === 1){
         child = $(this).parent().find('.cat_container');
       }
 
-      // Toggle Category in Menu
-      if( catState === 0){
+        // Toggle Category in Menu
+        if(catState === 0){
+          
+          catState = 1;
+          if(device === 0){
+            child.style.display = "block";
+          } else {
+            child.slideToggle(200);
+          }
+          
+          if(!($(this).hasClass('cat_polygon'))){
+            // Show markers for this category
+            toggleMarkerVisibility(index,1);
+          } else {
+            togglePolygonVisibility(index,1);
+          }
         
-        catState = 1;
-        if(device === 0){
-          child.style.display = "block";
         } else {
-          child.slideToggle(200);
+          
+          catState = 0;
+          if(device === 0){
+            child.style.display = "none";
+          } else {
+            child.slideToggle(200);
+          }
+          if(!($(this).hasClass('cat_polygon'))){
+            // Hide markers for this category
+            toggleMarkerVisibility(index,0);
+          } else {
+            togglePolygonVisibility(index,1);
+          }
         }
-        // Show markers for this category
-        toggleMarkerVisibility(index,1);
-      
-      } else {
-        
-        catState = 0;
-        if(device === 0){
-          child.style.display = "none";
-        } else {
-          child.slideToggle(200);
-        }
-        // Hide markers for this category
-        toggleMarkerVisibility(index,0);
 
-      }
+     
 
       // Set global control with changes
       control.categoryState[index] = catState;
@@ -608,6 +679,7 @@ var categoryInfo = [],
 
   $win.load(function(){
     initialize(loadComplete);
+    loadComplete();
   });
  
 

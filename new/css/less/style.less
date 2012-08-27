@@ -453,6 +453,7 @@ a img{
 	}
 	.object{
 		display:block;
+		position:relative;
 		.clearfix();
     text-decoration:none;
     color:#ddd;
@@ -488,6 +489,28 @@ a img{
 		// min-height:35px;
 		font-size: 15px;
 		padding: 1px;
+	}
+	.object_name.polygon{
+		margin-left:35px;
+	}
+	.polygon_key {
+		position: absolute;
+		height: 30px;
+		display: block;
+		width: 27px;
+		top: 0px;
+		left: 0px;
+		border-radius: 4px 0px 0px 4px;
+		border: 1px solid;
+	}
+	.polygon.active_polygon {
+		background:#d1d5e3;
+		color:#111;
+		text-shadow:none;
+	}
+	.polygon.active_polygon .polygon_key{
+		background-image:url('../img/interface/check.png');
+		background-repeat:no-repeat;
 	}
 
 //exceptions for very narrow screens:
@@ -560,6 +583,9 @@ a img{
 		width: 185px;
 		font-size:12px;
 		padding:0;
+	}
+	.polygon_key{
+		height:28px;
 	}
 	#map_canvas {
 	}

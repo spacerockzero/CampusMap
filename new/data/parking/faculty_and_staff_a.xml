@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>faculty_and_staff_a.kml</name>
+	<Style id="sn_ylw-pushpin10">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff1010ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>4a0d0dff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin2">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin10</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin8</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin8">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff1010ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>4a0d0dff</color>
+		</PolyStyle>
+	</Style>
+	<Folder>
+		<name>Faculty &amp; Staff &quot;A&quot;</name>
+		<open>1</open>
+		<Placemark>
+			<name>Benson Parking lot</name>
+			<description>Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7835037468371,43.81652023154944,0 -111.7835106814047,43.81634151356266,0 -111.7835024867582,43.8161939345886,0 -111.7834983177002,43.81612357123891,0 -111.7831566503986,43.81611374783087,0 -111.782892746292,43.81611400999218,0 -111.7827296688301,43.81612905898618,0 -111.782608454533,43.81616045099494,0 -111.7825699334441,43.8162250419003,0 -111.7825568083023,43.81631849630035,0 -111.7825673886203,43.81638854968168,0 -111.7825698229089,43.81645900219833,0 -111.782678309258,43.81650439651892,0 -111.7835037468371,43.81652023154944,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Austin Faculty Parking Lot</name>
+			<description>Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7845061109425,43.81537224381418,0 -111.7846338555952,43.81535989239761,0 -111.7851284801436,43.81536239656533,0 -111.7851395849367,43.81582285027351,0 -111.7851687968045,43.81638809000788,0 -111.7853717442898,43.81638247963216,0 -111.7853308251429,43.81593962826396,0 -111.7853308958737,43.81526885873016,0 -111.7855081948613,43.81526420675667,0 -111.7855043538617,43.81537776974167,0 -111.7855041775851,43.81570933815414,0 -111.7855093221844,43.81592810298715,0 -111.7852963032364,43.81593943588732,0 -111.7853195141654,43.81638188109669,0 -111.7852151544288,43.81638467109608,0 -111.7851738682011,43.8153582179763,0 -111.7850660559444,43.81535452185386,0 -111.785111063154,43.81532615260399,0 -111.7851105397063,43.81527783602385,0 -111.7850961798727,43.81516700161144,0 -111.7849235079904,43.81515874817787,0 -111.7847113154091,43.81516417775659,0 -111.7845007924311,43.81517356582387,0 -111.7845061109425,43.81537224381418,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Auxiliary Services Parking Lot</name>
+			<description>Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7834533413265,43.81480075586894,0 -111.7834604972789,43.81470820770109,0 -111.7831452873188,43.81470401601609,0 -111.7831419833833,43.81454941266839,0 -111.7829700966949,43.81454989573485,0 -111.7828492491788,43.81454068832876,0 -111.7828471042137,43.81367294423769,0 -111.7833792836784,43.81368129548081,0 -111.7833847495874,43.81381004110231,0 -111.7828465956203,43.81379787405483,0 -111.7828416876773,43.81365131699891,0 -111.7827027628484,43.81365518992568,0 -111.7827007451018,43.81409887347716,0 -111.782709702506,43.81465753840698,0 -111.7829665321012,43.8146655457622,0 -111.7831442011224,43.81466789499567,0 -111.7831484426872,43.81479392143343,0 -111.7834533413265,43.81480075586894,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>AG Engineering Parking Lot</name>
+			<description>Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7832422300871,43.81359358755186,0 -111.7832418665942,43.81356616898831,0 -111.7832983342018,43.81355811975728,0 -111.7833192630358,43.81353964995633,0 -111.7833188330934,43.8134986401141,0 -111.7833173795697,43.81347648376247,0 -111.7832061254665,43.81347704593939,0 -111.7830950235355,43.8134772073206,0 -111.7829701218831,43.81347738537475,0 -111.7828899828082,43.81347747495353,0 -111.782891122358,43.81351089597916,0 -111.7828920201635,43.81353941639882,0 -111.7829182721276,43.81355508839823,0 -111.7829445709289,43.81356822154608,0 -111.7829454744274,43.81359192514213,0 -111.7832422300871,43.81359358755186,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Snow parking Lot 2</name>
+			<description>Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7845803883173,43.82171232017281,0 -111.7845881023546,43.8216609547018,0 -111.7846125283239,43.82163034838695,0 -111.784611360839,43.82155969257978,0 -111.7846312941308,43.82155063762028,0 -111.7846746678563,43.8215488664225,0 -111.7846835194119,43.82151946449762,0 -111.7846879632932,43.82147176545612,0 -111.7846922037621,43.82139700972293,0 -111.7846865164057,43.82134998843102,0 -111.7846852900748,43.82119674029857,0 -111.7846831981827,43.82108860889905,0 -111.7846822863197,43.82096338618101,0 -111.7846807048079,43.820888958219,0 -111.7846733457296,43.82075551090632,0 -111.7846712249284,43.82057711127484,0 -111.7846772833271,43.82043732842494,0 -111.7846785433079,43.8202670181584,0 -111.7846266071191,43.82022849089716,0 -111.7846170743916,43.8201613972312,0 -111.7845719591436,43.82012798795468,0 -111.7845220850726,43.82008666552917,0 -111.7844485143329,43.82007790328326,0 -111.784317845869,43.82008091279626,0 -111.7839529177248,43.82008363454649,0 -111.7839596974561,43.82015023848717,0 -111.7840333174357,43.82024514936022,0 -111.7842010087953,43.82024883127555,0 -111.7842158649905,43.82038247157489,0 -111.7840270941777,43.82037408447355,0 -111.7840457271628,43.82058269830539,0 -111.7840397061185,43.82062586860212,0 -111.7840693282145,43.82066634175018,0 -111.784093790836,43.82069558874524,0 -111.7841271295831,43.82070491627755,0 -111.7841490687733,43.82071155011947,0 -111.7842229000476,43.82070949947691,0 -111.7842681777215,43.82070958680566,0 -111.7843283721685,43.82070857710898,0 -111.7843754143469,43.8207109093622,0 -111.7844068323924,43.82070873053362,0 -111.7844411001175,43.82071104672515,0 -111.7844553024895,43.82073495771859,0 -111.7845066653421,43.82073972790734,0 -111.7845120592205,43.82158764645011,0 -111.7845126807106,43.82164799661695,0 -111.7845154796129,43.8216760879897,0 -111.7845752406749,43.82168192084168,0 -111.7846171648476,43.82162789882937,0 -111.7846051795841,43.8216848784528,0 -111.7846464089313,43.82169073071084,0 -111.78464618989,43.82171646448728,0 -111.7845803883173,43.82171232017281,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Hart Parking Lot</name>
+			<description>Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7862481887746,43.81912685242309,0 -111.7862536346503,43.81923235757811,0 -111.786336207906,43.8192328108692,0 -111.7864055389418,43.81923185489627,0 -111.7863937152065,43.81909821706259,0 -111.7864738588626,43.81909664940642,0 -111.7865674110757,43.81909637670177,0 -111.7865608955495,43.81904697027835,0 -111.7863663118803,43.81904814185665,0 -111.7862442142004,43.81904985271323,0 -111.7862481887746,43.81912685242309,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>I-Center parking lot</name>
+			<description>West parking lot
+Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7864247526949,43.81860812109004,0 -111.7864840284321,43.81860725677949,0 -111.7864824481334,43.81858055538256,0 -111.7864277508538,43.8185813416927,0 -111.7862483158253,43.81858346635763,0 -111.7862415242084,43.81864488227238,0 -111.7862357938074,43.81880207406508,0 -111.7862277513638,43.81899158017441,0 -111.7864422148813,43.81898798025921,0 -111.7864247526949,43.81860812109004,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>East Kimball Parking Lot (A lot, employee parking)</name>
+			<description>Employee parking lot (A lot).</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7807321485292,43.81748595944899,0 -111.780735519327,43.81716461508936,0 -111.7804011300616,43.817161147246,0 -111.780405370666,43.81707298562827,0 -111.7807336573467,43.81707814661698,0 -111.7807312453882,43.81657387736837,0 -111.7801032301939,43.81658384099873,0 -111.7801088964616,43.81746331259881,0 -111.7807321485292,43.81748595944899,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Manwaring East Parking Lot</name>
+			<description>Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7807432860029,43.81889103065931,0 -111.7808877002088,43.81888432394705,0 -111.7809428897536,43.81884108788027,0 -111.7809439075446,43.81873996717002,0 -111.7809886119132,43.81873652657737,0 -111.7810230469814,43.81877633433848,0 -111.7812371065303,43.81877349329331,0 -111.781232390927,43.81869051109743,0 -111.7811627936097,43.81869029581561,0 -111.7811586474603,43.81852538722794,0 -111.7810004280863,43.81852145847562,0 -111.7809949167605,43.81858574551003,0 -111.7809943436618,43.81865024121361,0 -111.7809249704763,43.81865361530425,0 -111.7809321528873,43.81843946267526,0 -111.7810011460963,43.81843958295113,0 -111.7809958051335,43.81848581106033,0 -111.7811539891722,43.81846832552066,0 -111.7811450785017,43.81828390679607,0 -111.7809976379843,43.81828031620264,0 -111.7809872923776,43.81833678606385,0 -111.7809087628699,43.81832965627756,0 -111.7809082618837,43.81837206072072,0 -111.7809870361502,43.81836508692491,0 -111.7809965314421,43.81840407704335,0 -111.7809177967818,43.81840041283679,0 -111.7809192130864,43.81826968920154,0 -111.7807379721818,43.81826958797197,0 -111.7807432860029,43.81889103065931,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Clarke Parking Lot</name>
+			<description>Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7812385880644,43.81995110369068,0 -111.7811993338756,43.81989974950395,0 -111.7811281726439,43.81985783427,0 -111.7810774041745,43.81994623172658,0 -111.781129528667,43.82001180068573,0 -111.7811534748903,43.82051103613654,0 -111.7812450797965,43.82049695779278,0 -111.7812385880644,43.81995110369068,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Faculty/ Staff Parking</name>
+			<description>Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.781505763302,43.82162015964969,0 -111.7815089572753,43.82150702218716,0 -111.7810819118372,43.82150113581071,0 -111.7810923017545,43.82162069293911,0 -111.781505763302,43.82162015964969,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Faculty/ Staff Parking</name>
+			<description>Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7789119810131,43.8167523517841,0 -111.7789159461777,43.81657679184917,0 -111.778845734298,43.81658018007512,0 -111.7788346726518,43.81662386181697,0 -111.778684653188,43.81662688046189,0 -111.778680995899,43.81675473765885,0 -111.7789119810131,43.8167523517841,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Faculty/ Staff Parking</name>
+			<description>Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7788852022309,43.81626303307151,0 -111.7791241987669,43.81607665791873,0 -111.7790393749433,43.81602913009592,0 -111.7792072507579,43.81589438864313,0 -111.7792841415463,43.815957529737,0 -111.7792871035309,43.81569803285752,0 -111.7787011858,43.8161676856398,0 -111.7788852022309,43.81626303307151,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Faculty/ Staff Parking</name>
+			<description>Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7830769172632,43.81295206277141,0 -111.7830831494224,43.81281222561924,0 -111.7829037733073,43.81282228558641,0 -111.782879239307,43.81295773707684,0 -111.7830769172632,43.81295206277141,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Faculty/ Staff Parking</name>
+			<description>Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7800337551434,43.81526574222219,0 -111.7801300146722,43.8152591883666,0 -111.7801371582865,43.81416527542584,0 -111.7800538700757,43.81416901498754,0 -111.7800337551434,43.81526574222219,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Faculty/ Staff Parking</name>
+			<description>Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7864646133312,43.81659108242781,0 -111.7861639679236,43.81659078202487,0 -111.7861672876337,43.81691871971071,0 -111.7864584301396,43.81691234352099,0 -111.7864646133312,43.81659108242781,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>East Kimball Parking Lot (A lot, employee parking)</name>
+			<description>Employee parking lot (A lot).
+Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7807321485292,43.81748595944899,0 -111.780735519327,43.81716461508936,0 -111.7804011300616,43.817161147246,0 -111.780405370666,43.81707298562827,0 -111.7807336573467,43.81707814661698,0 -111.7807312453882,43.81657387736837,0 -111.7801032301939,43.81658384099873,0 -111.7801088964616,43.81746331259881,0 -111.7807321485292,43.81748595944899,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>

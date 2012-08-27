@@ -1015,6 +1015,7 @@ a img {
 }
 .object {
   display: block;
+  position: relative;
   zoom: 1;
   text-decoration: none;
   color: #ddd;
@@ -1053,6 +1054,28 @@ a img {
   width: 75%;
   font-size: 15px;
   padding: 1px;
+}
+.object_name.polygon {
+  margin-left: 35px;
+}
+.polygon_key {
+  position: absolute;
+  height: 30px;
+  display: block;
+  width: 27px;
+  top: 0px;
+  left: 0px;
+  border-radius: 4px 0px 0px 4px;
+  border: 1px solid;
+}
+.polygon.active_polygon {
+  background: #d1d5e3;
+  color: #111;
+  text-shadow: none;
+}
+.polygon.active_polygon .polygon_key {
+  background-image: url('../img/interface/check.png');
+  background-repeat: no-repeat;
 }
 @media only screen and (max-width: 460px) {
   #heading {
@@ -1108,4 +1131,7 @@ a img {
   width: 185px;
   font-size: 12px;
   padding: 0;
+}
+#desktop .polygon_key {
+  height: 28px;
 }
