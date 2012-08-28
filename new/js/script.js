@@ -48,6 +48,7 @@ var categoryInfo = [],
 /**********************/
 /*  Global Functions  */
 /**********************/
+  
 
   // Asynchronous script loader function
   function loadScript(src, callback) {
@@ -62,7 +63,7 @@ var categoryInfo = [],
         done = true;
         script.onload = script.onreadystatechange = null;
         if (callback) {
-          callback();
+          callback;
         }
       }
     }
@@ -186,7 +187,7 @@ var categoryInfo = [],
       url: objectFile,
       success: function(data) {
         //add new data to global object
-        console.log('successfully pulled json categories');
+        //console.log('successfully pulled json categories');
         mapCategories = data;
       }
     })
@@ -200,7 +201,7 @@ var categoryInfo = [],
   function loadCatData(callback){
     loadCategoryInfoFile();
     loadCategoryFile();
-    callback();
+    callback;
   }
 
 
@@ -218,8 +219,11 @@ var categoryInfo = [],
   function loadComplete(callback){
     loadProgress(100);
     var loadingDiv = $('#loading'),
-            device = control.currentDevice; 
+            device = control.currentDevice,
+              menu = $('#menu_button'); 
     loadingDiv.fadeOut(1000);
+    menu.fadeIn(1000);
+
     callback;
   }
 
@@ -241,15 +245,58 @@ var categoryInfo = [],
     return marker;
   }
 
-  function buildCatObject(i,name,color){
+  function buildCatObject(i,catIndex,name,color){
     var thishtml = "";
-        thishtml += '<a class="object" href="#">';
+
+        thishtml += '<a id="obj_' + catIndex + '-' + i + '" class="object marker_object" name="' + name + '" href="#">';
         thishtml +=   '<img  class="obj_icon" src="img/icons/numeral-icons/' + color + '/' + (i+1) + '.png" alt="' + name + '" height="25">';
         thishtml +=   '<div class="object_name">' + name + '</div>';
         thishtml += '</a>';
+
     return thishtml;
   }
 
+  function createInfoWindow(marker,obj,catName){
+    // Listener that builds the infopane popups on marker click
+    google.maps.event.addListener(marker, 'click', function() {
+
+      var content = '',
+             name = obj.name,
+              img = obj.img,
+             info = obj.info,
+             link = obj.link;
+
+      // Create the info panes which hold content about each building
+      content += '<div class="infopane">';
+      content +=   '<h2>' + name + '</h2>';
+      content +=   '<div>';
+      if (img){
+        content += '<img src="img/objects/' + catName + '/' + img + '" alt="' + name + '" width="40%" style="float:right"/>';
+      }
+      if (info){
+        content += info;
+      }
+      if (link){
+        content += '<br/><br/><a href="' + link + '" target="_blank">More information about ' + name + ' on the web</a>';
+      }
+      content += '</div>';
+      // Set the content of the InfoWindow
+      infoWindow.setContent(content);
+      // Open the InfoWindow
+      infoWindow.open(map, marker);
+    }); //end click listener
+  }
+
+  // OBJECT SELECT AND DISPLAY
+  function displayPoint(marker) {
+    var moveEnd = google.maps.event.addListener(map, 'moveend', function() {
+      var markerOffset = map.fromLatLngToDivPixel(marker.getPosition());
+      google.maps.event.removeListener(moveEnd);
+    });
+    map.panTo(marker.getPosition());
+    google.maps.event.trigger(marker, 'click');
+
+  }/* END displayPoint() */
 
 /****************************************************/
 /*   Populate & Show Categories                     */
@@ -307,6 +354,7 @@ var categoryInfo = [],
     var target = document.getElementById('category_' + index),
           html = "",
         catObj = categoryInfo[index],
+       catName = catObj.name,
        objData = mapCategories[index],
     allMarkers = markerArray,
        markers = [],
@@ -318,7 +366,8 @@ var categoryInfo = [],
           name,
            lat,
            lon,
-        marker;        
+        marker;   
+        console.log(catName);     
 
     // begin iterations through menu/marker objects
     while(i<length){
@@ -331,10 +380,16 @@ var categoryInfo = [],
 
       //create new google maps marker 
       marker = createMarker(lat,lon,name,icon); 
-      // Build html string for all DOM to be created for this category 
-      html += buildCatObject(i,name,color);
+      // Append html string for all DOM to be created for this category 
+      
+      html += buildCatObject(i,index,name,color);
+
+      // Create infoWindow for this marker
+      createInfoWindow(marker,obj,catName);
+
       // push this category's markers to the main global marker array
       markers.push(marker);
+
       // advance iterator
       i += 1;
     }
@@ -372,7 +427,7 @@ var categoryInfo = [],
       html += '<a class="object polygon" id="layer_cat_' + i + '" href="#">';
       html +=   '<div class="polygon_key" id="poly_' + thisData.name + '" style="border-color:' + thisData.borderColor + ';background-color:' + thisData.fillColor + '">&nbsp;</div>';
       html +=   '<div class="object_name polygon">' + thisData.name + '</div>';
-      html +=  '</a>';
+      html += '</a>';
 
       // set GoogleEarth KML polygon file path string
       polygonFile = mapCategories[index][i].map;
@@ -380,7 +435,7 @@ var categoryInfo = [],
       // load map layer
       polygonLayer = new google.maps.KmlLayer(polygonFile,
                         {
-                            suppressInfoWindows: true,
+                            suppressInfoWindows: false,
                             preserveViewport: true
                             // zoom: 18
                         });
@@ -395,6 +450,7 @@ var categoryInfo = [],
     // write all new html for this category to DOM in one instant reflow
     target.innerHTML = html;
 
+    callback;
   }
 
 
@@ -426,19 +482,16 @@ var categoryInfo = [],
     console.time('show polygon');
     var layer = markerArray[catIndex][layerIndex],
         active = obj.hasClass('active_polygon');
-        console.log("This hasclass = " + obj.className);
 
     //Hide this layer's polygons
     if (active === true) {
       layer.setMap(null);
       obj.toggleClass('active_polygon');
-      console.log(obj.className);
     }
     //Show this layer's polygons
     else {
       layer.setMap(map);
       obj.toggleClass('active_polygon');
-      console.log(obj.className);
     }
     console.timeEnd('show polygon');
     callback;
@@ -446,7 +499,7 @@ var categoryInfo = [],
 
 
 /****************************************************/
-/*   Initialize App                                 */
+/*   Setup App                                      */
 /****************************************************/
   
   // Set map default options
@@ -506,28 +559,7 @@ var categoryInfo = [],
     callback;
   }
 
-  // Initialize & Execute Map App Stack
-  function initialize(callback) {
-    // Run Map setup stack
-    setOptions();
-    setAllControls();
-    setMap();
-    setInfoWindow();
-    setCampusLayer(); 
-      loadProgress(20);   
-    // Run GatherData Stack using callback function to serialize the dependent functions
-    loadCategoryInfoFile(function(){ 
-      populateCategoryInfo();
-    });
-      loadProgress(40);
-    loadCategoryFile(function(){
-      runPopulators();
-      bindCategoryToggle();
-      bindPolygonToggle();
-    });
-      loadProgress(90);
-    callback;
-  }//end initialize()
+  
 
 
 /****************************************************/
@@ -644,20 +676,43 @@ var categoryInfo = [],
   function bindPolygonToggle(callback){
 
     $('.object.polygon').mousedown(function(event){
+
+      // stop click event from "propagating/bubbling down to children DOM elements"
       event.stopPropagation();
-      console.log("inside polygon click");
 
          var obj = $(this),
         catIndex = obj.parent().attr('id').substr(9),
       layerIndex = obj.attr('id').substr(10);
-
-      console.log('catIndex = ' + catIndex + ', layerIndex = ' + layerIndex);
 
       togglePolygonVisibility(obj, catIndex, layerIndex);
 
     });
 
   }  
+
+/****************************************************/
+/*   Bind Menu Objects                              */
+/****************************************************/
+
+  function bindMenuObjects(callback){
+    
+    $('.object.marker_object').click(function(event){
+      // stop click event from "propagating/bubbling down to children DOM elements"
+      event.stopPropagation();
+
+         var obj = this,
+        catIndex = obj.id.charAt(4),
+        objIndex = obj.id.substr(6),
+      thisMarker = markerArray[catIndex][objIndex],
+          device = control.currentDevice;
+
+      //display corresponding marker/infowindow when menu item is clicked/pressed
+      displayPoint(thisMarker);
+      setMenu(0);
+    });
+
+  }  
+
   // Search (needs web service ajax server? 
     // May just do a live AJAX node search of the 
     // objectFile Array to live populate results, 
@@ -665,6 +720,35 @@ var categoryInfo = [],
 
   // URL - Object API ? (Navigate to specific object using an externally shared url)
     // This may also work through the search service, once complete...
+
+
+/****************************************************/
+/*   Initialize App                                 */
+/****************************************************/
+
+  // Initialize & Execute Map App Stack
+  function initialize(callback) {
+    // Run Map setup stack
+    setOptions();
+    setAllControls();
+    setMap();
+    setInfoWindow();
+    setCampusLayer(); 
+      loadProgress(20);   
+    // Run GatherData Stack using callback function to serialize the dependent functions
+    loadCategoryInfoFile(function(){ 
+      populateCategoryInfo();
+    });
+      loadProgress(40);
+    loadCategoryFile(function(){
+      runPopulators();
+      bindCategoryToggle();
+      bindPolygonToggle();
+      bindMenuObjects();
+    });
+      loadProgress(90);
+    callback;
+  }//end initialize()
 
 
 /****************************************************/
@@ -687,12 +771,14 @@ var categoryInfo = [],
   });
 
   $win.load(function(){
-    initialize(loadComplete);
+    initialize();
     loadComplete();
+    // off-click close menu
+    $('#map_canvas').click(function(event){
+      // stop click event from "propagating/bubbling down to children DOM elements"
+      event.stopPropagation();
+      if($(this) !== $('#menu_button')){
+        setMenu(0);
+      }
+    });
   });
- 
-
-
-
-
-

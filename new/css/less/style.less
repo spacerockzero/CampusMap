@@ -336,7 +336,8 @@ a img{
 		background-position:0 -32px;
 	}
 	#menu_button{
-		display: block;
+		display: none;
+		// display: block;
 		position: absolute;
 		top: 12px;
 		right: 11px;
@@ -458,6 +459,7 @@ a img{
     text-decoration:none;
     color:#ddd;
     margin:2px 5px;
+    min-height: 26px;
     padding:2px;
     background:#3b3f4a;
 		// .box_gradient_3stop(#4e5360, #3b3f4a, #32353e);
@@ -495,13 +497,15 @@ a img{
 	}
 	.polygon_key {
 		position: absolute;
-		height: 30px;
+		// height: 30px;
+		height: 94%;
 		display: block;
 		width: 27px;
 		top: 0px;
 		left: 0px;
 		border-radius: 4px 0px 0px 4px;
 		border: 1px solid;
+		box-shadow: 1px 1px 10px #111;
 	}
 	.polygon.active_polygon {
 		background:#d1d5e3;
@@ -527,7 +531,7 @@ a img{
 
 /**************************************/
 /*                                    */
-/*  Desktop style overwrites          */
+/*  Desktop style overrides           */
 /*  - "Mobile-First"                  */
 /*  - Desktop rules overwrite         */
 /*  - specific style changes          */
