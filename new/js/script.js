@@ -1,8 +1,8 @@
 /*****************************************************/
 /*   BYU-I Campus Map                                */
 /*   - Author: Jakob Anderson :: jakobanderson.com   */
-/*   - Powered by Google Maps API v3                 */
-/*   - Revised:  08.13.2012                          */
+/*   - Requires: Google Maps API v3, jQuery 1.7      */
+/*   - Revised:  08.28.2012                          */
 /*****************************************************/
 
 // JS Lint Options (remove after deployment)
@@ -350,7 +350,7 @@ var categoryInfo = [],
 
   //do something with polygon layers' data
   function populatePolygonCategory(index,callback){
-    //do something with polygon layers' data
+
     var target = document.getElementById('category_' + index),
           html = "",
         catObj = categoryInfo[index],
@@ -361,34 +361,36 @@ var categoryInfo = [],
              i = 0,
           name,
   polygonLayer,
-   polygonFile;
+   polygonFile,
+        layers = [];
 
     while(i<length){
 
       thisData = objData[i];
 
       // write html for category menu
-      html += '<a class="object polygon active_polygon" href="#">';
+      html += '<a class="object polygon" id="layer_cat_' + i + '" href="#">';
       html +=   '<div class="polygon_key" id="poly_' + thisData.name + '" style="border-color:' + thisData.borderColor + ';background-color:' + thisData.fillColor + '">&nbsp;</div>';
       html +=   '<div class="object_name polygon">' + thisData.name + '</div>';
       html +=  '</a>';
 
       // set GoogleEarth KML polygon file path string
-      polygonFile = mapCategories[index].map;
+      polygonFile = mapCategories[index][i].map;
 
       // load map layer
       polygonLayer = new google.maps.KmlLayer(polygonFile,
                         {
                             suppressInfoWindows: true,
-                            map: map,
-                            preserveViewport: true,
-                            zoom: 18
+                            preserveViewport: true
+                            // zoom: 18
                         });
 
-      markerArray[index] = polygonLayer;
+      layers.push(polygonLayer);
 
       i += 1;
     }
+    
+    markerArray[index] = layers;
 
     // write all new html for this category to DOM in one instant reflow
     target.innerHTML = html;
@@ -418,23 +420,27 @@ var categoryInfo = [],
 
   }
 
+
   // Show / Toggle Polygon Category KML layers
-  function togglePolygonVisibility(index,callback){
-    var layer = markerArray[index],
-       active = $(this).hasClass('active_polygon');
+  function togglePolygonVisibility(obj, catIndex, layerIndex, callback){
+    console.time('show polygon');
+    var layer = markerArray[catIndex][layerIndex],
+        active = obj.hasClass('active_polygon');
+        console.log("This hasclass = " + obj.className);
+
     //Hide this layer's polygons
     if (active === true) {
       layer.setMap(null);
-      //$(this).toggleClass('active_polygon');
-      console.log($(this).className);
+      obj.toggleClass('active_polygon');
+      console.log(obj.className);
     }
     //Show this layer's polygons
     else {
       layer.setMap(map);
-      //$(this).toggleClass('active_polygon');
-      console.log($(this).className);
+      obj.toggleClass('active_polygon');
+      console.log(obj.className);
     }
-
+    console.timeEnd('show polygon');
     callback;
   }
 
@@ -517,6 +523,7 @@ var categoryInfo = [],
     loadCategoryFile(function(){
       runPopulators();
       bindCategoryToggle();
+      bindPolygonToggle();
     });
       loadProgress(90);
     callback;
@@ -599,48 +606,58 @@ var categoryInfo = [],
 
         // Toggle Category in Menu
         if(catState === 0){
-          
           catState = 1;
           if(device === 0){
             child.style.display = "block";
           } else {
             child.slideToggle(200);
           }
-          
-          if(!($(this).hasClass('cat_polygon'))){
+          if(polygon === false){
             // Show markers for this category
             toggleMarkerVisibility(index,1);
-          } else {
-            togglePolygonVisibility(index,1);
-          }
+          } 
         
         } else {
-          
           catState = 0;
           if(device === 0){
             child.style.display = "none";
           } else {
             child.slideToggle(200);
           }
-          if(!($(this).hasClass('cat_polygon'))){
+          if(polygon === false){
             // Hide markers for this category
             toggleMarkerVisibility(index,0);
-          } else {
-            togglePolygonVisibility(index,1);
-          }
+          } 
         }
-
-     
 
       // Set global control with changes
       control.categoryState[index] = catState;
-
       console.timeEnd("clickCategory");
 
     });
     callback;
   }
+/****************************************************/
+/*   Category Toggle                                */
+/****************************************************/
 
+  function bindPolygonToggle(callback){
+
+    $('.object.polygon').mousedown(function(event){
+      event.stopPropagation();
+      console.log("inside polygon click");
+
+         var obj = $(this),
+        catIndex = obj.parent().attr('id').substr(9),
+      layerIndex = obj.attr('id').substr(10);
+
+      console.log('catIndex = ' + catIndex + ', layerIndex = ' + layerIndex);
+
+      togglePolygonVisibility(obj, catIndex, layerIndex);
+
+    });
+
+  }  
   // Search (needs web service ajax server? 
     // May just do a live AJAX node search of the 
     // objectFile Array to live populate results, 
@@ -653,14 +670,6 @@ var categoryInfo = [],
 /****************************************************/
 /*   Other Events & Bindings                        */
 /****************************************************/
-
-  // (function(){
-  //   if(categoryInfo.length !== 0 && markerArray.length !== 0){
-  //     if(categoryInfo.length === markerArray.length){
-  //       loadComplete();
-  //     }
-  //   }
-  // });
 
   // Global Resize Event Function Stack
   function resizeStack(){

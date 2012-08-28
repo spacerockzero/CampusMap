@@ -333,18 +333,18 @@
   ],
   [
     {
-      "name":         "<strong>N</strong> - Student Permit",
+      "name":         "N - Student Permit",
       "contains":     "Students with 'N' Permit may park in the areas shown",
-      "borderColor":  "#32e21b",
-      "fillColor":    "#98f08d",
-      "map":          "parking/student_n.xml"
+      "borderColor":  "#fbe72b",
+      "fillColor":    "#fff489",
+      "map":          "http://lehi3.byui.edu/map/data/parking/student_n.xml"
     },
     {
-      "name":         "<strong>A</strong> - Faculty & Staff Permit",
+      "name":         "A - Faculty & Staff Permit",
       "contains":     "Faculty & Staff with 'A' Permit may park in the areas shown",
-      "borderColor":  "#fd25a2",
-      "fillColor":    "#fe92d0",
-      "map":          "parking/faculty_and_staff_a.xml"
+      "borderColor":  "#ff0f0f",
+      "fillColor":    "#ff5a5a",
+      "map":          "http://lehi3.byui.edu/map/data/parking/faculty_and_staff_a.xml"
     }
   ],
   [
