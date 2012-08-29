@@ -315,9 +315,9 @@ var categoryInfo = [],
 
       html += '<div class="category" id="cat_' + i + '">';
       if (categoryInfo[i].type === 0){
-        html +=   '<a class="category_bar" href="#" >';
+        html += '<a class="category_bar" href="#" >';
       } else {
-        html +=   '<a class="category_bar cat_polygon" href="#" >';
+        html += '<a class="category_bar cat_polygon" href="#" >';
       }
       html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ thisCat.icon + '.png" height="25" width="22"/>';
       html +=     '<span class="category_name">' + thisCat.title + '</span>';
@@ -419,26 +419,28 @@ var categoryInfo = [],
 
       // write html for category menu
       html += '<a class="object polygon" id="layer_cat_' + i + '" href="#">';
-      html +=   '<div class="polygon_key" id="poly_' + thisData.name + '" style="border-color:' + thisData.borderColor + ';background-color:' + thisData.fillColor + '">&nbsp;</div>';
+      html +=   '<div class="polygon_key" id="poly_' + thisData.name + '" style="border-color:' + thisData.borderColor + '; background-color:' + thisData.fillColor + '">&nbsp;</div>';
       html +=   '<div class="object_name polygon">' + thisData.name + '</div>';
       html += '</a>';
 
       // set GoogleEarth KML polygon file path string
       polygonFile = mapCategories[index][i].map;
 
-      // load map layer
+      // create google map kml layer object with custom options
       polygonLayer = new google.maps.KmlLayer(polygonFile,
                         {
                             suppressInfoWindows: false,
                             preserveViewport: true
-                            // zoom: 18
                         });
 
+      // push this layer to this category's layer array
       layers.push(polygonLayer);
 
+      // add to incrementer
       i += 1;
     }
     
+    // push entire category of layers to markerArray
     markerArray[index] = layers;
 
     // write all new html for this category to DOM in one instant reflow

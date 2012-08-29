@@ -27,7 +27,7 @@
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <!-- Mobile viewport optimized: h5bp.com/viewport -->
       <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> -->
-      <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"> -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
       <link rel="stylesheet" href="css/main.min.css">
       <script src="js/vendor/modernizr.custom.46328.js"></script>
   </head>
@@ -80,7 +80,8 @@
     <!-- end script imports -->
     
     <!-- asynchronous script loading of all analytics resources -->
-    <script type="text/javascript">   
+    <script type="text/javascript"> 
+
       //Insert omniture code asynchronously
       function loadScript(src, callback) {
         var head = document.getElementsByTagName('head')[0],
@@ -102,8 +103,9 @@
       }
 
       // load the file and display an alert dialog once the script has been loaded
-      loadScript('js/libs/s_code.js', function() {});
-      loadScript('js/libs/omniture_code.js', function() {});
+      // loadScript('js/vendor/s_code.js', function() {});
+      // loadScript('js/vendor/omniture_code.js', function() {});
+      loadScript('js/vendor/omniture.min.js', function() {});
 
       //Insert google analytics asynchronously
       var _gaq = _gaq || [];
