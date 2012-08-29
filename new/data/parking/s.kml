@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>s.kml</name>
+	<Style id="sn_ylw-pushpin17">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff17fffe</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8027fcff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin25">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff17fffe</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8027fcff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin47">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin17</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin1</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin49">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff17fffe</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8027fcff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin00">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff18f6ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8010f6ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin3">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin25</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin14">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff18f6ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8010f6ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin131">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin240</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin00</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin15">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff18f6ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8010f6ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin29">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin14</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin45</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin45">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff18f6ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8010f6ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin18">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff18f6ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8010f6ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin1">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff17fffe</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8027fcff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin49">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin15</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin18</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff17fffe</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8027fcff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin240">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff18f6ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8010f6ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin46">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin49</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin23</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin23">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff17fffe</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8027fcff</color>
+		</PolyStyle>
+	</Style>
+	<Folder>
+		<name>S - South Zone</name>
+		<Placemark>
+			<name>Hinkley Parking Lot</name>
+			<styleUrl>#msn_ylw-pushpin29</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7786596115651,43.81639333431607,0 -111.7787426854589,43.81639012202463,0 -111.7787940345144,43.81631871019073,0 -111.7788506467185,43.816262479276,0 -111.7786952527861,43.81617299705966,0 -111.7792922620343,43.81568979585096,0 -111.7793177919757,43.81430934131156,0 -111.7788771869181,43.81464669118766,0 -111.7790680566952,43.81475461965164,0 -111.7783525108527,43.81533756127779,0 -111.7783689238424,43.81597644028662,0 -111.7787517914211,43.81623559172155,0 -111.778690117004,43.81630303139086,0 -111.7786596115651,43.81639333431607,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Ricks Parking Lot</name>
+			<styleUrl>#msn_ylw-pushpin49</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7800483301553,43.8141570274357,0 -111.7797458952203,43.81415969137785,0 -111.7797535945089,43.81527117637644,0 -111.7800280731822,43.81527389802805,0 -111.7800483301553,43.8141570274357,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>2nd East Parking Lot</name>
+			<styleUrl>#msn_ylw-pushpin131</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.779127038223,43.8137597773902,0 -111.7790436525876,43.8136659429252,0 -111.7784150677095,43.81366790404471,0 -111.7782593781937,43.81382012601903,0 -111.7782474993753,43.81469560862408,0 -111.7783343814001,43.81474740735804,0 -111.778512873337,43.81462684527465,0 -111.779127038223,43.8137597773902,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>South Zone Parking</name>
+			<description>South Zone
+Required for parking on the streets in the South Zone. Required for student parking lots in the South Zone.</description>
+			<styleUrl>#msn_ylw-pushpin47</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7851281345422,43.81343655623205,0 -111.7840160583716,43.81343894662934,0 -111.7839753268712,43.81162277852619,0 -111.7838644747494,43.81162276668085,0 -111.7839487839138,43.81500487826295,0 -111.7864731393675,43.81499321317495,0 -111.7864846475796,43.81492722361077,0 -111.7840769247371,43.81490348517522,0 -111.7840505595787,43.81363027269813,0 -111.7851421034555,43.81363055020838,0 -111.7851281345422,43.81343655623205,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>South Zone Parking</name>
+			<description>South Zone
+Required for parking on the streets in the South Zone. Required for student parking lots in the South Zone.</description>
+			<styleUrl>#msn_ylw-pushpin46</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.783564970351,43.81606641343743,0 -111.7836807419903,43.81607738328513,0 -111.7836739120643,43.8116306189196,0 -111.783542338149,43.81163822545469,0 -111.783564970351,43.81606641343743,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>South Zone Parking</name>
+			<description>South Zone
+Required for parking on the streets in the South Zone. Required for student parking lots in the South Zone.</description>
+			<styleUrl>#msn_ylw-pushpin3</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.784005788149,43.81514001516425,0 -111.7856570246702,43.81515067571949,0 -111.7856442149294,43.81507439662337,0 -111.7838793172208,43.81507973920083,0 -111.7838658639275,43.81638149980775,0 -111.7839708148531,43.81638359283347,0 -111.784005788149,43.81514001516425,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>

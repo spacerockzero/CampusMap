@@ -335,58 +335,58 @@
     {
       "name":         "A - Faculty & Staff",
       "contains":     "Faculty & Staff with 'A' Permit may park in the areas shown",
-      "borderColor":  "#ff0f0f",
-      "fillColor":    "#ff5a5a",
-      "map":          "http://lehi3.byui.edu/map/data/parking/faculty_and_staff_a.xml"
+      "borderColor":  "#9b100c",
+      "fillColor":    "#d2332f",
+      "map":          "http://lehi3.byui.edu/map/data/parking/a.xml"
     },
     {
       "name":         "C - 4th Ward Meetinghouse",
       "contains":     "Those with 'C' 4th Ward Meetinghouse Permit may park in the areas shown",
-      "borderColor":  "#333333",
-      "fillColor":    "orange",
-      "map":          "http://lehi3.byui.edu/map/data/parking/student_n.xml"
+      "borderColor":  "#fdb445",
+      "fillColor":    "#e48900",
+      "map":          "http://lehi3.byui.edu/map/data/parking/c.xml"
     },
     {
       "name":         "N - North Zone",
       "contains":     "Those with 'N' North Zone Permit may park in the areas shown",
-      "borderColor":  "#333333",
-      "fillColor":    "blue",
-      "map":          "http://lehi3.byui.edu/map/data/parking/student_n.xml"
+      "borderColor":  "#1371bb",
+      "fillColor":    "#1d9bfe",
+      "map":          "http://lehi3.byui.edu/map/data/parking/n.xml"
     },
     {
       "name":         "H - On-Campus Housing",
       "contains":     "Those with 'H' On Campus Housing Permit may park in the areas shown",
       "borderColor":  "#333333",
       "fillColor":    "green",
-      "map":          "http://lehi3.byui.edu/map/data/parking/student_n.xml"
+      "map":          "http://lehi3.byui.edu/map/data/parking/h.xml"
     },
     {
       "name":         "S - South Zone",
       "contains":     "Those with 'S' South Zone Permit may park in the areas shown",
       "borderColor":  "#fbe72b",
       "fillColor":    "#fff489",
-      "map":          "http://lehi3.byui.edu/map/data/parking/student_n.xml"
+      "map":          "http://lehi3.byui.edu/map/data/parking/s.xml"
     },
     {
       "name":         "L - Long Term & Overnight",
       "contains":     "Those with 'L' Long Term & Overnight Permit may park in the areas shown",
       "borderColor":  "#333333",
       "fillColor":    "purple",
-      "map":          "http://lehi3.byui.edu/map/data/parking/student_n.xml"
+      "map":          "http://lehi3.byui.edu/map/data/parking/l.xml"
     },
     {
       "name":         "F - Free Permit Lot",
       "contains":     "Those with 'L' Long Term & Overnight Permit may park in the areas shown",
       "borderColor":  "#333333",
       "fillColor":    "brown",
-      "map":          "http://lehi3.byui.edu/map/data/parking/student_n.xml"
+      "map":          "http://lehi3.byui.edu/map/data/parking/f.xml"
     },
     {
       "name":         "V - Visitor",
       "contains":     "Those without any parking permits may park in the areas shown for the durations posted",
       "borderColor":  "#ddd",
       "fillColor":    "#fff",
-      "map":          "http://lehi3.byui.edu/map/data/parking/student_n.xml"
+      "map":          "http://lehi3.byui.edu/map/data/parking/v.xml"
     }
   ],
   [
