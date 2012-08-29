@@ -6,7 +6,7 @@
 /*****************************************************/
 
 // JS Lint Options (remove after deployment)
-/*jslint white:true, browser: true */
+/*jslint white:true, browser: true, maxerr:100 */
 /*global google, jQuery, $, done*/
 
 // Cache global objects as local variables
@@ -229,11 +229,10 @@ var categoryInfo = [],
 
 
 /****************************************************/
-/*   Create a Marker                                */
+/*   Marker Functions                               */
 /****************************************************/
 
   function createMarker(lat,lon,name,icon){
-
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(lat, lon),
       visible: false,
@@ -241,18 +240,15 @@ var categoryInfo = [],
       title: name,
       icon: icon
     });
-
     return marker;
   }
 
   function buildCatObject(i,catIndex,name,color){
     var thishtml = "";
-
         thishtml += '<a id="obj_' + catIndex + '-' + i + '" class="object marker_object" name="' + name + '" href="#">';
         thishtml +=   '<img  class="obj_icon" src="img/icons/numeral-icons/' + color + '/' + (i+1) + '.png" alt="' + name + '" height="25">';
         thishtml +=   '<div class="object_name">' + name + '</div>';
         thishtml += '</a>';
-
     return thishtml;
   }
 
@@ -295,7 +291,6 @@ var categoryInfo = [],
     });
     map.panTo(marker.getPosition());
     google.maps.event.trigger(marker, 'click');
-
   }/* END displayPoint() */
 
 /****************************************************/
@@ -366,8 +361,7 @@ var categoryInfo = [],
           name,
            lat,
            lon,
-        marker;   
-        console.log(catName);     
+        marker;    
 
     // begin iterations through menu/marker objects
     while(i<length){
@@ -713,6 +707,21 @@ var categoryInfo = [],
 
   }  
 
+  function zoomToggle(){
+    //automagically switch to vector map for close-up, and satellite map for farther view
+    google.maps.event.addListener(map, 'zoom_changed', function () {
+      var z = map.getZoom();
+      if (z >= 17){
+        //closer, do vector texture map
+        map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+      }
+      else {
+        //farther, do satellite texture map
+        map.setMapTypeId(google.maps.MapTypeId.HYBRID);
+      }
+    });
+  }
+
   // Search (needs web service ajax server? 
     // May just do a live AJAX node search of the 
     // objectFile Array to live populate results, 
@@ -732,21 +741,28 @@ var categoryInfo = [],
     setOptions();
     setAllControls();
     setMap();
+        loadProgress(10);
     setInfoWindow();
     setCampusLayer(); 
-      loadProgress(20);   
+        loadProgress(20);   
     // Run GatherData Stack using callback function to serialize the dependent functions
     loadCategoryInfoFile(function(){ 
+        loadProgress(30);
       populateCategoryInfo();
     });
-      loadProgress(40);
+        loadProgress(40);
     loadCategoryFile(function(){
       runPopulators();
+          loadProgress(50);
       bindCategoryToggle();
+          loadProgress(60);
       bindPolygonToggle();
+          loadProgress(70);
       bindMenuObjects();
+          loadProgress(80);
+      //zoomToggle();
     });
-      loadProgress(90);
+          loadProgress(90);
     callback;
   }//end initialize()
 
@@ -771,14 +787,24 @@ var categoryInfo = [],
   });
 
   $win.load(function(){
+    // Run initialize function chain
     initialize();
+    // Remove Loading screen
     loadComplete();
-    // off-click close menu
+    // close menu on off-click 
     $('#map_canvas').click(function(event){
       // stop click event from "propagating/bubbling down to children DOM elements"
       event.stopPropagation();
       if($(this) !== $('#menu_button')){
         setMenu(0);
+      }
+    });
+    // Toggle Menu on spacebar keypress
+    // var space = false;
+    $(document).keydown(function(evt) {
+      if (evt.keyCode === 32) {
+        //space = true;
+        toggleMenu();
       }
     });
   });
