@@ -246,7 +246,7 @@ var categoryInfo = [],
   function buildCatObject(i,catIndex,name,color){
     var thishtml = "";
         thishtml += '<a id="obj_' + catIndex + '-' + i + '" class="object marker_object" name="' + name + '" href="#">';
-        thishtml +=   '<img  class="obj_icon" src="img/icons/numeral-icons/' + color + '/' + (i+1) + '.png" alt="' + name + '" height="25">';
+        thishtml +=   '<img  class="obj_icon" src="img/icons/numeral-icons/' + color + '/' + (i+1) + '.png" alt="' + name + '" height="25" width="22">';
         thishtml +=   '<div class="object_name">' + name + '</div>';
         thishtml += '</a>';
     return thishtml;
@@ -319,7 +319,7 @@ var categoryInfo = [],
       } else {
         html +=   '<a class="category_bar cat_polygon" href="#" >';
       }
-      html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ thisCat.icon + '.png" height="25"/>';
+      html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ thisCat.icon + '.png" height="25" width="22"/>';
       html +=     '<span class="category_name">' + thisCat.title + '</span>';
       html +=   '</a>';
       html +=   '<div class="cat_container">';
