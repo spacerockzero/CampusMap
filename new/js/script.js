@@ -48,7 +48,6 @@ var categoryInfo = [],
 /**********************/
 /*  Global Functions  */
 /**********************/
-  
 
   // Asynchronous script loader function
   function loadScript(src, callback) {

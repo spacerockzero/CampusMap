@@ -2,9 +2,9 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>a.kml</name>
-	<Style id="sn_ylw-pushpin">
+	<Style id="sh_ylw-pushpin8">
 		<IconStyle>
-			<scale>1.1</scale>
+			<scale>1.3</scale>
 			<Icon>
 				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
 			</Icon>
@@ -14,7 +14,7 @@
 			<color>ff0909bc</color>
 		</LineStyle>
 		<PolyStyle>
-			<color>991010ff</color>
+			<color>b31010ff</color>
 		</PolyStyle>
 	</Style>
 	<Style id="sn_ylw-pushpin10">
@@ -29,32 +29,7 @@
 			<color>ff0909bc</color>
 		</LineStyle>
 		<PolyStyle>
-			<color>991010ff</color>
-		</PolyStyle>
-	</Style>
-	<StyleMap id="msn_ylw-pushpin">
-		<Pair>
-			<key>normal</key>
-			<styleUrl>#sn_ylw-pushpin</styleUrl>
-		</Pair>
-		<Pair>
-			<key>highlight</key>
-			<styleUrl>#sh_ylw-pushpin</styleUrl>
-		</Pair>
-	</StyleMap>
-	<Style id="sh_ylw-pushpin8">
-		<IconStyle>
-			<scale>1.3</scale>
-			<Icon>
-				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
-			</Icon>
-			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
-		</IconStyle>
-		<LineStyle>
-			<color>ff0909bc</color>
-		</LineStyle>
-		<PolyStyle>
-			<color>991010ff</color>
+			<color>b31010ff</color>
 		</PolyStyle>
 	</Style>
 	<StyleMap id="msn_ylw-pushpin2">
@@ -67,21 +42,6 @@
 			<styleUrl>#sh_ylw-pushpin8</styleUrl>
 		</Pair>
 	</StyleMap>
-	<Style id="sh_ylw-pushpin">
-		<IconStyle>
-			<scale>1.3</scale>
-			<Icon>
-				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
-			</Icon>
-			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
-		</IconStyle>
-		<LineStyle>
-			<color>ff0909bc</color>
-		</LineStyle>
-		<PolyStyle>
-			<color>991010ff</color>
-		</PolyStyle>
-	</Style>
 	<Folder>
 		<name>A - Faculty &amp; Staff</name>
 		<Placemark>
@@ -152,7 +112,7 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>Snow parking Lot 2</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
@@ -232,7 +192,7 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>Clarke Parking Lot</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
@@ -247,7 +207,7 @@ Full time employees may receive one transferable hanging A permit. Employees may
 		<Placemark>
 			<name>Faculty/ Staff Parking</name>
 			<description>Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>

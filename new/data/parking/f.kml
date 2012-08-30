@@ -2,21 +2,6 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>f.kml</name>
-	<Style id="sh_ylw-pushpin32">
-		<IconStyle>
-			<scale>1.3</scale>
-			<Icon>
-				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
-			</Icon>
-			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
-		</IconStyle>
-		<LineStyle>
-			<color>cc00467f</color>
-		</LineStyle>
-		<PolyStyle>
-			<color>cc00467f</color>
-		</PolyStyle>
-	</Style>
 	<StyleMap id="msn_ylw-pushpin31">
 		<Pair>
 			<key>normal</key>
@@ -36,15 +21,29 @@
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
 		<LineStyle>
-			<color>cc00467f</color>
+			<color>ff00467f</color>
 		</LineStyle>
 		<PolyStyle>
-			<color>cc00467f</color>
+			<color>b300467f</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin32">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff00467f</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b300467f</color>
 		</PolyStyle>
 	</Style>
 	<Folder>
 		<name>F - Free Permit Lot</name>
-		<open>1</open>
 		<Placemark>
 			<name>Free Parking Lot</name>
 			<description>Free
