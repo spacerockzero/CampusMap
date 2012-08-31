@@ -257,16 +257,26 @@ var categoryInfo = [],
 
       var content = '',
              name = obj.name,
-              img = obj.img,
+              img,
              info = obj.info,
              link = obj.link;
+
+              if (obj.img) {
+                if (obj.img.indexOf(':') === -1) {
+                  img = 'img/objects/' + catName + '/' + obj.img;
+                }
+                else {
+                  img = obj.img;
+                }
+              }
+             
 
       // Create the info panes which hold content about each building
       content += '<div class="infopane">';
       content +=   '<h2>' + name + '</h2>';
       content +=   '<div>';
       if (img){
-        content += '<img src="img/objects/' + catName + '/' + img + '" alt="' + name + '" width="40%" style="float:right"/>';
+        content += '<img src="' + img + '" alt="' + name + '" width="40%" style="float:right"/>';
       }
       if (info){
         content += info;
