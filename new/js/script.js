@@ -628,7 +628,9 @@ var categoryInfo = [],
     $('.category_bar').mousedown(function(){
 
       console.time("clickCategory");
-
+      //close any open info windows
+      // infoWindow.close();
+      
       var device = control.currentDevice,
           parent = this.parentNode,
            index = parent.id.substr(4),
@@ -771,7 +773,7 @@ var categoryInfo = [],
           loadProgress(70);
       bindMenuObjects();
           loadProgress(80);
-      //zoomToggle();
+      zoomToggle();
     });
           loadProgress(90);
     callback;
