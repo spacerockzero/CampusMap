@@ -2,6 +2,116 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>s.kml</name>
+	<Style id="sh_ylw-pushpin17">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff18f6ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b310f6ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin12">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff18f6ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b310f6ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin40">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff18f6ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b310f6ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin36">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin7</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin0</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_ylw-pushpin19">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin12</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin17</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin45">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff18f6ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b310f6ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin7">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff18f6ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b310f6ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin0">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff18f6ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b310f6ff</color>
+		</PolyStyle>
+	</Style>
 	<Style id="sn_ylw-pushpin14">
 		<IconStyle>
 			<scale>1.1</scale>
@@ -17,7 +127,22 @@
 			<color>b310f6ff</color>
 		</PolyStyle>
 	</Style>
-	<Style id="sh_ylw-pushpin45">
+	<Style id="sn_ylw-pushpin7">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff18f6ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b310f6ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin24">
 		<IconStyle>
 			<scale>1.3</scale>
 			<Icon>
@@ -42,17 +167,52 @@
 			<styleUrl>#sh_ylw-pushpin45</styleUrl>
 		</Pair>
 	</StyleMap>
+	<Style id="sh_ylw-pushpin0">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff18f6ff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b310f6ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin14">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin40</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin24</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_ylw-pushpin34">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin0</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin7</styleUrl>
+		</Pair>
+	</StyleMap>
 	<Folder>
 		<name>S - South Zone</name>
 		<Placemark>
 			<name>Hinkley Parking Lot</name>
-			<styleUrl>#msn_ylw-pushpin29</styleUrl>
+			<styleUrl>#msn_ylw-pushpin14</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7786596115651,43.81639333431607,0 -111.7787426854589,43.81639012202463,0 -111.7787940345144,43.81631871019073,0 -111.7788506467185,43.816262479276,0 -111.7786952527861,43.81617299705966,0 -111.7792922620343,43.81568979585096,0 -111.7793177919757,43.81430934131156,0 -111.7788771869181,43.81464669118766,0 -111.7790680566952,43.81475461965164,0 -111.7783525108527,43.81533756127779,0 -111.7783689238424,43.81597644028662,0 -111.7787517914211,43.81623559172155,0 -111.778690117004,43.81630303139086,0 -111.7786596115651,43.81639333431607,0 
+							-111.7786709294879,43.81635635728848,0 -111.7786709749924,43.81640607972706,0 -111.7787965462819,43.81640547456888,0 -111.7787945450821,43.81635916362625,0 -111.7788088334874,43.81631431910297,0 -111.7788640286329,43.81627351419692,0 -111.7786977134532,43.81616720712386,0 -111.7792892381629,43.81569541456475,0 -111.7792882781902,43.81554547270016,0 -111.779592060415,43.81530762889374,0 -111.7795108574793,43.81524518160038,0 -111.7795132471524,43.81429016715087,0 -111.7792823874366,43.81429027750447,0 -111.77882109948,43.81466912785556,0 -111.77898682689,43.81476667769141,0 -111.7791881068463,43.81461721468524,0 -111.7791857239897,43.81466691292654,0 -111.7783446295845,43.81534113240942,0 -111.7783444742585,43.81599521478851,0 -111.7783755805157,43.81601640600729,0 -111.7783413692768,43.8160467272822,0 -111.7786527837556,43.81625688915932,0 -111.7786822760962,43.81623541623134,0 -111.778724125977,43.8162610926303,0 -111.7786838164472,43.81629755631405,0 -111.7786709294879,43.81635635728848,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -60,13 +220,13 @@
 		</Placemark>
 		<Placemark>
 			<name>Ricks Parking Lot</name>
-			<styleUrl>#msn_ylw-pushpin29</styleUrl>
+			<styleUrl>#msn_ylw-pushpin19</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7800483301553,43.8141570274357,0 -111.7797458952203,43.81415969137785,0 -111.7797535945089,43.81527117637644,0 -111.7800280731822,43.81527389802805,0 -111.7800483301553,43.8141570274357,0 
+							-111.7800331002807,43.81411685633039,0 -111.7797423306617,43.81411767704846,0 -111.7797428039546,43.81530685364919,0 -111.7800322859449,43.81530671276018,0 -111.7800331002807,43.81411685633039,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -89,13 +249,13 @@
 			<name>South Zone Parking</name>
 			<description>South Zone
 Required for parking on the streets in the South Zone. Required for student parking lots in the South Zone.</description>
-			<styleUrl>#msn_ylw-pushpin29</styleUrl>
+			<styleUrl>#msn_ylw-pushpin36</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7851281345422,43.81343655623205,0 -111.7840160583716,43.81343894662934,0 -111.7839753268712,43.81162277852619,0 -111.7838644747494,43.81162276668085,0 -111.7839487839138,43.81500487826295,0 -111.7864731393675,43.81499321317495,0 -111.7864846475796,43.81492722361077,0 -111.7840769247371,43.81490348517522,0 -111.7840505595787,43.81363027269813,0 -111.7851421034555,43.81363055020838,0 -111.7851281345422,43.81343655623205,0 
+							-111.7839823542754,43.81162218253148,0 -111.7838949975876,43.81162307078441,0 -111.783897869005,43.81501094629338,0 -111.786538285121,43.81501226850143,0 -111.7865359517469,43.81493861393942,0 -111.7839840167013,43.81493633318733,0 -111.7839823542754,43.81162218253148,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -105,13 +265,13 @@ Required for parking on the streets in the South Zone. Required for student park
 			<name>South Zone Parking</name>
 			<description>South Zone
 Required for parking on the streets in the South Zone. Required for student parking lots in the South Zone.</description>
-			<styleUrl>#msn_ylw-pushpin29</styleUrl>
+			<styleUrl>#msn_ylw-pushpin36</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.783564970351,43.81606641343743,0 -111.7836807419903,43.81607738328513,0 -111.7836739120643,43.8116306189196,0 -111.783542338149,43.81163822545469,0 -111.783564970351,43.81606641343743,0 
+							-111.7836027477984,43.81637495453789,0 -111.7836831398715,43.8163746490459,0 -111.7836695700662,43.81162296682303,0 -111.7835820420851,43.81161979370378,0 -111.7836027477984,43.81637495453789,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -121,13 +281,30 @@ Required for parking on the streets in the South Zone. Required for student park
 			<name>South Zone Parking</name>
 			<description>South Zone
 Required for parking on the streets in the South Zone. Required for student parking lots in the South Zone.</description>
-			<styleUrl>#msn_ylw-pushpin29</styleUrl>
+			<styleUrl>#msn_ylw-pushpin36</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.784005788149,43.81514001516425,0 -111.7856570246702,43.81515067571949,0 -111.7856442149294,43.81507439662337,0 -111.7838793172208,43.81507973920083,0 -111.7838658639275,43.81638149980775,0 -111.7839708148531,43.81638359283347,0 -111.784005788149,43.81514001516425,0 
+							-111.7855490102081,43.81509059470326,0 -111.7855493706082,43.81515101309503,0 -111.7858520018042,43.81514952596643,0 -111.7858510214542,43.81508814357024,0 -111.7855490102081,43.81509059470326,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>South Zone Parking</name>
+			<open>1</open>
+			<description>South Zone
+Required for parking on the streets in the South Zone. Required for student parking lots in the South Zone.</description>
+			<styleUrl>#msn_ylw-pushpin34</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7839732854437,43.81515275748732,0 -111.7851281413172,43.81515245638777,0 -111.7851304710391,43.81509022970402,0 -111.7838959599978,43.81508963781842,0 -111.7838979298458,43.81638139748703,0 -111.7839773800674,43.81638060379569,0 -111.7839732854437,43.81515275748732,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>

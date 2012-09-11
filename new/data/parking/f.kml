@@ -2,6 +2,36 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>f.kml</name>
+	<Style id="sn_ylw-pushpin3">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff00467f</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b300467f</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin5">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff00467f</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b300467f</color>
+		</PolyStyle>
+	</Style>
 	<StyleMap id="msn_ylw-pushpin31">
 		<Pair>
 			<key>normal</key>
@@ -12,6 +42,31 @@
 			<styleUrl>#sh_ylw-pushpin32</styleUrl>
 		</Pair>
 	</StyleMap>
+	<StyleMap id="msn_ylw-pushpin32">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin6</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin1</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin1">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff00467f</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b300467f</color>
+		</PolyStyle>
+	</Style>
 	<Style id="sn_ylw-pushpin33">
 		<IconStyle>
 			<scale>1.1</scale>
@@ -42,19 +97,84 @@
 			<color>b300467f</color>
 		</PolyStyle>
 	</Style>
+	<StyleMap id="msn_ylw-pushpin21">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin13</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin12</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_ylw-pushpin35">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin3</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin5</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin6">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff00467f</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b300467f</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin12">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff00467f</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b300467f</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin13">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff00467f</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b300467f</color>
+		</PolyStyle>
+	</Style>
 	<Folder>
 		<name>F - Free Permit Lot</name>
 		<Placemark>
 			<name>Free Parking Lot</name>
 			<description>Free
 Other paid permits are also valid in this lot. Overnight parking not allowed.</description>
-			<styleUrl>#msn_ylw-pushpin31</styleUrl>
+			<styleUrl>#msn_ylw-pushpin35</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7839456793526,43.80900188379983,0 -111.7835832902823,43.80901369685842,0 -111.7836061345916,43.81110959852581,0 -111.783930253631,43.81109077949304,0 -111.7839456793526,43.80900188379983,0 
+							-111.7839576914245,43.80900248849598,0 -111.7836054347984,43.80900060511772,0 -111.7836061345916,43.81110959852581,0 -111.7839563238347,43.81110894150277,0 -111.7839576914245,43.80900248849598,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -64,13 +184,13 @@ Other paid permits are also valid in this lot. Overnight parking not allowed.</d
 			<name>7th South Parking Lot-Free</name>
 			<description>Free
 Other paid permits are also valid in this lot. Overnight parking not allowed.</description>
-			<styleUrl>#msn_ylw-pushpin31</styleUrl>
+			<styleUrl>#msn_ylw-pushpin32</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7818865302275,43.81164162421253,0 -111.780737036876,43.81162055098935,0 -111.7807328791337,43.8128168305884,0 -111.781897972227,43.81281572275361,0 -111.7818865302275,43.81164162421253,0 
+							-111.7818782388025,43.81162101798856,0 -111.7818161386544,43.81162128664597,0 -111.7818166651196,43.81167832036292,0 -111.7808876557586,43.81167821577257,0 -111.7808880137775,43.8116225055565,0 -111.7806635124905,43.81162238735439,0 -111.7806579133239,43.81278048532255,0 -111.780762091242,43.81278075845475,0 -111.780761047049,43.81285511845693,0 -111.7819050781505,43.81285660760005,0 -111.782739846701,43.81265543332562,0 -111.7835773997268,43.81265605961801,0 -111.7835810529755,43.81252901813562,0 -111.7825933595667,43.81252931701504,0 -111.7818782512568,43.81270011429991,0 -111.7818782388025,43.81162101798856,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -92,13 +212,13 @@ Other paid permits are also valid in this lot. Overnight parking not allowed.</d
 		</Placemark>
 		<Placemark>
 			<name>First South Free Area</name>
-			<styleUrl>#msn_ylw-pushpin31</styleUrl>
+			<styleUrl>#msn_ylw-pushpin21</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.782465342669,43.82436215226502,0 -111.7828197338371,43.82436239352397,0 -111.7828150201156,43.82407241620741,0 -111.7824678695699,43.82407240552602,0 -111.782465342669,43.82436215226502,0 
+							-111.782465342669,43.82436215226502,0 -111.7828197338371,43.82436239352397,0 -111.7828097791645,43.82407210219446,0 -111.7824634204859,43.82407215208264,0 -111.782465342669,43.82436215226502,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>

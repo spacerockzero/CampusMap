@@ -2,7 +2,17 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>h.kml</name>
-	<Style id="sn_ylw-pushpin">
+	<StyleMap id="msn_ylw-pushpin2">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin190</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin10</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin190">
 		<IconStyle>
 			<scale>1.1</scale>
 			<Icon>
@@ -17,7 +27,7 @@
 			<color>b3009933</color>
 		</PolyStyle>
 	</Style>
-	<Style id="sh_ylw-pushpin">
+	<Style id="sh_ylw-pushpin10">
 		<IconStyle>
 			<scale>1.3</scale>
 			<Icon>
@@ -32,29 +42,19 @@
 			<color>b3009933</color>
 		</PolyStyle>
 	</Style>
-	<StyleMap id="msn_ylw-pushpin">
-		<Pair>
-			<key>normal</key>
-			<styleUrl>#sn_ylw-pushpin</styleUrl>
-		</Pair>
-		<Pair>
-			<key>highlight</key>
-			<styleUrl>#sh_ylw-pushpin</styleUrl>
-		</Pair>
-	</StyleMap>
 	<Folder>
 		<name>H - On-Campus Housing</name>
 		<Placemark>
 			<name>Pioneer Parking Lot</name>
 			<description>On-Campus Housing
 Requires a form from housing for registration. Valid in Pioneer and Biddulf lots only. Required to park overnight.</description>
-			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7807375653354,43.81889528208362,0 -111.7807336884152,43.8186272367777,0 -111.7782445203556,43.81863511772513,0 -111.7782459310891,43.81889457526628,0 -111.7807375653354,43.81889528208362,0 
+							-111.7808150640125,43.81889455960121,0 -111.7808148151581,43.81863349855134,0 -111.7782445203556,43.81863511772513,0 -111.7782459310891,43.81889457526628,0 -111.7808150640125,43.81889455960121,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>

@@ -2,17 +2,32 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>n.kml</name>
-	<StyleMap id="msn_ylw-pushpin5">
+	<StyleMap id="msn_ylw-pushpin3">
 		<Pair>
 			<key>normal</key>
-			<styleUrl>#sn_ylw-pushpin3</styleUrl>
+			<styleUrl>#sn_ylw-pushpin17</styleUrl>
 		</Pair>
 		<Pair>
 			<key>highlight</key>
-			<styleUrl>#sh_ylw-pushpin4</styleUrl>
+			<styleUrl>#sh_ylw-pushpin6</styleUrl>
 		</Pair>
 	</StyleMap>
-	<Style id="sn_ylw-pushpin3">
+	<Style id="sh_ylw-pushpin6">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ffbe6800</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b3fd8904</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin24">
 		<IconStyle>
 			<scale>1.1</scale>
 			<Icon>
@@ -27,7 +42,192 @@
 			<color>b3fd8904</color>
 		</PolyStyle>
 	</Style>
+	<StyleMap id="msn_ylw-pushpin25">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin24</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin14</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin29">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ffbe6800</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b3fd8904</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin100">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ffbe6800</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b3fd8904</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin5">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ffbe6800</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b3fd8904</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin8">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin29</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin4</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin00">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ffbe6800</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b3fd8904</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin14">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ffbe6800</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b3fd8904</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin6">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin10</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin00</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin17">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ffbe6800</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b3fd8904</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin130">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin5</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin100</styleUrl>
+		</Pair>
+	</StyleMap>
 	<Style id="sh_ylw-pushpin4">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ffbe6800</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b3fd8904</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin18">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ffbe6800</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b3fd8904</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin5">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin18</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin16</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin10">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ffbe6800</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b3fd8904</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin16">
 		<IconStyle>
 			<scale>1.3</scale>
 			<Icon>
@@ -52,17 +252,34 @@
 			</ListStyle>
 		</Style>
 		<Placemark>
-			<name>I-Center</name>
-			<description>South Parking Lot
-Faculty/ Staff 
-Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin5</styleUrl>
+			<name>North Zone Parking</name>
+			<open>1</open>
+			<description>North Zone
+Required for campus parking on campus streets in the North Zone. Required in student parking lots on the North Zone.</description>
+			<styleUrl>#msn_ylw-pushpin3</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7864241363522,43.81768639796096,0 -111.7864181595366,43.8175918117979,0 -111.7863124497522,43.81758347407305,0 -111.7861275110525,43.81757424390933,0 -111.7859130394148,43.8175844007791,0 -111.785721830993,43.81757654288777,0 -111.7855888924636,43.81756258333149,0 -111.7854349388973,43.81758612792496,0 -111.7854008347135,43.81756525002262,0 -111.7852836817036,43.81757535669712,0 -111.7851336583008,43.81757803405679,0 -111.7850478412355,43.8175810761087,0 -111.7848535280343,43.81757921455742,0 -111.7845905208719,43.8175822755171,0 -111.7843062754646,43.81758094125788,0 -111.7843143650203,43.81777087949434,0 -111.7846558643364,43.81777559577371,0 -111.7850296318846,43.81777786545379,0 -111.7853040491955,43.81777663328414,0 -111.7856823557087,43.81777581026486,0 -111.7859266254169,43.81770947254466,0 -111.7860295032466,43.81768349078329,0 -111.7864241363522,43.81768639796096,0 
+							-111.7797225072343,43.8175992855967,0 -111.7797227247495,43.81765685064864,0 -111.7807280487933,43.81765503075147,0 -111.7807304287103,43.81759982913673,0 -111.7797225072343,43.8175992855967,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>I-Center</name>
+			<description>South Parking Lot
+Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin6</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7865359018146,43.81757188147418,0 -111.7860712351564,43.81756947638436,0 -111.7858236690342,43.81749561578209,0 -111.7850367898857,43.81749564979725,0 -111.7850367233759,43.81755890622877,0 -111.7848896021602,43.81755800819425,0 -111.7848882297473,43.81750207207723,0 -111.7842983612782,43.81750329219193,0 -111.7843001149974,43.81777044631264,0 -111.7865370708843,43.8177692904548,0 -111.7865359018146,43.81757188147418,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -73,13 +290,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<description>West parking lot.
 Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin5</styleUrl>
+			<styleUrl>#msn_ylw-pushpin8</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7865073700546,43.81898770982966,0 -111.7864929803039,43.81863354619967,0 -111.786429810919,43.81863366291304,0 -111.786453782935,43.81897743735086,0 -111.7865073700546,43.81898770982966,0 
+							-111.7865115512455,43.81898753147509,0 -111.7865028665724,43.81863473802111,0 -111.7864199588688,43.81863466413881,0 -111.7864274177387,43.81898728988912,0 -111.7865115512455,43.81898753147509,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -87,13 +304,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 		</Placemark>
 		<Placemark>
 			<name>Snow Parking Lot 1</name>
-			<styleUrl>#msn_ylw-pushpin5</styleUrl>
+			<styleUrl>#msn_ylw-pushpin25</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.784698309308,43.82089440941643,0 -111.7846224937664,43.82089787322494,0 -111.7846265524046,43.82166447978192,0 -111.7846950213297,43.82166457647212,0 -111.784698309308,43.82089440941643,0 
+							-111.784698309308,43.82089440941643,0 -111.7846184936488,43.82089380968691,0 -111.7846265524046,43.82166447978192,0 -111.7846950213297,43.82166457647212,0 -111.784698309308,43.82089440941643,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -103,13 +320,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>Stadium Parking Lot</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin5</styleUrl>
+			<styleUrl>#msn_ylw-pushpin25</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7858850414684,43.8217178618489,0 -111.7858855888396,43.82168044260886,0 -111.7861192405441,43.82167894900332,0 -111.7862725405059,43.82168426102818,0 -111.7863918435257,43.82167545421368,0 -111.7864516907092,43.82168255967362,0 -111.7864952102718,43.82168083134082,0 -111.7864882074616,43.821597843478,0 -111.786493558787,43.8215443875191,0 -111.7864967019171,43.82147796216898,0 -111.7864991194893,43.82141136668923,0 -111.7865075128128,43.82135142387267,0 -111.7865077930335,43.82126471835838,0 -111.7865046729465,43.82121349053377,0 -111.7865016508352,43.82116387200934,0 -111.7865045732751,43.82106475883816,0 -111.7865000010115,43.82094177257093,0 -111.786496605835,43.82080522647362,0 -111.786492172012,43.82071643429497,0 -111.7864877410879,43.82063992622179,0 -111.7864722515727,43.82058027903734,0 -111.7864695071675,43.82049317929653,0 -111.7864702890522,43.82041196384893,0 -111.7864774739469,43.82027463039513,0 -111.7864774544827,43.82023159355683,0 -111.7864797096399,43.82014819957161,0 -111.7864744424575,43.82008717174496,0 -111.7862987141848,43.82009310125668,0 -111.7861940171188,43.82009390199187,0 -111.786080157344,43.82009553895439,0 -111.7859695933163,43.82009617644148,0 -111.7858940834799,43.82009730980121,0 -111.7858908070083,43.82059331259409,0 -111.7861447613547,43.82058931520302,0 -111.7862836202182,43.82058828007084,0 -111.7863515717052,43.82058777336836,0 -111.7864313233319,43.82058716615476,0 -111.7864371150521,43.82062867955216,0 -111.7863687010358,43.82063128630559,0 -111.7863768892533,43.82069290831446,0 -111.7863830605043,43.82075801554952,0 -111.7863861921034,43.82081860723364,0 -111.7863905888494,43.82092296427678,0 -111.7863960012889,43.82109036394055,0 -111.786403099583,43.82118655213279,0 -111.786405147293,43.82130486540689,0 -111.7863687956885,43.82136393823851,0 -111.7862554778522,43.82136726857489,0 -111.7862120219804,43.82129578198097,0 -111.7860977323701,43.82128826469965,0 -111.7860012276336,43.82128639940451,0 -111.785899013819,43.82128973028625,0 -111.7857955717126,43.82128370845233,0 -111.7857842271853,43.82141624958572,0 -111.7857802254742,43.82149927332021,0 -111.7857747803391,43.82156439625924,0 -111.7857731447216,43.82161952555731,0 -111.7857706940835,43.82168606234652,0 -111.7857712581076,43.82171738260634,0 -111.7858850414684,43.8217178618489,0 
+							-111.7858850414684,43.8217178618489,0 -111.7858855888396,43.82168044260886,0 -111.7864769856662,43.82168066725417,0 -111.7864744424575,43.82008717174496,0 -111.7858054721622,43.8200903568795,0 -111.7858064966122,43.82059310342427,0 -111.7864304531081,43.82059267088209,0 -111.7864305137163,43.82063143109293,0 -111.7863409940113,43.82066163284219,0 -111.7863419814951,43.82124326778408,0 -111.7863838185197,43.8212454153536,0 -111.7863868503435,43.82128204196844,0 -111.7857984635825,43.82128216345708,0 -111.7857989475667,43.82171721199487,0 -111.7858850414684,43.8217178618489,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -119,13 +336,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>Kimball Student parking lot</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin5</styleUrl>
+			<styleUrl>#msn_ylw-pushpin3</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7800889288537,43.81658538286712,0 -111.779650679927,43.81659114414158,0 -111.7796781034263,43.81746018598319,0 -111.7800981030616,43.81747326355436,0 -111.7800889288537,43.81658538286712,0 
+							-111.7801075557088,43.81658408333472,0 -111.7796664198098,43.81658525160199,0 -111.7796671564869,43.81748300015139,0 -111.7801034276476,43.81748328443357,0 -111.7801075557088,43.81658408333472,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -135,13 +352,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>West Campus drive parking</name>
 			<description>North Zone
 Required for campus parking on campus streets in the North Zone. Required in student parking lots on the North Zone.</description>
-			<styleUrl>#msn_ylw-pushpin5</styleUrl>
+			<styleUrl>#msn_ylw-pushpin6</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7849855815692,43.8164390852917,0 -111.7849836828009,43.81639713541334,0 -111.7842588690494,43.81639260373318,0 -111.7842583546235,43.81643400269251,0 -111.7849855815692,43.8164390852917,0 
+							-111.784826670998,43.81645122753929,0 -111.7848258686403,43.81638869224982,0 -111.7840735973918,43.81638815416594,0 -111.7840736472443,43.81645148223629,0 -111.784826670998,43.81645122753929,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -151,13 +368,30 @@ Required for campus parking on campus streets in the North Zone. Required in stu
 			<name>West campus Drive Parking 1</name>
 			<description>North Zone
 Required for campus parking on campus streets in the North Zone. Required in student parking lots on the North Zone.</description>
-			<styleUrl>#msn_ylw-pushpin5</styleUrl>
+			<styleUrl>#msn_ylw-pushpin6</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7854722572797,43.81649534813369,0 -111.7838779094718,43.81649458395724,0 -111.7838723946363,43.81722986143313,0 -111.7835852279548,43.81722405950003,0 -111.7836010061943,43.81662523722562,0 -111.7836772833721,43.81662097203321,0 -111.7836628679199,43.81722880187591,0 -111.7839565332315,43.81722584282131,0 -111.7839588962218,43.81654150436972,0 -111.7854769405123,43.81655277898751,0 -111.7854722572797,43.81649534813369,0 
+							-111.7839746125025,43.81656324381714,0 -111.7855453849692,43.8165640426243,0 -111.7855448729545,43.81651329012472,0 -111.7839010996684,43.81651265897005,0 -111.7839020344063,43.81746712290848,0 -111.7839749491434,43.81746608241419,0 -111.7839746125025,43.81656324381714,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>West campus Drive Parking 1</name>
+			<open>1</open>
+			<description>North Zone
+Required for campus parking on campus streets in the North Zone. Required in student parking lots on the North Zone.</description>
+			<styleUrl>#msn_ylw-pushpin6</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7836310143997,43.81746552823827,0 -111.7837096942646,43.81746470032277,0 -111.7837087009585,43.81657783445522,0 -111.7836279918674,43.81657780050153,0 -111.7836310143997,43.81746552823827,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -174,7 +408,7 @@ Full time employees may receive one transferable hanging A permit. Employees may
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7834880320936,43.81728641051809,0 -111.7835116298793,43.81658461546308,0 -111.7831419422784,43.81657895949647,0 -111.7831425160079,43.81669417615318,0 -111.7832641633931,43.81669201877535,0 -111.7832868036415,43.81728394932171,0 -111.7834880320936,43.81728641051809,0 
+							-111.783507807769,43.81729055520985,0 -111.7835097065313,43.81652008784757,0 -111.7828506521418,43.81651954006895,0 -111.7828528518931,43.81663083244067,0 -111.783168223247,43.81662995697743,0 -111.7831686295323,43.81671426087264,0 -111.783293482109,43.81671442855087,0 -111.7832931257503,43.81698092804042,0 -111.7831889231397,43.81698299223623,0 -111.7831886081339,43.81728915924471,0 -111.783507807769,43.81729055520985,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -184,13 +418,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>3rd South Parking Lot</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin5</styleUrl>
+			<styleUrl>#msn_ylw-pushpin130</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7797597571464,43.8201151725776,0 -111.7799619705376,43.81996392000214,0 -111.7799038017252,43.81991359207777,0 -111.7798777600438,43.81987256869391,0 -111.7797953675422,43.81988621320437,0 -111.779700224884,43.81988165077797,0 -111.7795935613096,43.82001387538284,0 -111.7796826809227,43.82005062442019,0 -111.7796575394202,43.82008733080866,0 -111.7797088011576,43.82012426108781,0 -111.7797597571464,43.8201151725776,0 
+							-111.7797675850318,43.82011794011866,0 -111.7800276168263,43.81991509857066,0 -111.779993926667,43.81989415039643,0 -111.7799980550476,43.81986403443207,0 -111.779863935085,43.81986468186377,0 -111.7798012239842,43.8199190154927,0 -111.7797386740475,43.81988326569032,0 -111.7795935613096,43.82001387538284,0 -111.7797675850318,43.82011794011866,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -200,13 +434,30 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>North Zone Parking</name>
 			<description>North Zone
 Required for campus parking on campus streets in the North Zone. Required in student parking lots on the North Zone.</description>
-			<styleUrl>#msn_ylw-pushpin5</styleUrl>
+			<styleUrl>#msn_ylw-pushpin3</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7804764534607,43.81779385011715,0 -111.7804763966495,43.81774627907419,0 -111.7782178352615,43.8177663901712,0 -111.7782131549603,43.81767060032813,0 -111.779519105079,43.81766321421579,0 -111.7795294611687,43.81760645885256,0 -111.7797328283435,43.81760330845277,0 -111.7797227247495,43.81765685064864,0 -111.7804855262167,43.8176481443458,0 -111.7804900326083,43.8175942252735,0 -111.7782111935497,43.81761462937646,0 -111.7782071496102,43.81780278018991,0 -111.7804764534607,43.81779385011715,0 
+							-111.7782207502496,43.81774217614674,0 -111.7782217740106,43.81780505783492,0 -111.7807289512684,43.81780270166184,0 -111.7807280370801,43.81774075838287,0 -111.7782207502496,43.81774217614674,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>North Zone Parking</name>
+			<open>1</open>
+			<description>North Zone
+Required for campus parking on campus streets in the North Zone. Required in student parking lots on the North Zone.</description>
+			<styleUrl>#msn_ylw-pushpin3</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7782253336593,43.81759921704348,0 -111.7782255621136,43.8176560704479,0 -111.7796304365258,43.81765578659651,0 -111.7796296775421,43.81759848905426,0 -111.7782253336593,43.81759921704348,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -216,13 +467,47 @@ Required for campus parking on campus streets in the North Zone. Required in stu
 			<name>North Zone Parking</name>
 			<description>North Zone
 Required for campus parking on campus streets in the North Zone. Required in student parking lots on the North Zone.</description>
-			<styleUrl>#msn_ylw-pushpin5</styleUrl>
+			<styleUrl>#msn_ylw-pushpin6</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7864272364496,43.81643615254885,0 -111.7864221166942,43.81639572327938,0 -111.7856847543301,43.81638464832965,0 -111.7856873124192,43.81643529750249,0 -111.7857837251649,43.81643263449681,0 -111.7857944011829,43.81638915717774,0 -111.7859178835194,43.81638878299297,0 -111.7859173625253,43.8164299360082,0 -111.7860282175679,43.81642741098698,0 -111.7860319713566,43.81639103592926,0 -111.7861868071075,43.81639306326819,0 -111.7861932195844,43.81643192350764,0 -111.7864272364496,43.81643615254885,0 
+							-111.7860517721967,43.8164507535836,0 -111.7860508099524,43.81639694267089,0 -111.7859423175725,43.81639687255274,0 -111.7859430901496,43.81645058802962,0 -111.7860517721967,43.8164507535836,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>North Zone Parking</name>
+			<open>1</open>
+			<description>North Zone
+Required for campus parking on campus streets in the North Zone. Required in student parking lots on the North Zone.</description>
+			<styleUrl>#msn_ylw-pushpin6</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7864247645037,43.81644884247991,0 -111.7864221166942,43.81639572327938,0 -111.7861704435406,43.81639558121744,0 -111.7861710241581,43.81644839313617,0 -111.7864247645037,43.81644884247991,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>North Zone Parking</name>
+			<open>1</open>
+			<description>North Zone
+Required for campus parking on campus streets in the North Zone. Required in student parking lots on the North Zone.</description>
+			<styleUrl>#msn_ylw-pushpin6</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7858863063311,43.81645049912505,0 -111.7858856486334,43.81639868164274,0 -111.7857415970732,43.8163985406453,0 -111.7857394776015,43.81645018942245,0 -111.7858863063311,43.81645049912505,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>

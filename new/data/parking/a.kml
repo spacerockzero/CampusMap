@@ -2,6 +2,296 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>a.kml</name>
+	<Style id="sh_ylw-pushpin">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin23">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin20">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin27</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin8</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin18">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin23">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin23</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin13</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin8">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin00">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin110</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin25</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_ylw-pushpin28">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin21</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin19</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin27">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin13">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin28</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin30">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin21">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin9">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin15</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin3</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin23">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin12">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin9</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin9">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin10">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin9</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin18</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin25">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin3">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin19">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin13">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
 	<Style id="sh_ylw-pushpin8">
 		<IconStyle>
 			<scale>1.3</scale>
@@ -17,7 +307,17 @@
 			<color>b31010ff</color>
 		</PolyStyle>
 	</Style>
-	<Style id="sn_ylw-pushpin10">
+	<StyleMap id="msn_ylw-pushpin80">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin8</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin30</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin28">
 		<IconStyle>
 			<scale>1.1</scale>
 			<Icon>
@@ -32,29 +332,169 @@
 			<color>b31010ff</color>
 		</PolyStyle>
 	</Style>
-	<StyleMap id="msn_ylw-pushpin2">
+	<Style id="sn_ylw-pushpin19">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin110">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin0">
 		<Pair>
 			<key>normal</key>
-			<styleUrl>#sn_ylw-pushpin10</styleUrl>
+			<styleUrl>#sn_ylw-pushpin1</styleUrl>
 		</Pair>
 		<Pair>
 			<key>highlight</key>
-			<styleUrl>#sh_ylw-pushpin8</styleUrl>
+			<styleUrl>#sh_ylw-pushpin2</styleUrl>
 		</Pair>
 	</StyleMap>
+	<Style id="sn_ylw-pushpin1">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin2">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin27">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin1">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin19</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin27</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin9">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin15">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin4">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin20</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin23</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin20">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0909bc</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b31010ff</color>
+		</PolyStyle>
+	</Style>
 	<Folder>
 		<name>A - Faculty &amp; Staff</name>
 		<Placemark>
 			<name>Benson Parking lot</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin00</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7835037468371,43.81652023154944,0 -111.7835106814047,43.81634151356266,0 -111.7835024867582,43.8161939345886,0 -111.7834983177002,43.81612357123891,0 -111.7831566503986,43.81611374783087,0 -111.782892746292,43.81611400999218,0 -111.7827296688301,43.81612905898618,0 -111.782608454533,43.81616045099494,0 -111.7825699334441,43.8162250419003,0 -111.7825568083023,43.81631849630035,0 -111.7825673886203,43.81638854968168,0 -111.7825698229089,43.81645900219833,0 -111.782678309258,43.81650439651892,0 -111.7835037468371,43.81652023154944,0 
+							-111.7835096915399,43.81651851429142,0 -111.7835098021257,43.81608603087316,0 -111.7826553753275,43.81608640403385,0 -111.7825190416659,43.81618715045637,0 -111.7825154358521,43.816217333947,0 -111.7825851034618,43.81625497965472,0 -111.7825842822744,43.81646000438012,0 -111.7830618798164,43.81646064913496,0 -111.7828512171184,43.8165198709663,0 -111.7835096915399,43.81651851429142,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -64,13 +504,30 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>Austin Faculty Parking Lot</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin0</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7845061109425,43.81537224381418,0 -111.7846338555952,43.81535989239761,0 -111.7851284801436,43.81536239656533,0 -111.7851395849367,43.81582285027351,0 -111.7851687968045,43.81638809000788,0 -111.7853717442898,43.81638247963216,0 -111.7853308251429,43.81593962826396,0 -111.7853308958737,43.81526885873016,0 -111.7855081948613,43.81526420675667,0 -111.7855043538617,43.81537776974167,0 -111.7855041775851,43.81570933815414,0 -111.7855093221844,43.81592810298715,0 -111.7852963032364,43.81593943588732,0 -111.7853195141654,43.81638188109669,0 -111.7852151544288,43.81638467109608,0 -111.7851738682011,43.8153582179763,0 -111.7850660559444,43.81535452185386,0 -111.785111063154,43.81532615260399,0 -111.7851105397063,43.81527783602385,0 -111.7850961798727,43.81516700161144,0 -111.7849235079904,43.81515874817787,0 -111.7847113154091,43.81516417775659,0 -111.7845007924311,43.81517356582387,0 -111.7845061109425,43.81537224381418,0 
+							-111.7855492006947,43.81593906386387,0 -111.7855494899199,43.81515122478296,0 -111.7853006729758,43.81515092621469,0 -111.785302303897,43.81544185445986,0 -111.7851264321061,43.81544194147558,0 -111.7851299734211,43.81639872451802,0 -111.7853428866502,43.81639741347597,0 -111.7853431727266,43.81593805004827,0 -111.7855492006947,43.81593906386387,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Austin Faculty Parking Lot</name>
+			<open>1</open>
+			<description>Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin13</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.7840462250287,43.8151538391138,0 -111.7840456837697,43.8153404876762,0 -111.7851291018772,43.81534019448812,0 -111.7851281510643,43.81515434413416,0 -111.7840462250287,43.8151538391138,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -80,13 +537,29 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>Auxiliary Services Parking Lot</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin20</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7834533413265,43.81480075586894,0 -111.7834604972789,43.81470820770109,0 -111.7831452873188,43.81470401601609,0 -111.7831419833833,43.81454941266839,0 -111.7829700966949,43.81454989573485,0 -111.7828492491788,43.81454068832876,0 -111.7828471042137,43.81367294423769,0 -111.7833792836784,43.81368129548081,0 -111.7833847495874,43.81381004110231,0 -111.7828465956203,43.81379787405483,0 -111.7828416876773,43.81365131699891,0 -111.7827027628484,43.81365518992568,0 -111.7827007451018,43.81409887347716,0 -111.782709702506,43.81465753840698,0 -111.7829665321012,43.8146655457622,0 -111.7831442011224,43.81466789499567,0 -111.7831484426872,43.81479392143343,0 -111.7834533413265,43.81480075586894,0 
+							-111.7834121754682,43.81440751080741,0 -111.7828631588755,43.81440775224526,0 -111.7828610732651,43.81382520967553,0 -111.783414583701,43.81382608491444,0 -111.7834125732912,43.8136528626214,0 -111.7826566505134,43.81365281156533,0 -111.7826579487885,43.81467494052389,0 -111.783411197122,43.81467732866107,0 -111.7834121754682,43.81440751080741,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Auxiliary Services Parking</name>
+			<description>Faculty/ Staff 
+Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
+			<styleUrl>#msn_ylw-pushpin20</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-111.783484006564,43.81479513461974,0 -111.7834828002048,43.81469258735209,0 -111.7831096964745,43.8146942691575,0 -111.7831107029752,43.81479648836372,0 -111.783484006564,43.81479513461974,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -96,13 +569,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>AG Engineering Parking Lot</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin20</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7832422300871,43.81359358755186,0 -111.7832418665942,43.81356616898831,0 -111.7832983342018,43.81355811975728,0 -111.7833192630358,43.81353964995633,0 -111.7833188330934,43.8134986401141,0 -111.7833173795697,43.81347648376247,0 -111.7832061254665,43.81347704593939,0 -111.7830950235355,43.8134772073206,0 -111.7829701218831,43.81347738537475,0 -111.7828899828082,43.81347747495353,0 -111.782891122358,43.81351089597916,0 -111.7828920201635,43.81353941639882,0 -111.7829182721276,43.81355508839823,0 -111.7829445709289,43.81356822154608,0 -111.7829454744274,43.81359192514213,0 -111.7832422300871,43.81359358755186,0 
+							-111.7832174282341,43.81358255728245,0 -111.7833095454349,43.81352231051616,0 -111.7833091213935,43.81347668569106,0 -111.7827341566022,43.81347672422442,0 -111.7827347248272,43.81358255717169,0 -111.7832174282341,43.81358255728245,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -112,13 +585,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>Snow parking Lot 2</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin12</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7846132677423,43.82089042801309,0 -111.7846984352385,43.82089057971999,0 -111.7846887714145,43.82027764021674,0 -111.7846187047734,43.82016329977754,0 -111.7845220850726,43.82008666552917,0 -111.7842883764885,43.82008493761381,0 -111.7839529177248,43.82008363454649,0 -111.7839504368677,43.82016018725999,0 -111.784022976062,43.82016042309458,0 -111.7840268533596,43.82024659746678,0 -111.7842010087953,43.82024883127555,0 -111.7842175444816,43.82038052025331,0 -111.7840318892221,43.82037547463239,0 -111.7840457271628,43.82058269830539,0 -111.7840487079162,43.82063612192702,0 -111.7840661232379,43.82068229412168,0 -111.7841008967657,43.82070265081509,0 -111.7841490687733,43.82071155011947,0 -111.7844411001175,43.82071104672515,0 -111.784495691445,43.82165189786056,0 -111.7845437357462,43.82165108777144,0 -111.7845464413755,43.82171397471475,0 -111.7846682933723,43.82171360970804,0 -111.7846666440597,43.82166851352127,0 -111.7846232856827,43.82166741958164,0 -111.7846132677423,43.82089042801309,0 
+							-111.7846175469452,43.82088693203226,0 -111.7846984352385,43.82089057971999,0 -111.7846887714145,43.82027764021674,0 -111.7846695144653,43.82019253699369,0 -111.7846355780369,43.82013911361052,0 -111.7845761263144,43.82009817802002,0 -111.784487480108,43.8200845274282,0 -111.7842883764885,43.82008493761381,0 -111.7839515557615,43.82008593793132,0 -111.7839504368677,43.82016018725999,0 -111.784029877381,43.82016111021997,0 -111.7840303400766,43.82028441072041,0 -111.7841130356449,43.82028364563184,0 -111.7841063025153,43.82043962280225,0 -111.7840271638391,43.82043728958036,0 -111.7840238759552,43.82057317986461,0 -111.7840367389327,43.82063244491805,0 -111.7840661434593,43.82067701262444,0 -111.7841162346527,43.82070086167897,0 -111.7841952427027,43.82071282998049,0 -111.7844376124306,43.82071298485299,0 -111.7844366695466,43.82165313390717,0 -111.7845068572719,43.82165335458549,0 -111.7845069654709,43.82171507094092,0 -111.7846682933723,43.82171360970804,0 -111.7846666440597,43.82166851352127,0 -111.7846238933509,43.82166848060383,0 -111.7846175469452,43.82088693203226,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -128,13 +601,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>Hart Parking Lot</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin00</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7862481887746,43.81912685242309,0 -111.7862536346503,43.81923235757811,0 -111.786336207906,43.8192328108692,0 -111.7864055389418,43.81923185489627,0 -111.7863937152065,43.81909821706259,0 -111.7864738588626,43.81909664940642,0 -111.7865674110757,43.81909637670177,0 -111.7865608955495,43.81904697027835,0 -111.7863663118803,43.81904814185665,0 -111.7862442142004,43.81904985271323,0 -111.7862481887746,43.81912685242309,0 
+							-111.7861738620738,43.81927165636667,0 -111.7864029029526,43.81927211999275,0 -111.7864027787881,43.81916427290174,0 -111.7865094776437,43.81916454750256,0 -111.7865094017643,43.81911449360482,0 -111.7861738737394,43.81911391164932,0 -111.7861738620738,43.81927165636667,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -145,28 +618,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<description>West parking lot
 Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin1</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7864247526949,43.81860812109004,0 -111.7864840284321,43.81860725677949,0 -111.7864824481334,43.81858055538256,0 -111.7864277508538,43.8185813416927,0 -111.7862483158253,43.81858346635763,0 -111.7862415242084,43.81864488227238,0 -111.7862357938074,43.81880207406508,0 -111.7862277513638,43.81899158017441,0 -111.7864422148813,43.81898798025921,0 -111.7864247526949,43.81860812109004,0 
-						</coordinates>
-					</LinearRing>
-				</outerBoundaryIs>
-			</Polygon>
-		</Placemark>
-		<Placemark>
-			<name>East Kimball Parking Lot (A lot, employee parking)</name>
-			<description>Employee parking lot (A lot).</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
-			<Polygon>
-				<tessellate>1</tessellate>
-				<outerBoundaryIs>
-					<LinearRing>
-						<coordinates>
-							-111.7807321485292,43.81748595944899,0 -111.780735519327,43.81716461508936,0 -111.7804011300616,43.817161147246,0 -111.780405370666,43.81707298562827,0 -111.7807336573467,43.81707814661698,0 -111.7807312453882,43.81657387736837,0 -111.7801032301939,43.81658384099873,0 -111.7801088964616,43.81746331259881,0 -111.7807321485292,43.81748595944899,0 
+							-111.7864161719243,43.8186328531508,0 -111.786502834386,43.81863202806753,0 -111.7865022454314,43.81858242682141,0 -111.7862853624858,43.81858428600903,0 -111.7862900119051,43.81898552148071,0 -111.7864222232068,43.81898676375744,0 -111.7864161719243,43.8186328531508,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -176,13 +634,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>Manwaring East Parking Lot</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin80</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7807432860029,43.81889103065931,0 -111.7808877002088,43.81888432394705,0 -111.7809428897536,43.81884108788027,0 -111.7809439075446,43.81873996717002,0 -111.7809886119132,43.81873652657737,0 -111.7810230469814,43.81877633433848,0 -111.7812371065303,43.81877349329331,0 -111.781232390927,43.81869051109743,0 -111.7811627936097,43.81869029581561,0 -111.7811586474603,43.81852538722794,0 -111.7810004280863,43.81852145847562,0 -111.7809949167605,43.81858574551003,0 -111.7809943436618,43.81865024121361,0 -111.7809249704763,43.81865361530425,0 -111.7809321528873,43.81843946267526,0 -111.7810011460963,43.81843958295113,0 -111.7809958051335,43.81848581106033,0 -111.7811539891722,43.81846832552066,0 -111.7811450785017,43.81828390679607,0 -111.7809976379843,43.81828031620264,0 -111.7809872923776,43.81833678606385,0 -111.7809087628699,43.81832965627756,0 -111.7809082618837,43.81837206072072,0 -111.7809870361502,43.81836508692491,0 -111.7809965314421,43.81840407704335,0 -111.7809177967818,43.81840041283679,0 -111.7809192130864,43.81826968920154,0 -111.7807379721818,43.81826958797197,0 -111.7807432860029,43.81889103065931,0 
+							-111.7808224081323,43.81889784169805,0 -111.7809499453265,43.81889718106059,0 -111.7809994548527,43.81879896194948,0 -111.7810024265429,43.8178653821421,0 -111.7808232722653,43.81786472818753,0 -111.7808230171482,43.8187927162915,0 -111.7808224081323,43.81889784169805,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -192,13 +650,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>Clarke Parking Lot</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin12</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7812869927141,43.81983677310303,0 -111.7811302480042,43.81983947047298,0 -111.78114811776,43.82052113438375,0 -111.7812962864782,43.8205216654903,0 -111.7812869927141,43.81983677310303,0 
+							-111.7812824815055,43.81984116871668,0 -111.7811276390355,43.81984023183571,0 -111.781128733532,43.82051971957458,0 -111.7812695514965,43.82051913451687,0 -111.7812952749265,43.8204974999551,0 -111.7812824815055,43.81984116871668,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -207,13 +665,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 		<Placemark>
 			<name>Faculty/ Staff Parking</name>
 			<description>Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin12</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7815098318937,43.82156052154044,0 -111.7815082160084,43.82150414813082,0 -111.781083878574,43.82151071534206,0 -111.7810848634417,43.82156675845438,0 -111.7815098318937,43.82156052154044,0 
+							-111.7815110320374,43.8215648128422,0 -111.7815082160084,43.82150414813082,0 -111.7810876692452,43.82150576969576,0 -111.7810848634417,43.82156675845438,0 -111.7815110320374,43.8215648128422,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -222,13 +680,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 		<Placemark>
 			<name>Faculty/ Staff Parking</name>
 			<description>Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin10</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7789119810131,43.8167523517841,0 -111.7789159461777,43.81657679184917,0 -111.778845734298,43.81658018007512,0 -111.7788346726518,43.81662386181697,0 -111.778684653188,43.81662688046189,0 -111.778680995899,43.81675473765885,0 -111.7789119810131,43.8167523517841,0 
+							-111.7789375891977,43.816756895883,0 -111.778937411417,43.81660605663878,0 -111.7786804553521,43.81660382410797,0 -111.7786780066531,43.81675663567837,0 -111.7789375891977,43.816756895883,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -238,13 +696,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>Faculty/ Staff Parking</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin9</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7788852022309,43.81626303307151,0 -111.7791241987669,43.81607665791873,0 -111.7790393749433,43.81602913009592,0 -111.7792072507579,43.81589438864313,0 -111.7792841415463,43.815957529737,0 -111.7792871035309,43.81569803285752,0 -111.7787011858,43.8161676856398,0 -111.7788852022309,43.81626303307151,0 
+							-111.7788640420703,43.81627107299197,0 -111.7791241987669,43.81607665791873,0 -111.7790447327318,43.81602426960474,0 -111.7792031733076,43.81590600787922,0 -111.7792841415463,43.815957529737,0 -111.7792871035309,43.81569803285752,0 -111.7787011858,43.8161676856398,0 -111.7788640420703,43.81627107299197,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -254,13 +712,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>Faculty/ Staff Parking</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin20</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7830769172632,43.81295206277141,0 -111.7830831494224,43.81281222561924,0 -111.7829037733073,43.81282228558641,0 -111.782879239307,43.81295773707684,0 -111.7830769172632,43.81295206277141,0 
+							-111.7830747236373,43.81296759860128,0 -111.7830738301036,43.81280394630021,0 -111.7829057895935,43.81280292699918,0 -111.7829060665498,43.81296784176453,0 -111.7830747236373,43.81296759860128,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -270,13 +728,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>Faculty/ Staff Parking</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin4</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7800337551434,43.81526574222219,0 -111.7801300146722,43.8152591883666,0 -111.7801371582865,43.81416527542584,0 -111.7800538700757,43.81416901498754,0 -111.7800337551434,43.81526574222219,0 
+							-111.7800347942644,43.81530749056251,0 -111.7801456424953,43.81530737875404,0 -111.7801459394653,43.81411419760258,0 -111.7800330888349,43.8141150082328,0 -111.7800347942644,43.81530749056251,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -286,13 +744,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<name>Faculty/ Staff Parking</name>
 			<description>Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin28</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7864646133312,43.81659108242781,0 -111.7861639679236,43.81659078202487,0 -111.7861672876337,43.81691871971071,0 -111.7864584301396,43.81691234352099,0 -111.7864646133312,43.81659108242781,0 
+							-111.7858977954143,43.8165840322632,0 -111.7855672316086,43.81658390299803,0 -111.7855657112888,43.81696014893006,0 -111.7858980147912,43.81696245159047,0 -111.7858977954143,43.8165840322632,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
@@ -303,13 +761,13 @@ Full time employees may receive one transferable hanging A permit. Employees may
 			<description>Employee parking lot (A lot).
 Faculty/ Staff 
 Full time employees may receive one transferable hanging A permit. Employees may receive either an N, S or F tag for a second vehicle. Additional N or S parking decals may be purchased at regular cost.</description>
-			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<styleUrl>#msn_ylw-pushpin23</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-111.7807321485292,43.81748595944899,0 -111.780735519327,43.81716461508936,0 -111.7804011300616,43.817161147246,0 -111.780405370666,43.81707298562827,0 -111.7807336573467,43.81707814661698,0 -111.7807312453882,43.81657387736837,0 -111.7801032301939,43.81658384099873,0 -111.7801088964616,43.81746331259881,0 -111.7807321485292,43.81748595944899,0 
+							-111.7807302622133,43.81748349112303,0 -111.7807309217967,43.81716073283721,0 -111.7804011300616,43.817161147246,0 -111.7804031436229,43.81707388271959,0 -111.7807349388808,43.81707456896601,0 -111.780734750174,43.81658375748029,0 -111.7801094933517,43.81658267957336,0 -111.7801074474394,43.81748333215909,0 -111.7807302622133,43.81748349112303,0 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
