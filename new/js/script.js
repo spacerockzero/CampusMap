@@ -222,7 +222,6 @@ var categoryInfo = [],
               menu = $('#menu_button'); 
     loadingDiv.fadeOut(1000);
     menu.fadeIn(1000);
-
     callback;
   }
 
@@ -630,7 +629,7 @@ var categoryInfo = [],
       console.time("clickCategory");
       //close any open info windows
       // infoWindow.close();
-      
+
       var device = control.currentDevice,
           parent = this.parentNode,
            index = parent.id.substr(4),

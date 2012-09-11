@@ -199,7 +199,7 @@ a img{
 		height: 100%;
 		width: 100%;
 		position: absolute;
-		z-index: 3;
+		// z-index: 3;
 		background: white;
 		background-image:url(../img/interface/white_speckle.jpg);
 		box-shadow: inset 0px 0px 80px rgba(60, 60, 60, 0.7);
@@ -268,12 +268,12 @@ a img{
 		height: 32px;
 	}
 	#mobile #device_type{
-		-webkit-transform: translate3d(0, 0, 0);
+		// -webkit-transform: translate3d(0, 0, 0);
 		.transition(background-position,300ms);
 		background-position:0 0;
 	}
 	#desktop #device_type{
-		-webkit-transform: translate3d(0, 0, 0);
+		// -webkit-transform: translate3d(0, 0, 0);
 		.transition(background-position,300ms);
 		background-position:0 -32px;
 	}
@@ -454,10 +454,12 @@ a img{
 		background-repeat:no-repeat;
 	}
 	.infopane{
-		z-index:3;
-		height:100%;
-		position:relative;
-		display:block;
+		display: block;
+		padding: 10px;
+		// z-index:3;
+		// height:100%;
+		// position:relative;
+		// display:block;
 	}
 
 //exceptions for very narrow screens:
