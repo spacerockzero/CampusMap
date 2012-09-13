@@ -337,35 +337,35 @@
       "contains":     "Those without any parking permits may park in the areas shown for the durations posted",
       "borderColor":  "#ddd",
       "fillColor":    "#fff",
-      "map":          "http://lehi3.byui.edu/map/data/parking/v.xml"
+      "map":          "http://www2.byui.edu/map/data/parking/v.xml"
     },
     {
       "name":         "A - Faculty & Staff",
       "contains":     "Faculty & Staff with 'A' Permit may park in the areas shown",
       "borderColor":  "#9b100c",
       "fillColor":    "#eb1c23",
-      "map":          "http://lehi3.byui.edu/map/data/parking/a.xml"
+      "map":          "http://www2.byui.edu/map/data/parking/a.xml"
     },
     {
       "name":         "N - North Zone",
       "contains":     "Those with 'N' North Zone Permit may park in the areas shown",
       "borderColor":  "#1371bb",
       "fillColor":    "#63a3d3",
-      "map":          "http://lehi3.byui.edu/map/data/parking/n.xml"
+      "map":          "http://www2.byui.edu/map/data/parking/n.xml"
     },
     {
       "name":         "S - South Zone",
       "contains":     "Those with 'S' South Zone Permit may park in the areas shown",
       "borderColor":  "#fbe72b",
       "fillColor":    "#fff000",
-      "map":          "http://lehi3.byui.edu/map/data/parking/s.xml"
+      "map":          "http://www2.byui.edu/map/data/parking/s.xml"
     },
     {
       "name":         "C - 4th Ward Meetinghouse",
       "contains":     "Those with 'C' 4th Ward Meetinghouse Permit may park in the areas shown",
       "borderColor":  "#fdb445",
       "fillColor":    "#f6921e",
-      "map":          "http://lehi3.byui.edu/map/data/parking/c.xml"
+      "map":          "http://www2.byui.edu/map/data/parking/c.xml"
     },
     
     {
@@ -373,7 +373,7 @@
       "contains":     "Those with 'H' On Campus Housing Permit may park in the areas shown",
       "borderColor":  "#333333",
       "fillColor":    "#8ac53e",
-      "map":          "http://lehi3.byui.edu/map/data/parking/h.xml"
+      "map":          "http://www2.byui.edu/map/data/parking/h.xml"
     },
     
     {
@@ -381,14 +381,28 @@
       "contains":     "Those with 'L' Long Term & Overnight Permit may park in the areas shown",
       "borderColor":  "#333333",
       "fillColor":    "#a7308f",
-      "map":          "http://lehi3.byui.edu/map/data/parking/l.xml"
+      "map":          "http://www2.byui.edu/map/data/parking/l.xml"
     },
     {
       "name":         "F - Free Permit Lot",
       "contains":     "Those with 'L' Long Term & Overnight Permit may park in the areas shown",
       "borderColor":  "#333333",
       "fillColor":    "#c3996b",
-      "map":          "http://lehi3.byui.edu/map/data/parking/f.xml"
+      "map":          "http://www2.byui.edu/map/data/parking/f.xml"
+    },
+    {
+      "name":         "City R - City Street Parking",
+      "contains":     "City Resident Street Parking City R Permit Required. The City provides two permits per household to residents living on the streets zoned City R. Students living on these streets should consult with their landlord to determine if the access to these permits is available.",
+      "borderColor":  "#333333",
+      "fillColor":    "#c3996b",
+      "map":          "http://www2.byui.edu/map/data/parking/cr.xml"
+    },
+    {
+      "name":         "City U - City Street Parking",
+      "contains":     "City U permit Required. Parking on city streets requires a permit from the City of Rexburg. Information about city parking permits can be obtained by contacting City of Rexburg at: 208-359-3020 ext. 8000",
+      "borderColor":  "#333333",
+      "fillColor":    "#c3996b",
+      "map":          "http://www2.byui.edu/map/data/parking/cu.xml"
     }
   ],
   [
