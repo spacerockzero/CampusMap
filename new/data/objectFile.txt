@@ -393,15 +393,15 @@
     {
       "name":         "City R - City Street Parking",
       "contains":     "City Resident Street Parking City R Permit Required. The City provides two permits per household to residents living on the streets zoned City R. Students living on these streets should consult with their landlord to determine if the access to these permits is available.",
-      "borderColor":  "#333333",
-      "fillColor":    "#c3996b",
+      "borderColor":  "#2dbb9c",
+      "fillColor":    "#36eac3",
       "map":          "http://www2.byui.edu/map/data/parking/cr.xml"
     },
     {
       "name":         "City U - City Street Parking",
       "contains":     "City U permit Required. Parking on city streets requires a permit from the City of Rexburg. Information about city parking permits can be obtained by contacting City of Rexburg at: 208-359-3020 ext. 8000",
-      "borderColor":  "#333333",
-      "fillColor":    "#c3996b",
+      "borderColor":  "#ff239f",
+      "fillColor":    "#f869bc",
       "map":          "http://www2.byui.edu/map/data/parking/cu.xml"
     }
   ],
