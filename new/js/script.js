@@ -222,7 +222,7 @@ var categoryInfo = [],
               menu = $('#menu_button'); 
     loadingDiv.fadeOut(1000);
     menu.fadeIn(1000);
-    callback;
+    callback();
   }
 
 
@@ -362,7 +362,7 @@ var categoryInfo = [],
 
     // insert html back into target with one reflow
     target.innerHTML = html; 
-    callback; 
+    callback(); 
   }
 
   function populateObjectCategory(index){
@@ -467,7 +467,7 @@ var categoryInfo = [],
     // write all new html for this category to DOM in one instant reflow
     target.innerHTML = html;
 
-    callback;
+    callback();
   }
 
 
@@ -511,7 +511,7 @@ var categoryInfo = [],
       obj.toggleClass('active_polygon');
     }
     console.timeEnd('show polygon');
-    callback;
+    callback();
   }
 
 
@@ -573,7 +573,7 @@ var categoryInfo = [],
       }
       i += 1;
     }
-    callback;
+    callback();
   }
 
   
@@ -686,7 +686,7 @@ var categoryInfo = [],
       console.timeEnd("clickCategory");
 
     });
-    callback;
+    callback();
   }
 /****************************************************/
 /*   Category Toggle                                */
@@ -706,7 +706,7 @@ var categoryInfo = [],
       togglePolygonVisibility(obj, catIndex, layerIndex);
 
     });
-
+    callback();
   }  
 
 /****************************************************/
@@ -766,28 +766,33 @@ var categoryInfo = [],
     setOptions();
     setAllControls();
     setMap();
-        loadProgress(10);
+        //loadProgress(10);
     setInfoWindow();
-    setCampusLayer(); 
-        loadProgress(20);   
+    setCampusLayer();
+    alert("inside this callback!");  
     // Run GatherData Stack using callback function to serialize the dependent functions
     loadCategoryInfoFile(function(){ 
-        loadProgress(30);
-      populateCategoryInfo();
+
+      populateCategoryInfo(function(){
+
+        loadCategoryFile(function(){
+
+          runPopulators(function(){
+
+            bindCategoryToggle(function(){
+              
+              bindPolygonToggle(function(){
+
+                bindMenuObjects(function(){
+                  zoomToggle();
+                });
+              });
+            });
+          }); 
+        });
+      });
     });
-        loadProgress(40);
-    loadCategoryFile(function(){
-      runPopulators();
-          loadProgress(50);
-      bindCategoryToggle();
-          loadProgress(60);
-      bindPolygonToggle();
-          loadProgress(70);
-      bindMenuObjects();
-          loadProgress(80);
-      zoomToggle();
-    });
-          loadProgress(90);
+    loadProgress(90);
     callback;
   }//end initialize()
 
@@ -817,13 +822,13 @@ var categoryInfo = [],
     // Remove Loading screen
     loadComplete();
     // close menu on off-click 
-    $('#map_canvas').click(function(event){
-      // stop click event from "propagating/bubbling down to children DOM elements"
-      event.stopPropagation();
-      if($(this) !== $('#menu_button')){
-        setMenu(0);
-      }
-    });
+    // $('#map_canvas').click(function(event){
+    //   // stop click event from "propagating/bubbling down to children DOM elements"
+    //   event.stopPropagation();
+    //   if($(this) !== $('#menu_button')){
+    //     setMenu(0);
+    //   }
+    // });
     // Toggle Menu on spacebar keypress
     // var space = false;
     $(document).keydown(function(evt) {
