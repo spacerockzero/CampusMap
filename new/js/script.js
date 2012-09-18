@@ -222,7 +222,7 @@ var categoryInfo = [],
               menu = $('#menu_button'); 
     loadingDiv.fadeOut(1000);
     menu.fadeIn(1000);
-    callback();
+    callback;
   }
 
 
@@ -467,7 +467,7 @@ var categoryInfo = [],
     // write all new html for this category to DOM in one instant reflow
     target.innerHTML = html;
 
-    callback();
+    callback;
   }
 
 
