@@ -5,7 +5,7 @@
       "code": "AGM",
       "lat":  43.813304,
       "lon": -111.783140,
-      "img": "AGM-AgEngineeringBldg.jpg",
+      "img": "AGM.jpg",
       "offices": [],
       "info": "Lab area for Department of Agribusiness, Plant & Animal Science."
     },
@@ -14,7 +14,7 @@
       "code": "ASB",
       "lat":  43.814100,
       "lon": -111.783147,
-      "img": "ASB-AuxiliaryServicesBldg.jpg",
+      "img": "ASB.jpg",
       "info": "Division of Continuing Education, University Press, a Copy Spot, the university's central warehouse, purchasing and travel offices."
     },
     {
@@ -22,7 +22,7 @@
       "code": "AUS",
       "lat":  43.815756,
       "lon": -111.784646,
-      "img": "AUS-MarkAustinTechnicalEngineeringBldg.jpg",
+      "img": "AUS.jpg",
       "info": "Department of Architecture & Construction, Department of Automotive Technology, Department of Computer Science and Engineering, and Department of Mechanical Engineering."
     },
     {
@@ -39,7 +39,7 @@
       "code": "BEN",
       "lat":  43.815441,
       "lon": -111.783076,
-      "img": "BEN-EzraTaftBensonAgriculturalBiologicalSciencesBldg.jpg",
+      "img": "BEN.jpg",
       "info": "Department of Biology, Department of Horticulture, laboratories, greenhouses, horticulture outlet for studio flowers and plant sales, and the Wildlife Museum."
     },
     {
@@ -55,7 +55,7 @@
       "code": "BRN",
       "lat":  43.819171,
       "lon": -111.778768,
-      "img": "BRN-BarnesHallwomen.jpg",
+      "img": "BRN.jpg",
       "info": "Women's housing."
     },
     {
@@ -63,7 +63,7 @@
       "code": "CHP",
       "lat":  43.818202,
       "lon":  -111.780259,
-      "img": "CHP-ChapmanHallmen.jpg",
+      "img": "CHP.jpg",
       "info": "Men's housing."
     },
     {
@@ -71,7 +71,7 @@
       "code": "CLK",
       "lat":  43.820179,
       "lon":  -111.781751,
-      "img": "CLK-JohnLClarkeBldg.jpg",
+      "img": "CLK.jpg",
       "info": "Department of Health Science, Department of Interior Design, Department of Nursing, Department of Home and Family, preschool for the child development program, Testing Services."
     },
     {
@@ -86,7 +86,7 @@
       "code": "HIN",
       "lat":  43.815841,
       "lon":  -111.779900,
-      "img": "HIN-GordonBHinckleyBldg.jpg",
+      "img": "HIN.jpg",
       "info": "Department of Teacher Education, faculty offices, Institute classes, and a stake center."
     },
     {
@@ -94,7 +94,7 @@
       "code": "HRT",
       "lat":  43.819535,
       "lon": -111.785311,
-      "img": "HRT-JohnWHartPhysicalEducationBldg.jpg",
+      "img": "HRT.jpg",
       "info": "Department of Exercise & Sports Science, Main Gymnasium/Hart Auditorium, Auxiliary Gym, field house, swimming pool, racquetball courts, dressing rooms, physical fitness and wellness centers.",
       "link": "http://www2.byui.edu/HartBuilding/"
     },
@@ -103,7 +103,7 @@
       "code": "HTG",
       "lat":  43.817298,
       "lon":  -111.786003,
-      "img": "HTG-HeatingPlant.jpg",
+      "img": "HTG.jpg",
       "info": "BYU-Idaho support facility for heating and hot water."
     },
     {
@@ -111,7 +111,7 @@
       "code": "KER",
       "lat":  43.819258,
       "lon":  -111.779575,
-      "img": "KER-KerrHallwomen.jpg",
+      "img": "KER.jpg",
       "info": "Women's housing."
     },
     {
@@ -119,7 +119,7 @@
       "code": "KIM",
       "lat":  43.817071,
       "lon":  -111.781492,
-      "img": "KIM-SpencerWKimballStudentAdminServicesBldg.jpg",
+      "img": "KIM.jpg",
       "info": "Academic Administrative Services, Accounting Office, Admissions Office, Alumni Office, Career & Academic Advising, Cashier and Ticket Services, Dean of Students Office, Executive Offices, Financial Services, Housing Office, Human Resources, International Services, Internship and Career Services, Police, Registrar & Records Office, Scholarships Office, Student Honor Office, and University Relations Office."
     },
     {
@@ -127,7 +127,7 @@
       "code": "KRK",
       "lat":  43.821114,
       "lon":  -111.781479,
-      "img": "KRK-OscarAKirkhamBldg.jpg",
+      "img": "KRK.jpg",
       "info": "Department of Dance, Kirkham Auditorium, Arena Theater, and ceramics and sculpture studios."
     },
     {
@@ -135,7 +135,7 @@
       "code": "LAM",
       "lat":  43.818234,
       "lon":  -111.779517,
-      "img": "LAM-LamprechtHallwomen.jpg",
+      "img": "LAM.jpg",
       "info": "Women's housing."
     },
     {
@@ -151,7 +151,7 @@
       "code": "MCK",
       "lat":  43.819310,
       "lon":  -111.783182,
-      "img": "MCK-DavidOMcKayLibrary.jpg",
+      "img": "MCK.jpg",
       "info": "Department of Academic Learning, book collection, e-book collection, periodicals, computers labs, Family History Center,  archives, a Copy Spot, a special exhibition area, instructional technology labs, equipment checkout and rental, and a self-serve recording room.",
       "link": "http://www.lib.byui.edu/"
     },
@@ -160,7 +160,7 @@
       "code": "PER",
       "lat":  43.819253,
       "lon":  -111.780264,
-      "img": "PER-PerkinsHallwomen.jpg",
+      "img": "PER.jpg",
       "info": "Women's housing."
     },
     {
@@ -168,7 +168,7 @@
       "code": "PPG",
       "lat":  43.815277,
       "lon":  -111.786379,
-      "img": "PPG-PhysicalPlantGroundsConstructionSignShop.jpg",
+      "img": "PPG.jpg",
       "info": "BYU-Idaho support facility for landscaping, ground maintenance and signage."
     },
     {
@@ -208,7 +208,7 @@
       "code": "RGS",
       "lat":   43.817248,
       "lon":  -111.779400,
-      "img": "RGS-RadioandGraphicServicesBldg.jpg",
+      "img": "RGS.jpg",
       "info": "University Communications, KBYI FM 100.5, KBYR 91.5, Creative Services (graphic design and photography)."
     },
     {
@@ -216,7 +216,7 @@
       "code": "RIC",
       "lat":  43.81812607978744,
       "lon":  -111.778914594058,
-      "img": "RIC-RicksHallwomen.jpg",
+      "img": "RIC.jpg",
       "info": "Women's housing."
     },
     {
@@ -224,7 +224,7 @@
       "code": "RIG",
       "lat":  43.81696924342953,
       "lon":  -111.7841900066221,
-      "img": "RIG-RigbyHallfacultyoffices.jpg",
+      "img": "RIG.jpg",
       "info": "Faculty offices, Student Orientation Office."
     },
     {
@@ -232,7 +232,7 @@
       "code": "RKS",
       "lat":  43.81514466531412,
       "lon": -111.7812015011548,
-      "img": "RKS-ThomasERicksBldg.jpg",
+      "img": "RKS.jpg",
       "info": "Department of History, Geography and Political Science; Department of Mathematics; Department of Psychology; and Department of Sociology and Social Work."
     },
     {
@@ -240,7 +240,7 @@
       "code": "ROM",
       "lat":   43.819988,
       "lon":  -111.783261,
-      "img": "ROM-GeorgeSRomneyBldg.jpg",
+      "img": "ROM.jpg",
       "info": "Department of Chemistry, Department of Geology, Department of Recreation Leadership, Department of Physics, the planetarium, hall displays, and the Geology Museum."
     },
     {
@@ -248,7 +248,7 @@
       "code": "SHC",
       "lat":  43.81681618820919,
       "lon":  -111.7792542421602,
-      "img": "SHC-StudentHealthCounselingCenter.jpg",
+      "img": "SHC.jpg",
       "info": "Student Health Center (pharmacy, laboratory, x-ray and orthopedic services), Student Counseling Center (individual, group, and marital counseling).",
       "link": "http://www.byui.edu/health-center"
     },
@@ -257,7 +257,7 @@
       "code": "SMI",
       "lat": 43.81920193746524,
       "lon": -111.7815120835109,
-      "img": "SMI-JosephFieldingSmithBldg.jpg",
+      "img": "SMI.jpg",
       "offices": [
         {
           "name": "College of Business & Communication",
@@ -271,7 +271,7 @@
       "code": "SNO",
       "lat":   43.821094,
       "lon":  -111.783580,
-      "img": "SNO-ElizaRSnowPerformingArtsCenter.jpg",
+      "img": "SNO.jpg",
       "info": "Department of Music, Department of Theatre, Barrus Concert Hall, Recital Hall, Snow Drama Theater, Blackbox Theatre, and costume shop.",
       "link": "http://www2.byui.edu/music/"
     },
@@ -280,7 +280,7 @@
       "code": "SPO",
       "lat":   43.820767,
       "lon": -111.782499,
-      "img": "SPO-JacobSporiBldg.jpg",
+      "img": "SPO.jpg",
       "info": "Department of Communication, Department of Art, art galleries, and artifacts from original Spori Building."
     },
     {
@@ -288,7 +288,7 @@
       "code": "STA",
       "lat": 43.820806,
       "lon": -111.786127,
-      "img": "STA-BYU-IdahoStadium.jpg",
+      "img": "STA.jpg",
       "info": "Location of the Outdoor Resource Center. Equipment rentals and retail sales."
     },
     {
@@ -304,7 +304,7 @@
       "code": "TRG",
       "lat": 43.81582205080509,
       "lon": -111.7815419421354,
-      "img": "TRG-ThomasERicksMemorialGardens.jpg",
+      "img": "TRG.jpg",
       "info": "A horticulture research area, picnic structure, reception area, test gardens, fruit tree orchard, flowerbeds, and a native garden."
     },
     {
@@ -312,7 +312,7 @@
       "code": "TRK",
       "lat":  43.820805,
       "lon": -111.785301,
-      "img": "BYU-IdahoTrack.jpg",
+      "img": "BYU-Idaho-Track.jpg",
       "info": "A horticulture research area, picnic structure, reception area, test gardens, fruit tree orchard, flowerbeds, and a native garden."
     },
     {
