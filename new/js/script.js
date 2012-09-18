@@ -257,8 +257,10 @@ var categoryInfo = [],
       var content = '',
              name = obj.name,
               img,
+          offices = [],
              info = obj.info,
-             link = obj.link;
+             link = obj.link,
+           device = control.currentDevice;
 
               if (obj.img) {
                 if (obj.img.indexOf(':') === -1) {
@@ -268,6 +270,11 @@ var categoryInfo = [],
                   img = obj.img;
                 }
               }
+              if (obj.offices) {
+                offices = obj.offices;
+                console.log("offices = " + offices);
+              }
+
              
 
       // Create the info panes which hold content about each building
@@ -275,7 +282,13 @@ var categoryInfo = [],
       content +=   '<h2>' + name + '</h2>';
       content +=   '<div>';
       if (img){
-        content += '<img src="' + img + '" alt="' + name + '" width="40%" style="float:right"/>';
+        content += '<img src="' + img + '" alt="' + name + '"';
+        if(device === 0) {
+          content += 'width="100" height="75"'; 
+        } else {
+          content += 'width="200" height="150"';
+        }
+        content += 'style="float:right;"/>';
       }
       if (info){
         content += info;

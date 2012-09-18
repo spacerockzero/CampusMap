@@ -6,6 +6,7 @@
       "lat":  43.813304,
       "lon": -111.783140,
       "img": "AGM-AgEngineeringBldg.jpg",
+      "offices": [],
       "info": "Lab area for Department of Agribusiness, Plant & Animal Science."
     },
     {
@@ -257,6 +258,12 @@
       "lat": 43.81920193746524,
       "lon": -111.7815120835109,
       "img": "SMI-JosephFieldingSmithBldg.jpg",
+      "offices": [
+        {
+          "name": "College of Business & Communication",
+          "phone": "(208) 496-3600"
+        }
+      ],
       "info": "Department of Accounting, Department of Business Management, Department of Economics, Department of Computer Information Technology, Department of Foreign Languages & Literatures, Online Testing Center."
     },
     {
