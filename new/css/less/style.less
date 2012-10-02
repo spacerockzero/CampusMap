@@ -1,6 +1,5 @@
 /* BYU-Idaho Campus Map Custom Styles */
 /* Made by Jakob Anderson, www.jakobanderson.com */
-/* Updated 9.11.2012 */
 
 /****************/
 /* Global items */
@@ -315,8 +314,8 @@ a img{
 		border-left: 1px solid #2b3e4d;
 	}
 	#inner_menu{
-		width:100%;
-		//overflow:hidden;
+		//width:100%;
+		overflow:hidden;
 		display: block;
 		position: relative;
 	}
@@ -462,11 +461,14 @@ a img{
 	}
 	.infopane{
 		display: block;
-		padding: 10px;
+		//padding: 10px;
 		// z-index:3;
 		// height:100%;
 		// position:relative;
 		// display:block;
+		h2 {
+			line-height:1.2em;
+		}
 	}
 
 //exceptions for very narrow screens:
@@ -474,7 +476,7 @@ a img{
 	#heading{
 		padding-left: 37px;
 		text-align: left;
-		font-size: 20px;
+		font-size: 16px;
 	}
 	#device_type{
 		left: 4px;
@@ -544,6 +546,9 @@ a img{
 		height:28px;
 	}
 	#map_canvas {
+	}
+	.infopane{
+		padding: 10px;
 	}
 }
 

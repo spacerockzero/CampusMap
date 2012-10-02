@@ -2,7 +2,7 @@
 /*   BYU-I Campus Map                                */
 /*   - Author: Jakob Anderson :: jakobanderson.com   */
 /*   - Requires: Google Maps API v3, jQuery 1.7      */
-/*   - Revised:  09.11.2012                          */
+/*   - Revised:  10.02.2012                          */
 /*****************************************************/
 
 // JS Lint Options (remove after deployment)
@@ -27,7 +27,6 @@ parkingLayer,
   infoWindow,
  campusLayer,
     iconpath = 'img/icons/numeral-icons/',
- //polygonFile = 'http://www2.byui.edu/Map/parking_data.xml',
   campusFile = 'http://www2.byui.edu/Map/campus_outline.xml';
 
 
@@ -252,7 +251,7 @@ var categoryInfo = [],
 
   function createInfoWindow(marker,obj,catName){
     // Listener that builds the infopane popups on marker click
-    google.maps.event.addListener(marker, 'click', function() {
+    google.maps.event.addListener(marker, 'mousedown', function() {
 
       var content = '',
              name = obj.name,
@@ -288,7 +287,7 @@ var categoryInfo = [],
         } else {
           content += 'width="200" height="150"';
         }
-        content += 'style="float:right;"/>';
+        content += 'style="float:right;margin:0 0 10px 10px"/>';
       }
       if (info){
         content += info;
@@ -311,7 +310,7 @@ var categoryInfo = [],
       google.maps.event.removeListener(moveEnd);
     });
     map.panTo(marker.getPosition());
-    google.maps.event.trigger(marker, 'click');
+    google.maps.event.trigger(marker, 'mousedown');
   }/* END displayPoint() */
 
 /****************************************************/
@@ -331,9 +330,8 @@ var categoryInfo = [],
          catID;
 
     while(i<length){
-
       thisCat = categoryInfo[i];
-
+      
       html += '<div class="category" id="cat_' + i + '">';
       if (categoryInfo[i].type === 0){
         html += '<a class="category_bar" href="#" >';
@@ -356,7 +354,6 @@ var categoryInfo = [],
 
       // set the global control to read this category as being in a closed state by default
       control.categoryState[i] = 0;
-
       i += 1;
     }
 
@@ -511,7 +508,7 @@ var categoryInfo = [],
       obj.toggleClass('active_polygon');
     }
     console.timeEnd('show polygon');
-    callback();
+    callback;
   }
 
 
@@ -590,31 +587,31 @@ var categoryInfo = [],
           notification = doc.getElementById('notification'),     
          currentDevice = control.currentDevice;     
     
-    // if(currentDevice !== 0){ /* selectors for non-mobile jQuery */
-    //  menu = $('#menu');     
-    //  notification = $('#notification');     
-    // }
+    if(currentDevice !== 0){ /* selectors for non-mobile jQuery */
+     menu = $('#menu');     
+     notification = $('#notification');     
+    }
 
     if(newState === 0){               /* Toggle menu visibility off */
-      //if(currentDevice === 0){        /* For mobile */
+      if(currentDevice === 0){        /* For mobile */
         menu.style.display = "none";  /* Hide Menu, Show notification div*/
-        //notification.style.display = "block";
-      //} else {                        /* for non-mobile */
-       // menu.fadeOut(300);            /* Hide Menu with fade transition, Show notification div with fade transition*/
-        //notification.fadeIn(300);
-      //}
+        notification.style.display = "block";
+      } else {                        /* for non-mobile */
+       menu.fadeOut(300);            /* Hide Menu with fade transition, Show notification div with fade transition*/
+        notification.fadeIn(300);
+      }
       menu_indicator.innerHTML = "+";  /* Toggle indicator, Set current state of menu visibility in control object */
       control.menuState = 0; 
     } 
     else {                             /* Toggle menu visibility on */
-      //if(currentDevice === 0){         /*  mobile minimal show menu, hide notification div*/
+      if(currentDevice === 0){         /*  mobile minimal show menu, hide notification div*/
         menu.style.display = "block";
-      //  notification.style.display = "none";
-      //} else {                         /* non-mobile fancy */
+       notification.style.display = "none";
+      } else {                         /* non-mobile fancy */
         
-      //  menu.fadeIn(300);
-      //  notification.fadeOut(300);
-      //}                                /* Toggle indicator, Set current state of menu visibility in control object */
+       menu.fadeIn(300);
+       notification.fadeOut(300);
+      }                                /* Toggle indicator, Set current state of menu visibility in control object */
       menu_indicator.innerHTML = "-";
       control.menuState = 1; 
     }
@@ -715,7 +712,7 @@ var categoryInfo = [],
 
   function bindMenuObjects(callback){
     
-    $('.object.marker_object').click(function(event){
+    $('.object.marker_object').mousedown(function(event){
       // stop click event from "propagating/bubbling down to children DOM elements"
       event.stopPropagation();
 
@@ -727,7 +724,9 @@ var categoryInfo = [],
 
       //display corresponding marker/infowindow when menu item is clicked/pressed
       displayPoint(thisMarker);
-      setMenu(0);
+      if (device === 0){ 
+        setMenu(0);
+      }
     });
 
   }  
@@ -769,7 +768,7 @@ var categoryInfo = [],
         //loadProgress(10);
     setInfoWindow();
     setCampusLayer();
-    alert("inside this callback!");  
+    //alert("inside this callback!");  
     // Run GatherData Stack using callback function to serialize the dependent functions
     loadCategoryInfoFile(function(){ 
 
