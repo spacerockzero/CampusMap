@@ -28,12 +28,14 @@
       <!-- Mobile viewport optimized: h5bp.com/viewport -->
       <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> -->
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+      <link rel="stylesheet" href="css/font_style.css">
       <link rel="stylesheet" href="css/main.min.css">
       <script src="js/vendor/modernizr.custom.46328.js"></script>
       <script>
         // update this var when updates are made
         var updated = "10.2.2012";
       </script>
+      <!--[if lt IE 7]>  <script src="js/vendor/lte-ie7.js"></script><![endif]-->
   </head>
 
   <body id="mobile">
@@ -41,7 +43,7 @@
     <div id="title">
       <h1 id="heading">BYU-Idaho Campus Map</h1>
       <a id="device_type" href="#" onmousedown="toggleDevice(); return false;" title="Switch Device Type"></a>
-      <a id="menu_button" class="btn" href="#" title="Open Menu. Click this or press [space] bar" onmousedown="toggleMenu(); return false;">Menu <span id="menu_indicator">+</span></a>
+      <a id="menu_button" class="btn" href="#" data-icon="&#xe01a;" title="Open Menu. Click this or press [space] bar" onmousedown="toggleMenu(); return false;"><span id="menu_indicator">+</span></a>
     </div>
 
     <div id="container" name="container">

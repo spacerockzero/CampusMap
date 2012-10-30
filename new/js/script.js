@@ -638,7 +638,7 @@ var categoryInfo = [],
 
       console.time("clickCategory");
       //close any open info windows
-      // infoWindow.close();
+      infoWindow.close();
 
       var device = control.currentDevice,
           parent = this.parentNode,
@@ -821,13 +821,13 @@ var categoryInfo = [],
     // Remove Loading screen
     loadComplete();
     // close menu on off-click 
-    // $('#map_canvas').click(function(event){
-    //   // stop click event from "propagating/bubbling down to children DOM elements"
-    //   event.stopPropagation();
-    //   if($(this) !== $('#menu_button')){
-    //     setMenu(0);
-    //   }
-    // });
+    $('#map_canvas').click(function(event){
+      // stop click event from "propagating/bubbling down to children DOM elements"
+      event.stopPropagation();
+      if($(this) !== $('#menu_button')){
+        setMenu(0);
+      }
+    });
     // Toggle Menu on spacebar keypress
     // var space = false;
     $(document).keydown(function(evt) {
