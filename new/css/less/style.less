@@ -246,10 +246,13 @@ a img{
 	// 	background-repeat:repeat-x;
 	// }
 	#heading{
+		-webkit-font-smoothing: antialiased;
+		text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.9);
 		margin:0;
 		text-align: center;
 		color:#fff;
 		font-weight: 100;
+		.transition(all,300ms);
 		font-size: 20px;
 		text-shadow: 0 1px 0 #333;
 		padding: 10px 0 10px;
@@ -307,7 +310,7 @@ a img{
 		padding: 6px;
 		//width:50px;
 		text-decoration: none;
-		
+		.transition(all,300ms);
 
 		font-size: 26px;
 		top: 6px;
@@ -538,14 +541,16 @@ a img{
 	}
 	#title{
 		height: 57px;
-		.transition(top,300ms);
+		.transition(height,300ms);
 	}
 	#menu_button{
+		.transition(all,300ms);
 		font-size: 35px;
 		top: 17px;
 		right: 10px;
 	}
 	#heading{
+		.transition(all,300ms);
 		font-size: 25px;
 		padding: 20px 0 10px;
 	}
