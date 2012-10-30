@@ -33,7 +33,7 @@
       <script src="js/vendor/modernizr.custom.46328.js"></script>
       <script>
         // update this var when updates are made
-        var updated = "10.2.2012";
+        var updated = "10.30.2012";
       </script>
       <!--[if lt IE 7]>  <script src="js/vendor/lte-ie7.js"></script><![endif]-->
   </head>
@@ -42,8 +42,13 @@
 
     <div id="title">
       <h1 id="heading">BYU-Idaho Campus Map</h1>
-      <a id="device_type" href="#" onmousedown="toggleDevice(); return false;" title="Switch Device Type"></a>
-      <a id="menu_button" class="btn" href="#" data-icon="&#xe01a;" title="Open Menu. Click this or press [space] bar" onmousedown="toggleMenu(); return false;"><span id="menu_indicator">+</span></a>
+      <a id="device_type" href="#" onmousedown="toggleDevice(); return false;" title="Switch Device Type">
+        <div id="device_container">
+          <div class="device icon-monitor-2"></div>
+          <div class="device icon-mobile-2"></div>
+        </div>
+      </a>
+      <a id="menu_button" class="icon-untitled" href="#" title="Open Menu. Click this or press [space] bar" onmousedown="toggleMenu(); return false;"></a>
     </div>
 
     <div id="container" name="container">

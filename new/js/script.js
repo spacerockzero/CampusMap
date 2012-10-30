@@ -2,7 +2,7 @@
 /*   BYU-I Campus Map                                */
 /*   - Author: Jakob Anderson :: jakobanderson.com   */
 /*   - Requires: Google Maps API v3, jQuery 1.7      */
-/*   - Revised:  10.02.2012                          */
+/*   - Revised:  10.30.2012                          */
 /*****************************************************/
 
 // JS Lint Options (remove after deployment)
@@ -75,7 +75,13 @@ var categoryInfo = [],
 
   //set object height
   function setHeight(object, height){
-    object.style.height = height;
+    // var deviceState = control.currentDevice;
+    // if(deviceState === 0){
+    //   object.style.height = height +22;
+    // } else {
+      object.style.height = height;
+    // }
+    
   }
 
 
@@ -582,8 +588,7 @@ var categoryInfo = [],
   // SetMenu
   function setMenu(newState){
    
-    var menu_indicator = doc.getElementById('menu_indicator'),
-                  menu = doc.getElementById('menu'),     
+              var menu = doc.getElementById('menu'),     
           notification = doc.getElementById('notification'),     
          currentDevice = control.currentDevice;     
     
@@ -600,7 +605,7 @@ var categoryInfo = [],
        menu.fadeOut(300);            /* Hide Menu with fade transition, Show notification div with fade transition*/
         notification.fadeIn(300);
       }
-      menu_indicator.innerHTML = "+";  /* Toggle indicator, Set current state of menu visibility in control object */
+      //menu_indicator.innerHTML = "+";  /* Toggle indicator, Set current state of menu visibility in control object */
       control.menuState = 0; 
     } 
     else {                             /* Toggle menu visibility on */
@@ -612,7 +617,7 @@ var categoryInfo = [],
        menu.fadeIn(300);
        notification.fadeOut(300);
       }                                /* Toggle indicator, Set current state of menu visibility in control object */
-      menu_indicator.innerHTML = "-";
+      //menu_indicator.innerHTML = "-";
       control.menuState = 1; 
     }
   }
@@ -802,9 +807,16 @@ var categoryInfo = [],
 
   // Global Resize Event Function Stack
   function resizeStack(){
-    setHeight(container,getMapHeight());
-    setHeight(canvas,getMapHeight());
-    setDevice(detectDevice());
+    var deviceState = control.currentDevice;
+    //if(deviceState === 1){
+      setHeight(container,getMapHeight());
+      setHeight(canvas,getMapHeight());
+      setDevice(detectDevice());
+    // } else {
+    //   setHeight(container,getMapHeight());
+    //   setHeight(canvas,getMapHeight());
+    //   setDevice(detectDevice());
+    // }
   }
 
   // global map resize event listener
@@ -829,10 +841,8 @@ var categoryInfo = [],
       }
     });
     // Toggle Menu on spacebar keypress
-    // var space = false;
     $(document).keydown(function(evt) {
       if (evt.keyCode === 32) {
-        //space = true;
         toggleMenu();
       }
     });

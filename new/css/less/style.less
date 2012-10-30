@@ -230,12 +230,15 @@ a img{
 	/************************************************************/
 	#title{
 		color: white;
-		height: 57px;
+		.transition(height,300ms);
+		height: 35px;
 		display: block;
 		margin:0 auto;
 		position:relative;
 		border-bottom: 1px solid #2b3e4d;
 		background:@byui_dark_blue;
+		background:url(../img/interface/title_bg.png);
+		background-repeat:repeat-x;
 	}
 	// .no-cssgradients #title{
 	// 	background:@byui_dark_blue;
@@ -247,43 +250,71 @@ a img{
 		text-align: center;
 		color:#fff;
 		font-weight: 100;
-		font-size: 25px;
+		font-size: 20px;
 		text-shadow: 0 1px 0 #333;
-		padding: 20px 0 10px;
+		padding: 10px 0 10px;
 		height: 28px;
 		// .box_gradient_3stop(#3a5284, #2d416a, #202f4f);
-		background:url(../img/interface/title_bg.png);
-		background-repeat:repeat-x;
+		
 	}
 	#device_type{
 		display: block;
 		position: absolute;
-		top: 12px;
-		left: 11px;
-		background:url(../img/interface/device-type-sprite.png);
-		background-position:0 0;
-		background-repeat:no-repeat;
+		top: 4px;
+		left: 4px;
+		// background:url(../img/interface/device-type-sprite.png);
+		// background-position:0 0;
+		// background-repeat:no-repeat;
 		width: 32px;
-		height: 32px;
+		// height: 32px;
+		height: 35px;
+		overflow:hidden;
+		text-decoration: none;
+		#device_container{
+			height:70px;
+			top:-2px;
+			position: relative;
+			.device {
+
+
+				font-size: 23px;
+				color: white;
+				margin: 11px 0px;
+			}
+			.device_mobile{
+
+			}
+			.device_desktop{
+
+			}
+		}
 	}
-	#mobile #device_type{
-		.transition(background-position,300ms);
-		background-position:0 0;
+	#mobile #device_container{
+		top:-37px;
+		.transition(top,300ms);
+		// background-position:0 0;
 	}
-	#desktop #device_type{
-		.transition(background-position,300ms);
-		background-position:0 -32px;
+	#desktop #device_container{
+		top:-2px;
+		.transition(top,300ms);
+		// background-position:0 -32px;
 	}
 	#menu_button{
 		display: none;
 		position: absolute;
 		top: 12px;
 		right: 11px;
-		width:50px;
-		color: #222;
-		text-decoration: none;
 		padding: 6px;
-		font-size:14px;
+		//width:50px;
+		text-decoration: none;
+		
+
+		font-size: 26px;
+		top: 6px;
+		right: 4px;
+
+		color: #1A2233;
+		text-shadow: 0 1px 1px rgba(255, 255, 255, .25);
 	}
 
 	/***********************************/
@@ -474,12 +505,12 @@ a img{
 //exceptions for very narrow screens:
 @media only screen and (max-width: 460px) {
 	#heading{
-		padding-left: 37px;
-		text-align: left;
-		font-size: 16px;
+		//padding-left: 37px;
+		text-align: center;
+		//font-size: 16px;
 	}
 	#device_type{
-		left: 4px;
+		//left: 4px;
 	}
 }
 
@@ -505,7 +536,18 @@ a img{
 	#container{
 		overflow:hidden;
 	}
+	#title{
+		height: 57px;
+		.transition(top,300ms);
+	}
+	#menu_button{
+		font-size: 35px;
+		top: 17px;
+		right: 10px;
+	}
 	#heading{
+		font-size: 25px;
+		padding: 20px 0 10px;
 	}
 	#loading{
 
@@ -519,6 +561,15 @@ a img{
 		overflow: auto;
 		// box-shadow: inset 10px 0px 30px #121212;
 		box-shadow: inset 10px 0px 40px #111;
+	}
+	#device_type{
+		top: 10px;
+		left: 15px;
+	}
+	#device_container .device{
+		font-size: 30px;
+		color: white;
+		margin: 12px 0px;
 	}
 	.category_name{
 		top: -8px;
