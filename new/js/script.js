@@ -9,39 +9,41 @@
 /*jslint white:true, browser: true, maxerr:100 */
 /*global google, jQuery, $, done*/
 
-// Cache global objects as local variables
+// Cache global objects as local variables. 
      var doc = document,
          win = window,
-        $doc = $(document),
-        $win = $(window),
+        $doc = $(document),  /* jQuery variant of doc */
+        $win = $(window),    /* jQuery variant of win */
+// Cache often-used dom objects so that you don't have to select them again, 
+// speeding up overall latency.
    container = doc.getElementById('container'),
         body = doc.getElementsByTagName('body')[0],
       canvas = doc.getElementById('map_canvas'),
     doResize,
 categoryFile = 'data/categories.txt',
   objectFile = 'data/objectFile.txt',
-    myLatlng,
+    myLatlng,                                                 /* BYU-Idaho's center of campus lat/ling in googlemaps' latling object form */
    myOptions,
          map,
 parkingLayer,
   infoWindow,
- campusLayer,
     iconpath = 'img/icons/numeral-icons/',
-  campusFile = 'http://www2.byui.edu/Map/campus_outline.xml';
+ campusLayer,                                                 /* The layer that will have the campusfile kml rendered onto it */
+  campusFile = 'http://www2.byui.edu/Map/campus_outline.xml'; /* kml file that represents the outline image of campus. All kml files must be on an absolute-path, in a web-accessible location for google's servers to process them */
 
 
-// Control object holds the current states and values of the app
+// Control object holds the current states of parts of the app
 var control = {
-  menuState: 0,
-  currentDevice: 0,
-  categoryState: []
+  menuState: 0,      /* 0 = Menu is closed/hidden, 1 = Menu is open/shown */
+  currentDevice: 0,  /* 0 = Current Device is Mobile, 1 = Current Device is Desktop */
+  categoryState: []  /* array that holds the current states (open/close) of each category's submenu */
 };
 
 
 // Arrays to hold category names, settings, and control info
-var categoryInfo = [], 
-   mapCategories = [],
-     markerArray = [];
+var categoryInfo = [], /* array that holds the basic info about each category: icon, link, name, text, title, etc */
+   mapCategories = [], /* array that holds the subitems from each category: objects and their lat/lon infowindow data, or polygon names, key info and kml path data */
+     markerArray = []; /* array of actual google map markers of objects, separated by category, in same order as above two arrays. Iterate through this to perform functions on markers, such as setting visibility */ 
 
 
 /**********************/
@@ -225,7 +227,7 @@ var categoryInfo = [],
     var loadingDiv = $('#loading'),
             device = control.currentDevice,
               menu = $('#menu_button'); 
-    loadingDiv.fadeOut(1000);
+    //loadingDiv.fadeOut(1000);
     menu.fadeIn(1000);
     callback;
   }
@@ -499,7 +501,7 @@ var categoryInfo = [],
 
   // Show / Toggle Polygon Category KML layers
   function togglePolygonVisibility(obj, catIndex, layerIndex, callback){
-    console.time('show polygon');
+    //console.time('show polygon');
     var layer = markerArray[catIndex][layerIndex],
         active = obj.hasClass('active_polygon');
 
@@ -513,7 +515,7 @@ var categoryInfo = [],
       layer.setMap(map);
       obj.toggleClass('active_polygon');
     }
-    console.timeEnd('show polygon');
+    //console.timeEnd('show polygon');
     callback;
   }
 
@@ -729,10 +731,10 @@ var categoryInfo = [],
         setMenu(0);
       }
     });
-
+    callback();
   }  
 
-  function zoomToggle(){
+  function zoomToggle(callback){
     //automagically switch to vector map for close-up, and satellite map for farther view
     google.maps.event.addListener(map, 'zoom_changed', function () {
       var z = map.getZoom();
@@ -745,6 +747,7 @@ var categoryInfo = [],
         map.setMapTypeId(google.maps.MapTypeId.HYBRID);
       }
     });
+    callback();
   }
 
   // Search (needs web service ajax server? 
@@ -766,11 +769,11 @@ var categoryInfo = [],
     setOptions();
     setAllControls();
     setMap();
-        //loadProgress(10);
+      loadProgress(10);
     setInfoWindow();
     setCampusLayer();
-    //alert("inside this callback!");  
-    // Run GatherData Stack using callback function to serialize the dependent functions
+     
+    // Run GatherData Stack using callback functions to serialize the dependent functions
     loadCategoryInfoFile(function(){ 
 
       populateCategoryInfo(function(){
@@ -784,7 +787,12 @@ var categoryInfo = [],
               bindPolygonToggle(function(){
 
                 bindMenuObjects(function(){
-                  zoomToggle();
+                  
+                  zoomToggle(function(){
+                    alert("inside final callback!"); 
+                    // Remove Loading screen
+                    loadComplete();
+                  });
                 });
               });
             });
@@ -820,14 +828,13 @@ var categoryInfo = [],
     clearTimeout(doResize);
     doResize = setTimeout(function(){
       resizeStack();
-    }, 500);
+    }, 100);
   });
 
   $win.load(function(){
     // Run initialize function chain
     initialize();
-    // Remove Loading screen
-    loadComplete();
+    
     // close menu on off-click 
     $('#map_canvas').click(function(event){
       // stop click event from "propagating/bubbling down to children DOM elements"
