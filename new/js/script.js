@@ -220,7 +220,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     var obj = doc.getElementById('loading_progress');
     obj.style.width = percentageComplete + '%';
   }
-
+  
   // Execute when page, data, and DOM is finished loading, then hide loading div
   function loadComplete(callback){
     loadProgress(100);
@@ -598,8 +598,8 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
         menu.style.display = "none";  /* Hide Menu, Show notification div*/
         notification.style.display = "block";
       } else {                        /* for non-mobile */
-       menu.fadeOut(300);            /* Hide Menu with fade transition, Show notification div with fade transition*/
-        notification.fadeIn(300);
+       menu.stop().fadeOut(300);            /* Hide Menu with fade transition, Show notification div with fade transition*/
+        notification.stop().fadeIn(300);
       }
       control.menuState = 0; 
     } 
@@ -608,8 +608,8 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
         menu.style.display = "block";
        notification.style.display = "none";
       } else {                         /* non-mobile fancy */
-       menu.fadeIn(300);
-       notification.fadeOut(300);
+       menu.stop().fadeIn(300);
+       notification.stop().fadeOut(300);
       }
       control.menuState = 1; 
     }

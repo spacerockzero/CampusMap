@@ -192,6 +192,9 @@ a img{
 	/*  - have completed                                        */
 	/*                                                          */
 	/************************************************************/
+	.js #nojs-msg{
+		display:none;
+	}
 	#loading{
 		// display: block;
 		display:table;
@@ -309,19 +312,17 @@ a img{
 	#menu_button{
 		display: none;
 		position: absolute;
-		top: 12px;
-		right: 11px;
 		padding: 6px;
-		//width:50px;
 		text-decoration: none;
 		.transition(all,300ms);
-
 		font-size: 26px;
 		top: 6px;
 		right: 4px;
-
 		color: #1A2233;
 		text-shadow: 0 1px 1px rgba(255, 255, 255, .25);
+		&:hover{
+			color:#ddd;
+		}
 	}
 
 	/***********************************/
@@ -411,6 +412,7 @@ a img{
 	  // z-index:1;
 	  //
 	  position:fixed;
+	  text-align: center;
 	}
 	#notification{
 		display:block;
