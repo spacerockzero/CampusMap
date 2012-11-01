@@ -2,7 +2,7 @@
 /*   BYU-I Campus Map                                */
 /*   - Author: Jakob Anderson :: jakobanderson.com   */
 /*   - Requires: Google Maps API v3, jQuery 1.7      */
-/*   - Revised:  10.30.2012                          */
+/*   - Revised:  11.01.2012                          */
 /*****************************************************/
 
 // JS Lint Options (remove after deployment)
@@ -605,7 +605,6 @@ var categoryInfo = [],
        menu.fadeOut(300);            /* Hide Menu with fade transition, Show notification div with fade transition*/
         notification.fadeIn(300);
       }
-      //menu_indicator.innerHTML = "+";  /* Toggle indicator, Set current state of menu visibility in control object */
       control.menuState = 0; 
     } 
     else {                             /* Toggle menu visibility on */
@@ -613,11 +612,9 @@ var categoryInfo = [],
         menu.style.display = "block";
        notification.style.display = "none";
       } else {                         /* non-mobile fancy */
-        
        menu.fadeIn(300);
        notification.fadeOut(300);
-      }                                /* Toggle indicator, Set current state of menu visibility in control object */
-      //menu_indicator.innerHTML = "-";
+      }
       control.menuState = 1; 
     }
   }
@@ -658,7 +655,7 @@ var categoryInfo = [],
       }
 
         // Toggle Category in Menu
-        if(catState === 0){
+        if(catState === 0){ /* If category is closed */
           catState = 1;
           if(device === 0){
             child.style.display = "block";
@@ -669,8 +666,7 @@ var categoryInfo = [],
             // Show markers for this category
             toggleMarkerVisibility(index,1);
           } 
-        
-        } else {
+        } else { /* If category is open */
           catState = 0;
           if(device === 0){
             child.style.display = "none";
