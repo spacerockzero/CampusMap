@@ -227,7 +227,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     var loadingDiv = $('#loading'),
             device = control.currentDevice,
               menu = $('#menu_button'); 
-    //loadingDiv.fadeOut(1000);
+    loadingDiv.fadeOut(1000);
     menu.fadeIn(1000);
     callback;
   }
@@ -264,7 +264,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       var content = '',
              name = obj.name,
               img,
-          offices = [],
              info = obj.info,
              link = obj.link,
            device = control.currentDevice;
@@ -277,11 +276,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
                   img = obj.img;
                 }
               }
-              if (obj.offices) {
-                offices = obj.offices;
-                console.log("offices = " + offices);
-              }
-
              
 
       // Create the info panes which hold content about each building
@@ -789,7 +783,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
                 bindMenuObjects(function(){
                   
                   zoomToggle(function(){
-                    alert("inside final callback!"); 
+                    //alert("inside final callback!"); 
                     // Remove Loading screen
                     loadComplete();
                   });
