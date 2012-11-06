@@ -721,13 +721,6 @@
       "info": "7th South Activity Fields<br/>Grass muti-use fields. Recreational area often scheduled for Student Activities."
     },
     {
-      "name": "Baseball Diamond",
-      "code": "8",
-      "lat":  43.81399306804928,
-      "lon": -111.7844636070457,
-      "info": "Recreational area often scheduled for Student Activities."
-    },
-    {
       "name": "Bowling Center",
       "code": "8",
       "lat":  43.81823134565679,

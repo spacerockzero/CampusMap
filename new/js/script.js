@@ -227,7 +227,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     var loadingDiv = $('#loading'),
             device = control.currentDevice,
               menu = $('#menu_button'); 
-    loadingDiv.fadeOut(1000);
+    //loadingDiv.fadeOut(1000);
     menu.fadeIn(1000);
     callback;
   }

@@ -26,14 +26,13 @@
       <meta name="description" content="">
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <!-- Mobile viewport optimized: h5bp.com/viewport -->
-      <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> -->
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
       <link rel="stylesheet" href="css/font_style.css">
       <link rel="stylesheet" href="css/main.min.css">
       <script src="js/vendor/modernizr.custom.46328.js"></script>
       <script>
         // update this var when updates are made
-        var updated = "10.30.2012";
+        var updated = "11.05.2012";
       </script>
       <!--[if lt IE 7]>  <script src="js/vendor/lte-ie7.js"></script><![endif]-->
   </head>
@@ -44,11 +43,11 @@
       <h1 id="heading">BYU-Idaho Campus Map<sup>BETA</sup></h1>
       <a id="device_type" href="#" onmousedown="toggleDevice(); return false;" title="Switch Device Type">
         <div id="device_container">
-          <div class="device icon-monitor-2"></div>
-          <div class="device icon-mobile-2"></div>
+          <div class="device icon-desktop"></div>
+          <div class="device icon-mobile"></div>
         </div>
       </a>
-      <a id="menu_button" class="icon-untitled" href="#" title="Open Menu. Click this or press [space] bar" onmousedown="toggleMenu(); return false;"></a>
+      <a id="menu_button" class="icon-settings" href="#" title="Open Menu. Click this or press [space] bar" onmousedown="toggleMenu(); return false;"></a>
     </div>
 
     <div id="container" name="container">
@@ -73,6 +72,7 @@
 
       <div id="loading">
         <div id="loading_inside">
+          <span class="map-icon icon-compass"></span>
           <p id="loading_text">[ LOADING... ]</p>
           <div id="loading_bar" class="progress-bar blue stripes">
             <span id="loading_progress" style="width: 10%"></span>
@@ -85,7 +85,7 @@
 
     <div id="notification">
       <p id="updated">Last updated <br/><script type="text/javascript">document.write(updated);</script></p>
-      <a id="feedback" class="box" target="_blank" href="http://www.byui.edu/feedback/maps">Feedback &raquo; </a>
+      <a id="feedback" class="icon-feedback" target="_blank" href="http://www.byui.edu/feedback/maps"></a>
     </div>
 
     <!-- jQuery library import (required for ajax functions) -->
