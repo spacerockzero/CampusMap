@@ -182,7 +182,10 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
         categoryInfo = data;
       }
     })
-    .done(callback);
+    .done(callback)
+    .fail(function() {
+      console.log("category ajax error"); 
+    });
   }
 
   // Load all category info from file into categoryInfo array
@@ -194,13 +197,13 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       url: objectFile,
       success: function(data) {
         //add new data to global object
-        //console.log('successfully pulled json categories');
+        console.log('successfully pulled json categories');
         mapCategories = data;
       }
     })
     .done(callback)
     .fail(function() {
-      console.log("ajax error"); 
+      console.log("objects ajax error"); 
     });
   }
 
@@ -252,7 +255,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
   function buildCatObject(i,catIndex,name,color){
     var thishtml = "";
         thishtml += '<a id="obj_' + catIndex + '-' + i + '" class="object marker_object" name="' + name + '" href="#">';
-        thishtml +=   '<img  class="obj_icon" src="img/icons/numeral-icons/' + color + '/' + (i+1) + '.png" alt="' + name + '" height="25" width="22">';
+        thishtml +=   '<img  class="obj_icon" src="img/icons/numeral-icons/' + color + '/' + (i+1) + '.png" alt="' + name + '" />';
         thishtml +=   '<div class="object_name">' + name + '</div>';
         thishtml += '</a>';
     return thishtml;
@@ -265,8 +268,11 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       var content = '',
              name = obj.name,
               img,
-             info = obj.info,
              link = obj.link,
+            hours = obj.hours,
+            phone = obj.phone,
+          address = obj.address,
+             info = obj.info,
            device = control.currentDevice;
 
               if (obj.img) {
@@ -280,7 +286,12 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
              
 
       // Create the info panes which hold content about each building
-      content += '<div class="infopane">';
+      content += '<div class="infopane';
+      if(device === 0) {
+        content += ' infopane-mobile">';
+      } else {
+        content += ' infopane-desktop">';
+      }
       content +=   '<h2>' + name + '</h2>';
       content +=   '<div>';
       if (img){
@@ -292,12 +303,27 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
         }
         content += 'style="float:right;margin:0 0 10px 10px"/>';
       }
-      if (info){
-        content += info;
+      content += '<div class="button-div">';
+      if (phone){
+        content += '<a class="phone-call btn btn-large btn-primary icon-phone" href="+' + phone + '" ></a>';
       }
       if (link){
-        content += '<br/><br/><a href="' + link + '" target="_blank">More information about ' + name + ' on the web</a>';
+        content += '<a href="' + link + '#offices-departments" class="btn btn-large btn-primary">Offices & Departments</a>';
       }
+      content += '</div>';
+      if (hours){
+        content += '<div class="info-row info-hours"><strong>Hours:</strong> ' + hours + '</div>';
+      }
+      if (phone){
+        content += '<div class="info-row info-phone"><strong>Phone:</strong> ' + phone + '</div>';
+      }
+      if (address){
+        content += '<div class="info-row info-address"><strong>Address:</strong> ' + address + '</div>';
+      }
+      if (info){
+        content += '<div class="info-row info-info"><strong>Info:</strong> ' + info + '</div>';
+      }
+      
       content += '</div>';
       // Set the content of the InfoWindow
       infoWindow.setContent(content);
@@ -341,7 +367,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       } else {
         html += '<a class="category_bar cat_polygon" href="#" >';
       }
-      html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ thisCat.icon + '.png" height="25" width="22"/>';
+      html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ thisCat.icon + '.png" />';
       html +=     '<span class="category_name">' + thisCat.title + '</span>';
       html +=   '</a>';
       html +=   '<div class="cat_container">';

@@ -11,7 +11,8 @@ window.onload = function() {
 			'icon-feedback' : '&#xe002;',
 			'icon-compass' : '&#xe004;',
 			'icon-settings' : '&#xe003;',
-			'icon-mobile' : '&#xe005;'
+			'icon-mobile' : '&#xe005;',
+			'icon-phone' : '&#xe006;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;

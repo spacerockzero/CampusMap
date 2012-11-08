@@ -22,54 +22,11 @@
       "lat":  43.815756,
       "lon": -111.784646,
       "img": "AUS.jpg",
-      "hours": ""
-      "info": "Department of Architecture & Construction, Department of Automotive Technology, Department of Computer Science and Engineering, and Department of Mechanical Engineering.",
-      "departments": [
-        {
-          "name": "Architecture & Construction",
-          "phone": "155-555-5555",
-          "email": "someone@someone.com",
-          "web": "http://google.com"
-        },
-        {
-          "name": "Automotive Technology",
-          "phone": "255-555-5555",
-          "email": "someone@someone.com",
-          "web": "http://google.com"
-        },
-        {
-          "name": "Computer Science and Engineering",
-          "phone": "355-555-5555",
-          "email": "someone@someone.com",
-          "web": "http://google.com"
-        },
-        {
-          "name": "Mechanical Engineering",
-          "phone": "455-555-5555",
-          "email": "someone@someone.com",
-          "web": "http://google.com"
-        }
-      ],
-      "offices": [
-        {
-          "name": "test office 1",
-          "phone": "155-555-5555",
-          "email": "someone@someone.com",
-          "web": "http://google.com"
-        },
-        {
-          "name": "test office 2",
-          "phone": "255-555-5555",
-          "email": "someone@someone.com",
-          "web": "http://google.com"
-        },
-        {
-          "name": "test office 3",
-          "phone": "355-555-5555",
-          "email": "someone@someone.com",
-          "web": "http://google.com"
-        }
-      ]
+      "hours": "Mo-Fr: 6am-11:30pm, Sat: 7am-10pm, Sun: Only religious services",
+      "phone": "555-555-5555",
+      "address": "555 E 5th st, Rexburg, ID 83460",
+      "info": "The Mark Austing Technical & Engineering Building is home to many technical departments. It was built in 1968 and has lorem ipsum sit dolor amet",
+      "link": "http://www.byui.edu"      
     },
     {
       "name": "BCTR - BYU-Idaho Center",

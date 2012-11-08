@@ -4,6 +4,7 @@
 /*   A bootstrap precompiler resource loader   */
 /*   for the Campus Map Project                */
 /*   Author: Jakob Anderson                    */
+/*   Last Updated: 11.05.2012                  */
 /*                                             */
 /***********************************************/
 /* LESS dependencies */
@@ -50,6 +51,21 @@
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.btn-primary {
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #006DCC;
+  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+  background-repeat: repeat-x;
+  border-color: #04C #04C #002A80;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 .ie7 .btn {
   *display: inline;
@@ -118,10 +134,36 @@
   border-color: #ccc;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 }
+.btn-primary {
+  background-color: #0074cc;
+  *background-color: #0055cc;
+  background-image: -ms-linear-gradient(top, #0088cc, #0055cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0055cc));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0055cc);
+  background-image: -o-linear-gradient(top, #0088cc, #0055cc);
+  background-image: -moz-linear-gradient(top, #0088cc, #0055cc);
+  background-image: linear-gradient(top, #0088cc, #0055cc);
+  background-repeat: repeat-x;
+  border-color: #0055cc #0055cc #003580;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#0088cc', endColorstr='#0055cc', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  background-color: #0055cc;
+  *background-color: #004ab3;
+}
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #004099 \9;
+}
 /* My CSS Styles */
 /* BYU-Idaho Campus Map Custom Styles */
 /* Made by Jakob Anderson, www.jakobanderson.com */
-/* Updated 9.10.2012 */
 /****************/
 /* Global items */
 /****************/
@@ -308,12 +350,14 @@ a img {
 /*  - have completed                                        */
 /*                                                          */
 /************************************************************/
+.js #nojs-msg {
+  display: none;
+}
 #loading {
   display: table;
   height: 100%;
   width: 100%;
   position: absolute;
-  z-index: 3;
   background: white;
   background-image: url(../img/interface/white_speckle.jpg);
   box-shadow: inset 0px 0px 80px rgba(60, 60, 60, 0.7);
@@ -323,6 +367,12 @@ a img {
   vertical-align: middle;
   top: -7%;
   position: relative;
+  text-align: center;
+}
+#loading_inside .map-icon {
+  font-size: 1000%;
+  color: #222;
+  text-shadow: 1px 1px 2px #777;
 }
 #loading_text {
   text-align: center;
@@ -344,64 +394,96 @@ a img {
 /************************************************************/
 #title {
   color: white;
-  height: 57px;
+  -webkit-transition: height 300ms ease-in-out;
+  -moz-transition: height 300ms ease-in-out;
+  -ms-transition: height 300ms ease-in-out;
+  -o-transition: height 300ms ease-in-out;
+  transition: height 300ms ease-in-out;
+  height: 40px;
   display: block;
   margin: 0 auto;
   position: relative;
   border-bottom: 1px solid #2b3e4d;
   background: #044f84;
+  background: url(../img/interface/title_bg.png);
+  background-repeat: repeat-x;
 }
 #heading {
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.9);
   margin: 0;
   text-align: center;
   color: #fff;
   font-weight: 100;
-  font-size: 25px;
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -ms-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  font-size: 20px;
   text-shadow: 0 1px 0 #333;
-  padding: 20px 0 10px;
+  padding: 9px 0 10px;
   height: 28px;
-  background: url(../img/interface/title_bg.png);
-  background-repeat: repeat-x;
+}
+#heading sup {
+  font-size: 0.4em;
+  position: relative;
+  top: -4px;
 }
 #device_type {
   display: block;
   position: absolute;
-  top: 12px;
-  left: 11px;
-  background: url(../img/interface/device-type-sprite.png);
-  background-position: 0 0;
-  background-repeat: no-repeat;
+  top: 6px;
+  left: 5px;
   width: 32px;
-  height: 32px;
+  height: 35px;
+  overflow: hidden;
+  text-decoration: none;
 }
-#mobile #device_type {
-  -webkit-transform: translate3d(0, 0, 0);
-  -webkit-transition: background-position 300ms ease-in-out;
-  -moz-transition: background-position 300ms ease-in-out;
-  -ms-transition: background-position 300ms ease-in-out;
-  -o-transition: background-position 300ms ease-in-out;
-  transition: background-position 300ms ease-in-out;
-  background-position: 0 0;
+#device_type #device_container {
+  height: 70px;
+  top: -2px;
+  position: relative;
 }
-#desktop #device_type {
-  -webkit-transform: translate3d(0, 0, 0);
-  -webkit-transition: background-position 300ms ease-in-out;
-  -moz-transition: background-position 300ms ease-in-out;
-  -ms-transition: background-position 300ms ease-in-out;
-  -o-transition: background-position 300ms ease-in-out;
-  transition: background-position 300ms ease-in-out;
-  background-position: 0 -32px;
+#device_type #device_container .device {
+  font-size: 23px;
+  color: white;
+  margin: 11px 0px;
+}
+#mobile #device_container {
+  top: -37px;
+  -webkit-transition: top 300ms ease-in-out;
+  -moz-transition: top 300ms ease-in-out;
+  -ms-transition: top 300ms ease-in-out;
+  -o-transition: top 300ms ease-in-out;
+  transition: top 300ms ease-in-out;
+}
+#desktop #device_container {
+  top: -2px;
+  -webkit-transition: top 300ms ease-in-out;
+  -moz-transition: top 300ms ease-in-out;
+  -ms-transition: top 300ms ease-in-out;
+  -o-transition: top 300ms ease-in-out;
+  transition: top 300ms ease-in-out;
 }
 #menu_button {
   display: none;
   position: absolute;
-  top: 12px;
-  right: 11px;
-  width: 50px;
-  color: #222;
+  padding: 8px;
   text-decoration: none;
-  padding: 6px;
-  font-size: 14px;
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -ms-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  font-size: 28px;
+  top: 6px;
+  right: 0px;
+  color: #1A2233;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+#menu_button:hover {
+  color: #ddd;
 }
 /***********************************/
 /*                                 */
@@ -415,12 +497,15 @@ a img {
   display: block;
   position: absolute;
   color: black;
+  background: transparent;
   overflow: auto;
 }
 #menu {
-  -webkit-transform: translate3d(0, 0, 0);
   display: none;
   position: absolute;
+  overflow: scroll;
+  /* well-tested all-around, but gives extra white area in firefox */
+
   -webkit-transition: width 200ms ease-in-out;
   -moz-transition: width 200ms ease-in-out;
   -ms-transition: width 200ms ease-in-out;
@@ -434,7 +519,6 @@ a img {
   border-left: 1px solid #2b3e4d;
 }
 #inner_menu {
-  width: 100%;
   overflow: hidden;
   display: block;
   position: relative;
@@ -443,6 +527,8 @@ a img {
   display: block;
   border-top: 1px solid #64676e;
   border-bottom: 1px solid #1a1d24;
+  position: relative;
+  clear: both;
 }
 .category_bar {
   display: block;
@@ -452,23 +538,11 @@ a img {
   text-decoration: none;
   background: #33383e;
   background: -webkit-linear-gradient(top, #43464d 0%, #33383e 50%, #32353c 100%);
-  /* Chrome10+,Safari5.1+ */
-
   background: -moz-linear-gradient(top, #43464d 0%, #33383e 50%, #32353c 100%);
-  /* FF3.6+ */
-
   background: -ms-linear-gradient(top, #43464d 0%, #33383e 50%, #32353c 100%);
-  /* IE10+ */
-
   background: -o-linear-gradient(top, #43464d 0%, #33383e 50%, #32353c 100%);
-  /* Opera 11.10+ */
-
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #43464d), color-stop(50%, #33383e), color-stop(100%, #32353c));
-  /* Chrome,Safari4+ */
-
   background: linear-gradient(top, #43464d 0%, #33383e 50%, #32353c 100%);
-  /* W3C */
-
   background: -webkit-linear-gradient(top, rgba(67, 70, 77, 0.8) 0%, rgba(51, 56, 62, 0.8) 50%, rgba(50, 53, 60, 0.8) 100%);
   /* Chrome10+,Safari5.1+ */
 
@@ -511,13 +585,17 @@ a img {
 }
 .cat_container {
   display: none;
-  overflow: hidden;
   margin-bottom: 20px;
+  position: relative;
+  clear: both;
 }
 #map_canvas {
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
+}
+#map_canvas #nojs-msg {
+  text-align: center;
 }
 #notification {
   display: block;
@@ -526,11 +604,11 @@ a img {
   right: 3px;
   margin: 0;
 }
-#feedback {
-  color: #222;
+#notification a {
+  color: #fff;
   text-decoration: none;
-  padding: 7px 13px 7px;
-  font-size: 14px;
+  font-size: 35px;
+  cursor: pointer;
 }
 #updated {
   font-size: 9px;
@@ -607,17 +685,16 @@ a img {
 }
 .infopane {
   display: block;
-  padding: 10px;
+  width: 270px;
+  height: inherit;
+  overflow: auto;
+  font-size: 12px;
+  line-height: 1.4em;
 }
-@media only screen and (max-width: 460px) {
-  #heading {
-    padding-left: 37px;
-    text-align: left;
-    font-size: 20px;
-  }
-  #device_type {
-    left: 4px;
-  }
+.infopane h2 {
+  line-height: 1.2em;
+  font-size: 16px;
+  margin-top: 0;
 }
 /**************************************/
 /*                                    */
@@ -639,11 +716,47 @@ a img {
 #desktop #container {
   overflow: hidden;
 }
+#desktop #title {
+  height: 57px;
+  -webkit-transition: height 300ms ease-in-out;
+  -moz-transition: height 300ms ease-in-out;
+  -ms-transition: height 300ms ease-in-out;
+  -o-transition: height 300ms ease-in-out;
+  transition: height 300ms ease-in-out;
+}
+#desktop #menu_button {
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -ms-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  font-size: 35px;
+  top: 17px;
+  right: 10px;
+}
+#desktop #heading {
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -ms-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  font-size: 25px;
+  padding: 16px 0 10px;
+}
 #desktop #menu {
   width: 250px;
   height: 100%;
   overflow: auto;
   box-shadow: inset 10px 0px 40px #111;
+}
+#desktop #device_type {
+  top: 10px;
+  left: 15px;
+}
+#desktop #device_container .device {
+  font-size: 30px;
+  color: white;
+  margin: 12px 0px;
 }
 #desktop .category_name {
   top: -8px;
@@ -666,4 +779,8 @@ a img {
 }
 #desktop .polygon_key {
   height: 28px;
+}
+#desktop .infopane {
+  padding: 10px;
+  width: 500px;
 }
