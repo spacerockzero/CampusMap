@@ -22,7 +22,54 @@
       "lat":  43.815756,
       "lon": -111.784646,
       "img": "AUS.jpg",
-      "info": "Department of Architecture & Construction, Department of Automotive Technology, Department of Computer Science and Engineering, and Department of Mechanical Engineering."      
+      "hours": ""
+      "info": "Department of Architecture & Construction, Department of Automotive Technology, Department of Computer Science and Engineering, and Department of Mechanical Engineering.",
+      "departments": [
+        {
+          "name": "Architecture & Construction",
+          "phone": "155-555-5555",
+          "email": "someone@someone.com",
+          "web": "http://google.com"
+        },
+        {
+          "name": "Automotive Technology",
+          "phone": "255-555-5555",
+          "email": "someone@someone.com",
+          "web": "http://google.com"
+        },
+        {
+          "name": "Computer Science and Engineering",
+          "phone": "355-555-5555",
+          "email": "someone@someone.com",
+          "web": "http://google.com"
+        },
+        {
+          "name": "Mechanical Engineering",
+          "phone": "455-555-5555",
+          "email": "someone@someone.com",
+          "web": "http://google.com"
+        }
+      ],
+      "offices": [
+        {
+          "name": "test office 1",
+          "phone": "155-555-5555",
+          "email": "someone@someone.com",
+          "web": "http://google.com"
+        },
+        {
+          "name": "test office 2",
+          "phone": "255-555-5555",
+          "email": "someone@someone.com",
+          "web": "http://google.com"
+        },
+        {
+          "name": "test office 3",
+          "phone": "355-555-5555",
+          "email": "someone@someone.com",
+          "web": "http://google.com"
+        }
+      ]
     },
     {
       "name": "BCTR - BYU-Idaho Center",

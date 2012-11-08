@@ -21,7 +21,8 @@
       canvas = doc.getElementById('map_canvas'),
     doResize,
 categoryFile = 'data/categories.txt',
-  objectFile = 'data/objectFile.txt',
+  //objectFile = 'data/objectFile.txt',
+  objectFile = 'data/objectFileExperiment.txt',               /* Experimental Data file, used for testing new data structures and source info */
     myLatlng,                                                 /* BYU-Idaho's center of campus lat/ling in googlemaps' latling object form */
    myOptions,
          map,

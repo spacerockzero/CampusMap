@@ -100,34 +100,10 @@
     <script type="text/javascript" src="js/script.min.js"></script>
     <!-- end script imports -->
     
-    <!-- asynchronous script loading of all analytics resources -->
-    <script type="text/javascript"> 
-
-      //Insert omniture code asynchronously
-      function loadScript(src, callback) {
-        var head = document.getElementsByTagName('head')[0],
-          script = document.createElement('script');
-            done = false;
-        script.setAttribute('src', src);
-        script.setAttribute('type', 'text/javascript');
-        script.setAttribute('charset', 'utf-8');
-        script.onload = script.onreadstatechange = function() {
-          if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
-            done = true;
-            script.onload = script.onreadystatechange = null;
-            if (callback) {
-              callback();
-            }
-          }
-        }
-        head.insertBefore(script, head.firstChild);
-      }
-
-      // load the file and display an alert dialog once the script has been loaded
-      // loadScript('js/vendor/s_code.js', function() {});
-      // loadScript('js/vendor/omniture_code.js', function() {});
-      loadScript('js/vendor/omniture.min.js', function() {});
-
+    <!-- script loading of all analytics resources -->
+    <script type="text/javascript" src="js/vendor/s_code.js"></script>
+    <script type="text/javascript" src="js/vendor/omniture_code.js"></script>
+    <script type="text/javascript">
       //Insert google analytics asynchronously
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-12079604-6']);
