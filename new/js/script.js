@@ -305,7 +305,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       }
       content += '<div class="button-div">';
       if (phone){
-        content += '<a class="phone-call btn btn-large btn-primary icon-phone" href="+' + phone + '" ></a>';
+        content += '<a class="phone-call btn btn-large btn-primary icon-phone" href="tel:' + phone + '" ></a>';
       }
       if (link){
         content += '<a href="' + link + '#offices-departments" class="btn btn-large btn-primary">Offices & Departments</a>';
