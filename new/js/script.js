@@ -117,7 +117,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
         control.currentDevice = 1;
         body.setAttribute("id","desktop");
     }
-    callback;
+    if (callback && typeof(callback) === "function") {
+      callback();
+    }
   }
 
   // Toggle between device types
@@ -211,7 +213,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
   function loadCatData(callback){
     loadCategoryInfoFile();
     loadCategoryFile();
-    callback;
+    if (callback && typeof(callback) === "function") {
+      callback();
+    }
   }
 
 
@@ -220,9 +224,15 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 /****************************************************/
   
   // alter loading bar's visible progress %
-  function loadProgress(percentageComplete){
+  function loadProgress(percentageComplete, callback){
+
     var obj = doc.getElementById('loading_progress');
     obj.style.width = percentageComplete + '%';
+
+    console.log("Loaded " + percentageComplete);
+    if (callback && typeof(callback) === "function") {
+      callback();
+    }
   }
   
   // Execute when page, data, and DOM is finished loading, then hide loading div
@@ -233,7 +243,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
               menu = $('#menu_button'); 
     loadingDiv.fadeOut(1000);
     menu.fadeIn(1000);
-    callback;
+    if (callback && typeof(callback) === "function") {
+      callback();
+    }
     console.timeEnd("initialize js chain until ready");
   }
 
@@ -389,10 +401,12 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
     // insert html back into target with one reflow
     target.innerHTML = html; 
-    callback(); 
+    if (callback && typeof(callback) === "function") {
+      callback();
+    } 
   }
 
-  function populateObjectCategory(index){
+  function populateObjectCategory(index, callback){
     // set target div and html string var to be inserted
     var target = document.getElementById('category_' + index),
           html = "",
@@ -441,7 +455,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     target.innerHTML = html;
     // Add this category's markers to array of all markers
     allMarkers[index] = markers;
-
+    if (callback && typeof(callback) === "function") {
+      callback();
+    }
   }
 
 
@@ -494,7 +510,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     // write all new html for this category to DOM in one instant reflow
     target.innerHTML = html;
 
-    callback;
+    if (callback && typeof(callback) === "function") {
+      callback();
+    }
   }
 
 
@@ -538,7 +556,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       obj.toggleClass('active_polygon');
     }
     //console.timeEnd('show polygon');
-    callback;
+    if (callback && typeof(callback) === "function") {
+      callback();
+    }
   }
 
 
@@ -600,7 +620,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       }
       i += 1;
     }
-    callback();
+    if (callback && typeof(callback) === "function") {
+      callback();
+    }
   }
 
   
@@ -660,7 +682,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
   function bindCategoryToggle(callback){
 
-    $('.category_bar').mousedown(function(){
+    $('.category_bar').on("mousedown",function(){
 
       console.time("clickCategory");
       //close any open info windows
@@ -708,7 +730,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       console.timeEnd("clickCategory");
 
     });
-    callback();
+    if (callback && typeof(callback) === "function") {
+      callback();
+    }
   }
 /****************************************************/
 /*   Category Toggle                                */
@@ -753,23 +777,32 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
         setMenu(0);
       }
     });
-    callback();
+    if (callback && typeof(callback) === "function") {
+      callback();
+    }
   }  
 
   function zoomToggle(callback){
     //automagically switch to vector map for close-up, and satellite map for farther view
     google.maps.event.addListener(map, 'zoom_changed', function () {
-      var z = map.getZoom();
+              
+              var z = map.getZoom(),
+      notifications = $('#notification');
+
       if (z >= 17){
         //closer, do vector texture map
         map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+        notifications.addClass("vector");
       }
       else {
         //farther, do satellite texture map
         map.setMapTypeId(google.maps.MapTypeId.HYBRID);
+        notifications.removeClass("vector");
       }
     });
-    callback();
+    if (callback && typeof(callback) === "function") {
+      callback();
+    }
   }
 
   // Search (needs web service ajax server? 
@@ -795,28 +828,20 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       loadProgress(10);
     setInfoWindow();
     setCampusLayer();
-     
+      loadProgress(80);
     // Run GatherData Stack using callback functions to serialize the dependent functions
     loadCategoryInfoFile(function(){ 
-
       populateCategoryInfo(function(){
-
         loadCategoryFile(function(){
-
           runPopulators(function(){
-
             bindCategoryToggle(function(){
-              
               bindPolygonToggle(function(){
-
                 bindMenuObjects(function(){
-                  
                   zoomToggle(function(){
-                    //alert("inside final callback!"); 
                     google.maps.event.addListenerOnce(map, 'idle', function(){
-                        // do something only the first time the map is loaded
-                        // Remove Loading screen
-                        loadComplete();
+                      // do something only the first time the map is loaded
+                      // Remove Loading screen
+                      loadComplete();
                     });
                   });
                 });
@@ -826,9 +851,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
         });
       });
     });
-    loadProgress(90);
-    callback;
-
+    if (callback && typeof(callback) === "function") {
+      callback();
+    }
   }//end initialize()
 
 

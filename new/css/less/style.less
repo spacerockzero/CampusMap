@@ -77,12 +77,12 @@ a img{
 	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
 	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
 	box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
-	//.transition(width, 700ms);
-  // -webkit-transition: width .4s ease-in-out;
-  // -moz-transition: width .4s ease-in-out;
-  // -ms-transition: width .4s ease-in-out;
-  // -o-transition: width .4s ease-in-out;
-  // transition: width .4s ease-in-out;    
+	.transition(width, 700ms);
+  -webkit-transition: width .4s ease-in-out;
+  -moz-transition: width .4s ease-in-out;
+  -ms-transition: width .4s ease-in-out;
+  -o-transition: width .4s ease-in-out;
+  transition: width .4s ease-in-out;    
 }
 .blue span {
 	background-color: #3a5284;
@@ -194,6 +194,7 @@ a img{
 		width:80%;
 		margin: 15px auto 0;
 		display: block;
+		text-align:left;
 	}
 	/************************************************************/
 	/*                                                          */
@@ -349,12 +350,11 @@ a img{
 	}
 	.cat_container{
 		display:none;
-		margin-bottom: 20px;
-		position:relative;
-		clear:both;
+		// margin-bottom: 20px;
+		// position:relative;
+		// clear:both;
 	}
 	#map_canvas {
-		//display:none;
 	  width: 100%; 
 	  height: 100%;
 	  position:fixed;
@@ -368,11 +368,12 @@ a img{
 		bottom: 35px;
 		right: 3px;
 		margin:0;
+		&.vector a, &.vector p{
+			color:#333;
+		}
 		a {
-			//color: #222;
 			color: #fff;
 			text-decoration: none;
-			// font-size:14px;
 			font-size: 35px;
 			cursor: pointer;
 		}
@@ -416,8 +417,6 @@ a img{
 	.object_name{
 		display:block;
 		float:left;
-		// margin:4px 0 4px;
-		// width: 75%;
 		margin: 6px 0 4px;
 		width: 80%;
 		font-size: 15px;
@@ -464,6 +463,7 @@ a img{
 			width:100%;
 			min-height:20px;
 			padding-top:6px;
+			padding:6px 0;
 			text-decoration: none;
 			//display:block;
 			clear:both;
@@ -471,11 +471,11 @@ a img{
 			text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
 		}
 		&.infopane-mobile .button-div{
-			width: 140px;
+			width: 160px;
 			float: left;
 		}
 		&.infopane-desktop .button-div{
-			width: 265px;
+			width: 285px;
 			float: left;
 		}
 		.info-row {
@@ -578,7 +578,7 @@ a img{
 		margin: 0;
 		padding: 0;
 		&.infopane-desktop .button-div{
-			width:265px;
+			width:285px;
 		}
 		.phone-call{
 			display:none;
