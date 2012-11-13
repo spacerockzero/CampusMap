@@ -25,7 +25,7 @@
       "hours": "Mo-Fr: 6am-11:30pm, Sat: 7am-10pm, Sun: Only religious services",
       "phone": "555-555-5555",
       "address": "555 E 5th st, Rexburg, ID 83460",
-      "info": "The Mark Austing Technical & Engineering Building is home to many technical departments. It was built in 1968 and has lorem ipsum sit dolor amet",
+      "info": "The Mark Austin Technical & Engineering Building is home to many technical departments. It was built in 1968 and has lorem ipsum sit dolor amet",
       "link": "http://www.byui.edu"      
     },
     {

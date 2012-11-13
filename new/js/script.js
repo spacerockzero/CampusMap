@@ -2,7 +2,7 @@
 /*   BYU-I Campus Map                                */
 /*   - Author: Jakob Anderson :: jakobanderson.com   */
 /*   - Requires: Google Maps API v3, jQuery 1.7      */
-/*   - Revised:  11.01.2012                          */
+/*   - Revised:  11.13.2012                          */
 /*****************************************************/
 
 // JS Lint Options (remove after deployment)
@@ -234,6 +234,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     loadingDiv.fadeOut(1000);
     menu.fadeIn(1000);
     callback;
+    console.timeEnd("initialize js chain until ready");
   }
 
 
@@ -308,7 +309,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
         content += '<a class="phone-call btn btn-large btn-primary icon-phone" href="tel:' + phone + '" ></a>';
       }
       if (link){
-        content += '<a href="' + link + '#offices-departments" class="btn btn-large btn-primary">Offices & Departments</a>';
+        content += '<a href="' + link + '" class="btn btn-large btn-primary">More Info</a>';
       }
       content += '</div>';
       if (hours){
@@ -786,6 +787,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
   // Initialize & Execute Map App Stack
   function initialize(callback) {
+    console.time("initialize js chain until ready");
     // Run Map setup stack
     setOptions();
     setAllControls();
@@ -811,8 +813,11 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
                   
                   zoomToggle(function(){
                     //alert("inside final callback!"); 
-                    // Remove Loading screen
-                    loadComplete();
+                    google.maps.event.addListenerOnce(map, 'idle', function(){
+                        // do something only the first time the map is loaded
+                        // Remove Loading screen
+                        loadComplete();
+                    });
                   });
                 });
               });
@@ -823,6 +828,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     });
     loadProgress(90);
     callback;
+
   }//end initialize()
 
 
