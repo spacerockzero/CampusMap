@@ -365,14 +365,22 @@ a img{
 	#notification{
 		display:block;
 		position:fixed;
-		bottom: 35px;
+		bottom: 20px;
 		right: 3px;
 		margin:0;
-		&.vector a, &.vector p{
-			color:#333;
+		&.satellite, 
+		&.hybrid {
+			a, p{
+				color:#fff;
+			}
+		}
+		&.roadmap{
+			a,p{
+				color: #333;
+			}
 		}
 		a {
-			color: #fff;
+			color: #333;
 			text-decoration: none;
 			font-size: 35px;
 			cursor: pointer;
@@ -480,6 +488,7 @@ a img{
 		}
 		.info-row {
 			margin:0px 0px 4px;
+			//clear:both;
 		}
 		.phone-call {
 			display:block;

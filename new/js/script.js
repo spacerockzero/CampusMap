@@ -782,23 +782,10 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     }
   }  
 
-  function zoomToggle(callback){
+  function typeToggle(callback){
     //automagically switch to vector map for close-up, and satellite map for farther view
-    google.maps.event.addListener(map, 'zoom_changed', function () {
-              
-              var z = map.getZoom(),
-      notifications = $('#notification');
-
-      if (z >= 17){
-        //closer, do vector texture map
-        map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
-        notifications.addClass("vector");
-      }
-      else {
-        //farther, do satellite texture map
-        map.setMapTypeId(google.maps.MapTypeId.HYBRID);
-        notifications.removeClass("vector");
-      }
+    google.maps.event.addListener( map, 'maptypeid_changed', function() {
+      document.getElementById("notification").className = map.getMapTypeId(); 
     });
     if (callback && typeof(callback) === "function") {
       callback();
@@ -837,8 +824,8 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
             bindCategoryToggle(function(){
               bindPolygonToggle(function(){
                 bindMenuObjects(function(){
-                  zoomToggle(function(){
-                    google.maps.event.addListenerOnce(map, 'idle', function(){
+                  typeToggle(function(){
+                    google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
                       // do something only the first time the map is loaded
                       // Remove Loading screen
                       loadComplete();
@@ -864,15 +851,15 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
   // Global Resize Event Function Stack
   function resizeStack(){
     var deviceState = control.currentDevice;
-    //if(deviceState === 1){
+    if(deviceState === 1){
       setHeight(container,getMapHeight());
       setHeight(canvas,getMapHeight());
       setDevice(detectDevice());
-    // } else {
-    //   setHeight(container,getMapHeight());
-    //   setHeight(canvas,getMapHeight());
-    //   setDevice(detectDevice());
-    // }
+     } else {
+      setHeight(container,getMapHeight() + 13);
+      setHeight(canvas,getMapHeight() + 13);
+      setDevice(detectDevice());
+    }
   }
 
   // global map resize event listener
