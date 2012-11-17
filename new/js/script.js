@@ -51,26 +51,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 /*  Global Functions  */
 /**********************/
 
-  // Asynchronous script loader function
-  // function loadScript(src, callback) {
-  //   var head = document.getElementsByTagName('head')[0],
-  //     script = document.createElement('script'),
-  //       done = false;
-  //   script.setAttribute('src', src);
-  //   script.setAttribute('type', 'text/javascript');
-  //   script.setAttribute('charset', 'utf-8');
-  //   script.onload = script.onreadstatechange = function() {
-  //     if (!done && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {
-  //       done = true;
-  //       script.onload = script.onreadystatechange = null;
-  //       if (callback) {
-  //         callback;
-  //       }
-  //     }
-  //   }
-  //   head.insertBefore(script, head.firstChild);
-  // }
-
   // Detect object height
   function detectHeight(object){
     return object.offsetHeight;
@@ -78,13 +58,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
   //set object height
   function setHeight(object, height){
-    // var deviceState = control.currentDevice;
-    // if(deviceState === 0){
-    //   object.style.height = height +22;
-    // } else {
-      object.style.height = height;
-    // }
-    
+    object.style.height = height;
   }
 
 
@@ -149,7 +123,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
   //get heights of elements
   function getMapHeight(){
     var bodyHeight = detectHeight(body),
-       titleHeight = 57,
+       titleHeight = detectHeight(doc.getElementById('title')),
          mapHeight = (bodyHeight - titleHeight) + "px";
     return mapHeight;
   }
@@ -856,8 +830,8 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       setHeight(canvas,getMapHeight());
       setDevice(detectDevice());
      } else {
-      setHeight(container,getMapHeight() + 13);
-      setHeight(canvas,getMapHeight() + 13);
+      setHeight(container,getMapHeight());
+      setHeight(canvas,getMapHeight());
       setDevice(detectDevice());
     }
   }
