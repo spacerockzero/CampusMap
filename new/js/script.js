@@ -671,39 +671,40 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
          polygon = $(this).hasClass('cat_polygon');         
       
       if(device === 1){
-        child = $(this).parent().find('.cat_container');
+        child = $(this).next('div');
+        console.log(child);
       }
 
-        // Toggle Category in Menu
-        if(catState === 0){ /* If category is closed */
-          catState = 1;
-          if(device === 0){
-            child.style.display = "block";
-          } else {
-            child.slideToggle(200);
-          }
-          if(polygon === false){
-            // Show markers for this category
-            toggleMarkerVisibility(index,1);
-          } 
-        } else { /* If category is open */
-          catState = 0;
-          if(device === 0){
-            child.style.display = "none";
-          } else {
-            child.slideToggle(200);
-          }
-          if(polygon === false){
-            // Hide markers for this category
-            toggleMarkerVisibility(index,0);
-          } 
+      // Toggle Category in Menu
+      if(catState === 0){ /* If category is closed */
+        if(device === 0){
+          child.style.display = "block";
+        } else {
+          child.slideToggle(200);
         }
+        if(polygon === false){
+          // Show markers for this category
+          toggleMarkerVisibility(index,1);
+        } 
+        catState = 1;
+      } else { /* If category is open */
+        if(device === 0){
+          child.style.display = "none";
+        } else {
+          child.slideToggle(200);
+        }
+        if(polygon === false){
+          // Hide markers for this category
+          toggleMarkerVisibility(index,0);
+        } 
+        catState = 0;
+      }
 
       // Set global control with changes
       control.categoryState[index] = catState;
       console.timeEnd("clickCategory");
-
     });
+    
     if (callback && typeof(callback) === "function") {
       callback();
     }
