@@ -216,7 +216,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
             device = control.currentDevice,
               menu = $('#menu_button'); 
     loadingDiv.fadeOut(1000);
-    menu.fadeIn(1000);
+    //menu.fadeIn(1000);
     if (callback && typeof(callback) === "function") {
       callback();
     }
@@ -250,7 +250,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
   function createInfoWindow(marker,obj,catName){
     // Listener that builds the infopane popups on marker click
-    google.maps.event.addListener(marker, 'mousedown', function() {
+    google.maps.event.addListener(marker, 'click', function() {
 
       var content = '',
              name = obj.name,
@@ -326,7 +326,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       google.maps.event.removeListener(moveEnd);
     });
     map.panTo(marker.getPosition());
-    google.maps.event.trigger(marker, 'mousedown');
+    google.maps.event.trigger(marker, 'click');
   }/* END displayPoint() */
 
 /****************************************************/
@@ -656,7 +656,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
   function bindCategoryToggle(callback){
 
-    $('.category_bar').on("mousedown",function(){
+    $('.category_bar').on("click",function(){
 
       console.time("clickCategory");
       //close any open info windows
@@ -677,26 +677,26 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
       // Toggle Category in Menu
       if(catState === 0){ /* If category is closed */
-        // if(device === 0){
-        //   child.style.display = "block";
-        // } else {
+        if(device === 0){
+          child.style.display = "block";
+        } else {
           child.slideToggle(200);
-        // }
-        // if(polygon === false){
-        //   // Show markers for this category
-        //   toggleMarkerVisibility(index,1);
-        // } 
+        }
+        if(polygon === false){
+          // Show markers for this category
+          toggleMarkerVisibility(index,1);
+        } 
         catState = 1;
       } else { /* If category is open */
-        // if(device === 0){
-        //   child.style.display = "none";
-        // } else {
+        if(device === 0){
+          child.style.display = "none";
+        } else {
           child.slideToggle(200);
-        // }
-        // if(polygon === false){
-        //   // Hide markers for this category
-        //   toggleMarkerVisibility(index,0);
-        // } 
+        }
+        if(polygon === false){
+          // Hide markers for this category
+          toggleMarkerVisibility(index,0);
+        } 
         catState = 0;
       }
 
@@ -715,7 +715,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
   function bindPolygonToggle(callback){
 
-    $('.object.polygon').mousedown(function(event){
+    $('.object.polygon').click(function(event){
 
       // stop click event from "propagating/bubbling down to children DOM elements"
       event.stopPropagation();
@@ -736,7 +736,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
   function bindMenuObjects(callback){
     
-    $('.object.marker_object').mousedown(function(event){
+    $('.object.marker_object').click(function(event){
       // stop click event from "propagating/bubbling down to children DOM elements"
       event.stopPropagation();
 
