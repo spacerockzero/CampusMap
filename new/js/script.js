@@ -677,26 +677,26 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
       // Toggle Category in Menu
       if(catState === 0){ /* If category is closed */
-        if(device === 0){
-          child.style.display = "block";
-        } else {
+        // if(device === 0){
+        //   child.style.display = "block";
+        // } else {
           child.slideToggle(200);
-        }
-        if(polygon === false){
-          // Show markers for this category
-          toggleMarkerVisibility(index,1);
-        } 
+        // }
+        // if(polygon === false){
+        //   // Show markers for this category
+        //   toggleMarkerVisibility(index,1);
+        // } 
         catState = 1;
       } else { /* If category is open */
-        if(device === 0){
-          child.style.display = "none";
-        } else {
+        // if(device === 0){
+        //   child.style.display = "none";
+        // } else {
           child.slideToggle(200);
-        }
-        if(polygon === false){
-          // Hide markers for this category
-          toggleMarkerVisibility(index,0);
-        } 
+        // }
+        // if(polygon === false){
+        //   // Hide markers for this category
+        //   toggleMarkerVisibility(index,0);
+        // } 
         catState = 0;
       }
 

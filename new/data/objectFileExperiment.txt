@@ -50,7 +50,7 @@
       "code": "BID",
       "lat":  43.817054,
       "lon": -111.785123,
-      "img": "BID-BiddulphHallmen.jpg",
+      "img": "BID.jpg",
       "info": "Men's housing."
     },
     {
