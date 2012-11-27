@@ -83,8 +83,8 @@
       "code": "CML",
       "lat":  43.815239,
       "lon":  -111.787772,
-      "info": "Lab area for Department of Department of Architecture and Construction."
-      "hours": "Monday - Saturday, 6:00 a.m. - 11:30 p.m.",
+      "info": "Lab area for Department of Department of Architecture and Construction.",
+      "hours": "Monday - Saturday, 6:00 a.m. - 11:30 p.m."
     },
     {
       "name": "HIN - Gordon B. Hinckley Bldg.",
