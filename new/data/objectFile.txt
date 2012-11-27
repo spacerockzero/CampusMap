@@ -33,7 +33,7 @@
       "lat":  43.818514,
       "lon": -111.785046,
       "img": "BCTR.jpg",
-      "hours": "Monday - Saturday, 6:00 a.m. - 11:30 p.m.",
+      "hours": "Monday - Saturday, 5:00 a.m. - 11:30 p.m.",
       "info": "The 435,000-square-foot building, containing a 15,000-seat auditorium and a multi-purpose area large enough for 10 full basketball courts, opened following a dedication on Dec. 17, 2010.",
       "link": "http://www2.byui.edu/BYUIdahoCenter/"
     },
@@ -101,7 +101,7 @@
       "lat":  43.819535,
       "lon": -111.785311,
       "img": "HRT.jpg",
-      "hours": "Monday - Saturday, 6:00 a.m. - 11:30 p.m.",
+      "hours": "Monday - Saturday, 5:00 a.m. - 11:30 p.m.",
       "info": "Department of Exercise & Sports Science, Main Gymnasium/Hart Auditorium, Auxiliary Gym, field house, swimming pool, racquetball courts, dressing rooms, physical fitness and wellness centers.",
       "link": "http://www2.byui.edu/HartBuilding/"
     },
