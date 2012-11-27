@@ -358,6 +358,7 @@
   [
     {
       "name":         "V - Visitor",
+      "code":         "V",
       "contains":     "Those without any parking permits may park in the areas shown for the durations posted",
       "borderColor":  "green",
       "fillColor":    "#fff",
@@ -365,6 +366,7 @@
     },
     {
       "name":         "A - Faculty & Staff",
+      "code":         "A",
       "contains":     "Faculty & Staff with 'A' Permit may park in the areas shown",
       "borderColor":  "#9b100c",
       "fillColor":    "#eb1c23",
@@ -372,6 +374,7 @@
     },
     {
       "name":         "N - North Zone",
+      "code":         "N",
       "contains":     "Those with 'N' North Zone Permit may park in the areas shown",
       "borderColor":  "#1371bb",
       "fillColor":    "#63a3d3",
@@ -379,6 +382,7 @@
     },
     {
       "name":         "S - South Zone",
+      "code":         "S",
       "contains":     "Those with 'S' South Zone Permit may park in the areas shown",
       "borderColor":  "#fbe72b",
       "fillColor":    "#fff000",
@@ -386,6 +390,7 @@
     },
     {
       "name":         "C - 4th Ward Meetinghouse",
+      "code":         "C",
       "contains":     "Those with 'C' 4th Ward Meetinghouse Permit may park in the areas shown",
       "borderColor":  "#fdb445",
       "fillColor":    "#f6921e",
@@ -394,6 +399,7 @@
     
     {
       "name":         "H - On-Campus Housing",
+      "code":         "H",
       "contains":     "Those with 'H' On Campus Housing Permit may park in the areas shown",
       "borderColor":  "#333333",
       "fillColor":    "#8ac53e",
@@ -402,6 +408,7 @@
     
     {
       "name":         "L - Long Term & Overnight",
+      "code":         "L",
       "contains":     "Those with 'L' Long Term & Overnight Permit may park in the areas shown",
       "borderColor":  "#333333",
       "fillColor":    "#a7308f",
@@ -409,6 +416,7 @@
     },
     {
       "name":         "F - Free Permit Lot",
+      "code":         "F",
       "contains":     "Those with 'L' Long Term & Overnight Permit may park in the areas shown",
       "borderColor":  "#333333",
       "fillColor":    "#c3996b",
@@ -416,6 +424,7 @@
     },
     {
       "name":         "City R - City Street Parking",
+      "code":         "CR",
       "contains":     "City Resident Street Parking City R Permit Required. The City provides two permits per household to residents living on the streets zoned City R. Students living on these streets should consult with their landlord to determine if the access to these permits is available.",
       "borderColor":  "#2dbb9c",
       "fillColor":    "#36eac3",
@@ -423,6 +432,7 @@
     },
     {
       "name":         "City U - City Street Parking",
+      "code":         "CU",
       "contains":     "City U permit Required. Parking on city streets requires a permit from the City of Rexburg. Information about city parking permits can be obtained by contacting City of Rexburg at: 208-359-3020 ext. 8000",
       "borderColor":  "#ff239f",
       "fillColor":    "#f869bc",
