@@ -22,7 +22,7 @@
     doResize,
 categoryFile = 'data/categories.txt',
   //objectFile = 'data/objectFile.txt',
-  objectFile = 'data/objectFileExperiment.txt',               /* Experimental Data file, used for testing new data structures and source info */
+  objectFile = 'data/objectFile.txt',               /* Experimental Data file, used for testing new data structures and source info */
     myLatlng,                                                 /* BYU-Idaho's center of campus lat/ling in googlemaps' latling object form */
    myOptions,
          map,
@@ -358,7 +358,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
         html += '<a class="category_bar" href="#" >';
       } else {
         html += '<a class="category_bar cat_polygon" href="#" >';
-        mapKeyTarget.innerHTML += '<div id="map_key_' + thisCat.name + '"><div class="key_title">' + thisCat.name + ' Map Key</div><a href="#" class="close icon-cancel nolink"></a></div>';
+        mapKeyTarget.innerHTML += '<div id="poly_key_' + i + '" class="map_key_category map_key_' + thisCat.name + '"><div class="key_title">' + thisCat.name + ' Map Key</div><a href="#" class="close icon-cancel nolink"></a></div>';
       }
       html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ thisCat.icon + '.png" />';
       html +=     '<span class="category_name">' + thisCat.title + '</span>';
@@ -448,7 +448,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
           html = "",
         catObj = categoryInfo[index],
        objData = mapCategories[index],
-  mapKeyTarget = document.getElementById('map_key_' + catObj.name),
+  mapKeyTarget = document.getElementsByClassName('map_key_' + catObj.name)[0],
         mapKey = "",
       thisData,
           icon,
@@ -527,11 +527,10 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
   // Show / Toggle Polygon Category KML layers
   function togglePolygonVisibility(obj, catIndex, layerIndex, callback){
     //console.time('show polygon');
-    //console.log(obj.children());
           obj = obj.find('span');
     var layer = markerArray[catIndex][layerIndex],
          code = mapCategories[catIndex][layerIndex].code,
-       catKey = $('#map_key_' + categoryInfo[catIndex].name),
+       catKey = $('.map_key_' + categoryInfo[catIndex].name),
        keyObj = $('#map_keys ' + '#poly_key_' + code),
        active = obj.hasClass('icon-checkmark');
     console.log(obj);
@@ -540,20 +539,26 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     //Hide this layer's polygons
     if (active === true) {
       layer.setMap(null);
-      obj.toggleClass('icon-checkmark');
-      keyObj.toggleClass('active_key');
+      obj.stop().toggleClass('icon-checkmark');
+      keyObj.stop().fadeOut();
     }
     //Show this layer's polygons
     else {
       layer.setMap(map);
-      obj.toggleClass('icon-checkmark');
-      catKey.fadeIn().addClass('active_key_group');
-      keyObj.toggleClass('active_key');
+      obj.stop().toggleClass('icon-checkmark');
+      catKey.stop().fadeIn();
+      keyObj.stop().fadeIn();
     }
     //console.timeEnd('show polygon');
     if (callback && typeof(callback) === "function") {
       callback();
     }
+  }
+
+  // Show / Toggle map polygon key containers
+  function togglePolyKey(catIndex){
+    var catKey = $('#map_key_' + categoryInfo[catIndex].name);
+    catKey.stop().fadeToggle();
   }
 
 
@@ -747,6 +752,14 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       togglePolygonVisibility(obj, catIndex, layerIndex);
 
     });
+
+    $('.close').click(function(event){
+      // stop click event from "propagating/bubbling down to children DOM elements"
+      event.stopPropagation();
+      var catIndex = $(this).parent().attr('id').substr(9);
+      togglePolyKey(catIndex);
+    });
+
     callback();
   }  
 
@@ -845,24 +858,15 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
   // Global Resize Event Function Stack
   function resizeStack(){
-    // var deviceState = control.currentDevice;
-    // if(deviceState === 1){
-    //   setHeight(container,getMapHeight());
-    //   setHeight(canvas,getMapHeight());
-    //   setDevice(detectDevice());
-    //  } else {
-      var device = detectDevice();
-      setDevice(device);
-      if(device === 0){
-        setHeight(container,'918px');
-        setHeight(canvas,'918px');
-      }else{
-        setHeight(container,'901px');
-        setHeight(canvas,'901px');
-      }
-      // setHeight(container,getMapHeight());
-      // setHeight(canvas,getMapHeight());
-    // }
+    var device = detectDevice();
+    setDevice(device);
+    if(device === 0){
+      setHeight(container,'918px');
+      setHeight(canvas,'918px');
+    }else{
+      setHeight(container,'901px');
+      setHeight(canvas,'901px');
+    }
   }
 
   // global map resize event listener

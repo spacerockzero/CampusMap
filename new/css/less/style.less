@@ -481,19 +481,21 @@ a img{
 			// background: url(../img/interface/title_bg.png);
 			// background-repeat: repeat-x;
       padding: 10px;
+      .animate();
+			min-width: 155px;
+			margin: 5px;
+			border-radius: 5px;
+      a.close {
+				position: absolute;
+				top: 13px;
+				right: 13px;
+				text-shadow: 1px 1px 1px #111;
+				color: white;
+			}
       &.active_key_group{
 				display:block;
-				.animate();
-				min-width: 155px;
-				margin: 5px;
-				border-radius: 5px;
-				a.close {
-					position: absolute;
-					top: 13px;
-					right: 13px;
-					text-shadow: 1px 1px 1px #111;
-					color: white;
-				}
+				
+				
 			}
 		}
 		.key_title{
