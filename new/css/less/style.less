@@ -435,13 +435,16 @@ a img{
 	}
 	.polygon_key {
 		position: absolute;
-		height: 94%;
+		// height: 94%;
+		height: 28px;
 		display: block;
-		width: 27px;
+		// width: 27px;
+		width: 25px;
 		top: 0px;
 		left: 0px;
 		border-radius: 4px 0px 0px 4px;
-		border: 1px solid;
+		// border: 1px solid;
+		border: 3px solid;
 		box-shadow: 1px 1px 10px #111;
 	}
 	.polygon.active_polygon {
@@ -452,6 +455,29 @@ a img{
 	.polygon.active_polygon .polygon_key{
 		background-image:url('../img/interface/check.png');
 		background-repeat:no-repeat;
+	}
+	#map_keys{
+		position: absolute;
+		top: 0;
+		right:0;
+		// display:none;
+		// &.active_key_group{
+		// 	display:block;
+		// }
+		.polygon_key{
+			text-align: center;
+			position:relative;
+			border-radius: 4px;
+			float: left;
+			padding: 8px;
+			height: auto;
+			display:none;
+			&.active_key{
+				display:block;
+				// background-image:url('../img/interface/check.png');
+				// background-repeat:no-repeat;
+			}
+		}
 	}
 	.infopane{
 		display: block;
@@ -575,7 +601,8 @@ a img{
 		padding:0;
 	}
 	.polygon_key{
-		height:28px;
+		// height:28px;
+		height:26px;
 	}
 	#map_canvas {
 	}

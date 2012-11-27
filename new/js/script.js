@@ -440,6 +440,8 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
     var target = document.getElementById('category_' + index),
           html = "",
+  mapKeyTarget = document.getElementById('map_keys'),
+        mapKey = "",
         catObj = categoryInfo[index],
        objData = mapCategories[index],
       thisData,
@@ -460,6 +462,8 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       html +=   '<div class="polygon_key" id="poly_' + thisData.name + '" style="border-color:' + thisData.borderColor + '; background-color:' + thisData.fillColor + '">&nbsp;</div>';
       html +=   '<div class="object_name polygon">' + thisData.name + '</div>';
       html += '</a>';
+
+      mapKey += '<div class="polygon_key" id="poly_key_' + thisData.code + '"style="border-color:' + thisData.borderColor + '; background-color:' + thisData.fillColor + '">' + thisData.code + '</div>';
 
       // set GoogleEarth KML polygon file path string
       polygonFile = mapCategories[index][i].map;
@@ -483,6 +487,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
     // write all new html for this category to DOM in one instant reflow
     target.innerHTML = html;
+    mapKeyTarget.innerHTML = mapKey;
 
     if (callback && typeof(callback) === "function") {
       callback();
@@ -517,17 +522,21 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
   function togglePolygonVisibility(obj, catIndex, layerIndex, callback){
     //console.time('show polygon');
     var layer = markerArray[catIndex][layerIndex],
-        active = obj.hasClass('active_polygon');
+         code = mapCategories[catIndex][layerIndex].code,
+       keyObj = $('#map_keys ' + '#poly_key_' + code),
+       active = obj.hasClass('active_polygon');
 
     //Hide this layer's polygons
     if (active === true) {
       layer.setMap(null);
       obj.toggleClass('active_polygon');
+      keyObj.toggleClass('active_key');
     }
     //Show this layer's polygons
     else {
       layer.setMap(map);
       obj.toggleClass('active_polygon');
+      keyObj.toggleClass('active_key');
     }
     //console.timeEnd('show polygon');
     if (callback && typeof(callback) === "function") {
@@ -853,7 +862,8 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     $('#map_canvas').click(function(event){
       // stop click event from "propagating/bubbling down to children DOM elements"
       event.stopPropagation();
-      if($(this) !== $('#menu_button')){
+      var device = control.currentDevice;
+      if($(this) !== $('#menu_button') && device !== 1){
         setMenu(0);
       }
     });
