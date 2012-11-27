@@ -3,16 +3,18 @@
 window.onload = function() {
 	function addIcon(el, entity) {
 		var html = el.innerHTML;
-		el.innerHTML = '<span style="font-family: \'map-icons\'">' + entity + '</span>' + html;
+		el.innerHTML = '<span style="font-family: \'icomoon\'">' + entity + '</span>' + html;
 	}
 	var icons = {
-			'icon-desktop' : '&#xe000;',
-			'icon-info' : '&#xe001;',
-			'icon-feedback' : '&#xe002;',
-			'icon-compass' : '&#xe004;',
-			'icon-settings' : '&#xe003;',
-			'icon-mobile' : '&#xe005;',
-			'icon-phone' : '&#xe006;'
+			'icon-cancel' : '&#xe000;',
+			'icon-checkmark' : '&#xe001;',
+			'icon-desktop' : '&#xe005;',
+			'icon-info' : '&#xe006;',
+			'icon-feedback' : '&#xe007;',
+			'icon-compass' : '&#xe008;',
+			'icon-settings' : '&#xe009;',
+			'icon-mobile' : '&#xe00a;',
+			'icon-call' : '&#xe00b;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;
@@ -24,7 +26,7 @@ window.onload = function() {
 		}
 		c = el.className;
 		c = c.match(/icon-[^\s'"]+/);
-		if (c) {
+		if (c && icons[c[0]]) {
 			addIcon(el, icons[c[0]]);
 		}
 	}

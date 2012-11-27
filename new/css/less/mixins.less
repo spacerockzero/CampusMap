@@ -29,7 +29,17 @@
   background-image:      -o-linear-gradient(left, @from_color, @to_color); /* Opera 11.10+ */
         /*-ms-filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr=@from_color, endColorstr=@to_color, GradientType=1)";*/ /* For Internet Explorer 8 */
   background-image:         linear-gradient(left, @from_color, @to_color);
-} 
+}
+.box_gradient_2stop_top(@from_color:#eeeeee, @to_color:#fbfbfb) {
+  /*background-color: #fbfbfb;*/
+  //background-image: -webkit-gradient(linear, left top, left bottom, from(@from_color), to(@to_color)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, @from_color, @to_color); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, @from_color, @to_color); /* FF3.6 */
+  background-image:     -ms-linear-gradient(top, @from_color, @to_color); /* IE10 */
+  background-image:      -o-linear-gradient(top, @from_color, @to_color); /* Opera 11.10+ */
+        /*-ms-filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr=@from_color, endColorstr=@to_color, GradientType=1)";*/ /* For Internet Explorer 8 */
+  background-image:         linear-gradient(top, @from_color, @to_color);
+}  
 .box_gradient_4stop(@stop1:#1A5E80, @stop2:#326BA9, @stop3:#326BA9, @stop4:#1A5E80, @stop1pct:0%, @stop2pct:25%, @stop3pct:75%, @stop4pct:100%) {
   background:   -webkit-linear-gradient(top, @stop1 @stop1pct, @stop2 @stop2pct, @stop3 @stop3pct, @stop4 @stop4pct); /* Chrome10+,Safari5.1+ */
   background:      -moz-linear-gradient(top, @stop1 @stop1pct, @stop2 @stop2pct, @stop3 @stop3pct, @stop4 @stop4pct); /* FF3.6+ */

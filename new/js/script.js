@@ -2,7 +2,7 @@
 /*   BYU-I Campus Map                                */
 /*   - Author: Jakob Anderson :: jakobanderson.com   */
 /*   - Requires: Google Maps API v3, jQuery 1.7      */
-/*   - Revised:  11.13.2012                          */
+/*   - Revised:  11.27.2012                          */
 /*****************************************************/
 
 // JS Lint Options (remove after deployment)
@@ -125,6 +125,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     var bodyHeight = detectHeight(body),
        titleHeight = detectHeight(doc.getElementById('title')),
          mapHeight = (bodyHeight - titleHeight) + "px";
+         console.log("bodyHeight = " + bodyHeight);
+         console.log("titleHeight = " + titleHeight);
+         console.log("mapHeight = " + mapHeight);
     return mapHeight;
   }
 
@@ -134,10 +137,17 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 /****************************************************/
   
   function setAllControls(){
-    control.currentDevice = detectDevice();
+    var device = detectDevice();
+    control.currentDevice = device;
     setCurrentDevice();
-    setHeight(container,getMapHeight());
-    setHeight(canvas,getMapHeight());
+    resizeStack();
+    // if(device === 0){
+    //   setHeight(container,'918px');
+    //   setHeight(canvas,'918px');
+    // }else{
+    //   setHeight(container,'901px');
+    //   setHeight(canvas,'901px');
+    // }
   }
 
 
@@ -292,7 +302,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       }
       content += '<div class="button-div">';
       if (phone){
-        content += '<a class="phone-call btn btn-large btn-primary icon-phone" href="tel:' + phone + '" ></a>';
+        content += '<a class="phone-call btn btn-large btn-primary icon-call" href="tel:' + phone + '" ></a>';
       }
       if (link){
         content += '<a href="' + link + '" class="btn btn-large btn-primary">More Info</a>';
@@ -354,7 +364,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
         html += '<a class="category_bar" href="#" >';
       } else {
         html += '<a class="category_bar cat_polygon" href="#" >';
-        mapKeyTarget.innerHTML += '<div id="map_key_' + thisCat.name + '"><div class="key_title">' + thisCat.name + ' Map Key</div></div>';
+        mapKeyTarget.innerHTML += '<div id="map_key_' + thisCat.name + '"><div class="key_title">' + thisCat.name + ' Map Key</div><a href="#" class="close icon-cancel nolink"></a></div>';
       }
       html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ thisCat.icon + '.png" />';
       html +=     '<span class="category_name">' + thisCat.title + '</span>';
@@ -461,7 +471,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
       // write html for category menu
       html += '<a class="object polygon" id="layer_cat_' + i + '" href="#">';
-      html +=   '<div class="polygon_key" id="poly_' + thisData.name + '" style="border-color:' + thisData.borderColor + '; background-color:' + thisData.fillColor + '">&nbsp;</div>';
+      html +=   '<div class="polygon_key" id="poly_' + thisData.name + '" style="border-color:' + thisData.borderColor + '; background-color:' + thisData.fillColor + '"><span>&nbsp;</span></div>';
       html +=   '<div class="object_name polygon">' + thisData.name + '</div>';
       html += '</a>';
 
@@ -523,22 +533,26 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
   // Show / Toggle Polygon Category KML layers
   function togglePolygonVisibility(obj, catIndex, layerIndex, callback){
     //console.time('show polygon');
+    //console.log(obj.children());
+          obj = obj.find('span');
     var layer = markerArray[catIndex][layerIndex],
          code = mapCategories[catIndex][layerIndex].code,
        catKey = document.getElementById('map_key_' + categoryInfo[catIndex].name),
        keyObj = $('#map_keys ' + '#poly_key_' + code),
-       active = obj.hasClass('active_polygon');
+       active = obj.hasClass('icon-checkmark');
+    console.log(obj);
+
 
     //Hide this layer's polygons
     if (active === true) {
       layer.setMap(null);
-      obj.toggleClass('active_polygon');
+      obj.toggleClass('icon-checkmark');
       keyObj.toggleClass('active_key');
     }
     //Show this layer's polygons
     else {
       layer.setMap(map);
-      obj.toggleClass('active_polygon');
+      obj.toggleClass('icon-checkmark');
       catKey.className = 'active_key_group';
       keyObj.toggleClass('active_key');
     }
@@ -837,16 +851,24 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
   // Global Resize Event Function Stack
   function resizeStack(){
-    var deviceState = control.currentDevice;
-    if(deviceState === 1){
-      setHeight(container,getMapHeight());
-      setHeight(canvas,getMapHeight());
-      setDevice(detectDevice());
-     } else {
-      setHeight(container,getMapHeight());
-      setHeight(canvas,getMapHeight());
-      setDevice(detectDevice());
-    }
+    // var deviceState = control.currentDevice;
+    // if(deviceState === 1){
+    //   setHeight(container,getMapHeight());
+    //   setHeight(canvas,getMapHeight());
+    //   setDevice(detectDevice());
+    //  } else {
+      var device = detectDevice();
+      setDevice(device);
+      if(device === 0){
+        setHeight(container,'918px');
+        setHeight(canvas,'918px');
+      }else{
+        setHeight(container,'901px');
+        setHeight(canvas,'901px');
+      }
+      // setHeight(container,getMapHeight());
+      // setHeight(canvas,getMapHeight());
+    // }
   }
 
   // global map resize event listener
