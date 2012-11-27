@@ -460,10 +460,20 @@ a img{
 		position: absolute;
 		top: 0;
 		right:0;
-		// display:none;
-		// &.active_key_group{
-		// 	display:block;
-		// }
+		text-transform: uppercase;
+		> div {
+			display:none;
+			.clearfix();
+			background-color: #EEE;
+      padding: 10px;
+      &.active_key_group{
+				display:block;
+			}
+		}
+		.key_title{
+			margin-bottom:10px;
+			text-shadow:none;
+		}
 		.polygon_key{
 			text-align: center;
 			position:relative;
@@ -603,6 +613,11 @@ a img{
 	.polygon_key{
 		// height:28px;
 		height:26px;
+	}
+	#map_keys{
+		.polygon_key{
+			height:auto;
+		}
 	}
 	#map_canvas {
 	}

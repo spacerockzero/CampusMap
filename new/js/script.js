@@ -339,6 +339,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     // set target div and html string var to be inserted
     var target = doc.getElementById('categories'),
           html = "",
+  mapKeyTarget = doc.getElementById('map_keys'),
         length = categoryInfo.length,
        thisCat,
          state,
@@ -353,6 +354,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
         html += '<a class="category_bar" href="#" >';
       } else {
         html += '<a class="category_bar cat_polygon" href="#" >';
+        mapKeyTarget.innerHTML += '<div id="map_key_' + thisCat.name + '"><div class="key_title">' + thisCat.name + ' Map Key</div></div>';
       }
       html +=     '<img class="cat_icon" src="img/icons/blank-colors/'+ thisCat.icon + '.png" />';
       html +=     '<span class="category_name">' + thisCat.title + '</span>';
@@ -440,10 +442,10 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
     var target = document.getElementById('category_' + index),
           html = "",
-  mapKeyTarget = document.getElementById('map_keys'),
-        mapKey = "",
         catObj = categoryInfo[index],
        objData = mapCategories[index],
+  mapKeyTarget = document.getElementById('map_key_' + catObj.name),
+        mapKey = "",
       thisData,
           icon,
         length = objData.length,
@@ -487,7 +489,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
     // write all new html for this category to DOM in one instant reflow
     target.innerHTML = html;
-    mapKeyTarget.innerHTML = mapKey;
+    mapKeyTarget.innerHTML += mapKey;
 
     if (callback && typeof(callback) === "function") {
       callback();
@@ -523,6 +525,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     //console.time('show polygon');
     var layer = markerArray[catIndex][layerIndex],
          code = mapCategories[catIndex][layerIndex].code,
+       catKey = document.getElementById('map_key_' + categoryInfo[catIndex].name),
        keyObj = $('#map_keys ' + '#poly_key_' + code),
        active = obj.hasClass('active_polygon');
 
@@ -536,6 +539,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     else {
       layer.setMap(map);
       obj.toggleClass('active_polygon');
+      catKey.className = 'active_key_group';
       keyObj.toggleClass('active_key');
     }
     //console.timeEnd('show polygon');
@@ -681,7 +685,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       
       if(device === 1){
         child = $(this).next('div');
-        console.log(child);
       }
 
       // Toggle Category in Menu
