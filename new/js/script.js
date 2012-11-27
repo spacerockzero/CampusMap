@@ -102,9 +102,13 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     if (current === 0){
       // set device as desktop
       setDevice(1);
+      setHeight(container,'901px');
+      setHeight(canvas,'901px');
     } else {
       // set device as mobile
       setDevice(0);
+      setHeight(container,'918px');
+      setHeight(canvas,'918px');
     }
   }
 
@@ -125,9 +129,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     var bodyHeight = detectHeight(body),
        titleHeight = detectHeight(doc.getElementById('title')),
          mapHeight = (bodyHeight - titleHeight) + "px";
-         console.log("bodyHeight = " + bodyHeight);
-         console.log("titleHeight = " + titleHeight);
-         console.log("mapHeight = " + mapHeight);
     return mapHeight;
   }
 
@@ -141,13 +142,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     control.currentDevice = device;
     setCurrentDevice();
     resizeStack();
-    // if(device === 0){
-    //   setHeight(container,'918px');
-    //   setHeight(canvas,'918px');
-    // }else{
-    //   setHeight(container,'901px');
-    //   setHeight(canvas,'901px');
-    // }
   }
 
 
@@ -537,7 +531,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
           obj = obj.find('span');
     var layer = markerArray[catIndex][layerIndex],
          code = mapCategories[catIndex][layerIndex].code,
-       catKey = document.getElementById('map_key_' + categoryInfo[catIndex].name),
+       catKey = $('#map_key_' + categoryInfo[catIndex].name),
        keyObj = $('#map_keys ' + '#poly_key_' + code),
        active = obj.hasClass('icon-checkmark');
     console.log(obj);
@@ -553,7 +547,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     else {
       layer.setMap(map);
       obj.toggleClass('icon-checkmark');
-      catKey.className = 'active_key_group';
+      catKey.fadeIn().addClass('active_key_group');
       keyObj.toggleClass('active_key');
     }
     //console.timeEnd('show polygon');
