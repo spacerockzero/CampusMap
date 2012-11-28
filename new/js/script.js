@@ -299,7 +299,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
         content += '<a class="phone-call btn btn-large btn-primary icon-call" href="tel:' + phone + '" ></a>';
       }
       if (link){
-        content += '<a href="' + link + '" class="btn btn-large btn-primary">More Info</a>';
+        content += '<a href="' + link + '" target="_blank" class="btn btn-large btn-primary">More Info</a>';
       }
       content += '</div>';
       if (hours){
@@ -533,7 +533,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
        catKey = $('.map_key_' + categoryInfo[catIndex].name),
        keyObj = $('#map_keys ' + '#poly_key_' + code),
        active = obj.hasClass('icon-checkmark');
-    console.log(obj);
+    //console.log(obj);
 
 
     //Hide this layer's polygons
@@ -557,7 +557,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
   // Show / Toggle map polygon key containers
   function togglePolyKey(catIndex){
-    var catKey = $('#map_key_' + categoryInfo[catIndex].name);
+    var catKey = $('.map_key_' + categoryInfo[catIndex].name);
     catKey.stop().fadeToggle();
   }
 
@@ -752,15 +752,18 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       togglePolygonVisibility(obj, catIndex, layerIndex);
 
     });
-
+    console.log('pre close click');
     $('.close').click(function(event){
       // stop click event from "propagating/bubbling down to children DOM elements"
+      console.log('close click');
       event.stopPropagation();
       var catIndex = $(this).parent().attr('id').substr(9);
       togglePolyKey(catIndex);
     });
 
-    callback();
+    if (callback && typeof(callback) === "function") {
+      callback();
+    }
   }  
 
 /****************************************************/
