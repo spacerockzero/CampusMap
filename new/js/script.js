@@ -2,7 +2,7 @@
 /*   BYU-I Campus Map                                */
 /*   - Author: Jakob Anderson :: jakobanderson.com   */
 /*   - Requires: Google Maps API v3, jQuery 1.7      */
-/*   - Revised:  11.27.2012                          */
+/*   - Revised:  11.28.2012                          */
 /*****************************************************/
 
 // JS Lint Options (remove after deployment)
