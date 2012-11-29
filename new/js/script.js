@@ -20,9 +20,8 @@
         body = doc.getElementsByTagName('body')[0],
       canvas = doc.getElementById('map_canvas'),
     doResize,
-categoryFile = 'data/categories.txt',
-  //objectFile = 'data/objectFile.txt',
-  objectFile = 'data/objectFile.txt',               /* Experimental Data file, used for testing new data structures and source info */
+categoryFile = 'data/categories.txt',                         /* JSON data file, contains category meta information */
+  objectFile = 'data/objectFile.txt',                         /* JSON Data file, contains category objects info and polygon source data */
     myLatlng,                                                 /* BYU-Idaho's center of campus lat/ling in googlemaps' latling object form */
    myOptions,
          map,
@@ -369,7 +368,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       html +=       '<p>';
       html +=         thisCat.text;
       html +=       '</p>';
-      html +=       '<a href="' + thisCat.link + '">' + thisCat.title + ' website</a>';
+      html +=       '<a href="' + thisCat.link + '" target="_blank">' + thisCat.title + ' website</a>';
       html +=     '</div>';
       html +=     '<div id="category_' + i + '"></div>';
       html +=   '</div>';

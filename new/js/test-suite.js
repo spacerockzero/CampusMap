@@ -1,7 +1,7 @@
 /*********************************/
 /*  Testing and Debugging Suite  */
 /*********************************/
-//console.time implementation for IE
+//console.time implementation for IE 7,8,9
 if(window.console && typeof(window.console.time) == "undefined") {
     console.time = function(name, reset){
         if(!name) { return; }
@@ -12,7 +12,7 @@ if(window.console && typeof(window.console.time) == "undefined") {
             console.timeCounters[key] = time;
         };
 
-    console.timeEnd = function(name){
+    console.timeEnd = function(name){ 
         var time = new Date().getTime();
         if(!console.timeCounters) { return; }
         var key = "KEY" + name.toString();
