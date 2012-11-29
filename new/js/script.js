@@ -2,7 +2,7 @@
 /*   BYU-I Campus Map                                */
 /*   - Author: Jakob Anderson :: jakobanderson.com   */
 /*   - Requires: Google Maps API v3, jQuery 1.7      */
-/*   - Revised:  11.28.2012                          */
+/*   - Revised:  11.29.2012                          */
 /*****************************************************/
 
 // JS Lint Options (remove after deployment)
@@ -60,7 +60,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
   function setHeight(object, height){
     object.style.height = height;
   }
-
 
 /****************************************************/
 /*  Device & Feature Detection & Setting Functions  */
@@ -224,7 +223,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     if (callback && typeof(callback) === "function") {
       callback();
     }
+
     console.timeEnd("initialize js chain until ready");
+
   }
 
 
@@ -444,11 +445,11 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
   //do something with polygon layers' data
   function populatePolygonCategory(index,callback){
 
-    var target = document.getElementById('category_' + index),
+    var target = doc.getElementById('category_' + index),
           html = "",
         catObj = categoryInfo[index],
        objData = mapCategories[index],
-  mapKeyTarget = document.getElementsByClassName('map_key_' + catObj.name)[0],
+  mapKeyTarget = $('.map_key_' + catObj.name)[0],
         mapKey = "",
       thisData,
           icon,
@@ -493,7 +494,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
     // write all new html for this category to DOM in one instant reflow
     target.innerHTML = html;
-    mapKeyTarget.innerHTML += mapKey;
+    mapKeyTarget.html += mapKey;
 
     if (callback && typeof(callback) === "function") {
       callback();
@@ -526,7 +527,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
   // Show / Toggle Polygon Category KML layers
   function togglePolygonVisibility(obj, catIndex, layerIndex, callback){
+
     //console.time('show polygon');
+
           obj = obj.find('span');
     var layer = markerArray[catIndex][layerIndex],
          code = mapCategories[catIndex][layerIndex].code,
@@ -549,7 +552,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       catKey.stop().fadeIn();
       keyObj.stop().fadeIn();
     }
+
     //console.timeEnd('show polygon');
+
     if (callback && typeof(callback) === "function") {
       callback();
     }
@@ -685,6 +690,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     $('.category_bar').on("click",function(){
 
       console.time("clickCategory");
+
       //close any open info windows
       infoWindow.close();
 
@@ -727,7 +733,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
       // Set global control with changes
       control.categoryState[index] = catState;
+
       console.timeEnd("clickCategory");
+      
     });
     
     if (callback && typeof(callback) === "function") {
@@ -752,7 +760,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       togglePolygonVisibility(obj, catIndex, layerIndex);
 
     });
-    console.log('pre close click');
+    //console.log('pre close click');
     $('.close').click(function(event){
       // stop click event from "propagating/bubbling down to children DOM elements"
       console.log('close click');
@@ -818,7 +826,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
   // Initialize & Execute Map App Stack
   function initialize(callback) {
+
     console.time("initialize js chain until ready");
+
     // Run Map setup stack
     setOptions();
     setAllControls();
