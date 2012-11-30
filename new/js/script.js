@@ -51,8 +51,8 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 /**********************/
 
   // Detect object height
-  function detectHeight(object){
-    return object.offsetHeight;
+  function getHeight(object){
+    return object.height();
   }
 
   //set object height
@@ -63,6 +63,20 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 /****************************************************/
 /*  Device & Feature Detection & Setting Functions  */
 /****************************************************/
+
+  //get heights of map element
+  function getMapHeight(){
+    var bodyHeight = $('body').height(),
+       titleHeight = $('#title').height(),
+         mapHeight = (bodyHeight - titleHeight) + "px";
+    return mapHeight;
+  }
+  function setMapHeight(){
+    // setHeight(document.getElementById('container'), getMapHeight());
+    // setHeight(document.getElementById('map_canvas'), getMapHeight());
+    $('#container').height(getMapHeight());
+    $('#map_canvas').height(getMapHeight());
+  }
 
   // Detect and set device in control object
   function detectDevice(){
@@ -89,6 +103,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
         control.currentDevice = 1;
         body.setAttribute("id","desktop");
     }
+    setMapHeight();
     if (callback && typeof(callback) === "function") {
       callback();
     }
@@ -100,13 +115,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     if (current === 0){
       // set device as desktop
       setDevice(1);
-      setHeight(container,'901px');
-      setHeight(canvas,'901px');
     } else {
       // set device as mobile
       setDevice(0);
-      setHeight(container,'918px');
-      setHeight(canvas,'918px');
     }
   }
 
@@ -121,15 +132,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       setDevice(1);
     }
   }  
-
-  //get heights of elements
-  function getMapHeight(){
-    var bodyHeight = detectHeight(body),
-       titleHeight = detectHeight(doc.getElementById('title')),
-         mapHeight = (bodyHeight - titleHeight) + "px";
-    return mapHeight;
-  }
-
 
 /****************************************************/
 /*  Set All Controls Functions                      */
@@ -845,10 +847,12 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
               bindPolygonToggle(function(){
                 bindMenuObjects(function(){
                   typeToggle(function(){
+                    // setMapHeight();
                     google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
                       // do something only the first time the map is loaded
                       // Remove Loading screen
                       loadComplete();
+                      setMapHeight();
                     });
                   });
                 });
@@ -871,14 +875,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
   // Global Resize Event Function Stack
   function resizeStack(){
     var device = detectDevice();
-    setDevice(device);
-    if(device === 0){
-      setHeight(container,'918px');
-      setHeight(canvas,'918px');
-    }else{
-      setHeight(container,'901px');
-      setHeight(canvas,'901px');
-    }
+    setDevice(device, function(){
+      setMapHeight();
+    });
   }
 
   // global map resize event listener
