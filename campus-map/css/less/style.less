@@ -476,15 +476,14 @@ a img{
 		bottom: 0;
 		left:0;
 		text-transform: uppercase;
-		> div {
+		.map_key_category {
 			display:none;
 			.clearfix();
 			min-height: 85px;
-			// background-color: #EEE;
 			background: #044F84;
 			.box_gradient_2stop_top(@from_color:#375182, @to_color:#1f3350);
-			// background: url(../img/interface/title_bg.png);
-			// background-repeat: repeat-x;
+			box-shadow: 1px 1px 15px #000;
+			box-shadow: 1px 1px 15px rgba(0,0,0,0.9);
       padding: 10px;
       .animate();
 			min-width: 155px;
@@ -498,9 +497,7 @@ a img{
 				color: white;
 			}
       &.active_key_group{
-				display:block;
-				
-				
+				display:block;				
 			}
 		}
 		.key_title{
@@ -563,7 +560,7 @@ a img{
 		}
 		.info-row {
 			margin:0px 0px 4px;
-			//clear:both;
+			clear:left;
 		}
 		.phone-call {
 			display:block;

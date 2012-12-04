@@ -2,7 +2,7 @@
 /*   BYU-I Campus Map                                */
 /*   - Author: Jakob Anderson :: jakobanderson.com   */
 /*   - Requires: Google Maps API v3, jQuery 1.7      */
-/*   - Revised:  11.29.2012                          */
+/*   - Revised:  12.04.2012                          */
 /*****************************************************/
 
 // JS Lint Options (remove after deployment)
@@ -450,7 +450,8 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
           html = "",
         catObj = categoryInfo[index],
        objData = mapCategories[index],
-  mapKeyTarget = $('.map_key_' + catObj.name)[0],
+  mapKeyTarget = $('.map_key_' + catObj.name),
+    oldKeyHTML = mapKeyTarget.html(),
         mapKey = "",
       thisData,
           icon,
@@ -471,7 +472,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       html +=   '<div class="object_name polygon">' + thisData.name + '</div>';
       html += '</a>';
 
-      mapKey += '<div class="polygon_key" id="poly_key_' + thisData.code + '"style="border-color:' + thisData.borderColor + '; background-color:' + thisData.fillColor + '">' + thisData.code + '</div>';
+      mapKey += '<div class="polygon_key" id="poly_key_' + thisData.code + '" style="border-color:' + thisData.borderColor + '; background-color:' + thisData.fillColor + '">' + thisData.code + '</div>';
 
       // set GoogleEarth KML polygon file path string
       polygonFile = mapCategories[index][i].map;
@@ -495,7 +496,9 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
     // write all new html for this category to DOM in one instant reflow
     target.innerHTML = html;
-    mapKeyTarget.html += mapKey;
+    console.log(mapKeyTarget);
+    console.log("mapKey = " + mapKey);
+    mapKeyTarget.html(oldKeyHTML + mapKey);
 
     if (callback && typeof(callback) === "function") {
       callback();
