@@ -31,7 +31,6 @@ parkingLayer,
  campusLayer,                                                 /* The layer that will have the campusfile kml rendered onto it */
   campusFile = 'http://www2.byui.edu/Map/campus_outline.xml'; /* kml file that represents the outline image of campus. All kml files must be on an absolute-path, in a web-accessible location for google's servers to process them */
 
-
 // Control object holds the current states of parts of the app
 var control = {
   menuState: 0,      /* 0 = Menu is closed/hidden, 1 = Menu is open/shown */
@@ -39,12 +38,10 @@ var control = {
   categoryState: []  /* array that holds the current states (open/close) of each category's submenu */
 };
 
-
 // Arrays to hold category names, settings, and control info
 var categoryInfo = [], /* array that holds the basic info about each category: icon, link, name, text, title, etc */
    mapCategories = [], /* array that holds the subitems from each category: objects and their lat/lon infowindow data, or polygon names, key info and kml path data */
      markerArray = []; /* array of actual google map markers of objects, separated by category, in same order as above two arrays. Iterate through this to perform functions on markers, such as setting visibility */ 
-
 
 /**********************/
 /*  Global Functions  */
@@ -144,7 +141,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     resizeStack();
   }
 
-
 /****************************************************/
 /*  Load all Data Functions                         */
 /****************************************************/
@@ -177,7 +173,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       url: objectFile,
       success: function(data) {
         //add new data to global object
-        console.log('successfully pulled json categories');
+        //console.log('successfully pulled json categories');
         mapCategories = data;
       }
     })
@@ -196,7 +192,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     }
   }
 
-
 /****************************************************/
 /*   Load Progress                                  */
 /****************************************************/
@@ -207,7 +202,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     var obj = doc.getElementById('loading_progress');
     obj.style.width = percentageComplete + '%';
 
-    console.log("Loaded " + percentageComplete);
+    //console.log("Loaded " + percentageComplete);
     if (callback && typeof(callback) === "function") {
       callback();
     }
@@ -228,7 +223,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     console.timeEnd("initialize js chain until ready");
 
   }
-
 
 /****************************************************/
 /*   Marker Functions                               */
@@ -442,7 +436,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     }
   }
 
-
   //do something with polygon layers' data
   function populatePolygonCategory(index,callback){
 
@@ -496,15 +489,14 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
     // write all new html for this category to DOM in one instant reflow
     target.innerHTML = html;
-    console.log(mapKeyTarget);
-    console.log("mapKey = " + mapKey);
+    //console.log(mapKeyTarget);
+    //console.log("mapKey = " + mapKey);
     mapKeyTarget.html(oldKeyHTML + mapKey);
 
     if (callback && typeof(callback) === "function") {
       callback();
     }
   }
-
 
   // Show / Toggle Object Category markers
   function toggleMarkerVisibility(index,newState){
@@ -525,9 +517,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
         i += 1;
       }
     }
-
   }
-
 
   // Show / Toggle Polygon Category KML layers
   function togglePolygonVisibility(obj, catIndex, layerIndex, callback){
@@ -540,13 +530,12 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
        catKey = $('.map_key_' + categoryInfo[catIndex].name),
        keyObj = $('#map_keys ' + '#poly_key_' + code),
        active = obj.hasClass('icon-checkmark');
-    //console.log(obj);
-
 
     //Hide this layer's polygons
     if (active === true) {
       layer.setMap(null);
       obj.stop().toggleClass('icon-checkmark');
+      catKey.stop().fadeOut();
       keyObj.stop().fadeOut();
     }
     //Show this layer's polygons
@@ -556,9 +545,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       catKey.stop().fadeIn();
       keyObj.stop().fadeIn();
     }
-
     //console.timeEnd('show polygon');
-
     if (callback && typeof(callback) === "function") {
       callback();
     }
@@ -569,7 +556,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     var catKey = $('.map_key_' + categoryInfo[catIndex].name);
     catKey.stop().fadeToggle();
   }
-
 
 /****************************************************/
 /*   Setup App                                      */
@@ -612,7 +598,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     campusLayer.setMap(map);
   }
 
-
   //populate all categories
   function runPopulators(callback){
     
@@ -633,9 +618,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       callback();
     }
   }
-
-  
-
 
 /****************************************************/
 /*   Menu Toggle                                    */
@@ -684,7 +666,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     }
   }
 
-
 /****************************************************/
 /*   Category Toggle                                */
 /****************************************************/
@@ -693,7 +674,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
     $('.category_bar').on("click",function(){
 
-      console.time("clickCategory");
+      //console.time("clickCategory");
 
       //close any open info windows
       infoWindow.close();
@@ -738,7 +719,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       // Set global control with changes
       control.categoryState[index] = catState;
 
-      console.timeEnd("clickCategory");
+      //console.timeEnd("clickCategory");
       
     });
     
@@ -746,6 +727,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       callback();
     }
   }
+
 /****************************************************/
 /*   Category Toggle                                */
 /****************************************************/
@@ -767,7 +749,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     //console.log('pre close click');
     $('.close').click(function(event){
       // stop click event from "propagating/bubbling down to children DOM elements"
-      console.log('close click');
+      //console.log('close click');
       event.stopPropagation();
       var catIndex = $(this).parent().attr('id').substr(9);
       togglePolyKey(catIndex);
@@ -869,7 +851,6 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       callback();
     }
   }//end initialize()
-
 
 /****************************************************/
 /*   Other Events & Bindings                        */
