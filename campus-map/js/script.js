@@ -672,8 +672,8 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
   function bindCategoryToggle(callback){
 
-    $('.category_bar').on("click",function(){
-
+    $('.category_bar').on("click",function(event){
+      event.preventDefault();
       //console.time("clickCategory");
 
       //close any open info windows
@@ -738,6 +738,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
       // stop click event from "propagating/bubbling down to children DOM elements"
       event.stopPropagation();
+      event.preventDefault();
 
          var obj = $(this),
         catIndex = obj.parent().attr('id').substr(9),
@@ -751,6 +752,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       // stop click event from "propagating/bubbling down to children DOM elements"
       //console.log('close click');
       event.stopPropagation();
+      event.preventDefault();
       var catIndex = $(this).parent().attr('id').substr(9);
       togglePolyKey(catIndex);
     });
@@ -769,7 +771,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     $('.object.marker_object').click(function(event){
       // stop click event from "propagating/bubbling down to children DOM elements"
       event.stopPropagation();
-
+      event.preventDefault();
          var obj = this,
         catIndex = obj.id.charAt(4),
         objIndex = obj.id.substr(6),
@@ -879,6 +881,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     $('#map_canvas').click(function(event){
       // stop click event from "propagating/bubbling down to children DOM elements"
       event.stopPropagation();
+      event.preventDefault();
       var device = control.currentDevice;
       if($(this) !== $('#menu_button') && device !== 1){
         setMenu(0);
@@ -889,6 +892,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     $('#heading, #menu_button').click(function(event){
       // stop click event from "propagating/bubbling down to children DOM elements"
       event.stopPropagation();
+      event.preventDefault();
       toggleMenu();
     });
 
