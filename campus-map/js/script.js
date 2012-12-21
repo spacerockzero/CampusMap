@@ -881,7 +881,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     $('#map_canvas').click(function(event){
       // stop click event from "propagating/bubbling down to children DOM elements"
       event.stopPropagation();
-      event.preventDefault();
+      //event.preventDefault();
       var device = control.currentDevice;
       if($(this) !== $('#menu_button') && device !== 1){
         setMenu(0);
