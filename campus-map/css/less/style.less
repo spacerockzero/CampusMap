@@ -38,6 +38,16 @@ a img{
 /*  Global classes                                          */
 /*                                                          */
 /************************************************************/
+.scrolling-element-class {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scrolling-element-class .child-element {
+    position: relative;
+    -webkit-transform: translate3d(0,0,0);
+}
+
 .animate {
   -webkit-transition: all .3s ease-out;
   -moz-transition: all .3s ease-out;
