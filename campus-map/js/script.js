@@ -533,17 +533,24 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
 
     //Hide this layer's polygons
     if (active === true) {
+      console.log('layer is active');
       layer.setMap(null);
       obj.stop().toggleClass('icon-checkmark');
-      catKey.stop().fadeOut();
-      keyObj.stop().fadeOut();
+      //catKey.stop().fadeOut();
+      //keyObj.stop().fadeOut();
+      keyObj.stop().toggleClass('active_key');
+      // if(this turns off last polygon layer of this group){
+      //   catKey.stop().fadeOut();
+      // }
     }
     //Show this layer's polygons
     else {
+      console.log('layer is inactive');
       layer.setMap(map);
       obj.stop().toggleClass('icon-checkmark');
       catKey.stop().fadeIn();
-      keyObj.stop().fadeIn();
+      //keyObj.stop().fadeIn();
+      keyObj.toggleClass('active_key');
     }
     //console.timeEnd('show polygon');
     if (callback && typeof(callback) === "function") {
@@ -556,6 +563,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     var catKey = $('.map_key_' + categoryInfo[catIndex].name);
     catKey.stop().fadeToggle();
   }
+
 
 /****************************************************/
 /*   Setup App                                      */
