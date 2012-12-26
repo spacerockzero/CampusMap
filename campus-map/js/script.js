@@ -539,9 +539,10 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
       //catKey.stop().fadeOut();
       //keyObj.stop().fadeOut();
       keyObj.stop().toggleClass('active_key');
-      // if(this turns off last polygon layer of this group){
-      //   catKey.stop().fadeOut();
-      // }
+      console.log('active keys = ' + catKey.children('.active_key').length);
+      if(catKey.children('.active_key').length < 1){
+        catKey.stop().fadeOut();
+      }
     }
     //Show this layer's polygons
     else {

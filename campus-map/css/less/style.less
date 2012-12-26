@@ -40,11 +40,14 @@ a img{
 /************************************************************/
 .scrolling-element-class {
     overflow: auto;
+    /* inertia-effected mobile scrolling effect in supported devices */
+    /* for a more natural mobile scrolling interaction */
     -webkit-overflow-scrolling: touch;
 }
 
 .scrolling-element-class .child-element {
     position: relative;
+    /* force native GPU to render scroll effect in supported devices and browsers */
     -webkit-transform: translate3d(0,0,0);
 }
 
@@ -314,9 +317,10 @@ a img{
 	#menu{
 		display:none;
 		position: absolute;
-		//overflow:scroll; /* well-tested all-around, but gives extra white scroll area in firefox */
-		//overflow-x:auto;
+		// overflow:scroll; /* well-tested all-around, but gives extra white scroll area in firefox */
+		// overflow-y:auto;
 		overflow:auto;
+		-webkit-overflow-scrolling: touch;
 		.transition(width,200ms);
 		width: 100%;
 		right: 0;
@@ -327,9 +331,10 @@ a img{
 		height: 100%;
 	}
 	#inner_menu{
-		//overflow:hidden;
+		overflow:hidden;
+		// -webkit-overflow-scrolling: touch;
 		display: block;
-		//position: relative;
+		position: relative;
 	}
 	.category{
 		display:block;
@@ -544,6 +549,7 @@ a img{
 		overflow:auto;
 		font-size: 12px;
 		line-height: 1.4em;
+		-webkit-overflow-scrolling: touch;
 		h2 {
 			line-height:1.2em;
 			font-size:16px;
@@ -625,7 +631,7 @@ a img{
 	#menu{
 		width:250px;
 		// height: 100%;
-		//overflow: auto;
+		overflow: auto;
 		box-shadow: inset 10px 0px 40px #111;
 	}
 	#device_type{
