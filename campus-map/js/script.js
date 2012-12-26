@@ -349,7 +349,7 @@ var categoryInfo = [], /* array that holds the basic info about each category: i
     while(i<length){
       thisCat = categoryInfo[i];
       
-      html += '<div class="category child-element" id="cat_' + i + '">';
+      html += '<div class="category" id="cat_' + i + '">';
       if (categoryInfo[i].type === 0){
         html += '<a class="category_bar" href="#" >';
       } else {
