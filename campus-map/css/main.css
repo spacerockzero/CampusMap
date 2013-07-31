@@ -4,7 +4,7 @@
 /*   A bootstrap precompiler resource loader   */
 /*   for the Campus Map Project                */
 /*   Author: Jakob Anderson                    */
-/*   Last Updated: 11.05.2012                  */
+/*   Last Updated: 12.04.2012                  */
 /*                                             */
 /***********************************************/
 /* LESS dependencies */
@@ -130,6 +130,14 @@
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
+.btn-primary.active,
+.btn-warning.active,
+.btn-danger.active,
+.btn-success.active,
+.btn-info.active,
+.btn-inverse.active {
+  color: rgba(255, 255, 255, 0.75);
+}
 .btn {
   border-color: #ccc;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
@@ -183,6 +191,7 @@ body {
   margin: 0;
   height: inherit;
   width: inherit;
+  background-color: #111;
 }
 a {
   outline: 0;
@@ -190,11 +199,29 @@ a {
 a img {
   border: none;
 }
+.nolink {
+  text-decoration: none;
+  color: #111;
+}
 /************************************************************/
 /*                                                          */
 /*  Global classes                                          */
 /*                                                          */
 /************************************************************/
+.scrolling-element-class {
+  overflow: auto;
+  /* inertia-effected mobile scrolling effect in supported devices */
+
+  /* for a more natural mobile scrolling interaction */
+
+  -webkit-overflow-scrolling: touch;
+}
+.scrolling-element-class .child-element {
+  position: relative;
+  /* force native GPU to render scroll effect in supported devices and browsers */
+
+  -webkit-transform: translate3d(0, 0, 0);
+}
 .animate {
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
@@ -253,6 +280,16 @@ a img {
   -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
   -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  -webkit-transition: width 700ms ease-in-out;
+  -moz-transition: width 700ms ease-in-out;
+  -ms-transition: width 700ms ease-in-out;
+  -o-transition: width 700ms ease-in-out;
+  transition: width 700ms ease-in-out;
+  -webkit-transition: width 0.4s ease-in-out;
+  -moz-transition: width 0.4s ease-in-out;
+  -ms-transition: width 0.4s ease-in-out;
+  -o-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
 }
 .blue span {
   background-color: #3a5284;
@@ -359,7 +396,7 @@ a img {
   width: 100%;
   position: absolute;
   background: white;
-  background-image: url(../img/interface/white_speckle.jpg);
+  background-image: url(../imgs/interface/white_speckle.jpg);
   box-shadow: inset 0px 0px 80px rgba(60, 60, 60, 0.7);
 }
 #loading_inside {
@@ -384,6 +421,7 @@ a img {
   width: 80%;
   margin: 15px auto 0;
   display: block;
+  text-align: left;
 }
 /************************************************************/
 /*                                                          */
@@ -394,18 +432,13 @@ a img {
 /************************************************************/
 #title {
   color: white;
-  -webkit-transition: height 300ms ease-in-out;
-  -moz-transition: height 300ms ease-in-out;
-  -ms-transition: height 300ms ease-in-out;
-  -o-transition: height 300ms ease-in-out;
-  transition: height 300ms ease-in-out;
   height: 40px;
   display: block;
   margin: 0 auto;
   position: relative;
   border-bottom: 1px solid #2b3e4d;
   background: #044f84;
-  background: url(../img/interface/title_bg.png);
+  background: url(../imgs/interface/title_bg.png);
   background-repeat: repeat-x;
 }
 #heading {
@@ -421,6 +454,7 @@ a img {
   -o-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
   font-size: 20px;
+  line-height: 1em;
   text-shadow: 0 1px 0 #333;
   padding: 9px 0 10px;
   height: 28px;
@@ -429,6 +463,9 @@ a img {
   font-size: 0.4em;
   position: relative;
   top: -4px;
+  padding: 0;
+  margin: 0;
+  line-height: 1em;
 }
 #device_type {
   display: block;
@@ -467,7 +504,6 @@ a img {
   transition: top 300ms ease-in-out;
 }
 #menu_button {
-  display: none;
   position: absolute;
   padding: 8px;
   text-decoration: none;
@@ -503,9 +539,8 @@ a img {
 #menu {
   display: none;
   position: absolute;
-  overflow: scroll;
-  /* well-tested all-around, but gives extra white area in firefox */
-
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
   -webkit-transition: width 200ms ease-in-out;
   -moz-transition: width 200ms ease-in-out;
   -ms-transition: width 200ms ease-in-out;
@@ -514,9 +549,10 @@ a img {
   width: 100%;
   right: 0;
   background-color: #202126;
-  background-image: url(../img/interface/light_speckle.png);
+  background-image: url(../imgs/interface/light_speckle.png);
   color: #9da0ab;
   border-left: 1px solid #2b3e4d;
+  height: 100%;
 }
 #inner_menu {
   overflow: hidden;
@@ -570,7 +606,7 @@ a img {
 }
 .category_name {
   position: relative;
-  top: -8px;
+  top: -15px;
   font-size: 20px;
   text-decoration: none;
   color: #EEE;
@@ -585,9 +621,6 @@ a img {
 }
 .cat_container {
   display: none;
-  margin-bottom: 20px;
-  position: relative;
-  clear: both;
 }
 #map_canvas {
   width: 100%;
@@ -600,12 +633,22 @@ a img {
 #notification {
   display: block;
   position: fixed;
-  bottom: 30px;
+  bottom: 20px;
   right: 3px;
   margin: 0;
 }
-#notification a {
+#notification.satellite a,
+#notification.hybrid a,
+#notification.satellite p,
+#notification.hybrid p {
   color: #fff;
+}
+#notification.roadmap a,
+#notification.roadmap p {
+  color: #333;
+}
+#notification a {
+  color: #333;
   text-decoration: none;
   font-size: 35px;
   cursor: pointer;
@@ -614,7 +657,7 @@ a img {
   font-size: 9px;
   color: white;
   text-shadow: 0 1px 3px #333;
-  padding-left: 21px;
+  padding: 0 0 5px 15px;
   line-height: 1.3em;
 }
 .object {
@@ -655,8 +698,8 @@ a img {
 .object_name {
   display: block;
   float: left;
-  margin: 4px 0 4px;
-  width: 75%;
+  margin: 6px 0 4px;
+  width: 80%;
   font-size: 15px;
   padding: 1px;
 }
@@ -664,15 +707,25 @@ a img {
   margin-left: 35px;
 }
 .polygon_key {
+  text-align: center;
   position: absolute;
-  height: 94%;
+  height: 28px;
   display: block;
-  width: 27px;
+  width: 25px;
   top: 0px;
   left: 0px;
   border-radius: 4px 0px 0px 4px;
-  border: 1px solid;
-  box-shadow: 1px 1px 10px #111;
+  border: 3px solid;
+  box-shadow: 1px 1px 8px #111;
+  box-shadow: 1px 1px 8px rgba(50, 50, 50, 0.9);
+}
+.polygon_key span.icon-checkmark {
+  color: #111;
+  text-shadow: 0 1px 0 rgba(50, 50, 50, 0.9);
+  font-size: 16px;
+  top: 3px;
+  left: 2px;
+  position: relative;
 }
 .polygon.active_polygon {
   background: #d1d5e3;
@@ -680,21 +733,172 @@ a img {
   text-shadow: none;
 }
 .polygon.active_polygon .polygon_key {
-  background-image: url('../img/interface/check.png');
+  background-image: url('../imgs/interface/check.png');
   background-repeat: no-repeat;
+}
+#map_keys {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-transform: uppercase;
+}
+#map_keys .map_key_category {
+  display: none;
+  zoom: 1;
+  min-height: 85px;
+  background: #044F84;
+  /*background-color: #fbfbfb;*/
+
+  background-image: -webkit-linear-gradient(top, #375182, #1f3350);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+
+  background-image: -moz-linear-gradient(top, #375182, #1f3350);
+  /* FF3.6 */
+
+  background-image: -ms-linear-gradient(top, #375182, #1f3350);
+  /* IE10 */
+
+  background-image: -o-linear-gradient(top, #375182, #1f3350);
+  /* Opera 11.10+ */
+
+  /*-ms-filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr=@from_color, endColorstr=@to_color, GradientType=1)";*/
+  /* For Internet Explorer 8 */
+
+  background-image: linear-gradient(top, #375182, #1f3350);
+  box-shadow: 1px 1px 15px #000;
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.9);
+  padding: 10px;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  min-width: 155px;
+  margin: 5px;
+  border-radius: 5px;
+}
+#map_keys .map_key_category:before,
+#map_keys .map_key_category:after {
+  display: table;
+  content: "";
+  zoom: 1;
+}
+#map_keys .map_key_category:after {
+  clear: both;
+}
+#map_keys .map_key_category a.close {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  text-shadow: 1px 1px 1px #111;
+  color: white;
+}
+#map_keys .map_key_category.active_key_group {
+  display: block;
+}
+#map_keys .key_title {
+  margin-bottom: 10px;
+  text-shadow: none;
+  text-shadow: 1px 1px 1px #111;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+}
+#map_keys .polygon_key {
+  position: relative;
+  border-radius: 4px;
+  float: left;
+  padding: 8px;
+  height: auto;
+  display: none;
+  font-size: 21px;
+  text-shadow: none;
+  font-weight: 100;
+  -webkit-font-smoothing: antialiased;
+  margin: 0 3px;
+  color: #222;
+}
+#map_keys .polygon_key.active_key {
+  display: block;
 }
 .infopane {
   display: block;
   width: 270px;
+  min-width: 100%;
+  max-width: 100%;
   height: inherit;
   overflow: auto;
   font-size: 12px;
   line-height: 1.4em;
+  -webkit-overflow-scrolling: touch;
 }
 .infopane h2 {
   line-height: 1.2em;
   font-size: 16px;
   margin-top: 0;
+}
+.infopane .btn {
+  width: 100%;
+  min-height: 20px;
+  padding-top: 6px;
+  padding: 6px 0;
+  text-decoration: none;
+  clear: both;
+  margin: 0px 2px 10px 0;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+.infopane.infopane-mobile .button-div {
+  width: 160px;
+  float: left;
+}
+.infopane.infopane-desktop .button-div {
+  width: 285px;
+  float: left;
+}
+.infopane .info-row {
+  margin: 0px 0px 4px;
+  clear: left;
+}
+.infopane .phone-call {
+  display: block;
+  font-size: 18px;
+}
+.infopane .ie7 .phone-call {
+  display: inline;
+}
+.addthis_toolbox {
+  float: right;
+}
+.addthis_toolbox p {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 0;
+}
+#object_search {
+  text-align: center;
+  margin: 5px;
+  overflow: hidden;
+}
+#object_search input {
+  font-size: 1.1em;
+  padding: 5px;
+  border-radius: 15px;
+  border: 0;
+  width: 95%;
+  float: right;
+  background-image: url(../imgs/x.jpg);
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+#object_search span {
+  cursor: pointer;
+  font-size: 1.2em;
+  height: 29px;
+  line-height: 30px;
+  position: absolute;
+  right: 4px;
+  text-align: center;
+  top: 5px;
+  width: 29px;
 }
 /**************************************/
 /*                                    */
@@ -718,11 +922,6 @@ a img {
 }
 #desktop #title {
   height: 57px;
-  -webkit-transition: height 300ms ease-in-out;
-  -moz-transition: height 300ms ease-in-out;
-  -ms-transition: height 300ms ease-in-out;
-  -o-transition: height 300ms ease-in-out;
-  transition: height 300ms ease-in-out;
 }
 #desktop #menu_button {
   -webkit-transition: all 300ms ease-in-out;
@@ -741,11 +940,10 @@ a img {
   -o-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
   font-size: 25px;
-  padding: 16px 0 10px;
+  padding: 17px 0 10px;
 }
 #desktop #menu {
   width: 250px;
-  height: 100%;
   overflow: auto;
   box-shadow: inset 10px 0px 40px #111;
 }
@@ -774,13 +972,27 @@ a img {
 }
 #desktop .object_name {
   width: 185px;
+  width: 175px;
   font-size: 12px;
   padding: 0;
 }
 #desktop .polygon_key {
-  height: 28px;
+  height: 26px;
+}
+#desktop #map_keys .polygon_key {
+  height: auto;
 }
 #desktop .infopane {
   padding: 10px;
   width: 500px;
+  min-width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+#desktop .infopane.infopane-desktop .button-div {
+  width: 285px;
+}
+#desktop .infopane .phone-call {
+  display: none;
 }
