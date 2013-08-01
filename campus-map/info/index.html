@@ -70,10 +70,10 @@
     <div class="row">
       <div class="span3 bs-docs-sidebar">
         <ul class="nav nav-list bs-docs-sidenav">
-          <li><a href="#features"><i class="icon-chevron-right"></i> Features</a></li>
-          <li><a href="#why-new"><i class="icon-chevron-right"></i> Why a new campus map?</a></li>
-          <li><a href="#parking-information"><i class="icon-chevron-right"></i> Parking information</a></li>
-          <li><a href="#content"><i class="icon-chevron-right"></i> Content</a></li>
+          <li><a href="#features"><i class="icon-chevron-right"></i>Features</a></li>
+          <li><a href="#why-new"><i class="icon-chevron-right"></i> Why a campus map?</a></li>
+          <li><a href="#parking-information"><i class="icon-chevron-right"></i>Parking information</a></li>
+          <li><a href="#content"><i class="icon-chevron-right"></i>Content</a></li>
           <li><a href="#extra-functionality"><i class="icon-chevron-right"></i> Extra functionality</a></li>
           <li><a href="#new-changes"><i class="icon-chevron-right"></i> New Changes</a></li>
         </ul>
@@ -86,13 +86,24 @@
           <div class="page-header">
             <h1>Features</h1>
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-
-<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
-
-<p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
-
-<p>Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+          <p>The Campus Maps contain several features that will students, faculty, as well as parents or other visitors to easily navigate the BYU-Idaho Campus.  It utilizes Googles data rich maps, as well as our own object files to help others locate points of interest around campus.  It allows a user to navigate through a list of categories to find specific locations that they would like to find.  To aid in finding these points a search function has been added to allow users to search for what they are looking for.</p>
+          <h3>Future Features</h3>
+          <p>There are many possible additions that have been proposed to The Campus Maps</p>
+          <ul>
+            <li>Allowing a user to get directions to a location right in the app.</li>
+            <li>Allowing users to submit corrections to locations, or submit additional locations to be considered.</li>
+            <li>Making the maps indexable by creating an XML document in Ingeniux that allows search engines to index the unique URLS for each location.</li>
+            <li>Making the data be pulled from the schools GIS servers and allow faculty to submit additions.</li>
+            <li>Make the maps embeddable so that faculty can put it on their page with a custom marker.</li>
+            <li>Performance enhancements to make it faster and more responsive to user interaction.
+              <ul>
+                <li>No storing or retreiving data from the DOM
+                <li>No string comparisons</li>
+                <li>Move towards more OOP, Marker objects, polygon objects, category objects etc...</li>
+                <li>Let CSS take care of more responsiveness rather than JS</li>
+              </ul>
+            </li>
+          </ul>
         </section>
 
         <!-- Why a new campus map?
@@ -101,13 +112,8 @@
           <div class="page-header">
             <h1>Why a new campus map?</h1>
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-
-<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
-
-<p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
-
-<p>Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+          <p>The old campus map was a flash based version.  Because of the increasing use of mobile devices, flash quickly became obsolete and a new, javascript version needed to be created.  Because it needs to be optomized for mobile, it needed to be incorporate responsive design to allow it to scale between various devices.</p>
+          <p>Also with the improvments to Google's mapping system it became obvious we needed to move to such a platform where some of the data and work could be abstracted away from our development and allow others to take up the harder challenges.</p>
         </section>
 
 
@@ -117,13 +123,7 @@
           <div class="page-header">
             <h1>Parking information</h1>
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-
-<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
-
-<p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
-
-<p>Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+          <p>I don't have much to say about this other than that the maps have most of the parking outlined.</p>
         </section>
 
         <!-- Content
@@ -132,13 +132,9 @@
           <div class="page-header">
             <h1>Content</h1>
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-
-<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
-
-<p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
-
-<p>Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+          <p>The Campus Maps incorporates data from many different categories such as, Buildings, Vending Machines, Parking, Restaraunts, and Web Cams.  This initial data is all stored in a single JSON file that the maps uses to populate all of the data within itself.</p>
+          <p>There have been suggestions that now that Campus Maps is within Ingeniux we can automate some of the Data retrieval and processing so that we as developers do not need to be the only ones capable of updating information within maps.</p>
+          <p>Other data such as Blue Emergency Phones, events, and other user submitted data have been suggested in order to allow the maps to more fully represent all points of interest on campus.</p>
         </section>
 
         <!-- Extra functionality
@@ -147,13 +143,7 @@
           <div class="page-header">
             <h1>Extra functionality</h1>
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-
-<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
-
-<p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
-
-<p>Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+          <p>Currently there is no functionality of the Maps that hasn't already been noted either as current or future, and isn't available to the public.</p>
         </section>
 
         <!-- New changes
@@ -162,13 +152,13 @@
           <div class="page-header">
             <h1>New Changes</h1>
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-
-<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
-
-<p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
-
-<p>Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+          <h4>July 31, 2013</h4>
+          <ul>
+            <li>Added search capabilities.</li>
+            <li>Added the ability to pull up a location with a unique URL.</li>
+            <li>Added sharing functionality</li>
+            <li>Uploaded everything to Ingeniux and it now runs in Ingeniux</li>
+          </ul>
         </section>
 
       </div>
