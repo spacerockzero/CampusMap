@@ -53,5 +53,13 @@
     "icon": "purple",
     "type": 0,
     "link": "http://www2.byui.edu/WebCameras/"
+  },
+  {
+    "ID":7,
+    "name":"Emergency",
+    "title":"Emergency",
+    "text":"Emergency Blue phones.",
+    "icon":"blue",
+    "type":0
   }
 ]

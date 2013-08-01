@@ -20,14 +20,14 @@
         body = doc.getElementsByTagName('body')[0],
       canvas = doc.getElementById('map_canvas'),
     doResize,
-categoryFile = '/Prebuilt/maps/data/categories.txt',                         /* JSON data file, contains category meta information */
-  objectFile = '/Prebuilt/maps/data/objectFile.txt',                         /* JSON Data file, contains category objects info and polygon source data */
+categoryFile = 'Prebuilt/maps/data/categories.txt',                         /* JSON data file, contains category meta information */
+  objectFile = 'Prebuilt/maps/data/objectFile.txt',                         /* JSON Data file, contains category objects info and polygon source data */
     myLatlng,                                                 /* BYU-Idaho's center of campus lat/ling in googlemaps' latling object form */
    myOptions,
          map,
 parkingLayer,
   infoWindow,
-    iconpath = '/Prebuilt/maps/imgs/icons/numeral-icons/',
+    iconpath = 'Prebuilt/maps/imgs/icons/numeral-icons/',
  campusLayer,                                                 /* The layer that will have the campusfile kml rendered onto it */
   campusFile = 'http://www.byui.edu/Prebuilt/maps/campus_outline.xml'; /* kml file that represents the outline image of campus. All kml files must be on an absolute-path, in a web-accessible location for google's servers to process them */
 // Control object holds the current states of parts of the app

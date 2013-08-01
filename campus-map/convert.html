@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type='text/javascript'>
+$(window).load(function() {
+	$('button').click(function() {
+		convertKML($('#kml').val());
+	});
+});
+function convertKML(kml) {
+	var xml = $.parseXML(kml);
+	$xml = $(xml);
+	var jsonObject = new Array();
+	var placemarks = $xml.find('Placemark');
+	for (var i = 0, len = placemarks.length; i < len; i++) {
+		var placemark = placemarks[i];
+		var coordinates = $(placemark).find('coordinates').html().split(',');
+		var temp = {
+			"name": $(placemark).find('name').html(),
+			"info": $(placemark).find('description').html(),
+			"lon": coordinates[0],
+			"lat": coordinates[1],
+			"info":"null",
+
+		}
+		jsonObject[i] = temp;
+	}
+	jsonString = JSON.stringify(jsonObject);
+	$('#results').text(jsonString);
+}
+</script>
+</head>
+<body>
+<textarea id='kml'></textarea>
+<button>Convert</button>
+<div id='results'>
+</div>
+</body>
+</html>
