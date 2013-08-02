@@ -7,6 +7,8 @@ function category() {
 	this.iconColor = arguments[4];
 	this.type = arguments[5];
 	this.link = arguments[6];
+	this.markerLocations;
+	this.polygonLocations;
 
 	this.getId = function() {
 		return this.id;
@@ -51,3 +53,4 @@ function category() {
 		this.link = arguments[0];
 	}
 }
+

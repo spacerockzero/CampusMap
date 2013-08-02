@@ -21,15 +21,17 @@ function convertKML(kml) {
 			"info": $(placemark).find('description').html(),
 			"lon": coordinates[0],
 			"lat": coordinates[1],
-			"info":"null",
-
+			"code":$(placemark).find('name').text().toUpperCase().replace(/ /g, "")
 		}
 		jsonObject[i] = temp;
 	}
-	jsonString = JSON.stringify(jsonObject);
-	$('#results').text(jsonString);
+	jsonString = JSON.stringify(jsonObject,null,4);
+	$('#results').append(document.createTextNode(jsonString));
 }
 </script>
+<style>
+body { white-space: pre; font-family: monospace; }
+</style>
 </head>
 <body>
 <textarea id='kml'></textarea>

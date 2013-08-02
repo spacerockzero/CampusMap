@@ -59,7 +59,7 @@
     "name":"Emergency",
     "title":"Emergency",
     "text":"Emergency Blue phones.",
-    "icon":"blue",
+    "icon":"dark-blue",
     "type":0
   }
 ]

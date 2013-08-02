@@ -1010,14 +1010,11 @@ function openSingleBuilding() {
     var indexes = getObjectIndexes(code);
     if (indexes != null) {
       openCategory($('#cat_' + indexes.cat + " .category_bar")[0]);
-      try {
+      if (markerArray[indexes.cat][indexes.obj].position) {
+        
         openObject(document.getElementById("obj_" + indexes.cat + "-" + indexes.obj));
-      } catch (error) {
-        try {
+      } else {
           openPolygon(document.getElementById("layer_cat_" + indexes.obj));
-        } catch(error) {
-          console.log(error);
-        }
       }
       //if the device is a tablet in portrait or a phone we need to toggle the menu so that we
       //can see everything
@@ -1090,7 +1087,7 @@ function openSingleBuilding() {
             //look into each category
             var numberOfObjects = cats[i].length;
             for (var j = 0; j < numberOfObjects && found == false; j++) {
-              if (cats[i][j]['code'] == code) {
+              if (cats[i][j]['code'] === code) {
                 found = true;
                 indexes.cat = i;
                 indexes.obj = j;
