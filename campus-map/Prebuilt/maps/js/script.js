@@ -29,7 +29,7 @@ parkingLayer,
   infoWindow,
     iconpath = 'Prebuilt/maps/imgs/icons/numeral-icons/',
  campusLayer,                                                 /* The layer that will have the campusfile kml rendered onto it */
-  campusFile = 'http://www.byui.edu/Prebuilt/maps/campus_outline.xml'; /* kml file that represents the outline image of campus. All kml files must be on an absolute-path, in a web-accessible location for google's servers to process them */
+  campusFile = 'http://www.byui.edu/Documents/Google Maps/campus_outline.xml'; /* kml file that represents the outline image of campus. All kml files must be on an absolute-path, in a web-accessible location for google's servers to process them */
 // Control object holds the current states of parts of the app
 var control = {
   menuState: 1,      /* 0 = Menu is closed/hidden, 1 = Menu is open/shown */

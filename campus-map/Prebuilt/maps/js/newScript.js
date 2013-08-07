@@ -1,6 +1,6 @@
 //this is the definition for the category class
 //uses arguments parameter so as to not have to define each parameter
-function category() {
+function Category() {
 	//constructor and parameters
 	//although they are not private they should be accessed through 
 	this.id = arguments[0],
@@ -17,7 +17,7 @@ function category() {
 
 //the location class definition is for use by markers
 //uses the arguments parameter
-function location() {
+function Location() {
 	this.name = arguments[0],
 	this.code = arguments[1],
 	this.lat = arguments[2],
@@ -25,11 +25,12 @@ function location() {
 	this.img = arguments[4],
 	this.hours = arguments[4],
 	this.info = arguments[5],
+	this.link = arguments[6],
 	this.marker;
 }
 
 //the area class definition for use for polygons
-function area() {
+function Area() {
 	this.name = arguments[0],
 	this.code = arguments[1],
 	this.contains = arguments[2],
@@ -48,21 +49,15 @@ includeMenus -- This will allow include or not include the header and menu bars,
 campusOverlay -- allows you to specify whether you want an overlay over the campus false won't include, true will (default)
 objectsFile -- allows you to specify whether you want to use the objects file false won't include, true will include
 centerCoordinates -- Where the map should be centered by default
+zoom -- how zoomed in the maps should be, default is 16
 */
-function campusMap(options) {
+function CampusMap(options) {
 	this.element = (options['element']) ? options['element'] : throw "No target element specified" ,
 	this.menuState = (options['menuState']) ? options['menuState'] : 1,
 	this.includeMenus = (options['includeMenus']) ? options['includeMenus'] : true,
 	this.useObjectsFile = (options['includeMenus'] && options['objectsFile']) ? options['objectsFile'] : true,
-	this.mapOptions = {
-		this.map,
-		this.campusOverlayVisible = options['campusOverlay'],
-		this.campusFile = 'http://www.byui.edu/Prebuilt/maps/campus_outline.xml',
-		this.zoom: 16,
-		this.centerCoordinates = (options['centerCoordinates']),
-		this.
-	},
-	this.objectFile = 'Prebuilt/maps/data/objectFile.JSON',
+	this.map = new Map(options), //send the whole options object so that it can get the attributes that are related to it
+	this.objectFile = 'Prebuilt/maps/data/newCatObj.JSON',
 	this.device = 0;
 	this.categories = [];
 
@@ -71,8 +66,124 @@ function campusMap(options) {
 		doc = document,
 		win = window
 	}
+}
+campusMap.prototype = {
+	initializeMaps : function() {
+		console.time("initialize js chain until ready");
+		//make a copy of all of the globals
+		var local = globals;
+		//the first thing that we are going to want to do is to pull in the google maps api script
+		//we will place it at the bottom of the body
+		addScript("http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false",local);
+		this.map.initiateMap(this.element, local);
 
-	this.initialize = function() {
+		//load the category 
+		this.loadCatObjFile(function() {
 
+		})
+	}
+	loadCatObjFile : function(callback) {
+		var xmlhttp;
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+  			xmlhttp=new XMLHttpRequest();
+  		} else {// code for IE6, IE5
+  			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  		}
+		xmlhttp.onreadystatechange=function() {
+  			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+  				var data = JSON.parse(xmlhttp.responseText);
+  				this.parseData(data);
+  				if (callback && typeof(callback) === "function") {
+  					callback();
+  				}
+    		}
+  		}
+		xmlhttp.open("GET",this.objectFile,true);
+		xmlhttp.send();
+	}
+	parseCategories : function(data) {
+		for (var i = 0, numberCategories = data.length; i < numCategories; i++) {
+			var cat = data[i];
+			this.categories.push(new Category(cat.id, cat.name, cat.title, cat.text, cat.iconColor, cat.type, cat.link));
+			this.categories.markerLocations = this.parseLocations(cat.objects);
+		}
+	}
+	parseLocations : function(locations) {
+		var markerLocations = [];
+		for (var j = 0, numberLocations = locations.length; j < numberLocations; j++) {
+			var marker = locations[j]
+				markerLocations.push(new Location(marker.name, marker.code, marker.lat, marker.lon, marker.img, marker.hours, marker.info, marker.link));
+			}
+		return markerLocations;
+	}
+	parseAreas : function(areas) {
+		var polygonAreas = [];
+		for (var j = 0, numberAreas = areas.length; j < numberAreas; j++) {
+			var polygon = areas[j]
+				polygonLocations.push(new Area(polygon.name, polygon.code, polygon.contains, polygon.borderColor, polygon.fillColor, polygon.map));
+			}
+		return polygonLocations;
+	}
+}
+
+//this class definition is for the maps, any interaction with the google maps goes through here
+function Map(options) {
+	this.map;
+	this.mapOptions = {
+		campusOverlayVisible : options['campusOverlay'],
+		campusFile : 'http://www.byui.edu/Prebuilt/maps/campus_outline.xml',
+		zoom: options['zoom'],
+		centerCoordinates : (options['centerCoordinates']),
+	},
+	this.googleMapOptions = {},
+	this.infoWindow,
+	this.campusLayer;
+}
+Map.prototype = {
+	initiateMap : function(element, local) {
+		this.setGoogleMapOptions();
+		this.setGoogleMap(element, local);
+		this.setInfoWindow();
+		this.setCampusLayer();
+	}
+
+	setGoogleMapOptions : function() {
+		this.googleMapOptions = {
+			zoom: this.mapOptions.zoom,
+			center: new google.maps.LatLng(this.mapOptions.centerCoordinates[0], this.mapOptions.centerCoordinates[1]),
+			mapTypeId: googlemaps.MapTypeId.HYBRID,
+			mapTypeControlOptions: {
+				mapTypeIds: [google.maps.MapTypeId.ROADMAP,
+							 google.maps.mapTypeId.SATELLITE,
+							 google.maps.mapTypeId.HYBRID,
+							 google.maps.mapTypeId.TERRAIN]
+			}
+		};
+	}
+	setGoogleMap : function(element, local) {
+		this.map = new google.maps.Map(local.doc.getElementById(element), this.googleMapOptions);
+	}
+	setInfoWindow : function() {
+		this.infoWindow = new google.maps.InfoWindow();
+	}
+	setCampusLayer : function() {
+		this.campusLayer = new google.maps.KmlLayer(campusFile, {
+			suppressInfoWindows: true,
+			map: this.map,
+			preserveViewport: true,
+			zoom: 18
+		});
+	}
+}
+
+//this function will be used to add a script to the page
+function addScript(src, local, callback) {
+	var script = local.doc.createElement("script");
+	script.type = "text/javascript";
+	script.src = src;
+	local.doc.getElementsByTagName("body")[0].appendChild(script);
+
+	if (callback && typeof(callback) === 'function') {
+		callback();
 	}
 }
