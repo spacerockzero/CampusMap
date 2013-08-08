@@ -65,7 +65,7 @@ function CampusMap(options) {
 		doc: document,
 		win: window
 	}
-	addScript("http://maps.googleapis.com/maps/api/js?v=3&sensor=false",{win: window, doc: document},function() {campusMap.initializeMaps();});
+	addScript("http://maps.googleapis.com/maps/api/js?v=3&sensor=false&callback=campusMap.initializeMaps",{win: window, doc: document},function() {campusMap.initializeMaps();});
 }
 CampusMap.prototype.initializeMaps = function() {
 		console.time("initialize js chain until ready");
@@ -130,7 +130,7 @@ function Map(options) {
 	this.mapOptions = {
 		campusOverlayVisible : (options['campusOverlay'] == null) ? true : options['campusOverlay'],
 		campusFile : 'http://www.byui.edu/Prebuilt/maps/campus_outline.xml',
-		zoom: options['zoom'],
+		zoom: (options['zoom']) ? options['zoom'] : 16,
 		centerCoordinates : (options['centerCoordinates'] == null) ? [43.815045,-111.783515] : options['centerCoordinates']
 	},
 	this.googleMapOptions = {},
@@ -148,12 +148,12 @@ Map.prototype.setGoogleMapOptions = function() {
 		this.googleMapOptions = {
 			zoom: this.mapOptions.zoom,
 			center: new google.maps.LatLng(this.mapOptions.centerCoordinates[0], this.mapOptions.centerCoordinates[1]),
-			mapTypeId: googlemaps.MapTypeId.HYBRID,
+			mapTypeId: google.maps.MapTypeId.HYBRID,
 			mapTypeControlOptions: {
 				mapTypeIds: [google.maps.MapTypeId.ROADMAP,
-							 google.maps.mapTypeId.SATELLITE,
-							 google.maps.mapTypeId.HYBRID,
-							 google.maps.mapTypeId.TERRAIN]
+							 google.maps.MapTypeId.SATELLITE,
+							 google.maps.MapTypeId.HYBRID,
+							 google.maps.MapTypeId.TERRAIN]
 			}
 		};
 	}
@@ -164,7 +164,7 @@ Map.prototype.setInfoWindow = function() {
 		this.infoWindow = new google.maps.InfoWindow();
 	}
 Map.prototype.setCampusLayer = function() {
-		this.campusLayer = new google.maps.KmlLayer(campusFile, {
+		this.campusLayer = new google.maps.KmlLayer(this.mapOptions.campusFile, {
 			suppressInfoWindows: true,
 			map: this.map,
 			preserveViewport: true,
@@ -178,10 +178,5 @@ function addScript(src, local, callback) {
 	var script = local.doc.createElement("script");
 	script.type = "text/javascript";
 	script.src = src;
-	script.onload = function() {
-		if (callback && typeof(callback) === 'function') {
-			callback();
-		}
-	}
 	local.doc.getElementsByTagName("body")[0].appendChild(script);
 }
