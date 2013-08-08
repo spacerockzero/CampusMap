@@ -997,6 +997,7 @@ function clearAllMarkers(state) {
     if (callback && typeof(callback) === "function") {
       callback();
     }
+  
   }//end initialize()
 
 /****************************************************/

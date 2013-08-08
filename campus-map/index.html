@@ -111,9 +111,13 @@
     <script>window.jQuery || document.write('<script src="Prebuilt/maps/js/jquery-1.7.2.min.js"><\/script>')</script>
  
     <!-- scripts concatenated and minified via build script? -->
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"></script>
 
-    <script type="text/javascript" src="Prebuilt/maps/js/script.js"></script>
+    <script type="text/javascript">
+     var options = {
+      "element": "map_canvas"
+     };
+    </script>
+    <script type="text/javascript" src="Prebuilt/maps/js/newScript.js"></script>
     <!-- end script imports -->
 
     <script type="text/javascript">/*iOS Auto-Zoom bugFix, rewritten version By @mathias, @cheeaun and @jdalton*/(function(a){function c(){b.content="width=device-width,minimum-scale="+d[0]+",maximum-scale="+d[1];a.removeEventListener(e,c,!0)}var e="gesturestart",d=[1,1],b="querySelectorAll"in a?a.querySelectorAll("meta[name=viewport]"):[];if((b=b[b.length-1])&&"addEventListener"in a)c(),d=[0.25,1.6],a.addEventListener(e,c,!0)})(document);</script>
