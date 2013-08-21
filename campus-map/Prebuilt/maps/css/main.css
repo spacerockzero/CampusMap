@@ -280,11 +280,11 @@ a img {
   -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
   -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
-  -webkit-transition: width 700ms ease-in-out;
-  -moz-transition: width 700ms ease-in-out;
-  -ms-transition: width 700ms ease-in-out;
-  -o-transition: width 700ms ease-in-out;
-  transition: width 700ms ease-in-out;
+  -webkit-transition: width 700ms;
+  -moz-transition: width 700ms;
+  -ms-transition: width 700ms;
+  -o-transition: width 700ms;
+  transition: width 700ms;
   -webkit-transition: width 0.4s ease-in-out;
   -moz-transition: width 0.4s ease-in-out;
   -ms-transition: width 0.4s ease-in-out;
@@ -448,11 +448,11 @@ a img {
   text-align: center;
   color: #fff;
   font-weight: 100;
-  -webkit-transition: all 300ms ease-in-out;
-  -moz-transition: all 300ms ease-in-out;
-  -ms-transition: all 300ms ease-in-out;
-  -o-transition: all 300ms ease-in-out;
-  transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  -ms-transition: all 300ms;
+  -o-transition: all 300ms;
+  transition: all 300ms;
   font-size: 20px;
   line-height: 1em;
   text-shadow: 0 1px 0 #333;
@@ -489,29 +489,29 @@ a img {
 }
 #mobile #device_container {
   top: -37px;
-  -webkit-transition: top 300ms ease-in-out;
-  -moz-transition: top 300ms ease-in-out;
-  -ms-transition: top 300ms ease-in-out;
-  -o-transition: top 300ms ease-in-out;
-  transition: top 300ms ease-in-out;
+  -webkit-transition: top 300ms;
+  -moz-transition: top 300ms;
+  -ms-transition: top 300ms;
+  -o-transition: top 300ms;
+  transition: top 300ms;
 }
 #desktop #device_container {
   top: -2px;
-  -webkit-transition: top 300ms ease-in-out;
-  -moz-transition: top 300ms ease-in-out;
-  -ms-transition: top 300ms ease-in-out;
-  -o-transition: top 300ms ease-in-out;
-  transition: top 300ms ease-in-out;
+  -webkit-transition: top 300ms;
+  -moz-transition: top 300ms;
+  -ms-transition: top 300ms;
+  -o-transition: top 300ms;
+  transition: top 300ms;
 }
 #menu_button {
   position: absolute;
   padding: 8px;
   text-decoration: none;
-  -webkit-transition: all 300ms ease-in-out;
-  -moz-transition: all 300ms ease-in-out;
-  -ms-transition: all 300ms ease-in-out;
-  -o-transition: all 300ms ease-in-out;
-  transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  -ms-transition: all 300ms;
+  -o-transition: all 300ms;
+  transition: all 300ms;
   font-size: 28px;
   top: 6px;
   right: 0px;
@@ -542,11 +542,11 @@ a img {
   position: absolute;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  -webkit-transition: width 200ms ease-in-out;
-  -moz-transition: width 200ms ease-in-out;
-  -ms-transition: width 200ms ease-in-out;
-  -o-transition: width 200ms ease-in-out;
-  transition: width 200ms ease-in-out;
+  -webkit-transition: width 200ms;
+  -moz-transition: width 200ms;
+  -ms-transition: width 200ms;
+  -o-transition: width 200ms;
+  transition: width 200ms;
   width: 100%;
   right: 0;
   background-color: #202126;
@@ -622,7 +622,12 @@ a img {
 }
 .cat_container {
   height: 0;
-  transition: all 1s;
+  display: none;
+  -webkit-transition: height 1s;
+  -moz-transition: height 1s;
+  -ms-transition: height 1s;
+  -o-transition: height 1s;
+  transition: height 1s;
 }
 #map_canvas {
   width: 100%;
@@ -925,21 +930,21 @@ a img {
   height: 57px;
 }
 #desktop #menu_button {
-  -webkit-transition: all 300ms ease-in-out;
-  -moz-transition: all 300ms ease-in-out;
-  -ms-transition: all 300ms ease-in-out;
-  -o-transition: all 300ms ease-in-out;
-  transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  -ms-transition: all 300ms;
+  -o-transition: all 300ms;
+  transition: all 300ms;
   font-size: 35px;
   top: 17px;
   right: 10px;
 }
 #desktop #heading {
-  -webkit-transition: all 300ms ease-in-out;
-  -moz-transition: all 300ms ease-in-out;
-  -ms-transition: all 300ms ease-in-out;
-  -o-transition: all 300ms ease-in-out;
-  transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  -ms-transition: all 300ms;
+  -o-transition: all 300ms;
+  transition: all 300ms;
   font-size: 25px;
   padding: 17px 0 10px;
 }

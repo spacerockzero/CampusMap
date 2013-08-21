@@ -5,12 +5,12 @@
   height:@height; 
   margin-top:-@height / 2; /* negative half of the height */
 }
-.transition (@affected: all, @transition_time: 0.7s, @easing:ease-in-out) {
-    -webkit-transition: @affected @transition_time @easing;
-       -moz-transition: @affected @transition_time @easing;
-        -ms-transition: @affected @transition_time @easing;
-         -o-transition: @affected @transition_time @easing;
-            transition: @affected @transition_time @easing;
+.transition (@affected: all, @transition_time: 0.7s, @easing:ease) {
+    -webkit-transition: @affected @transition_time;
+       -moz-transition: @affected @transition_time;
+        -ms-transition: @affected @transition_time;
+         -o-transition: @affected @transition_time;
+            transition: @affected @transition_time;
 }
 .transition-duration(@duration: 0.2s) {
 -webkit-transition-duration: @duration;

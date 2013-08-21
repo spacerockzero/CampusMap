@@ -52,7 +52,7 @@
     "text": "Campus webcams",
     "icon": "purple",
     "type": 0,
-    "link": "http://www2.byui.edu/WebCameras/"
+    "link": "http://www.byui.edu/web-cameras"
   },
   {
     "ID":7,

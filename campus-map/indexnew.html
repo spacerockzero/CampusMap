@@ -25,21 +25,8 @@
       <!-- Mobile viewport optimized: h5bp.com/viewport -->
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
       <link rel="stylesheet" href="Prebuilt/maps/css/font_style.css">
-      <link rel="stylesheet" href="Prebuilt/maps/css/main.min.css">
+      <link rel="stylesheet" href="Prebuilt/maps/css/main.css">
 
-<script type="text/javascript"> 
-   var $buoop = {vs:{i:10,f:3.6,o:10.6,s:4,n:9}} 
-   $buoop.ol = window.onload; 
-   window.onload=function(){ 
-      try {if ($buoop.ol) $buoop.ol();}catch (e) {} 
-      var e = document.createElement("script"); 
-      e.setAttribute("type", "text/javascript"); 
-      e.setAttribute("src", "http://browser-update.org/update.js"); 
-      document.body.appendChild(e); 
-   }
-</script>
-
-      <script src="Prebuilt/maps/js/modernizr.custom.46328.js"></script>
       <script>
         // update this var when updates are made until official release version deployment
         var updated = "7.31.2013";
@@ -58,43 +45,24 @@
       <a id="info" title="[Coming Soon] More info about this map" class="icon-info" href="#"></a>
       <a id="feedback" title="Submit feedback about this map" class="icon-feedback" target="_blank" href="http://www.byui.edu/feedback/maps"></a>
     </div>
-    
-    <!-- jQuery library import (required for ajax functions) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="Prebuilt/maps/js/jquery-1.7.2.min.js"><\/script>')</script>
  
     <!-- scripts concatenated and minified via build script? -->
 
     <script type="text/javascript">
      var options = {
-      "element": "map"
+      "element": "map",
      };
     </script>
-    <script type="text/javascript" src="Prebuilt/maps/data/objectFile.txt"></script>
+    <script type="text/javascript" src="Prebuilt/maps/js/campusMap/campusMap.js"></script>
+    <script type="text/javascript" src="Prebuilt/maps/js/campusMap/category.js"></script>
+    <script type="text/javascript" src="Prebuilt/maps/js/campusMap/marker.js"></script>
+    <script type="text/javascript" src="Prebuilt/maps/js/campusMap/area.js"></script>
+    <script type="text/javascript" src="Prebuilt/maps/js/campusMap/map.js"></script>
     <script type="text/javascript" src="Prebuilt/maps/js/newScript.js"></script>
+
     <!-- end script imports -->
 
     <script type="text/javascript">/*iOS Auto-Zoom bugFix, rewritten version By @mathias, @cheeaun and @jdalton*/(function(a){function c(){b.content="width=device-width,minimum-scale="+d[0]+",maximum-scale="+d[1];a.removeEventListener(e,c,!0)}var e="gesturestart",d=[1,1],b="querySelectorAll"in a?a.querySelectorAll("meta[name=viewport]"):[];if((b=b[b.length-1])&&"addEventListener"in a)c(),d=[0.25,1.6],a.addEventListener(e,c,!0)})(document);</script>
-
-    <!-- script loading of all analytics resources -->
-    <script type="text/javascript" src="Prebuilt/maps/js/s_code.js"></script>
-    <script type="text/javascript" src="Prebuilt/maps/js/omniture_code.js"></script>
-    <script type="text/javascript">
-      //Insert google analytics asynchronously
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-12079604-6']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-      var ga = document.createElement('script'); 
-      ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; 
-      s.parentNode.insertBefore(ga, s);
-      })();
-    </script>    
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51f6872a25a1fb8c">
-  //addthis social buttons
   </script>
 <!-- AddThis Smart Layers END -->
   </body>
