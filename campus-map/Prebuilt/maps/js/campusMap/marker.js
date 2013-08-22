@@ -15,6 +15,9 @@ function Location() {
 	this.marker,
 	this.infoWindowHTML,
 	this.globals = arguments[9];
+
+	this.createMarker();
+	this.createInfoWindow();
 }
 Location.prototype.buildLocationDOM = function() {
 	var element = this.globals.doc.createElement("a");
@@ -28,15 +31,23 @@ Location.prototype.buildLocationDOM = function() {
     return element;
 }
 Location.prototype.bindEventListener = function() {
+	var marker = this;
 	this.globals.doc.getElementById(this.elementID).addEventListener('click',function() {
-		this.displayMarker();
+		marker.panToMarker();
 	});
 }
-Location.prototype.displayMarker() {
+Location.prototype.panToMarker = function() {
 	var moveEnd = google.maps.event.addListener(map, 'moveend', function() {
-    var markerOffset = map.fromLatLngToDivPixel(this.marker.getPosition());
+    var markerOffset = map.map.fromLatLngToDivPixel(this.marker.getPosition());
       google.maps.event.removeListener(moveEnd);
     });
-    map.panTo(marker.getPosition());
-    google.maps.event.trigger(marker, 'click');
+    map.map.panTo(this.marker.getPosition());
+    google.maps.event.trigger(this.marker, 'click');
 }
+Location.prototype.createMarker = function() {
+	this.marker = map.createMarker(this.lat, this.lon, this.name, "Prebuilt/maps/imgs/icons/numeral-icons/" + this.color + "/" + this.number + ".png")
+}
+Location.prototype.createInfoWindow = function() {
+	map.createInfoWindow(this.marker, this);
+}
+				

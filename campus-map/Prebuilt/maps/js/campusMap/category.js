@@ -15,8 +15,6 @@ function Category() {
 	this.state = 0,
 	this.elementID = arguments[8],
 	this.globals = arguments[7];
-	this.state = 0;
-
 }
 //creates an element, builds the html and attaches an event listener to the category
 Category.prototype.buildCatDOM = function() {
@@ -52,7 +50,6 @@ Category.prototype.appendLocations = function(container) {
 	if (this.markerLocations) {
 		for (var i = 0, len = this.markerLocations.length; i < len; i++) {
 			container.appendChild(this.markerLocations[i].buildLocationDOM());
-			this.markerLocations[i].bindEventListener();
 		}
 	}
 	return container;
@@ -61,7 +58,6 @@ Category.prototype.appendAreas = function(container) {
 	if (this.polygonLocations) {
 		for (var i = 0, len = this.polygonLocations.length; i < len; i++) {
 			container.appendChild(this.polygonLocations[i].buildAreaDOM());
-			this.polygonLocations[i].bindEventListener();
 		}
 	}
 	return container;
@@ -75,6 +71,8 @@ Category.prototype.bindEventListener = function() {
 }
 Category.prototype.toggle = function() {
 	var sibling = this.globals.doc.getElementById(this.elementID).parentElement.children[1];
+	//close any open info windows
+	map.infoWindow.close();
 	this.toggleMarkersVisibility();
 	if (this.state === 0) {
 		//open the category
@@ -109,4 +107,16 @@ Category.prototype.hideAllMarkers = function() {
 			this.markerLocations[i].marker.setVisible(false);
 		}
 	}
+}
+Category.prototype.buildMapKey = function() {
+	var html = "";
+	if (this.polygonLocations) {
+	//build category holder
+		html = "<div id='poly_key_" + this.id + "' class='map_key_category map_key_" + this.name + "' style='display: none'><div class='key_title'>" + this.name + " Map Key</div><a class='close icon-cancel nolink' href='#'></a>"; 
+		for (var i = 0, len = this.polygonLocations.length; i < len; i++) {
+			html += this.polygonLocations[i].buildMapKey();
+		}
+		html += "</div>";
+	}
+	return html;
 }

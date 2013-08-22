@@ -38,6 +38,11 @@ CampusMap.prototype.initializeMaps = function() {
 		}
 		//load the category 
 		this.loadCatObjs();
+		//event listener to run anything that needs to wait until after google maps has loaded
+		google.maps.event.addListenerOnce(map.map, 'tilesloaded', function() {
+			campusMap.buildMapKey();
+			campusMap.setMapHeight();
+		});
 }
 //builds the needed HTML for the map
 CampusMap.prototype.buildHTML = function() {
@@ -74,21 +79,19 @@ CampusMap.prototype.loadCatObjs = function(callback) {
 CampusMap.prototype.parseCategories = function(data) {
 		for (var i = 0, numberCategories = data.length; i < numberCategories; i++) {
 			var cat = data[i];
-			this.categories.push(new Category(cat.id, cat.name, cat.title, cat.text, cat.icon, cat.type, cat.link, this.globals, "cat_" + i));
+			this.categories.push(new Category(cat.ID, cat.name, cat.title, cat.text, cat.icon, cat.type, cat.link, this.globals, "cat_" + i));
 			this.categories[i].markerLocations = (cat.objects) ? this.parseLocations(cat.objects,cat.icon) : null;
 			this.categories[i].polygonLocations = (cat.polygons) ? this.parseAreas(cat.polygons) : null;
 			this.globals.doc.getElementById('categories').appendChild(this.categories[i].getCatDOMObj());
-			this.categories[i].bindEventListener();
 		}
+		this.bindAllEvents();
 	}
 	//parses all of the locations and creates location objects out of them all
 CampusMap.prototype.parseLocations = function(locations, color) {
 		var markerLocations = [];
 		for (var j = 0, numberLocations = locations.length; j < numberLocations; j++) {
 			var marker = locations[j]
-				markerLocations.push(new Location(marker.name, marker.code, marker.lat, marker.lon, marker.img, marker.hours, marker.info, marker.link, j, this.globals, color));
-				markerLocations[j].marker = map.createMarker(marker.lat, marker.lon, marker.name, "Prebuilt/maps/imgs/icons/numeral-icons/" + color + "/" + (j + 1) + ".png")
-				map.createInfoWindow(markerLocations[j].marker, markerLocations[j]);	
+				markerLocations.push(new Location(marker.name, marker.code, marker.lat, marker.lon, marker.img, marker.hours, marker.info, marker.link, j, this.globals, color));	
 		}
 		return markerLocations;
 	}
@@ -98,6 +101,7 @@ CampusMap.prototype.parseAreas = function(areas) {
 		for (var j = 0, numberAreas = areas.length; j < numberAreas; j++) {
 			var polygon = areas[j]
 				polygonAreas.push(new Area(polygon.name, polygon.code, polygon.contains, polygon.borderColor, polygon.fillColor, polygon.map, this.globals));
+
 			}
 		return polygonAreas;
 	}
@@ -118,3 +122,48 @@ CampusMap.prototype.setDevice = function() {
         body.setAttribute("id","desktop");
     }
 }
+CampusMap.prototype.bindAllEvents = function() {
+	var category;
+	//loop through each category
+	for (var i = 0, len = this.categories.length; i < len; i++) {
+		category = this.categories[i];
+		category.bindEventListener();
+		//for each marker and each polygon we will bind all of their events
+		if (category.markerLocations) {
+			for (var j = 0, len2 = category.markerLocations.length; j < len2; j++) {
+				category.markerLocations[j].bindEventListener();
+			}
+		}
+		if (category.polygonLocations) {
+			for (var j = 0, len2 = category.polygonLocations.length; j < len2; j++) {
+				category.polygonLocations[j].bindEventListener();
+			}
+		}
+	}
+}
+CampusMap.prototype.buildMapKey = function() {
+	var html = "";
+	//go through each category and look for any polygons and create a map key for them
+	for (var i = 0, len = this.categories.length; i < len; i++) {
+		html += this.categories[i].buildMapKey();
+	}	
+	var element = this.globals.doc.getElementById("map_keys");
+	element.innerHTML = html;
+}
+CampusMap.prototype.getMapHeight = function() {
+var height = window.innerHeight ||
+             html.clientHeight  ||
+             body.clientHeight  ||
+             screen.availHeight;
+	return (this.includeMenus) ? height - 57 : height;
+}
+CampusMap.prototype.setMapHeight = function() {
+	var height = this.getMapHeight();
+	var container =	this.globals.doc.getElementById('container');
+	container.style.height = height + "px";
+	var map_canvas = this.globals.doc.getElementById('map_canvas');
+	map_canvas.style.height = height + "px";
+}
+
+
+
