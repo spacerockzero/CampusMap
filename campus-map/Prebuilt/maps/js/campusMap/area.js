@@ -9,7 +9,8 @@ function Area() {
 	this.polygon,
 	this.elementID = this.code + "_poly",
 	this.globals = arguments[6];
-	this.state = 0;
+	this.state = 0,
+	this.hidden = false;
 
 	this.createPolygon();
 }

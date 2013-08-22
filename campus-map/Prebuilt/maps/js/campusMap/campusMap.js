@@ -42,6 +42,7 @@ CampusMap.prototype.initializeMaps = function() {
 		google.maps.event.addListenerOnce(map.map, 'tilesloaded', function() {
 			campusMap.buildMapKey();
 			campusMap.setMapHeight();
+			campusMap.initializeSearch();
 		});
 }
 //builds the needed HTML for the map
@@ -164,6 +165,34 @@ CampusMap.prototype.setMapHeight = function() {
 	var map_canvas = this.globals.doc.getElementById('map_canvas');
 	map_canvas.style.height = height + "px";
 }
-
+CampusMap.prototype.initializeSearch = function() {
+	var search = this.globals.doc.querySelector('#object_search input');
+	search.addEventListener('keyup', function() {
+		campusMap.performSearch(this.value);
+	});
+}
+CampusMap.prototype.performSearch = function(value) {
+	if (val != "") {
+		val = val.toLowerCase();
+		//find all of the objects that match
+		for (var i = 0, len = this.categories.length; i < len; i++) {
+			var cat = this.categories[i];
+			if (cat.markerLocations) {
+				for (var j = 0, len2 = cat.markerLocations.length; j < len2; j++) {
+					if (cat.markerLocations[j].name.toLowerCase().indexOf(val) === -1) {
+						cat.markerLocations[j].hide();
+					}
+				}
+			}
+			if (cat.polygonLocations) {
+				for (var j = 0, len2 = cat.polygonLocations.length; j < len2; j++) {
+					if (cat.polygonLocations[j].name.toLowerCase().indexOf(val) === -1) {
+						cat.polygonLocations[j].hide();
+					}
+				}
+			}
+		}
+	}
+}
 
 

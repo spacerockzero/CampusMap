@@ -97,7 +97,9 @@ Category.prototype.toggleMarkersVisibility = function() {
 Category.prototype.showAllMarkers = function() {
 	if (this.markerLocations) {
 		for (var i = 0, len = this.markerLocations.length; i < len; i++) {
-			this.markerLocations[i].marker.setVisible(true);
+			if (!this.markerLocations[i].hidden) {
+				this.markerLocations[i].marker.setVisible(true);
+			}
 		}
 	}
 }
