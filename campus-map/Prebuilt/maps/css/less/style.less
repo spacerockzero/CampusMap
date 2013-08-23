@@ -265,8 +265,8 @@ a img{
 		overflow:hidden;
 		text-decoration: none;
 		#device_container{
-			height:70px;
-			top:-2px;
+		//	height:70px;
+		//	top:-2px;
 			position: relative;
 			.device {
 				font-size: 23px;
@@ -275,12 +275,8 @@ a img{
 			}
 		}
 	}
-	#mobile #device_container{
+	#device_container{
 		top:-37px;
-		.transition(top,300ms);
-	}
-	#desktop #device_container{
-		top:-2px;
 		.transition(top,300ms);
 	}
 	#menu_button{
@@ -569,12 +565,8 @@ a img{
 			margin:0px 2px 10px 0;
 			text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
 		}
-		&.infopane-mobile .button-div{
+		.button-div{
 			width: 160px;
-			float: left;
-		}
-		&.infopane-desktop .button-div{
-			width: 285px;
 			float: left;
 		}
 		.info-row {
@@ -587,6 +579,10 @@ a img{
 		}
 		.ie7 .phone-call {
 			display:inline;
+		}
+		img {
+			width: 100px;
+			height: 75px;
 		}
 	}
 	.addthis_toolbox
@@ -637,7 +633,7 @@ a img{
 /*                                    */
 /**************************************/
 
-#desktop{
+@media (min-width: 800px) {
 	-webkit-font-smoothing: antialiased;
 	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.9);
 	#map_canvas{
@@ -646,6 +642,10 @@ a img{
 	}
 	#container{
 		overflow:hidden;
+	}
+	#device_container{
+		top:-2px;
+		.transition(top,300ms);
 	}
 	#title{
 		height: 57px;
@@ -677,11 +677,11 @@ a img{
 	#device_type{
 		top: 10px;
 		left: 15px;
-	}
-	#device_container .device{
-		font-size: 30px;
-		color: white;
-		margin: 12px 0px;
+		#device_container .device{
+			font-size: 30px;
+			color: white;
+			margin: 12px 0px;
+		}
 	}
 	.category_name{
 		top: -8px;
@@ -721,11 +721,16 @@ a img{
 		max-width: 100%;
 		margin: 0;
 		padding: 0;
-		&.infopane-desktop .button-div{
-			width:285px;
-		}
 		.phone-call{
 			display:none;
+		}
+		.button-div{
+			width: 285px;
+			float: left;
+		}
+		img {
+			width: 200px;
+			height: 150px;
 		}
 	}
 }

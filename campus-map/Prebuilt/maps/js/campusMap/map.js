@@ -4,10 +4,16 @@ function Map(options) {
   this.mapOptions = {
     campusOverlayVisible : (options['campusOverlay'] == null) ? true : options['campusOverlay'],
     campusFile : 'http://www.byui.edu/Prebuilt/maps/campus_outline.xml',
-    zoom: (options['zoom']) ? options['zoom'] : 16,
-    centerCoordinates : (options['centerCoordinates'] == null) ? [43.815045,-111.783515] : options['centerCoordinates'],
-    mapView: (options['mapView']) ? options['mapView'] : "satellite"
+    centerCoordinates : [43.815045,-111.783515],
   },
+  this.embedOptions = {
+    embed : options['embed'],
+    coordinates : (options['centerCoordinates'] !== null) ? options['centerCoordinates'] : [43.815045,-111.783515],
+    name : (options['locationName']) ? options['locationName'] : "",
+    icon : (options['icon']) ? options['icon'] : "blue",
+    zoom: (options['zoom']) ? options['zoom'] : 16,
+    mapView: (options['mapView']) ? options['mapView'] : "satellite",
+  }
   this.googleMapOptions = {},
   this.infoWindow,
   this.campusLayer;
@@ -20,15 +26,16 @@ Map.prototype.initiateMap = function(local) {
   }
 
 Map.prototype.setGoogleMapOptions = function() {
-  if (this.mapOptions.mapView === "map") {
+  if (this.embedOptions.mapView === "map") {
     var view = google.maps.MapTypeId.ROADMAP;
   } else {
     var view = google.maps.MapTypeId.SATELLITE;
   }
+  var coordinates = (this.embedOptions.embed === true) ? this.embedOptions.coordinates : this.mapOptions.centerCoordinates;
 
     this.googleMapOptions = {
-      zoom: this.mapOptions.zoom,
-      center: new google.maps.LatLng(this.mapOptions.centerCoordinates[0], this.mapOptions.centerCoordinates[1]),
+      zoom: (this.embedOptions.embed) ? this.embedOptions.zoom : 16,
+      center: new google.maps.LatLng(coordinates[0], coordinates[1]),
       mapTypeId: view,
       mapTypeControlOptions: {
         mapTypeIds: [google.maps.MapTypeId.ROADMAP,
@@ -87,17 +94,12 @@ Map.prototype.createInfoWindow = function(marker, obj) {
              
 
       // Create the info panes which hold content about each building
-      content += '<div class="infopane infopane-desktop">';
+      content += '<div class="infopane">';
       content +=   '<h2>' + name + '</h2>';
       content +=   '<div>';
       if (img){
         content += '<img src="' + img + '" alt="' + name + '"';
-        // if(device === 0) {
-        //   content += 'width="100" height="75"'; 
-        // } else {
-          content += 'width="200" height="150"';
-        // }
-        content += 'style="float:right;margin:0 0 10px 10px"/>';
+        content += ' style="float:right;margin:0 0 10px 10px"/>';
       }
       content += '<div class="button-div">';
       if (phone){
@@ -140,4 +142,7 @@ Map.prototype.createInfoWindow = function(marker, obj) {
       }
       addthis.toolbox('.addthis_toolbox',{},addthis_share);
     });
+}
+Map.prototype.createEmbedMarker = function() {
+  this.createMarker(this.embedOptions.coordinates[0], this.embedOptions.coordinates[1], this.embedOptions.name, "Prebuilt/maps/imgs/icons/" + this.embedOptions.icon + ".png").setVisible(true);
 }

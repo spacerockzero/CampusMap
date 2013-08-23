@@ -14,7 +14,8 @@ function Location() {
 	this.elementID = this.code + "_" + this.number, 
 	this.marker,
 	this.infoWindowHTML,
-	this.globals = arguments[9];
+	this.globals = arguments[9],
+	this.hidden = false;
 
 	this.createMarker();
 	this.createInfoWindow();
@@ -49,5 +50,28 @@ Location.prototype.createMarker = function() {
 }
 Location.prototype.createInfoWindow = function() {
 	map.createInfoWindow(this.marker, this);
+}
+Location.prototype.hideAll = function() {
+	this.hideNavigation();
+	this.hideMarker();
+}
+Location.prototype.hideMarker = function() {
+	this.marker.setVisible(false);
+}
+Location.prototype.hideNavigation = function() {
+	this.hidden = true;
+	//hide it in the navigation and then hide it on the map
+	this.globals.doc.getElementById(this.elementID).style.display = "none";
+}
+Location.prototype.showAll = function() {
+	this.showMarker();
+	this.showNavigation();
+}
+Location.prototype.showMarker = function() {
+	this.marker.setVisible(true);
+}
+Location.prototype.showNavigation = function() {
+	this.hidden = false;
+	this.globals.doc.getElementById(this.elementID).style.display = "block";
 }
 				

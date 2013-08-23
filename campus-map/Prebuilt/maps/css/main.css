@@ -478,8 +478,6 @@ a img {
   text-decoration: none;
 }
 #device_type #device_container {
-  height: 70px;
-  top: -2px;
   position: relative;
 }
 #device_type #device_container .device {
@@ -487,16 +485,8 @@ a img {
   color: white;
   margin: 11px 0px;
 }
-#mobile #device_container {
+#device_container {
   top: -37px;
-  -webkit-transition: top 300ms;
-  -moz-transition: top 300ms;
-  -ms-transition: top 300ms;
-  -o-transition: top 300ms;
-  transition: top 300ms;
-}
-#desktop #device_container {
-  top: -2px;
   -webkit-transition: top 300ms;
   -moz-transition: top 300ms;
   -ms-transition: top 300ms;
@@ -853,12 +843,8 @@ a img {
   margin: 0px 2px 10px 0;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
 }
-.infopane.infopane-mobile .button-div {
+.infopane .button-div {
   width: 160px;
-  float: left;
-}
-.infopane.infopane-desktop .button-div {
-  width: 285px;
   float: left;
 }
 .infopane .info-row {
@@ -871,6 +857,10 @@ a img {
 }
 .infopane .ie7 .phone-call {
   display: inline;
+}
+.infopane img {
+  width: 100px;
+  height: 75px;
 }
 .addthis_toolbox {
   float: right;
@@ -915,90 +905,102 @@ a img {
 /*  - targeted at just desktop users  */
 /*                                    */
 /**************************************/
-#desktop {
+@media (min-width: 800px) {
   -webkit-font-smoothing: antialiased;
-  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.9);
-}
-#desktop #map_canvas {
-  -webkit-font-smoothing: normal;
-  text-shadow: none;
-}
-#desktop #container {
-  overflow: hidden;
-}
-#desktop #title {
-  height: 57px;
-}
-#desktop #menu_button {
-  -webkit-transition: all 300ms;
-  -moz-transition: all 300ms;
-  -ms-transition: all 300ms;
-  -o-transition: all 300ms;
-  transition: all 300ms;
-  font-size: 35px;
-  top: 17px;
-  right: 10px;
-}
-#desktop #heading {
-  -webkit-transition: all 300ms;
-  -moz-transition: all 300ms;
-  -ms-transition: all 300ms;
-  -o-transition: all 300ms;
-  transition: all 300ms;
-  font-size: 25px;
-  padding: 17px 0 10px;
-}
-#desktop #menu {
-  width: 250px;
-  overflow: auto;
-  box-shadow: inset 10px 0px 40px #111;
-}
-#desktop #device_type {
-  top: 10px;
-  left: 15px;
-}
-#desktop #device_container .device {
-  font-size: 30px;
-  color: white;
-  margin: 12px 0px;
-}
-#desktop .category_name {
-  top: -8px;
-  font-size: 15px;
-}
-#desktop .cat_info {
-  font-size: 13px;
-}
-#desktop .cat_icon {
-  height: 20px;
-  margin: 5px 3px 5px 5px;
-}
-#desktop .obj_icon {
-  margin: 1px 5px 2px;
-}
-#desktop .object_name {
-  width: 185px;
-  width: 175px;
-  font-size: 12px;
-  padding: 0;
-}
-#desktop .polygon_key {
-  height: 26px;
-}
-#desktop #map_keys .polygon_key {
-  height: auto;
-}
-#desktop .infopane {
-  padding: 10px;
-  width: 500px;
-  min-width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-}
-#desktop .infopane.infopane-desktop .button-div {
-  width: 285px;
-}
-#desktop .infopane .phone-call {
-  display: none;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.9);#map_canvas {
+    -webkit-font-smoothing: normal;
+    text-shadow: none;
+  }
+  #container {
+    overflow: hidden;
+  }
+  #device_container {
+    top: -2px;
+    -webkit-transition: top 300ms;
+    -moz-transition: top 300ms;
+    -ms-transition: top 300ms;
+    -o-transition: top 300ms;
+    transition: top 300ms;
+  }
+  #title {
+    height: 57px;
+  }
+  #menu_button {
+    -webkit-transition: all 300ms;
+    -moz-transition: all 300ms;
+    -ms-transition: all 300ms;
+    -o-transition: all 300ms;
+    transition: all 300ms;
+    font-size: 35px;
+    top: 17px;
+    right: 10px;
+  }
+  #heading {
+    -webkit-transition: all 300ms;
+    -moz-transition: all 300ms;
+    -ms-transition: all 300ms;
+    -o-transition: all 300ms;
+    transition: all 300ms;
+    font-size: 25px;
+    padding: 17px 0 10px;
+  }
+  #menu {
+    width: 250px;
+    overflow: auto;
+    box-shadow: inset 10px 0px 40px #111;
+  }
+  #device_type {
+    top: 10px;
+    left: 15px;
+  }
+  #device_type #device_container .device {
+    font-size: 30px;
+    color: white;
+    margin: 12px 0px;
+  }
+  .category_name {
+    top: -8px;
+    font-size: 15px;
+  }
+  .cat_info {
+    font-size: 13px;
+  }
+  .cat_icon {
+    height: 20px;
+    margin: 5px 3px 5px 5px;
+  }
+  .obj_icon {
+    margin: 1px 5px 2px;
+  }
+  .object_name {
+    width: 185px;
+    width: 175px;
+    font-size: 12px;
+    padding: 0;
+  }
+  .polygon_key {
+    height: 26px;
+  }
+  #map_keys .polygon_key {
+    height: auto;
+  }
+  .infopane {
+    padding: 10px;
+    width: 500px;
+    min-width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .infopane .phone-call {
+    display: none;
+  }
+  .infopane .button-div {
+    width: 285px;
+    float: left;
+  }
+  .infopane img {
+    width: 200px;
+    height: 150px;
+  }
 }

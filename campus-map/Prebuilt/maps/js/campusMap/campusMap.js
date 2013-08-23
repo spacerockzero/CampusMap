@@ -13,8 +13,8 @@ function CampusMap(options) {
 	this.menuState = (options['menuState']) ? options['menuState'] : 1,
 	this.includeMenus = (options['includeMenus'] == null) ? true : options['includeMenus'],
 	this.device,
-	this.objectFile = 'Prebuilt/maps/data/newCatObj.JSON',
-	this.device = 0;
+	this.objectFile = 'Prebuilt/maps/data/newCatObj.txt',
+	this.device = 0,
 	this.categories = [];
 
 	//other often used variables that should be passed around to be used in any other class
@@ -33,17 +33,21 @@ CampusMap.prototype.initializeMaps = function() {
 		this.buildHTML();
 		//initiate the maps
 		map.initiateMap(local);
-		if (this.includeMenus) {
-			this.detectDevice();
-		}
+		this.detectDevice();
 		//load the category 
-		this.loadCatObjs();
+		if (this.includeMenus) {
+			this.loadCatObjs();
+		}
 		//event listener to run anything that needs to wait until after google maps has loaded
 		google.maps.event.addListenerOnce(map.map, 'tilesloaded', function() {
+			if (map.embedOptions.embed === true) {
+      			map.createEmbedMarker();
+    		}
 			campusMap.buildMapKey();
 			campusMap.setMapHeight();
 			campusMap.initializeSearch();
 		});
+		this.bindMenuButton();
 }
 //builds the needed HTML for the map
 CampusMap.prototype.buildHTML = function() {
@@ -109,19 +113,7 @@ CampusMap.prototype.parseAreas = function(areas) {
 	//detects what kind of device is being 
 CampusMap.prototype.detectDevice = function() {
  var width = this.globals.doc.body.offsetWidth;
-    var newDevice = (width < 800) ? 0 : 1;
-    (newDevice != this.device) ? this.setDevice(this.device = newDevice) : null;
-}
-CampusMap.prototype.setDevice = function() {
-	var deviceIndicator = this.globals.doc.getElementById('device_type'),
-                   body = this.globals.doc.getElementsByTagName("body")[0];
-    if (this.device == 0){
-        // Set the body id, set new control value
-        body.setAttribute("id","mobile");
-    } else {
-        // Set the body id, set new control value
-        body.setAttribute("id","desktop");
-    }
+    this.device = (width < 800) ? 0 : 1;
 }
 CampusMap.prototype.bindAllEvents = function() {
 	var category;
@@ -152,10 +144,7 @@ CampusMap.prototype.buildMapKey = function() {
 	element.innerHTML = html;
 }
 CampusMap.prototype.getMapHeight = function() {
-var height = window.innerHeight ||
-             html.clientHeight  ||
-             body.clientHeight  ||
-             screen.availHeight;
+var height = this.globals.doc.getElementById(this.element).offsetHeight;
 	return (this.includeMenus) ? height - 57 : height;
 }
 CampusMap.prototype.setMapHeight = function() {
@@ -166,33 +155,79 @@ CampusMap.prototype.setMapHeight = function() {
 	map_canvas.style.height = height + "px";
 }
 CampusMap.prototype.initializeSearch = function() {
-	var search = this.globals.doc.querySelector('#object_search input');
+	var search = this.globals.doc.getElementById('object_search').children[0];
 	search.addEventListener('keyup', function() {
 		campusMap.performSearch(this.value);
 	});
+	//make the close button on the search clear the field and then perform the search
+	//in order to clear everything
+	search.nextSibling.addEventListener('click', function() {
+		search.value = "";
+		campusMap.performSearch("");
+	});
+
 }
-CampusMap.prototype.performSearch = function(value) {
+CampusMap.prototype.performSearch = function(val) {
 	if (val != "") {
 		val = val.toLowerCase();
 		//find all of the objects that match
 		for (var i = 0, len = this.categories.length; i < len; i++) {
 			var cat = this.categories[i];
+			var visibleOptions = ((cat.markerLocations) ? cat.markerLocations.length : 0) + ((cat.polygonLocations) ? cat.polygonLocations.length : 0);
 			if (cat.markerLocations) {
 				for (var j = 0, len2 = cat.markerLocations.length; j < len2; j++) {
 					if (cat.markerLocations[j].name.toLowerCase().indexOf(val) === -1) {
-						cat.markerLocations[j].hide();
+						cat.markerLocations[j].hideAll();
+						visibleOptions--;
+					} else {
+						cat.markerLocations[j].showAll();
 					}
 				}
 			}
 			if (cat.polygonLocations) {
 				for (var j = 0, len2 = cat.polygonLocations.length; j < len2; j++) {
 					if (cat.polygonLocations[j].name.toLowerCase().indexOf(val) === -1) {
-						cat.polygonLocations[j].hide();
+						cat.polygonLocations[j].hideAll();
+						visibleOptions--;
+					} else {
+						cat.polygonLocations[j].showAll();
 					}
 				}
 			}
-		}
+			var sibling = this.globals.doc.getElementById(cat.elementID).parentElement.children[1];
+			if (visibleOptions > 0) {
+				cat.openCategory(sibling);
+			} else {
+				cat.closeCategory(sibling);
+			}
+		} 
+	} else {
+			for (var i = 0, len = this.categories.length; i < len; i++) {
+				var cat = this.categories[i];
+				if (cat.markerLocations) {
+					this.categories[i].hideAllMarkers();
+				}	
+				if (cat.polygonLocations) {
+					this.categories[i].hideAllPolygons();
+				}
+				var sibling = this.globals.doc.getElementById(cat.elementID).parentElement.children[1];
+				cat.closeCategory(sibling);
+			}
 	}
 }
-
-
+CampusMap.prototype.bindMenuButton = function() {
+	this.globals.doc.getElementById('menu_button').addEventListener('click', function() {
+		campusMap.toggleMenu();
+	});
+}
+CampusMap.prototype.toggleMenu = function() {
+	(this.menuState) ? this.hideMenu() : this.showMenu();
+}
+CampusMap.prototype.hideMenu = function() {
+	this.menuState = 0;
+	this.globals.doc.getElementById('menu').style.display = "none";
+}
+CampusMap.prototype.showMenu = function() {
+	this.menuState = 1;
+	this.globals.doc.getElementById('menu').style.display = "block";
+}

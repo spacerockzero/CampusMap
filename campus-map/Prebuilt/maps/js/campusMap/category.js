@@ -75,16 +75,21 @@ Category.prototype.toggle = function() {
 	map.infoWindow.close();
 	this.toggleMarkersVisibility();
 	if (this.state === 0) {
-		//open the category
-		sibling.style.display = "block";
-		sibling.style.height = "100%";
-		this.state = 1;
+		this.openCategory(sibling);
 	} else {
-		//close the category
-		sibling.style.display = "none";
-		sibling.style.height = "0";
-		this.state = 0;
+		this.closeCategory(sibling);
 	}
+}
+Category.prototype.openCategory = function(sibling) {
+	sibling.style.display = "block";
+	sibling.style.height = "100%";
+	this.state = 1;
+}
+Category.prototype.closeCategory = function(sibling) {
+	//close the category
+	sibling.style.display = "none";
+	sibling.style.height = "0";
+	this.state = 0;
 }
 Category.prototype.toggleMarkersVisibility = function() {
 	//if the category is closed
@@ -106,7 +111,16 @@ Category.prototype.showAllMarkers = function() {
 Category.prototype.hideAllMarkers = function() {
 	if (this.markerLocations) {
 		for (var i = 0, len = this.markerLocations.length; i < len; i++) {
-			this.markerLocations[i].marker.setVisible(false);
+			this.markerLocations[i].showNavigation();
+			this.markerLocations[i].hideMarker();
+		}
+	}
+}
+Category.prototype.hideAllPolygons = function() {
+	if (this.polygonLocations) {
+		for (var i = 0, len = this.polygonLocations.length; i < len; i++) {
+			this.polygonLocations[i].showNavigation();
+			this.polygonLocations[i].hideMapKey();
 		}
 	}
 }

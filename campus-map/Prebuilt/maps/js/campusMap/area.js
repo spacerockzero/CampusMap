@@ -39,17 +39,24 @@ Area.prototype.togglePolygon = function() {
 	var polyKey = this.globals.doc.getElementById("poly_key_" + this.code);
 	//currently closed
 	if (this.state === 0) {
-		this.polygon.setMap(map.map);
+		this.showPolygon(span, polyKey);
+	} 
+	//open
+	else if (this.state === 1) {
+		this.hidePolygon(span, polyKey);
+	}
+}
+Area.prototype.showPolygon = function(span, polyKey) {
+	this.polygon.setMap(map.map);
 		span.className = "icon-checkmark";
 		//display the mapkey
 		polyKey.parentElement.style.display = "block";
 		//make it appear in the map key
 		polyKey.className = "polygon_key active_key";
 		this.state = 1;
-	} 
-	//open
-	else if (this.state === 1) {
-		this.polygon.setMap(null);
+}
+Area.prototype.hidePolygon = function(span, polyKey) {
+	this.polygon.setMap(null);
 		span.className = "";
 		polyKey.className = "polygon_key";
 		//determine if the mapkey needs to be closed or not
@@ -57,11 +64,40 @@ Area.prototype.togglePolygon = function() {
 			polyKey.parentElement.style.display = "none";
 		}
 		this.state = 0;
-	}
 }
 Area.prototype.createPolygon = function() {
 	this.polygon = new google.maps.KmlLayer(this.map, {
 		suppressInfoWindows: false,
 		preserveViewport: true
 	});
+}
+Area.prototype.hideAll = function() {
+	this.hideMapKey();
+	this.hideNavigation();
+}
+Area.prototype.hideMapKey = function() {
+		//get the span for this polygon
+	var span = this.globals.doc.getElementById(this.elementID).children[0].children[0];
+	var polyKey = this.globals.doc.getElementById("poly_key_" + this.code);
+		//make sure that it is not checked and therefore not showing up in the map
+	this.hidePolygon(span, polyKey);
+}
+Area.prototype.hideNavigation = function() {
+	this.hidden = true;
+	//hide it in the left navigation
+	this.globals.doc.getElementById(this.elementID).style.display = "none";
+}
+Area.prototype.showAll = function() {
+	this.showMapKey();
+	this.showNavigation();
+}
+Area.prototype.showMapKey = function() {
+	//show in mapkey
+	var span = this.globals.doc.getElementById(this.elementID).children[0].children[0];
+	var polyKey = this.globals.doc.getElementById("poly_key_" + this.code);
+	this.showPolygon(span, polyKey);
+}
+Area.prototype.showNavigation = function() {
+	this.hidden = false;
+	this.globals.doc.getElementById(this.elementID).style.display = "block";
 }
