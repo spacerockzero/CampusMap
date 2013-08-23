@@ -74,4 +74,3 @@ Location.prototype.showNavigation = function() {
 	this.hidden = false;
 	this.globals.doc.getElementById(this.elementID).style.display = "block";
 }
-				
