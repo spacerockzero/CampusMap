@@ -87,6 +87,9 @@
             <h1>Features</h1>
           </div>
           <p>The Campus Maps contain several features that will students, faculty, as well as parents or other visitors to easily navigate the BYU-Idaho Campus.  It utilizes Googles data rich maps, as well as our own object files to help others locate points of interest around campus.  It allows a user to navigate through a list of categories to find specific locations that they would like to find.  To aid in finding these points a search function has been added to allow users to search for what they are looking for.</p>
+          <h5>August 8, 2013</h5>
+          <p>The campus maps are now embeddable and allow for people to place them into their pages with just one script inclusion and one global options object.</p>
+          <p>It also is written in OOP for better sustainability and progression.</p>
           <h3>Future Features</h3>
           <p>There are many possible additions that have been proposed to The Campus Maps</p>
           <ul>
@@ -94,16 +97,12 @@
             <li>Allowing users to submit corrections to locations, or submit additional locations to be considered.</li>
             <li>Making the maps indexable by creating an XML document in Ingeniux that allows search engines to index the unique URLS for each location.</li>
             <li>Making the data be pulled from the schools GIS servers and allow faculty to submit additions.</li>
-            <li>Make the maps embeddable so that faculty can put it on their page with a custom marker.</li>
             <li>Make it location aware so that you can see where you are in relation to everything else.</li>
-            <li>Performance enhancements to make it faster and more responsive to user interaction.
-              <ul>
-                <li>No storing or retreiving data from the DOM
-                <li>No string comparisons</li>
-                <li>Move towards more OOP, Marker objects, polygon objects, category objects etc...</li>
-                <li>Let CSS take care of more responsiveness rather than JS</li>
-              </ul>
-            </li>
+            <li>Performance enhancements to make it faster and more responsive to user interaction.</li>
+            <li>Put everything inside a module to not flood the Window object
+                <ul>
+                  <li>Currently each object has it's own copy of the window and document object to keep them local but if it's in a module this can be changed</li>
+                </ul>
           </ul>
         </section>
 
@@ -159,6 +158,11 @@
             <li>Added the ability to pull up a location with a unique URL.</li>
             <li>Added sharing functionality</li>
             <li>Uploaded everything to Ingeniux and it now runs in Ingeniux</li>
+          </ul>
+          <h4>August 26, 2013</h4>
+          <ul>
+            <li>Developed using OOP</li>
+            <li>Maps can be embedded with a single script file and a global options object</li>
           </ul>
         </section>
 
