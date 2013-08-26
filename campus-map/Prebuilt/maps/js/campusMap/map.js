@@ -108,6 +108,7 @@ Map.prototype.setInfoWindow = function() {
 
 
 //places the campus layer on the map
+//for some reason this isn't working with the layers kml file being in Ingeniux
 Map.prototype.setCampusLayer = function() {
   this.campusLayer = new google.maps.KmlLayer(this.mapOptions.campusFile, {
     suppressInfoWindows: true,
@@ -131,8 +132,11 @@ Map.prototype.createMarker = function(lat, lon, name, icon) {
 }
 
 
-
+//creates an info window whenever a marker is clicked and then displays it
+//it takes the marker object and the Location object
 Map.prototype.createInfoWindow = function(marker, obj) {
+  //create local versions so they are in the closure for the anonymous
+  //event function
   var infoWindow = this.infoWindow;
   var map = this.map;
   // Listener that builds the infopane popups on marker click
@@ -198,7 +202,7 @@ Map.prototype.createInfoWindow = function(marker, obj) {
       infoWindow.setContent(content);
       // Open the InfoWindow
       infoWindow.open(map, marker);
-      //render the buttons
+      //render the add this buttons
       var addthis_share = 
       {
         url : "http://www.byui.edu/maps#" + obj.code,
@@ -207,6 +211,9 @@ Map.prototype.createInfoWindow = function(marker, obj) {
       addthis.toolbox('.addthis_toolbox',{},addthis_share);
     });
 }
+
+
+//this function creates a marker on the map when someone wants to embed a map into their own page
 Map.prototype.createEmbedMarker = function() {
   this.createMarker(this.embedOptions.coordinates[0], this.embedOptions.coordinates[1], this.embedOptions.name, "http://www.byui.edu/Prebuilt/maps/imgs/icons/" + this.embedOptions.icon + ".png").setVisible(true);
 }
