@@ -24,13 +24,12 @@ function Category() {
 	this.title = arguments[2],
 	this.text = arguments[3],
 	this.iconColor = arguments[4],
-	this.type = arguments[5],
-	this.link = arguments[6],
+	this.link = arguments[5],
 	this.markerLocations = [],
 	this.polygonLocations = [],
 	this.state = 0,
-	this.elementID = arguments[8],
-	this.globals = arguments[7];
+	this.elementID = arguments[7],
+	this.globals = arguments[6];
 }
 
 

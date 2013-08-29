@@ -34,7 +34,7 @@ function CampusMap(options) {
 	this.element = (options['element']) ? options['element'] : console.log("No element provided.") ,
 	this.menuState = (options['menuState']) ? options['menuState'] : 1,
 	this.includeMenus = (options['includeMenus'] == null) ? true : options['includeMenus'],
-	this.objectFile = 'Prebuilt/maps/data/newCatObj.txt',
+	this.KMLFiles = options['categories'],
 	this.device = 0,
 	this.categories = [];
 
@@ -60,34 +60,37 @@ CampusMap.prototype.initializeMaps = function() {
 		map.initiateMap(this.globals);
 		//detect what kind of device the user is on
 		this.detectDevice();
-		//load the category file and bind the menuButton event only if they want to include menus
+
+		this.loadKMLFiles(function() {
+			campusMap.bindAllEvents();
+		});
+
+		//bind the menuButton event only if they want to include menus
 		if (this.includeMenus) {
-			this.loadCatObjs();
 			this.bindMenuButton();
 		}
+
 		//this event runs after all of the tiles are loaded in the actual map
 		//some functions need to wait until this is done in order to run or else they lock up the 
 		//dom and prevent the map from loading
 		google.maps.event.addListenerOnce(map.map, 'tilesloaded', function() {
 			//places a marker if the embed options have been set
-			if (map.embedOptions.embed === true) {
-      			map.createEmbedMarker();
-    		} else {
+			if (map.embedOptions.embed === false) {
     			//if not then we know that they may be on the full maps experience and we should look for 
     			//whether a building has been passed to show on the map when it has loaded
     			campusMap.anchorLocation();
     		}
     		//set the height of the element that the map will be contained in so that the mapKey will 
     		//not be lower then the bottom of the window
-			campusMap.setMapHeight();
+    		campusMap.setMapHeight();
 			//if they want to include the menus then we should build the mapkey and initialize the
 			//search
-    		if (campusMap.includeMenus) {
+			if (campusMap.includeMenus) {
 				campusMap.buildMapKey();
 				campusMap.initializeSearch();
 			}
 		});
-}
+	}
 
 
 //builds the needed HTML for the map
@@ -105,55 +108,62 @@ CampusMap.prototype.buildHTML = function() {
 
 
 //asynchronasly loads the category/objects file and then parses it
-CampusMap.prototype.loadCatObjs = function(callback) {
+CampusMap.prototype.loadKMLFiles = function(callback) {
 	//make local copies of these attributes so they can be used within this closure
 	//you can't use this in the onreadystatechange function because it will refer to 
 	//that function's attributes and not the CampusMap attributes
-	var filePath = this.objectFile;
 	var parent = this;
-	//create the xmlhttp object
-	var xmlhttp;
-	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-		xmlhttp=new XMLHttpRequest();
-	} else {// code for IE6, IE5
-		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.onreadystatechange=function() {
-		//after everything is loaded...
-		if (xmlhttp.readyState==4) {
-			//parse the JSON and pass the data to the parseCategories function
-			//after parsing the JSON it will just create a bunch of object literals and thus won't have any methods or extra attributes
-			//attached to them until we create them for each object which is redundant.  So a category, location, and area classes have
-			//been created that match the structure of their respective objects loaded from the JSON.
-			var data = JSON.parse(xmlhttp.responseText);
-			parent.parseCategories(data);
-			if (callback && typeof(callback) === "function") {
-				callback();
+
+	//loop through all of the given KML files and load them
+	for (var i = 0, len = this.KMLFiles.length; i < len; i++) {
+		var filePath = this.KMLFiles[i];
+
+		//create the xmlhttp object
+		var xmlhttp;
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		} else {// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function() {
+			//after everything is loaded...
+			if (xmlhttp.readyState==4) {
+				//parse the JSON and pass the data to the parseCategories function
+				//after parsing the JSON it will just create a bunch of object literals and thus won't have any methods or extra attributes
+				//attached to them until we create them for each object which is redundant.  So a category, location, and area classes have
+				//been created that match the structure of their respective objects loaded from the JSON.
+				var data = xmlhttp.responseXML;
+				parent.parseKMLFile(data);
+				if (callback && typeof(callback) === "function") {
+					callback();
+				}
 			}
 		}
+		xmlhttp.open("GET",filePath,false);
+		xmlhttp.send();
 	}
-	xmlhttp.open("GET",filePath,true);
-	xmlhttp.send();
 }
 
 
 //parses the category file and creates category objects from them all
-CampusMap.prototype.parseCategories = function(data) {
-	//iterate through the array of categories
-	for (var i = 0, numberCategories = data.length; i < numberCategories; i++) {
-		var cat = data[i];
-		//push a new category onto the CampusMap object array of categories
-		this.categories.push(new Category(cat.ID, cat.name, cat.title, cat.text, cat.icon, cat.type, cat.link, this.globals, "cat_" + i));
-		//parse all of that categories objects/markers if it has any and assign it to that category
-		this.categories[i].markerLocations = (cat.objects) ? this.parseLocations(cat.objects,cat.icon) : null;
-		//parse all of that categories polygons/areas if it has any and assign it to that category
-		this.categories[i].polygonLocations = (cat.polygons) ? this.parseAreas(cat.polygons) : null;
-		//append this categories DOM structure to the menu, this includes the category button, it's descriptive text,
-		//and all of it's objects/polygons
-		this.globals.doc.getElementById('categories').appendChild(this.categories[i].getCatDOMObj());
+CampusMap.prototype.parseKMLFile = function(doc) {
+	var kmlParser = new KMLParser(doc);
+	
+}
+
+
+//extracts the text of an anchor from a string
+CampusMap.prototype.extractAnchorText = function(string) {
+	var anchor = "";
+	var pos = string.indexOf('<a');
+	if (pos !== -1) {
+		anchor = (string.substr(pos, string.indexOf('</a>') + 4));
+		pos = anchor.indexOf('>') + 1;
+		anchor = anchor.substr(pos, anchor.length - 4 - pos);
+		string = string.substr(0, pos) + string.substr(string.indexOf('</a>') + 4);
 	}
-	//binds all of the events for every category and all of it's objects/polygons
-	this.bindAllEvents();
+
+	return [anchor, string];
 }
 
 
@@ -161,7 +171,15 @@ CampusMap.prototype.parseCategories = function(data) {
 //receives two parameters
 //locations - an array of a categories markers/locations to parse
 //color - the color of the category so the marker knows what color it needs to make it's icons
-CampusMap.prototype.parseLocations = function(locations, color) {
+CampusMap.prototype.parseLocation = function(locations, color) {
+		//look to see if there is an image
+	// var img = "";
+	// if (var pos = description.indexOf('<img')) {
+	// 	img = parser.parserFromString(description.substr(pos, description.indexOf('/>') + 2), 'text/xml').getAttr('src');
+	// 	description = description.substr(0, pos) + description.substr(description.indexOf('/>') + 2);
+	// }
+
+
 	//an array for holding all of the new Location objects
 	var markerLocations = [];
 	for (var j = 0, numberLocations = locations.length; j < numberLocations; j++) {
@@ -178,22 +196,22 @@ CampusMap.prototype.parseLocations = function(locations, color) {
 //all of the logic is the same as the parseLocations method so one can refer to that method for 
 //more information about how this method is functioning
 CampusMap.prototype.parseAreas = function(areas) {
-		var polygonAreas = [];
-		for (var j = 0, numberAreas = areas.length; j < numberAreas; j++) {
-			var polygon = areas[j]
-				polygonAreas.push(new Area(polygon.name, polygon.code, polygon.contains, polygon.borderColor, polygon.fillColor, polygon.map, this.globals));
+	var polygonAreas = [];
+	for (var j = 0, numberAreas = areas.length; j < numberAreas; j++) {
+		var polygon = areas[j]
+		polygonAreas.push(new Area(polygon.name, polygon.code, polygon.contains, polygon.borderColor, polygon.fillColor, polygon.map, this.globals));
 
-			}
-		return polygonAreas;
 	}
+	return polygonAreas;
+}
 
 
 //detects what kind of device is being 
 CampusMap.prototype.detectDevice = function() {
- var width = this.globals.doc.body.offsetWidth;
+	var width = this.globals.doc.body.offsetWidth;
  	//it was determined that anything less than 800 pixels would be considered a mobile device
-    this.device = (width < 800) ? 0 : 1;
-}
+ 	this.device = (width < 800) ? 0 : 1;
+ }
 
 
 //binds all of the events for each category the CampusMap object has and their subsequent Location and Area objects
@@ -234,7 +252,7 @@ CampusMap.prototype.buildMapKey = function() {
 
 //gets the height of the element that the map is being embedded into
 CampusMap.prototype.getMapHeight = function() {
-var height = this.globals.doc.getElementById(this.element).offsetHeight;
+	var height = this.globals.doc.getElementById(this.element).offsetHeight;
 	return (this.includeMenus) ? height - 57 : height;
 }
 
@@ -374,8 +392,8 @@ CampusMap.prototype.showMenu = function() {
 //displays a certain location depending on if a code has been sent in the hash of the url
 CampusMap.prototype.anchorLocation = function() {
 	//detect if a code has been sent in the url using an anchor
-  	if (window.location.hash) {
-	    var code = window.location.hash.substr(1);
+	if (window.location.hash) {
+		var code = window.location.hash.substr(1);
 	    //find the object it is referring to
 	    var object = this.findObject(code);
 	    //since the Location and Area objects both have a showAll method that does the same thing we can call it without
@@ -414,7 +432,7 @@ CampusMap.prototype.findObject = function(code) {
 
 //crossbrowser solution to triggering an event on an element
 CampusMap.prototype.fireEvent = function(element, event) {
-   if (document.createEvent) {
+	if (document.createEvent) {
        // dispatch for firefox + others
        var evt = document.createEvent("HTMLEvents");
        evt.initEvent(event, true, true ); // event type,bubbling,cancelable
