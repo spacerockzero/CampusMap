@@ -18,18 +18,14 @@
 function Area() {
 	this.name = arguments[0],
 	this.code = arguments[1],
-	this.contains = arguments[2],
-	this.borderColor = arguments[3],
-	this.fillColor = arguments[4],
-	this.map = arguments[5],
-	this.polygon,
+	this.lineColor = arguments[2][0].lineColor;
+	this.fillColor = arguments[2][0].polyColor;
+	this.polygons = this.createPolygons(arguments[2]);
+	this.numberOfPolygons = this.polygons.length;
 	this.elementID = this.code + "_poly",
-	this.globals = arguments[6];
+	this.globals = arguments[3];
 	this.state = 0,
 	this.hidden = false;
-
-	//create the google maps polygon for use with this object
-	this.createPolygon();
 }
 
 
@@ -39,7 +35,7 @@ Area.prototype.buildAreaDOM = function() {
 	element.className = "object polygon";
 	element.id = this.elementID;
 	element.setAttribute('href', '#' + this.code);
-	element.innerHTML = '<div class="polygon_key" id="poly_' + this.name + '" style="border-color:' + this.borderColor + '; background-color:' + this.fillColor + '"><span>&nbsp;</span></div>';
+	element.innerHTML = '<div class="polygon_key" id="poly_' + this.name + '" style="border-color:' + this.lineColor + '; background-color:' + this.fillColor + '"><span>&nbsp;</span></div>';
     element.innerHTML += '<div class="object_name polygon">' + this.name + '</div>';
 
     return element;
@@ -68,46 +64,70 @@ Area.prototype.togglePolygon = function() {
 	var polyKey = this.globals.doc.getElementById("poly_key_" + this.code);
 	//currently closed
 	if (this.state === 0) {
-		this.showPolygon(span, polyKey);
+		this.showPolygons(span, polyKey);
 	} 
 	//currently open
 	else if (this.state === 1) {
-		this.hidePolygon(span, polyKey);
+		this.hidePolygons(span, polyKey);
 	}
 }
 
 
 //shows the polygon on the map and in the MapKey
-Area.prototype.showPolygon = function(span, polyKey) {
-	this.polygon.setMap(map.map);
-		span.className = "icon-checkmark";
-		//display the mapkey
-		polyKey.parentElement.style.display = "block";
-		//make it appear in the map key
-		polyKey.className = "polygon_key active_key";
-		this.state = 1;
+Area.prototype.showPolygons = function(span, polyKey) {
+	for (var i = 0; i < this.numberOfPolygons; i++) {
+		this.polygons[i].setVisible(true);
+	}
+	span.className = "icon-checkmark";
+	//display the mapkey
+	polyKey.parentElement.style.display = "block";
+	//make it appear in the map key
+	polyKey.className = "polygon_key active_key";
+	this.state = 1;
 }
 
 
 //hides the polygon on the map and in the MapKey
-Area.prototype.hidePolygon = function(span, polyKey) {
-	this.polygon.setMap(null);
-		span.className = "";
-		polyKey.className = "polygon_key";
-		//determine if the mapkey needs to be closed or not
-		if (this.globals.doc.querySelectorAll('#' + polyKey.parentElement.id + " .active_key").length < 1) {
-			polyKey.parentElement.style.display = "none";
+Area.prototype.hidePolygons = function(span, polyKey) {
+	for (var i = 0; i < this.numberOfPolygons; i++) {
+		this.polygons[i].setVisible(false);
+	}
+	span.className = "";
+	polyKey.className = "polygon_key";
+	//determine if the mapkey needs to be closed or not
+	if (this.globals.doc.querySelectorAll('#' + polyKey.parentElement.id + " .active_key").length < 1) {
+		polyKey.parentElement.style.display = "none";
+	}
+	this.state = 0;
+}
+
+
+//creates all of the polygons for this Area object
+Area.prototype.createPolygons = function(polygons) {
+	var newPolygons = [];
+	//loop through all of the polygons
+	for (var i = 0, len = polygons.length; i < len; i++) {
+		var coordinates = [];
+		for (var j = 0, len2 = polygons[i].coordinates.length; j < len2; j++) {
+			var coords = polygons[i].coordinates[j];
+			coordinates.push(new google.maps.LatLng(coords[0], coords[1]));
 		}
-		this.state = 0;
+		newPolygons[i] = this.createPolygon(coordinates, polygons[i].lineColor, 1, 2, polygons[i].polyColor, 0.75);
+	}
+	return newPolygons;
 }
 
 
 //creates a polygon for this area object
-Area.prototype.createPolygon = function() {
-	this.polygon = new google.maps.KmlLayer(this.map, {
-		suppressInfoWindows: false,
-		preserveViewport: true
-	});
+Area.prototype.createPolygon = function(coordinates, strokeColor, strokeOpacity, strokeWeight, fillColor, fillOpacity) {
+	return new google.maps.Polygon({
+		paths: coordinates,
+		strokeColor: strokeColor,
+		strokeOpacity: strokeOpacity,
+		strokeWeight: strokeWeight,
+		fillColor: fillColor,
+		fillOpacity: fillOpacity
+	})
 }
 
 

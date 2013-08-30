@@ -2,6 +2,17 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>Vending Machines.kml</name>
+	<visibility>0</visibility>
+	<Style id="sh_yellow">
+		<IconStyle>
+			<scale>1.4</scale>
+			<Icon>
+				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/yellow.png</href>
+			</Icon>
+		</IconStyle>
+		<ListStyle>
+		</ListStyle>
+	</Style>
 	<StyleMap id="msn_yellow">
 		<Pair>
 			<key>normal</key>
@@ -22,21 +33,11 @@
 		<ListStyle>
 		</ListStyle>
 	</Style>
-	<Style id="sh_yellow">
-		<IconStyle>
-			<scale>1.4</scale>
-			<Icon>
-				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/yellow.png</href>
-			</Icon>
-		</IconStyle>
-		<ListStyle>
-		</ListStyle>
-	</Style>
 	<Folder>
 		<name>Vending Machines</name>
 		<visibility>0</visibility>
 		<open>1</open>
-		<description><![CDATA[Campus vending machines are operated by food services for your convenience.<a href="http://www.byui.edu/food-services">http://www.byui.edu/food-services</a>]]></description>
+		<description><![CDATA[<img src="http://yellow"/>Campus vending machines are operated by food services for your convenience.<a href="http://www.byui.edu/food-services">http://www.byui.edu/food-services</a>]]></description>
 		<Placemark>
 			<name>AGB (snacks)</name>
 			<visibility>0</visibility>

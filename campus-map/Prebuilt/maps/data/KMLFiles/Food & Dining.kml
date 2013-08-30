@@ -2,7 +2,6 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>Food &amp; Dining.kml</name>
-	<visibility>0</visibility>
 	<StyleMap id="msn_ylw-pushpin16">
 		<Pair>
 			<key>normal</key>
@@ -13,9 +12,9 @@
 			<styleUrl>#sh_ylw-pushpin15</styleUrl>
 		</Pair>
 	</StyleMap>
-	<Style id="sh_ylw-pushpin15">
+	<Style id="sn_ylw-pushpin16">
 		<IconStyle>
-			<scale>1.4</scale>
+			<scale>1.2</scale>
 			<Icon>
 				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/rust.png</href>
 			</Icon>
@@ -24,9 +23,9 @@
 		<ListStyle>
 		</ListStyle>
 	</Style>
-	<Style id="sn_ylw-pushpin16">
+	<Style id="sh_ylw-pushpin15">
 		<IconStyle>
-			<scale>1.2</scale>
+			<scale>1.4</scale>
 			<Icon>
 				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/rust.png</href>
 			</Icon>
@@ -39,7 +38,7 @@
 		<name>Food &amp; Dining</name>
 		<visibility>0</visibility>
 		<open>1</open>
-		<description><![CDATA[<img src="http://rust"/>Food & Dining locations are operated by Food Services for your eating pleasure and convenience.<a href="http://www.byui.edu/food-services">http://www.byui.edu/food-services</a>]]></description>
+		<description><![CDATA[<img src="http://www.byui.edu/Prebuilt/maps/imgs/icons/blank-colors/rust.png"/>Food & Dining locations are operated by Food Services for your eating pleasure and convenience.<a href="http://www.byui.edu/food-services">http://www.byui.edu/food-services</a>]]></description>
 		<Placemark>
 			<name>Café McKay</name>
 			<visibility>0</visibility>

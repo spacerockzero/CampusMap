@@ -61,9 +61,8 @@ CampusMap.prototype.initializeMaps = function() {
 		//detect what kind of device the user is on
 		this.detectDevice();
 
-		this.loadKMLFiles(function() {
-			campusMap.bindAllEvents();
-		});
+		this.loadKMLFiles();
+		this.bindAllEvents();
 
 		//bind the menuButton event only if they want to include menus
 		if (this.includeMenus) {
@@ -147,23 +146,19 @@ CampusMap.prototype.loadKMLFiles = function(callback) {
 
 //parses the category file and creates category objects from them all
 CampusMap.prototype.parseKMLFile = function(doc) {
+
 	var kmlParser = new KMLParser(doc);
-	
-}
 
+	var index = this.categories.length;
 
-//extracts the text of an anchor from a string
-CampusMap.prototype.extractAnchorText = function(string) {
-	var anchor = "";
-	var pos = string.indexOf('<a');
-	if (pos !== -1) {
-		anchor = (string.substr(pos, string.indexOf('</a>') + 4));
-		pos = anchor.indexOf('>') + 1;
-		anchor = anchor.substr(pos, anchor.length - 4 - pos);
-		string = string.substr(0, pos) + string.substr(string.indexOf('</a>') + 4);
-	}
+	//create a new category for this KML File
+	this.categories[index] = new Category(index + 1, kmlParser.categoryName, kmlParser.categoryName, kmlParser.categoryText, kmlParser.categoryColor, kmlParser.link, this.globals, "cat_" + (index + 1));
+	this.categories[index].markerLocations = this.parseLocations(kmlParser.Locations, "http://www.byui.edu/Prebuilt/maps/imgs/icons/numeral-icons/" + kmlParser.categoryColor + "/");
+	this.categories[index].polygonLocations = this.parseAreas(kmlParser.Areas);
 
-	return [anchor, string];
+	//append this categories DOM structure to the menu, this includes the category button, it's descriptive text,
+	//and all of it's objects/polygons
+	this.globals.doc.getElementById('categories').appendChild(this.categories[index].getCatDOMObj());
 }
 
 
@@ -171,21 +166,13 @@ CampusMap.prototype.extractAnchorText = function(string) {
 //receives two parameters
 //locations - an array of a categories markers/locations to parse
 //color - the color of the category so the marker knows what color it needs to make it's icons
-CampusMap.prototype.parseLocation = function(locations, color) {
-		//look to see if there is an image
-	// var img = "";
-	// if (var pos = description.indexOf('<img')) {
-	// 	img = parser.parserFromString(description.substr(pos, description.indexOf('/>') + 2), 'text/xml').getAttr('src');
-	// 	description = description.substr(0, pos) + description.substr(description.indexOf('/>') + 2);
-	// }
-
-
+CampusMap.prototype.parseLocations = function(locations, color) {
 	//an array for holding all of the new Location objects
 	var markerLocations = [];
 	for (var j = 0, numberLocations = locations.length; j < numberLocations; j++) {
 		//create a new Location object and push it onto the markerLocations array
 		var marker = locations[j]
-		markerLocations.push(new Location(marker.name, marker.code, marker.lat, marker.lon, marker.img, marker.hours, marker.info, marker.link, j, this.globals, color));	
+		markerLocations.push(new Location(marker.name, null, marker.coordinates[0], marker.coordinates[1], marker.image, marker.hours, marker.description, marker.link, j, this.globals, (this.includeMenus) ? color + (j + 1) + ".png" : marker.icon));	
 	}
 	//send back the array of the Location objects for the category to hold
 	return markerLocations;
@@ -199,7 +186,7 @@ CampusMap.prototype.parseAreas = function(areas) {
 	var polygonAreas = [];
 	for (var j = 0, numberAreas = areas.length; j < numberAreas; j++) {
 		var polygon = areas[j]
-		polygonAreas.push(new Area(polygon.name, polygon.code, polygon.contains, polygon.borderColor, polygon.fillColor, polygon.map, this.globals));
+		polygonAreas.push(new Area(polygon.name, null, polygon.polygons, this.globals));
 
 	}
 	return polygonAreas;

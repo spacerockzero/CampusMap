@@ -1,69 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
-	<name>emergency.kml</name>
-	<open>1</open>
-	<Style id="s_ylw-pushpin_hl">
+	<name>Emergency.kml</name>
+	<visibility>0</visibility>
+	<Style id="s_ylw-pushpin_hl00">
 		<IconStyle>
 			<scale>1.3</scale>
 			<Icon>
-				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+				<href>http://www.byui.edu/Prebuilt/maps/imgs/icons/blank-colors/dark-blue.png</href>
 			</Icon>
-			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+			<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
 		</IconStyle>
+		<ListStyle>
+		</ListStyle>
 	</Style>
-	<Style id="s_ylw-pushpin">
-		<IconStyle>
-			<scale>1.1</scale>
-			<Icon>
-				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
-			</Icon>
-			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
-		</IconStyle>
-	</Style>
-	<StyleMap id="m_ylw-pushpin">
-		<Pair>
-			<key>normal</key>
-			<styleUrl>#s_ylw-pushpin0</styleUrl>
-		</Pair>
-		<Pair>
-			<key>highlight</key>
-			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
-		</Pair>
-	</StyleMap>
-	<Style id="s_ylw-pushpin0">
-		<IconStyle>
-			<scale>1.1</scale>
-			<Icon>
-				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
-			</Icon>
-			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
-		</IconStyle>
-	</Style>
-	<Style id="s_ylw-pushpin_hl0">
-		<IconStyle>
-			<scale>1.3</scale>
-			<Icon>
-				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
-			</Icon>
-			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
-		</IconStyle>
-	</Style>
-	<StyleMap id="m_ylw-pushpin0">
+	<StyleMap id="m_ylw-pushpin00">
 		<Pair>
 			<key>normal</key>
 			<styleUrl>#s_ylw-pushpin</styleUrl>
 		</Pair>
 		<Pair>
 			<key>highlight</key>
-			<styleUrl>#s_ylw-pushpin_hl0</styleUrl>
+			<styleUrl>#s_ylw-pushpin_hl00</styleUrl>
 		</Pair>
 	</StyleMap>
+	<Style id="s_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://www.byui.edu/Prebuilt/maps/imgs/icons/blank-colors/dark-blue.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<ListStyle>
+		</ListStyle>
+	</Style>
 	<Folder>
-		<name>emergency</name>
-		<open>1</open>
+		<name>Emergency</name>
+		<visibility>0</visibility>
+		<description><![CDATA[<img src="http://dark-blue"/>Emergency Blue phones.<a href="http://www.byui.edu/university-operations/security-and-safety/">http://www.byui.edu/university-operations/security-and-safety/</a>]]></description>
 		<Placemark>
 			<name>Blue Phone 1</name>
+			<visibility>0</visibility>
 			<description>South of the stadium seating exit ramp.</description>
 			<LookAt>
 				<longitude>-111.7862658554515</longitude>
@@ -74,7 +52,7 @@
 				<range>114.727824906126</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7860437712944,43.82067026703935,0</coordinates>
@@ -82,6 +60,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 2</name>
+			<visibility>0</visibility>
 			<description>The middle East side of the south court off the second floor.</description>
 			<LookAt>
 				<longitude>-111.7836977874408</longitude>
@@ -92,7 +71,7 @@
 				<range>110.5819465214455</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7836773253761,43.82101576504834,0</coordinates>
@@ -100,6 +79,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 3</name>
+			<visibility>0</visibility>
 			<description>Outside the South exit to the Kirkham building.  Across from the Clarke loading dock.</description>
 			<LookAt>
 				<longitude>-111.7813484917752</longitude>
@@ -110,7 +90,7 @@
 				<range>105.2428768704623</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7813631389139,43.82076220300919,0</coordinates>
@@ -118,6 +98,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 4</name>
+			<visibility>0</visibility>
 			<description>Out side the north west entrance to the Hart. This Blue Phone has a an Automated External Defibrilator.</description>
 			<LookAt>
 				<longitude>-111.7861069213886</longitude>
@@ -128,7 +109,7 @@
 				<range>143.9533131011976</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7859527841608,43.81996157469312,0</coordinates>
@@ -136,6 +117,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 5</name>
+			<visibility>0</visibility>
 			<description>East of the racket ball courts.</description>
 			<LookAt>
 				<longitude>-111.7861681854417</longitude>
@@ -146,7 +128,7 @@
 				<range>152.8425113617452</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.785391422866,43.81917891537472,0</coordinates>
@@ -154,6 +136,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 6</name>
+			<visibility>0</visibility>
 			<description>Just East of the North exit of the Library.</description>
 			<LookAt>
 				<longitude>-111.78221028887</longitude>
@@ -164,7 +147,7 @@
 				<range>267.9905576472405</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7822230870977,43.81975159410132,0</coordinates>
@@ -172,6 +155,8 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 7</name>
+			<visibility>0</visibility>
+			<description>Emergency Blue Phone</description>
 			<LookAt>
 				<longitude>-111.7821132449282</longitude>
 				<latitude>43.8192391306716</latitude>
@@ -181,7 +166,7 @@
 				<range>154.2322516787287</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7821938154373,43.81904374289339,0</coordinates>
@@ -189,6 +174,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 8</name>
+			<visibility>0</visibility>
 			<description>South end of Kerr Hall toward the parking lot.</description>
 			<LookAt>
 				<longitude>-111.7797110231973</longitude>
@@ -199,7 +185,7 @@
 				<range>145.6289514636545</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7795584801556,43.81893175252108,0</coordinates>
@@ -207,6 +193,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 9</name>
+			<visibility>0</visibility>
 			<description>North West of the Kimball building.</description>
 			<LookAt>
 				<longitude>-111.7817218792555</longitude>
@@ -217,7 +204,7 @@
 				<range>52.29485764348163</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7816978578465,43.81775142525281,0</coordinates>
@@ -225,6 +212,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 10</name>
+			<visibility>0</visibility>
 			<description>Outside of the Southwest exit on the East wall.</description>
 			<LookAt>
 				<longitude>-111.7827115759794</longitude>
@@ -235,7 +223,7 @@
 				<range>98.11405296339187</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7827733548307,43.81668511766503,0</coordinates>
@@ -243,6 +231,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 11</name>
+			<visibility>0</visibility>
 			<description>Southeast of the building. At the crosswalk.</description>
 			<LookAt>
 				<longitude>-111.7811289375174</longitude>
@@ -253,7 +242,7 @@
 				<range>87.44057201414027</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.781007981703,43.81654102554352,0</coordinates>
@@ -261,6 +250,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 12</name>
+			<visibility>0</visibility>
 			<description>Outside the West side of the Student Health Center, under the canopy.</description>
 			<LookAt>
 				<longitude>-111.7794805774598</longitude>
@@ -271,7 +261,7 @@
 				<range>78.88504323817992</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7795055713482,43.81670890539991,0</coordinates>
@@ -279,6 +269,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 13</name>
+			<visibility>0</visibility>
 			<description>On the North loading dock of the Facilities building.</description>
 			<LookAt>
 				<longitude>-111.7860717916886</longitude>
@@ -289,7 +280,7 @@
 				<range>117.8537996937865</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7860666549407,43.81635760295475,0</coordinates>
@@ -297,6 +288,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 14</name>
+			<visibility>0</visibility>
 			<description>Outside of the North exit to the older West wing of the Benson Building.</description>
 			<LookAt>
 				<longitude>-111.7831482023245</longitude>
@@ -307,7 +299,7 @@
 				<range>94.53388194819657</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7832971563749,43.81603497215789,0</coordinates>
@@ -315,6 +307,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 15</name>
+			<visibility>0</visibility>
 			<description>Center of the East West walkway.</description>
 			<LookAt>
 				<longitude>-111.7816062649834</longitude>
@@ -325,7 +318,7 @@
 				<range>86.80143695525797</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7814352654978,43.81598278124803,0</coordinates>
@@ -333,6 +326,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 16</name>
+			<visibility>0</visibility>
 			<description>North end of the gardens near the Ricks building.</description>
 			<LookAt>
 				<longitude>-111.7814245127619</longitude>
@@ -343,7 +337,7 @@
 				<range>80.52219211452386</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7814693996134,43.81507141105499,0</coordinates>
@@ -351,6 +345,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 17</name>
+			<visibility>0</visibility>
 			<description>Off the Southeast corner of the Ricks Building.</description>
 			<LookAt>
 				<longitude>-111.7805794114823</longitude>
@@ -361,7 +356,7 @@
 				<range>72.48684548558964</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7806282786734,43.8146527114611,0</coordinates>
@@ -369,6 +364,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 18</name>
+			<visibility>0</visibility>
 			<description>Off the Southwest corner of the Ricks Building.</description>
 			<LookAt>
 				<longitude>-111.7816056205617</longitude>
@@ -379,7 +375,7 @@
 				<range>373.1026320390235</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7818257651742,43.81457663161026,0</coordinates>
@@ -387,6 +383,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 19</name>
+			<visibility>0</visibility>
 			<description>In the parking lot. Where the Hinckley &amp; Ricks lots come together.</description>
 			<LookAt>
 				<longitude>-111.7803226012147</longitude>
@@ -397,7 +394,7 @@
 				<range>369.7836736928274</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7792996650798,43.81513375024298,0</coordinates>
@@ -405,6 +402,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 20</name>
+			<visibility>0</visibility>
 			<description>North end of the parking lot.</description>
 			<LookAt>
 				<longitude>-111.780493470489</longitude>
@@ -415,7 +413,7 @@
 				<range>223.1815919069644</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7804086581268,43.8131089935198,0</coordinates>
@@ -423,6 +421,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 21</name>
+			<visibility>0</visibility>
 			<description>South end of the parking lot.</description>
 			<LookAt>
 				<longitude>-111.7802799379995</longitude>
@@ -433,7 +432,7 @@
 				<range>233.7201225240841</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7804226370761,43.81166513917093,0</coordinates>
@@ -441,6 +440,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 22</name>
+			<visibility>0</visibility>
 			<description>Between the playing fields towards the parking lot.</description>
 			<LookAt>
 				<longitude>-111.7844329012381</longitude>
@@ -451,7 +451,7 @@
 				<range>97.8877006716456</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7844728078592,43.81003883360128,0</coordinates>
@@ -459,6 +459,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 23</name>
+			<visibility>0</visibility>
 			<description>Between the two playing fields towards the upper fields.</description>
 			<LookAt>
 				<longitude>-111.7856955580858</longitude>
@@ -469,7 +470,7 @@
 				<range>251.4712426400602</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7855500783114,43.81037337032097,0</coordinates>
@@ -477,6 +478,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 24</name>
+			<visibility>0</visibility>
 			<description>Inbetween the North entrance of the Spori and West Entrance of the Snow.</description>
 			<LookAt>
 				<longitude>-111.7829319691136</longitude>
@@ -487,7 +489,7 @@
 				<range>66.74662341224128</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7827551583284,43.82112457027664,0</coordinates>
@@ -495,6 +497,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 25</name>
+			<visibility>0</visibility>
 			<description>This Blue Phone has an Automatic External Defibrillator.</description>
 			<LookAt>
 				<longitude>-111.7861681220982</longitude>
@@ -505,7 +508,7 @@
 				<range>163.0558568696812</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7859733212611,43.81967430025537,0</coordinates>
@@ -513,6 +516,8 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 26</name>
+			<visibility>0</visibility>
+			<description>Emergency Blue Phone</description>
 			<LookAt>
 				<longitude>-111.7861681854417</longitude>
 				<latitude>43.81946471834277</latitude>
@@ -522,7 +527,7 @@
 				<range>152.8425113617452</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7858337902459,43.81932865788503,0</coordinates>
@@ -530,6 +535,8 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 27</name>
+			<visibility>0</visibility>
+			<description>Emergency Blue Phone</description>
 			<LookAt>
 				<longitude>-111.783735462819</longitude>
 				<latitude>43.81930697541084</latitude>
@@ -539,7 +546,7 @@
 				<range>143.2696687169711</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7839371216846,43.81915938030854,0</coordinates>
@@ -547,6 +554,8 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 28</name>
+			<visibility>0</visibility>
+			<description>Emergency Blue Phone</description>
 			<LookAt>
 				<longitude>-111.7856395607371</longitude>
 				<latitude>43.81794485195223</latitude>
@@ -556,7 +565,7 @@
 				<range>271.3532168019631</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7857316911857,43.81787934810286,0</coordinates>
@@ -564,6 +573,8 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 29</name>
+			<visibility>0</visibility>
+			<description>Emergency Blue Phone</description>
 			<LookAt>
 				<longitude>-111.7840809494726</longitude>
 				<latitude>43.817919033129</latitude>
@@ -573,7 +584,7 @@
 				<range>266.9152188454513</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7839923492123,43.81791465438508,0</coordinates>
@@ -581,6 +592,8 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 30</name>
+			<visibility>0</visibility>
+			<description>Emergency Blue Phone</description>
 			<LookAt>
 				<longitude>-111.7836024610963</longitude>
 				<latitude>43.8176694889529</latitude>
@@ -590,7 +603,7 @@
 				<range>264.3827686116759</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7834780039836,43.81747519219415,0</coordinates>
@@ -598,6 +611,8 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 31</name>
+			<visibility>0</visibility>
+			<description>Emergency Blue Phone</description>
 			<LookAt>
 				<longitude>-111.7841818353015</longitude>
 				<latitude>43.81381796094363</latitude>
@@ -607,7 +622,7 @@
 				<range>141.5444393223156</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.784022964777,43.81371731632256,0</coordinates>
@@ -615,6 +630,8 @@
 		</Placemark>
 		<Placemark>
 			<name>Blue Phone 32</name>
+			<visibility>0</visibility>
+			<description>Emergency Blue Phone</description>
 			<LookAt>
 				<longitude>-111.7843731006172</longitude>
 				<latitude>43.81303261924465</latitude>
@@ -624,7 +641,7 @@
 				<range>135.6077760221876</range>
 				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
 			</LookAt>
-			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<styleUrl>#m_ylw-pushpin00</styleUrl>
 			<Point>
 				<gx:drawOrder>1</gx:drawOrder>
 				<coordinates>-111.7842303424318,43.81298816253963,0</coordinates>

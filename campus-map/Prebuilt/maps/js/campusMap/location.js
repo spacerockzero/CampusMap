@@ -29,7 +29,7 @@ function Location() {
 	this.hours = arguments[5],
 	this.info = arguments[6],
 	this.link = arguments[7],
-	this.color = arguments[10],
+	this.icon = arguments[10],
 	this.elementID = this.code + "_" + this.number, 
 	this.marker,
 	this.globals = arguments[9],
@@ -49,7 +49,7 @@ Location.prototype.buildLocationDOM = function() {
 	element.id = this.elementID;
 	element.name = this.name;
 	element.setAttribute("href", "#" + this.code);
-    element.innerHTML += '<img  class="obj_icon" src="Prebuilt/maps/imgs/icons/numeral-icons/' + this.color + '/' + this.number + '.png" alt="' + name + '" />';
+    element.innerHTML += '<img  class="obj_icon" src="'+ this.icon + '" alt="' + name + '" />';
     element.innerHTML +=   '<div class="object_name">' + this.name + '</div>';
 
     return element;
@@ -79,7 +79,7 @@ Location.prototype.panToMarker = function() {
 
 //creates a google maps marker for this object
 Location.prototype.createMarker = function() {
-	this.marker = map.createMarker(this.lat, this.lon, this.name, "Prebuilt/maps/imgs/icons/numeral-icons/" + this.color + "/" + this.number + ".png")
+	this.marker = map.createMarker(this.lat, this.lon, this.name, this.icon)
 }
 
 

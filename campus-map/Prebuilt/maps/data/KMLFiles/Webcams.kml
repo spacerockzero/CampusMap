@@ -2,6 +2,7 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>Webcams.kml</name>
+	<visibility>0</visibility>
 	<StyleMap id="msn_purple">
 		<Pair>
 			<key>normal</key>
@@ -12,16 +13,6 @@
 			<styleUrl>#sh_purple</styleUrl>
 		</Pair>
 	</StyleMap>
-	<Style id="sn_purple">
-		<IconStyle>
-			<scale>1.2</scale>
-			<Icon>
-				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/purple.png</href>
-			</Icon>
-		</IconStyle>
-		<ListStyle>
-		</ListStyle>
-	</Style>
 	<Style id="sh_purple">
 		<IconStyle>
 			<scale>1.4</scale>
@@ -29,28 +20,6 @@
 				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/purple.png</href>
 			</Icon>
 		</IconStyle>
-		<ListStyle>
-		</ListStyle>
-	</Style>
-	<Style id="sn_purple0">
-		<IconStyle>
-			<scale>1.2</scale>
-			<Icon>
-				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/purple.png</href>
-			</Icon>
-		</IconStyle>
-		<ListStyle>
-		</ListStyle>
-	</Style>
-	<Style id="sh_purple0">
-		<IconStyle>
-			<scale>1.4</scale>
-			<Icon>
-				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/purple.png</href>
-			</Icon>
-		</IconStyle>
-		<ListStyle>
-		</ListStyle>
 	</Style>
 	<StyleMap id="msn_purple0">
 		<Pair>
@@ -62,12 +31,38 @@
 			<styleUrl>#sh_purple0</styleUrl>
 		</Pair>
 	</StyleMap>
+	<Style id="sn_purple0">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/purple.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="sh_purple0">
+		<IconStyle>
+			<scale>1.4</scale>
+			<Icon>
+				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/purple.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="sn_purple">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/purple.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
 	<Folder>
 		<name>Webcams</name>
+		<visibility>0</visibility>
 		<open>1</open>
-		<description><![CDATA[Campus Webcams<a href="http://www.byui.edu/web-cameras">http://www.byui.edu/web-cameras</a>]]></description>
+		<description><![CDATA[<img src="http://purple"/>Campus Webcams<a href="http://www.byui.edu/web-cameras">http://www.byui.edu/web-cameras</a>]]></description>
 		<Placemark>
 			<name>BYU-Idaho Center</name>
+			<visibility>0</visibility>
 			<description><![CDATA[The BYU-Idaho Center as viewed from the top of the Heating Plant. The auditorium holds approximately 15,000 students, and houses a multi-use area the size of 10 basketball courts.<a href="http://www.byui.edu/web-cameras/byu-idaho-center">http://www.byui.edu/web-cameras/byu-idaho-center</a><img src="http://www2.byui.edu/images/aud2.asp"/>]]></description>
 			<LookAt>
 				<longitude>-111.7859961501059</longitude>
@@ -86,6 +81,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Copy Spot</name>
+			<visibility>0</visibility>
 			<description><![CDATA[The Copy Spot is a place to print, bind, laminate and make copies.<a href="http://www.byui.edu/web-cameras/copy-spot">http://www.byui.edu/web-cameras/copy-spot</a><img src="http://www2.byui.edu/images/copyspot.asp"/>]]></description>
 			<LookAt>
 				<longitude>-111.7833734422843</longitude>
@@ -104,6 +100,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Rexburg Temple</name>
+			<visibility>0</visibility>
 			<description><![CDATA[The LDS Temple in Rexburg.<a href="http://www.byui.edu/web-cameras/rexburg-temple">http://www.byui.edu/web-cameras/rexburg-temple</a><img src="http://www2.byui.edu/images/temple.asp"/>]]></description>
 			<LookAt>
 				<longitude>-111.7812925047664</longitude>
@@ -122,6 +119,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Rexburg Weather</name>
+			<visibility>0</visibility>
 			<description><![CDATA[<a href="http://www.byui.edu/web-cameras/weather">http://www.byui.edu/web-cameras/weather</a><img src="http://www2.byui.edu/images/weather.asp"/>A webcam that shows the current Rexburg Weather]]></description>
 			<LookAt>
 				<longitude>-111.7822688565715</longitude>
@@ -140,6 +138,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Smith Quad</name>
+			<visibility>0</visibility>
 			<description><![CDATA[The Smith Quad.<img src="http://www2.byui.edu/images/smithQuad.asp"/><a href="http://www.byui.edu/web-cameras/smith-quad">http://www.byui.edu/web-cameras/smith-quad</a>]]></description>
 			<LookAt>
 				<longitude>-111.7815206162947</longitude>
@@ -158,6 +157,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Spori Quad</name>
+			<visibility>0</visibility>
 			<description><![CDATA[The Spori Quad is viewed from the north side of the David O. McKay Library and provides an excellent view of the north end of campus.<a href="http://www.byui.edu/web-cameras/spori-quad">http://www.byui.edu/web-cameras/spori-quad</a><img src="http://www2.byui.edu/images/spori.asp"/>]]></description>
 			<LookAt>
 				<longitude>-111.7827700484372</longitude>
@@ -176,6 +176,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Stadium</name>
+			<visibility>0</visibility>
 			<description><![CDATA[Stadium Field is viewed from the sport box.<a href="http://www.byui.edu/web-cameras/stadium">http://www.byui.edu/web-cameras/stadium</a><img src="http://www2.byui.edu/images/stadium.asp"/>]]></description>
 			<LookAt>
 				<longitude>-111.7858122433851</longitude>
@@ -194,6 +195,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Taylor Quad</name>
+			<visibility>0</visibility>
 			<description><![CDATA[The Taylor Quad connects the north and south ends of campus between the Manwaring Center and Taylor Building. The Quad is viewed from a new addition to the third floor of the Manwaring center looking south.<a href="http://www.byui.edu/web-cameras/taylor-quad">http://www.byui.edu/web-cameras/taylor-quad</a><img src="http://www2.byui.edu/images/taylorQuad.asp"/>]]></description>
 			<LookAt>
 				<longitude>-111.7824388502883</longitude>
@@ -212,6 +214,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Testing Center</name>
+			<visibility>0</visibility>
 			<description><![CDATA[The Testing Center.<a href="http://www.byui.edu/web-cameras/testing-center">http://www.byui.edu/web-cameras/testing-center</a><img src="http://www2.byui.edu/images/testingCenter.asp"/>]]></description>
 			<LookAt>
 				<longitude>-111.7834149703098</longitude>
@@ -230,6 +233,7 @@
 		</Placemark>
 		<Placemark>
 			<name>Thomas E. Ricks Gardens</name>
+			<visibility>0</visibility>
 			<description><![CDATA[The Thomas E. Ricks Gardens are located between the Thomas E. Ricks building and the Taylor Chapel (top right). They are named for the founder of the school and provide a peaceful atmosphere for students to relax between classes. This camera looks west into the gardens from the Gordon B. Hinckley Building. The gardens were dedicated on February 18, 2005 by Elder David A. Bednar, former President of BYU-Idaho. The gardens are an extension of the horticulture program.<a href="http://www.byui.edu/web-cameras/ricks-gardens">http://www.byui.edu/web-cameras/ricks-gardens</a><img src="http://www2.byui.edu/images/gardens.asp"/>]]></description>
 			<LookAt>
 				<longitude>-111.7808338464928</longitude>

@@ -12,17 +12,6 @@
 			<styleUrl>#sh_ylw-pushpin15</styleUrl>
 		</Pair>
 	</StyleMap>
-	<Style id="sh_ylw-pushpin15">
-		<IconStyle>
-			<scale>1.3</scale>
-			<Icon>
-				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/green.png</href>
-			</Icon>
-			<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
-		</IconStyle>
-		<ListStyle>
-		</ListStyle>
-	</Style>
 	<Style id="sn_ylw-pushpin16">
 		<IconStyle>
 			<scale>1.1</scale>
@@ -34,10 +23,21 @@
 		<ListStyle>
 		</ListStyle>
 	</Style>
+	<Style id="sh_ylw-pushpin15">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/green.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<ListStyle>
+		</ListStyle>
+	</Style>
 	<Folder>
 		<name>Playfields</name>
 		<open>1</open>
-		<description><![CDATA[Recreational areas often scheduled for Student Activities.<a href="http://www.byui.edu/activities">http://www.byui.edu/activities</a>]]></description>
+		<description><![CDATA[<img src="http://green"/>Recreational areas often scheduled for Student Activities.<a href="http://www.byui.edu/activities">http://www.byui.edu/activities</a>]]></description>
 		<Placemark>
 			<name>4 Plex- Field 1</name>
 			<description><![CDATA[7th South Activity Fields<br />Artificial field turf.<br />Muti-use full soccer and softball field.<br />Recreational area often scheduled for Student Activities.<img src="http://www.byui.edu/Prebuilt/maps/imgs/objects/4plex1-2Fields.jpg"/>]]></description>
