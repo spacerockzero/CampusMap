@@ -60,6 +60,7 @@ CampusMap.prototype.initializeMaps = function() {
 		map.initiateMap(this.globals);
 		//detect what kind of device the user is on
 		this.detectDevice();
+		this.loadProgress(20);
 
 		this.loadKMLFiles();
 		this.bindAllEvents();
@@ -73,6 +74,7 @@ CampusMap.prototype.initializeMaps = function() {
 		//some functions need to wait until this is done in order to run or else they lock up the 
 		//dom and prevent the map from loading
 		google.maps.event.addListenerOnce(map.map, 'tilesloaded', function() {
+			campusMap.loadProgress(90);
 			//places a marker if the embed options have been set
 			if (map.embedOptions.embed === false) {
     			//if not then we know that they may be on the full maps experience and we should look for 
@@ -88,6 +90,7 @@ CampusMap.prototype.initializeMaps = function() {
 				campusMap.buildMapKey();
 				campusMap.initializeSearch();
 			}
+			campusMap.loadProgress(100);
 		});
 	}
 
@@ -98,6 +101,7 @@ CampusMap.prototype.buildHTML = function() {
 	var html = (this.includeMenus) ? '<div id="title"><h1 id="heading">BYU-Idaho Campus Map</h1><a id="device_type" href="#" onmousedown="toggleDevice(); return false;" title="Switch Device Type"><div id="device_container"><div class="device icon-desktop"></div><div class="device icon-mobile"></div></div></a><a id="menu_button" class="icon-settings" href="#" title="Open Menu. Click this or press [space] bar"></a></div>' : "";
 	html += '<div id="container" name="container">';
 	//only include the menu if they want it
+	html += '<div id="loading"><div id="loading_inside"><span class="map-icon icon-compass"></span><p id="loading_text">[ LOADING... ]</p><div id="loading_bar" class="progress-bar blue stripes"><span id="loading_progress" style="width: 10%"></span><input id="loading_indicator" name="loading_indicator"type="hidden" value="loading" onchange="loadingComplete();"/></div></div></div>';
 	html += (this.includeMenus) ? '<div id="menu" name="menu" style="display:block; z-index: 2;"><div id="inner_menu" class="scrolling-element-class" ><div id="object_search"><input type="text" placeholder="Search"/><span class="icon-cancel"></span></div><nav id="categories" class="child-element"></nav><!-- // categories --></div><!-- // inner menu --></div><!-- // menu -->' : "";
 	html += '<div id="map_canvas"><div id="nojs-msg"><br/>This BYU-Idaho Campus Map application requires Javascript to run. <br/>Your device or browser doesn\'t appear to have JavaScript enabled. <br/>Please enable it and try again, or try another device or browser.</div></div>';
 	html += '<div id="map_keys"></div>';
@@ -112,53 +116,70 @@ CampusMap.prototype.loadKMLFiles = function(callback) {
 	//you can't use this in the onreadystatechange function because it will refer to 
 	//that function's attributes and not the CampusMap attributes
 	var parent = this;
+	
+	//to figure out how much each file influences the loading progress
+	var numFiles = this.KMLFiles.length;
+	var amount = 70 / numFiles;
+	var progress = 20;
+
+	//get any stored information from localStorage
+	var json = (localStorage) ? localStorage.mapData : undefined;
+	var mapData = (json) ? JSON.parse(json) : {};
 
 	//loop through all of the given KML files and load them
-	for (var i = 0, len = this.KMLFiles.length; i < len; i++) {
-		var filePath = this.KMLFiles[i];
+	for (var i = 0, len = numFiles; i < len; i++) {
+		var filePath = this.KMLFiles[i],
+		index = filePath.split(".")[0];
 
-		//create the xmlhttp object
-		var xmlhttp;
-		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp=new XMLHttpRequest();
-		} else {// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange=function() {
-			//after everything is loaded...
-			if (xmlhttp.readyState==4) {
-				//parse the JSON and pass the data to the parseCategories function
-				//after parsing the JSON it will just create a bunch of object literals and thus won't have any methods or extra attributes
-				//attached to them until we create them for each object which is redundant.  So a category, location, and area classes have
-				//been created that match the structure of their respective objects loaded from the JSON.
-				var data = xmlhttp.responseXML;
-				parent.parseKMLFile(data);
-				if (callback && typeof(callback) === "function") {
-					callback();
+		if (mapData[index]) {
+			this.buildCategories(mapData[index]);
+		} else {
+			//create the xmlhttp object
+			var xmlhttp;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp=new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange=function() {
+				//after everything is loaded...
+				if (xmlhttp.readyState==4) {
+					//parse the JSON and pass the data to the parseCategories function
+					//after parsing the JSON it will just create a bunch of object literals and thus won't have any methods or extra attributes
+					//attached to them until we create them for each object which is redundant.  So a category, location, and area classes have
+					//been created that match the structure of their respective objects loaded from the JSON.
+					var data = new KMLParser(xmlhttp.responseXML);
+					mapData[index] = data;
+					parent.buildCategories(data);
+					if (callback && typeof(callback) === "function") {
+						callback();
+					}
 				}
 			}
+			xmlhttp.open("GET",filePath,false);
+			xmlhttp.send();
 		}
-		xmlhttp.open("GET",filePath,false);
-		xmlhttp.send();
+		this.loadProgress(progress += amount);
 	}
+
+	//once everything is done we will save the information to local storage
+	localStorage.mapData = JSON.stringify(mapData);
 }
 
 
-//parses the category file and creates category objects from them all
-CampusMap.prototype.parseKMLFile = function(doc) {
-
-	var kmlParser = new KMLParser(doc);
-
+//creates category objects from the category data
+CampusMap.prototype.buildCategories = function(data) {
 	var index = this.categories.length;
 
 	//create a new category for this KML File
-	this.categories[index] = new Category(index + 1, kmlParser.categoryName, kmlParser.categoryName, kmlParser.categoryText, kmlParser.categoryColor, kmlParser.link, this.globals, "cat_" + (index + 1));
-	this.categories[index].markerLocations = this.parseLocations(kmlParser.Locations, "http://www.byui.edu/Prebuilt/maps/imgs/icons/numeral-icons/" + kmlParser.categoryColor + "/");
-	this.categories[index].polygonLocations = this.parseAreas(kmlParser.Areas);
+	this.categories[index] = new Category(index + 1, data.categoryName, data.categoryName, data.categoryText, data.categoryColor, data.link, this.globals, "cat_" + (index + 1));
+	this.categories[index].markerLocations = this.parseLocations(data.Locations, "http://www.byui.edu/Prebuilt/maps/imgs/icons/numeral-icons/" + data.categoryColor + "/");
+	this.categories[index].polygonLocations = this.parseAreas(data.Areas);
 
 	//append this categories DOM structure to the menu, this includes the category button, it's descriptive text,
 	//and all of it's objects/polygons
 	this.globals.doc.getElementById('categories').appendChild(this.categories[index].getCatDOMObj());
+
 }
 
 
@@ -172,7 +193,7 @@ CampusMap.prototype.parseLocations = function(locations, color) {
 	for (var j = 0, numberLocations = locations.length; j < numberLocations; j++) {
 		//create a new Location object and push it onto the markerLocations array
 		var marker = locations[j]
-		markerLocations.push(new Location(marker.name, null, marker.coordinates[0], marker.coordinates[1], marker.image, marker.hours, marker.description, marker.link, j, this.globals, (this.includeMenus) ? color + (j + 1) + ".png" : marker.icon));	
+		markerLocations.push(new Location(marker.name, marker.name.replace(" ", ""), marker.coordinates[0][0], marker.coordinates[0][1], marker.image, marker.hours, marker.description, marker.link, j, this.globals, (this.includeMenus) ? color + (j + 1) + ".png" : marker.icon));	
 	}
 	//send back the array of the Location objects for the category to hold
 	return markerLocations;
@@ -186,7 +207,7 @@ CampusMap.prototype.parseAreas = function(areas) {
 	var polygonAreas = [];
 	for (var j = 0, numberAreas = areas.length; j < numberAreas; j++) {
 		var polygon = areas[j]
-		polygonAreas.push(new Area(polygon.name, null, polygon.polygons, this.globals));
+		polygonAreas.push(new Area(polygon.name, polygon.name.replace(" ", ""), polygon.polygons, this.globals));
 
 	}
 	return polygonAreas;
@@ -415,6 +436,33 @@ CampusMap.prototype.findObject = function(code) {
 	}
 	return object;
 }
+
+
+//this function is for handling the change in percentage for the loading screen
+ // alter loading bar's visible progress %
+CampusMap.prototype.loadProgress = function(percentageComplete, callback){
+    var obj = this.globals.doc.getElementById('loading_progress');
+    obj.style.width = percentageComplete + '%';
+
+    if (percentageComplete === 100) {
+    	this.loadComplete();
+    }
+
+    //console.log("Loaded " + percentageComplete);
+    if (callback && typeof(callback) === "function") {
+      callback();
+    }
+  }
+  
+  // Execute when page, data, and DOM is finished loading, then hide loading div
+  CampusMap.prototype.loadComplete = function(){
+   	
+   	var overlay = this.globals.doc.getElementById("loading");
+   	overlay.remove();
+
+    console.timeEnd("initialize js chain until ready");
+
+  }
 
 
 //crossbrowser solution to triggering an event on an element

@@ -189,6 +189,7 @@ a img{
 		background: white;
 		background-image:url(../imgs/interface/white_speckle.jpg);
 		box-shadow: inset 0px 0px 80px rgba(60, 60, 60, 0.7);
+		z-index: 4;
 	}
 	#loading_inside{
 		display:table-cell; 
@@ -213,6 +214,9 @@ a img{
 		margin: 15px auto 0;
 		display: block;
 		text-align:left;
+		#loading_progress {
+			.transition(width, 1s);
+		}
 	}
 	/************************************************************/
 	/*                                                          */

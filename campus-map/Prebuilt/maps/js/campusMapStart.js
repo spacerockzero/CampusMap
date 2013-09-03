@@ -1,3 +1,5 @@
+console.time("initialize js chain until ready");
+
 //adds the script for the addthis social sharing api
 addScript("http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51f6872a25a1fb8c", { win: window, doc: document });
 //both of the constructors takes a global options object literal containing all of the options the user

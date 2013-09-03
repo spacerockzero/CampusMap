@@ -113,6 +113,7 @@ Area.prototype.createPolygons = function(polygons) {
 			coordinates.push(new google.maps.LatLng(coords[0], coords[1]));
 		}
 		newPolygons[i] = this.createPolygon(coordinates, polygons[i].lineColor, 1, 2, polygons[i].polyColor, 0.75);
+		newPolygons[i].setMap(map.map);
 	}
 	return newPolygons;
 }
@@ -126,7 +127,8 @@ Area.prototype.createPolygon = function(coordinates, strokeColor, strokeOpacity,
 		strokeOpacity: strokeOpacity,
 		strokeWeight: strokeWeight,
 		fillColor: fillColor,
-		fillOpacity: fillOpacity
+		fillOpacity: fillOpacity,
+		visible: false
 	})
 }
 
@@ -144,7 +146,7 @@ Area.prototype.hideMapKey = function() {
 	var span = this.globals.doc.getElementById(this.elementID).children[0].children[0];
 	var polyKey = this.globals.doc.getElementById("poly_key_" + this.code);
 		//make sure that it is not checked and therefore not showing up in the map
-	this.hidePolygon(span, polyKey);
+	this.hidePolygons(span, polyKey);
 }
 
 //hides the HTML element that represents this object in the navigation
@@ -166,7 +168,7 @@ Area.prototype.showMapKey = function() {
 	//show in mapkey
 	var span = this.globals.doc.getElementById(this.elementID).children[0].children[0];
 	var polyKey = this.globals.doc.getElementById("poly_key_" + this.code);
-	this.showPolygon(span, polyKey);
+	this.showPolygons(span, polyKey);
 }
 
 
