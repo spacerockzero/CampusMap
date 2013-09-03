@@ -78,11 +78,14 @@ Area.prototype.showPolygons = function(span, polyKey) {
 	for (var i = 0; i < this.numberOfPolygons; i++) {
 		this.polygons[i].setVisible(true);
 	}
-	span.className = "icon-checkmark";
-	//display the mapkey
-	polyKey.parentElement.style.display = "block";
-	//make it appear in the map key
-	polyKey.className = "polygon_key active_key";
+	if (campusMap.includeMenus) {
+		span.className = "icon-checkmark";
+		
+		//display the mapkey
+		polyKey.parentElement.style.display = "block";
+		//make it appear in the map key
+		polyKey.className = "polygon_key active_key";
+	}
 	this.state = 1;
 }
 
@@ -92,12 +95,15 @@ Area.prototype.hidePolygons = function(span, polyKey) {
 	for (var i = 0; i < this.numberOfPolygons; i++) {
 		this.polygons[i].setVisible(false);
 	}
-	span.className = "";
-	polyKey.className = "polygon_key";
-	//determine if the mapkey needs to be closed or not
-	if (this.globals.doc.querySelectorAll('#' + polyKey.parentElement.id + " .active_key").length < 1) {
-		polyKey.parentElement.style.display = "none";
-	}
+	if (campusMap.includeMenus) {
+		span.className = "";
+	
+		polyKey.className = "polygon_key";
+		//determine if the mapkey needs to be closed or not
+		if (this.globals.doc.querySelectorAll('#' + polyKey.parentElement.id + " .active_key").length < 1) {
+			polyKey.parentElement.style.display = "none";
+		}
+	}	
 	this.state = 0;
 }
 
@@ -135,16 +141,18 @@ Area.prototype.createPolygon = function(coordinates, strokeColor, strokeOpacity,
 
 //hides both the polygon on the map(and mapkey) and in the right navigation
 Area.prototype.hideAll = function() {
-	this.hideMapKey();
-	this.hideNavigation();
+	if (campusMap.includeMenus) {
+		this.hideMapKey();
+		this.hideNavigation();
+	}
 }
 
 
 //hides the HTML representing this object in the MapKey
 Area.prototype.hideMapKey = function() {
 		//get the span for this polygon
-	var span = this.globals.doc.getElementById(this.elementID).children[0].children[0];
-	var polyKey = this.globals.doc.getElementById("poly_key_" + this.code);
+	var span = (campusMap.includeMenus) ? this.globals.doc.getElementById(this.elementID).children[0].children[0] : undefined;
+	var polyKey = (campusMap.includeMenus) ? this.globals.doc.getElementById("poly_key_" + this.code) : undefined;
 		//make sure that it is not checked and therefore not showing up in the map
 	this.hidePolygons(span, polyKey);
 }
@@ -159,15 +167,17 @@ Area.prototype.hideNavigation = function() {
 
 //shows both the polygon on the map(and mapkey) and in the right navigation
 Area.prototype.showAll = function() {
-	this.showMapKey();
-	this.showNavigation();
+	if (campusMap.includeMenus) {
+		this.showMapKey();
+		this.showNavigation();
+	}
 }
 
 //shows the HTML representing this object in the MapKey
 Area.prototype.showMapKey = function() {
 	//show in mapkey
-	var span = this.globals.doc.getElementById(this.elementID).children[0].children[0];
-	var polyKey = this.globals.doc.getElementById("poly_key_" + this.code);
+	var span = (campusMap.includeMenus) ? this.globals.doc.getElementById(this.elementID).children[0].children[0] : undefined;
+	var polyKey = (campusMap.includeMenus) ? this.globals.doc.getElementById("poly_key_" + this.code) : undefined;
 	this.showPolygons(span, polyKey);
 }
 

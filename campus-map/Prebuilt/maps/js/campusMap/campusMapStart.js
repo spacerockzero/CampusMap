@@ -22,3 +22,9 @@ function addScript(src, local) {
 	script.src = src;
 	local.doc.getElementsByTagName("body")[0].appendChild(script);
 }
+function addCSS(src, local) {
+	var link = local.doc.createElement("link");
+	link.setAttribute("rel", "stylesheet");
+	link.href = src;
+	local.doc.getElementsByTagName("body")[0].appendChild(link);
+}

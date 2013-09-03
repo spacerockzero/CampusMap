@@ -3,16 +3,6 @@
 <Document>
 	<name>Vending Machines.kml</name>
 	<visibility>0</visibility>
-	<Style id="sh_yellow">
-		<IconStyle>
-			<scale>1.4</scale>
-			<Icon>
-				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/yellow.png</href>
-			</Icon>
-		</IconStyle>
-		<ListStyle>
-		</ListStyle>
-	</Style>
 	<StyleMap id="msn_yellow">
 		<Pair>
 			<key>normal</key>
@@ -33,6 +23,16 @@
 		<ListStyle>
 		</ListStyle>
 	</Style>
+	<Style id="sh_yellow">
+		<IconStyle>
+			<scale>1.4</scale>
+			<Icon>
+				<href>http://www.byui.edu/prebuilt/maps/imgs/icons/blank-colors/yellow.png</href>
+			</Icon>
+		</IconStyle>
+		<ListStyle>
+		</ListStyle>
+	</Style>
 	<Folder>
 		<name>Vending Machines</name>
 		<visibility>0</visibility>
@@ -41,7 +41,7 @@
 		<Placemark>
 			<name>AGB (snacks)</name>
 			<visibility>0</visibility>
-			<description><![CDATA[Main floor lobby area.<br />Two snack machines.]]></description>
+			<description><![CDATA[Main floor lobby area.<br />Two snack machines.<code>VENDING-AGB</code>]]></description>
 			<LookAt>
 				<longitude>-111.7830500456362</longitude>
 				<latitude>43.8132014519744</latitude>
@@ -59,7 +59,7 @@
 		<Placemark>
 			<name>BCTR (food, snacks)</name>
 			<visibility>0</visibility>
-			<description>1st floor (court level), side room.</description>
+			<description><![CDATA[1st floor (court level), side room.<code>VENDING-BCTR</code>]]></description>
 			<LookAt>
 				<longitude>-111.7848058297534</longitude>
 				<latitude>43.81821507406084</latitude>
@@ -77,7 +77,7 @@
 		<Placemark>
 			<name>BEN (snacks)</name>
 			<visibility>0</visibility>
-			<description>First floor hallway, near the central stairs.</description>
+			<description><![CDATA[First floor hallway, near the central stairs.<code>VENDING-BEN</code>]]></description>
 			<LookAt>
 				<longitude>-111.7830012938848</longitude>
 				<latitude>43.815360195257</latitude>
@@ -95,7 +95,7 @@
 		<Placemark>
 			<name>BID (food, drinks, snacks)</name>
 			<visibility>0</visibility>
-			<description>1st floor lounge.</description>
+			<description><![CDATA[1st floor lounge.<code>VENDING-BID</code>]]></description>
 			<LookAt>
 				<longitude>-111.7825689989314</longitude>
 				<latitude>43.81849781043236</latitude>
@@ -113,7 +113,7 @@
 		<Placemark>
 			<name>BRN (combo)</name>
 			<visibility>0</visibility>
-			<description>2nd floor lounge, above laundry room.</description>
+			<description><![CDATA[2nd floor lounge, above laundry room.<code>VENDING-BRN</code>]]></description>
 			<LookAt>
 				<longitude>-111.7787876908593</longitude>
 				<latitude>43.81889830079802</latitude>
@@ -131,7 +131,7 @@
 		<Placemark>
 			<name>CHP (food, drinks, snacks)</name>
 			<visibility>0</visibility>
-			<description>1st floor laundry room.</description>
+			<description><![CDATA[1st floor laundry room.<code>VENDING-CHP</code>]]></description>
 			<LookAt>
 				<longitude>-111.7800097135174</longitude>
 				<latitude>43.8182343368501</latitude>
@@ -149,7 +149,7 @@
 		<Placemark>
 			<name>CLK (food, drinks, snacks)</name>
 			<visibility>0</visibility>
-			<description>1st floor entryway.</description>
+			<description><![CDATA[1st floor entryway.<code>VENDING-CLK</code>]]></description>
 			<LookAt>
 				<longitude>-111.7817815010871</longitude>
 				<latitude>43.82006817718928</latitude>
@@ -167,7 +167,7 @@
 		<Placemark>
 			<name>HIN (food, snacks)</name>
 			<visibility>0</visibility>
-			<description>2nd floor, gym level, adjoining North-East entryway.</description>
+			<description><![CDATA[2nd floor, gym level, adjoining North-East entryway.<code>VENDING-HIN</code>]]></description>
 			<LookAt>
 				<longitude>-111.7798909397416</longitude>
 				<latitude>43.81592629519896</latitude>
@@ -185,7 +185,7 @@
 		<Placemark>
 			<name>HRT (food)</name>
 			<visibility>0</visibility>
-			<description>2nd floor, at crossing of two highways.</description>
+			<description><![CDATA[2nd floor, at crossing of two highways.<code>VENDING-HRT</code>]]></description>
 			<LookAt>
 				<longitude>-111.7845600241846</longitude>
 				<latitude>43.81921948147313</latitude>
@@ -204,7 +204,7 @@
 		<Placemark>
 			<name>KER (combo)</name>
 			<visibility>0</visibility>
-			<description>1st floor laundry room.</description>
+			<description><![CDATA[1st floor laundry room.<code>VENDING-KER</code>]]></description>
 			<LookAt>
 				<longitude>-111.779459900138</longitude>
 				<latitude>43.8191348020784</latitude>
@@ -222,7 +222,7 @@
 		<Placemark>
 			<name>KIM (food, drinks, snacks)</name>
 			<visibility>0</visibility>
-			<description>1st floor entryway.</description>
+			<description><![CDATA[1st floor entryway.<code>VENDING-KIM</code>]]></description>
 			<LookAt>
 				<longitude>-111.7813011438238</longitude>
 				<latitude>43.81707958105606</latitude>
@@ -240,7 +240,7 @@
 		<Placemark>
 			<name>KRK (snacks)</name>
 			<visibility>0</visibility>
-			<description>2nd floor, ticketing lobby.</description>
+			<description><![CDATA[2nd floor, ticketing lobby.<code>VENDING-KRK</code>]]></description>
 			<LookAt>
 				<longitude>-111.7816930480293</longitude>
 				<latitude>43.82105710864046</latitude>
@@ -259,7 +259,7 @@
 		<Placemark>
 			<name>LAM (combo)</name>
 			<visibility>0</visibility>
-			<description>1st floor laundry room.</description>
+			<description><![CDATA[1st floor laundry room.<code>VENDING-LAM</code>]]></description>
 			<LookAt>
 				<longitude>-111.7796690587045</longitude>
 				<latitude>43.81869024153173</latitude>
@@ -278,7 +278,7 @@
 		<Placemark>
 			<name>MC (food, drinks, snacks)</name>
 			<visibility>0</visibility>
-			<description>1st floor lounge.</description>
+			<description><![CDATA[1st floor lounge.<code>VENDING-MC</code>]]></description>
 			<LookAt>
 				<longitude>-111.7825045105108</longitude>
 				<latitude>43.81849689884219</latitude>
@@ -297,7 +297,7 @@
 		<Placemark>
 			<name>MCK (food, snacks)</name>
 			<visibility>0</visibility>
-			<description>1st floor lobby.</description>
+			<description><![CDATA[1st floor lobby.<code>VENDING-MCK</code>]]></description>
 			<LookAt>
 				<longitude>-111.7832059494832</longitude>
 				<latitude>43.81924136137487</latitude>
@@ -316,7 +316,7 @@
 		<Placemark>
 			<name>PER (combo)</name>
 			<visibility>0</visibility>
-			<description>1st floor laundry room.</description>
+			<description><![CDATA[1st floor laundry room.<code>VENDING-PER</code>]]></description>
 			<LookAt>
 				<longitude>-111.7799896071061</longitude>
 				<latitude>43.81896434185633</latitude>
@@ -335,7 +335,7 @@
 		<Placemark>
 			<name>RIC (food, drinks, snacks, combo, frozen)</name>
 			<visibility>0</visibility>
-			<description>1st floor laundry room.</description>
+			<description><![CDATA[1st floor laundry room.<code>VENDING-RIC</code>]]></description>
 			<LookAt>
 				<longitude>-111.778800341735</longitude>
 				<latitude>43.81821250328795</latitude>
@@ -354,7 +354,7 @@
 		<Placemark>
 			<name>RIG (food, snacks)</name>
 			<visibility>0</visibility>
-			<description>1st floor lounge.</description>
+			<description><![CDATA[1st floor lounge.<code>VENDING-RIG</code>]]></description>
 			<LookAt>
 				<longitude>-111.784087199958</longitude>
 				<latitude>43.8170284343487</latitude>
@@ -373,7 +373,7 @@
 		<Placemark>
 			<name>ROM (food, snacks)</name>
 			<visibility>0</visibility>
-			<description>Stairway landing between 1st and 2nd floors.</description>
+			<description><![CDATA[Stairway landing between 1st and 2nd floors.<code>VENDING-ROM</code>]]></description>
 			<LookAt>
 				<longitude>-111.7828385523016</longitude>
 				<latitude>43.82006125200049</latitude>
@@ -392,7 +392,7 @@
 		<Placemark>
 			<name>SMI (food, snacks)</name>
 			<visibility>0</visibility>
-			<description>Entryway landing between 1st and 2nd floors.</description>
+			<description><![CDATA[Entryway landing between 1st and 2nd floors.<code>VENDING-SMI</code>]]></description>
 			<LookAt>
 				<longitude>-111.781751666026</longitude>
 				<latitude>43.81908155330388</latitude>
@@ -411,7 +411,7 @@
 		<Placemark>
 			<name>SPO (food, snacks)</name>
 			<visibility>0</visibility>
-			<description>2nd floor hallway.</description>
+			<description><![CDATA[2nd floor hallway.<code>VENDING-SPO</code>]]></description>
 			<LookAt>
 				<longitude>-111.7820409759755</longitude>
 				<latitude>43.82054342763277</latitude>
@@ -430,7 +430,7 @@
 		<Placemark>
 			<name>TAY (food, snacks)</name>
 			<visibility>0</visibility>
-			<description>1st floor, off of hallway and commons.</description>
+			<description><![CDATA[1st floor, off of hallway and commons.<code>VENDING-TAY</code>]]></description>
 			<LookAt>
 				<longitude>-111.7820859768476</longitude>
 				<latitude>43.81691177086994</latitude>

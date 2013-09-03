@@ -1,33 +1,6 @@
 /* BYU-Idaho Campus Map Custom Styles */
 /* Made by Jakob Anderson, www.jakobanderson.com */
 
-/****************/
-/* Global items */
-/****************/
-html {
-	margin:0;
-  height: 100%;
-  width: 100%;
-	font: 14px/1.3em Helvetica, Arial, Verdana, sans-serif;
-	-webkit-text-size-adjust:90%;
-	zoom:1;
-	position:relative;
-	overflow:hidden;
-}
-body{
-	height: 100%;
-  width: 100%;
-	margin:0;
-	height:inherit;
-	width:inherit;
-	background-color: #111;
-}
-a {
-    outline: 0;
-}
-a img{
-	border:none;
-}
 .nolink{
 	text-decoration: none;
 	color:#111;
@@ -570,7 +543,7 @@ a img{
 			text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
 		}
 		.button-div{
-			width: 160px;
+			width: 60%;
 			float: left;
 		}
 		.info-row {
@@ -594,38 +567,39 @@ a img{
 	float: right;
 	}
 	.addthis_toolbox p
-		{
-		font-size: 1.1em;
-		font-weight: bold;
-		margin:0;
-		}
-		#object_search
-		{
-		text-align:center;
-		margin:5px;
-		overflow:hidden;
-		}
-		#object_search input{
-		font-size:15px;
-		font-weight:100;
-		padding:5px;
-		border-radius:15px;
-		border:0;
-		width:95%;
-		float:right;
-		}
-		#object_search span
-		{
-		cursor:pointer;
-		font-size:1.2em;
-		height:29px;
-		line-height:30px;
-		position:absolute;
-		right:4px;
-		text-align:center;
-		top:5px;width:29px;
-		background-color: #1A1A1C;
-		}
+	{
+	font-size: 1.1em;
+	font-weight: bold;
+	margin:0;
+	}
+	#object_search
+	{
+	text-align:center;
+	margin:5px;
+	overflow:hidden;
+	}
+	.search-wrapper
+	{
+		padding: 5px;
+		background-color:#FFF;
+		border-radius: 15px;
+		width: 94%;
+	}
+	#object_search input{
+	font-size:15px;
+	font-weight:100;
+	border:0;
+	width:88%;
+	margin-left: 5px;
+	}
+	#object_search span
+	{
+	cursor:pointer;
+	font-size:1.2em;
+	position:relative;
+	top:2px;
+	float: right;
+	}
 
 /**************************************/
 /*                                    */
@@ -729,7 +703,6 @@ a img{
 			display:none;
 		}
 		.button-div{
-			width: 285px;
 			float: left;
 		}
 		img {

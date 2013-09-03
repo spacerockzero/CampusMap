@@ -118,6 +118,9 @@ CampusMap.prototype.initializeMaps = function() {
     			//if not then we know that they may be on the full maps experience and we should look for 
     			//whether a building has been passed to show on the map when it has loaded
     			campusMap.anchorLocation();
+    		} else if (!campusMap.includeMenus) {
+    			//display everything
+    			campusMap.displayAll();
     		}
 			console.timeEnd("initialize js chain until ready");
 		});
@@ -151,8 +154,9 @@ CampusMap.prototype.loadKMLFiles = function(callback) {
 
 	//loop through all of the given KML files and load them
 	for (var i = 0, len = this.KMLFiles.length; i < len; i++) {
-		var filePath = this.KMLFiles[i],
-		index = filePath.split(".")[0];
+		var filePath = this.KMLFiles[i];
+		var split = filePath.split(".");
+		var index = split[split.length - 2];
 
 		if (mapData[index]) {
 			this.buildCategories(mapData[index]);
@@ -185,7 +189,7 @@ CampusMap.prototype.loadKMLFiles = function(callback) {
 	}
 
 	//once everything is done we will save the information to local storage
-	// localStorage.mapData = JSON.stringify(mapData);
+	localStorage.mapData = JSON.stringify(mapData);
 }
 
 
@@ -198,7 +202,10 @@ CampusMap.prototype.buildCategories = function(data) {
 	this.categories[index].markerLocations = this.parseLocations(data.Locations, "http://www.byui.edu/Prebuilt/maps/imgs/icons/numeral-icons/" + data.categoryColor + "/");
 	this.categories[index].polygonLocations = this.parseAreas(data.Areas);
 
-	this.globals.doc.getElementById("categories").appendChild(this.categories[index].getCatDOMObj());
+	//only do it if we need to inlude the menus
+	if (this.includeMenus) {
+		this.globals.doc.getElementById("categories").appendChild(this.categories[index].getCatDOMObj());
+	}
 }
 
 
@@ -235,7 +242,7 @@ CampusMap.prototype.parseAreas = function(areas) {
 
 //detects what kind of device is being 
 CampusMap.prototype.detectDevice = function() {
-	var width = this.globals.doc.body.offsetWidth;
+	var width = this.globals.doc.getElementById(this.element).style.width;
  	//it was determined that anything less than 800 pixels would be considered a mobile device
  	this.device = (width < 800) ? 0 : 1;
  }
@@ -247,17 +254,20 @@ CampusMap.prototype.bindAllEvents = function() {
 	//loop through each category
 	for (var i = 0, len = this.categories.length; i < len; i++) {
 		category = this.categories[i];
-		//bind the categories event listener
-		category.bindEventListener();
-		//for each marker and each polygon we will bind their events
-		if (category.markerLocations) {
-			for (var j = 0, len2 = category.markerLocations.length; j < len2; j++) {
-				category.markerLocations[j].bindEventListener();
+		//only if they included the menus
+		if (this.includeMenus) {
+			//bind the categories event listener
+			category.bindEventListener();
+			//for each marker and each polygon we will bind their events
+			if (category.markerLocations) {
+				for (var j = 0, len2 = category.markerLocations.length; j < len2; j++) {
+					category.markerLocations[j].bindEventListener();
+				}
 			}
-		}
-		if (category.polygonLocations) {
-			for (var j = 0, len2 = category.polygonLocations.length; j < len2; j++) {
-				category.polygonLocations[j].bindEventListener();
+			if (category.polygonLocations) {
+				for (var j = 0, len2 = category.polygonLocations.length; j < len2; j++) {
+					category.polygonLocations[j].bindEventListener();
+				}
 			}
 		}
 	}
@@ -464,6 +474,27 @@ CampusMap.prototype.findObject = function(code) {
 	}
 	return object;
 }
+
+
+//this function will display everything.  Used when an object it is embeded and there are
+//no menus
+CampusMap.prototype.displayAll = function() {
+	//loop through each category and it's subsequent Location and Area objects until it finds a match
+	for (var i = 0, len = this.categories.length; i < len; i++) {
+		var cat = this.categories[i];
+		if (cat.markerLocations) {
+			for (var j = 0, len2 = cat.markerLocations.length; j < len2; j++) {
+				cat.markerLocations[j].showAll();
+			}
+		}
+		if (cat.polygonLocations) {
+			for (var j = 0, len2 = cat.polygonLocations.length; j < len2; j++) {
+				cat.polygonLocations[j].showPolygons();
+			}
+		}
+	}
+}
+
 
 
 //crossbrowser solution to triggering an event on an element
@@ -747,7 +778,7 @@ function Map(options) {
   this.mapOptions = {
     campusOverlayVisible : (options['campusOverlay'] == null) ? true : options['campusOverlay'],
     campusFile : 'http://www.byui.edu/Prebuilt/maps/campus_outline.xml',
-    coordinates : (options['centerCoordinates'] !== null) ? options['centerCoordinates'] : [43.815045,-111.783515]
+    coordinates : (options['centerCoordinates'] !== undefined) ? options['centerCoordinates'] : [43.815045,-111.783515]
   },
   this.embedOptions = {
     embed : (options['embed'] === undefined) ? false : options['embed'],
@@ -868,7 +899,12 @@ Map.prototype.createInfoWindow = function(marker, obj) {
       content +=   '<div>';
       if (img){
         content += '<img src="' + img + '" alt="' + name + '"';
-        content += ' style="float:right;margin:0 0 10px 10px"/>';
+        content += ' style="float:right;margin:0 0 10px 10px;';
+        if (campusMap.device === 0 && window.map.embedOptions.embed === true) {
+          content += " width:100px; height:75px;";
+        }
+
+        content += '"/>';
       }
       content += '<div class="button-div">';
       if (phone){
@@ -953,7 +989,7 @@ Category.prototype.buildCatDOM = function() {
 	  element.className = 'category_bar';
 	  element.id = this.elementID;
 	  element.setAttribute('href', '#');
-      element.innerHTML += '<img class="cat_icon" src="Prebuilt/maps/imgs/icons/blank-colors/'+ this.iconColor + '.png" />';
+      element.innerHTML += '<img class="cat_icon" src="http://www.byui.edu/Prebuilt/maps/imgs/icons/blank-colors/'+ this.iconColor + '.png" />';
       element.innerHTML += '<span class="category_name">' + this.title + '</span>';
       return element;
 }
@@ -1208,7 +1244,9 @@ Location.prototype.createInfoWindow = function() {
 //hides the marker on the map and in the menu
 Location.prototype.hideAll = function() {
 	this.hideNavigation();
-	this.hideMarker();
+	if (campusMap.includeMenus) {
+		this.hideMarker();
+	}
 }
 
 
@@ -1229,7 +1267,9 @@ Location.prototype.hideNavigation = function() {
 //shows the marker on the map and the element in the menu
 Location.prototype.showAll = function() {
 	this.showMarker();
-	this.showNavigation();
+	if (campusMap.includeMenus) {
+		this.showNavigation();
+	}
 }
 
 
@@ -1324,11 +1364,14 @@ Area.prototype.showPolygons = function(span, polyKey) {
 	for (var i = 0; i < this.numberOfPolygons; i++) {
 		this.polygons[i].setVisible(true);
 	}
-	span.className = "icon-checkmark";
-	//display the mapkey
-	polyKey.parentElement.style.display = "block";
-	//make it appear in the map key
-	polyKey.className = "polygon_key active_key";
+	if (campusMap.includeMenus) {
+		span.className = "icon-checkmark";
+		
+		//display the mapkey
+		polyKey.parentElement.style.display = "block";
+		//make it appear in the map key
+		polyKey.className = "polygon_key active_key";
+	}
 	this.state = 1;
 }
 
@@ -1338,12 +1381,15 @@ Area.prototype.hidePolygons = function(span, polyKey) {
 	for (var i = 0; i < this.numberOfPolygons; i++) {
 		this.polygons[i].setVisible(false);
 	}
-	span.className = "";
-	polyKey.className = "polygon_key";
-	//determine if the mapkey needs to be closed or not
-	if (this.globals.doc.querySelectorAll('#' + polyKey.parentElement.id + " .active_key").length < 1) {
-		polyKey.parentElement.style.display = "none";
-	}
+	if (campusMap.includeMenus) {
+		span.className = "";
+	
+		polyKey.className = "polygon_key";
+		//determine if the mapkey needs to be closed or not
+		if (this.globals.doc.querySelectorAll('#' + polyKey.parentElement.id + " .active_key").length < 1) {
+			polyKey.parentElement.style.display = "none";
+		}
+	}	
 	this.state = 0;
 }
 
@@ -1381,16 +1427,18 @@ Area.prototype.createPolygon = function(coordinates, strokeColor, strokeOpacity,
 
 //hides both the polygon on the map(and mapkey) and in the right navigation
 Area.prototype.hideAll = function() {
-	this.hideMapKey();
-	this.hideNavigation();
+	if (campusMap.includeMenus) {
+		this.hideMapKey();
+		this.hideNavigation();
+	}
 }
 
 
 //hides the HTML representing this object in the MapKey
 Area.prototype.hideMapKey = function() {
 		//get the span for this polygon
-	var span = this.globals.doc.getElementById(this.elementID).children[0].children[0];
-	var polyKey = this.globals.doc.getElementById("poly_key_" + this.code);
+	var span = (campusMap.includeMenus) ? this.globals.doc.getElementById(this.elementID).children[0].children[0] : undefined;
+	var polyKey = (campusMap.includeMenus) ? this.globals.doc.getElementById("poly_key_" + this.code) : undefined;
 		//make sure that it is not checked and therefore not showing up in the map
 	this.hidePolygons(span, polyKey);
 }
@@ -1405,15 +1453,17 @@ Area.prototype.hideNavigation = function() {
 
 //shows both the polygon on the map(and mapkey) and in the right navigation
 Area.prototype.showAll = function() {
-	this.showMapKey();
-	this.showNavigation();
+	if (campusMap.includeMenus) {
+		this.showMapKey();
+		this.showNavigation();
+	}
 }
 
 //shows the HTML representing this object in the MapKey
 Area.prototype.showMapKey = function() {
 	//show in mapkey
-	var span = this.globals.doc.getElementById(this.elementID).children[0].children[0];
-	var polyKey = this.globals.doc.getElementById("poly_key_" + this.code);
+	var span = (campusMap.includeMenus) ? this.globals.doc.getElementById(this.elementID).children[0].children[0] : undefined;
+	var polyKey = (campusMap.includeMenus) ? this.globals.doc.getElementById("poly_key_" + this.code) : undefined;
 	this.showPolygons(span, polyKey);
 }
 

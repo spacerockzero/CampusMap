@@ -39,7 +39,7 @@ Category.prototype.buildCatDOM = function() {
 	  element.className = 'category_bar';
 	  element.id = this.elementID;
 	  element.setAttribute('href', '#');
-      element.innerHTML += '<img class="cat_icon" src="Prebuilt/maps/imgs/icons/blank-colors/'+ this.iconColor + '.png" />';
+      element.innerHTML += '<img class="cat_icon" src="http://www.byui.edu/Prebuilt/maps/imgs/icons/blank-colors/'+ this.iconColor + '.png" />';
       element.innerHTML += '<span class="category_name">' + this.title + '</span>';
       return element;
 }

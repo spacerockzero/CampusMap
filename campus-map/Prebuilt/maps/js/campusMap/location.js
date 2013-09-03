@@ -92,7 +92,9 @@ Location.prototype.createInfoWindow = function() {
 //hides the marker on the map and in the menu
 Location.prototype.hideAll = function() {
 	this.hideNavigation();
-	this.hideMarker();
+	if (campusMap.includeMenus) {
+		this.hideMarker();
+	}
 }
 
 
@@ -113,7 +115,9 @@ Location.prototype.hideNavigation = function() {
 //shows the marker on the map and the element in the menu
 Location.prototype.showAll = function() {
 	this.showMarker();
-	this.showNavigation();
+	if (campusMap.includeMenus) {
+		this.showNavigation();
+	}
 }
 
 

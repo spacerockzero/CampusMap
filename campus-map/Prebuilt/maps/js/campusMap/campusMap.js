@@ -8,7 +8,7 @@
 * element - string - the id of the html element you wish to place the maps into
 * menuState - bool - the state of the right menu, 0 is closed and 1 is open
 * includeMenus - bool - a bool that determines if the header and menus will be included in the page
-* objectFile - string - the path to the file that contains all of the categories and the objects/polygons
+* KMLFiles - array - an array of strings that specify where the KML files you wish to load are located
 * device - int - stores the current device type, was initially used to keep track of the whether the user
 *				 was on a mobile device or a desktop to alter styling but is no longer necessary because
 *				 all of the styling between different devices is handles in the CSS with media queries
@@ -24,7 +24,6 @@
 *
 * menuState - 1 (open)
 * includeMenus - true (include)
-* objectFile - the path
 * device - 0
 * globals - {doc: document, win: window}
 *
@@ -34,7 +33,7 @@ function CampusMap(options) {
 	this.element = (options['element']) ? options['element'] : console.log("No element provided.") ,
 	this.menuState = (options['menuState']) ? options['menuState'] : 1,
 	this.includeMenus = (options['includeMenus'] == null) ? true : options['includeMenus'],
-	this.KMLFiles = options['categories'],
+	this.KMLFiles = (options['categories']) ? options['categories'] : console.log("No KML Files specified"),
 	this.device = 0,
 	this.categories = [];
 
@@ -43,6 +42,8 @@ function CampusMap(options) {
 		doc: document,
 		win: window
 	}
+	//if we want to include the menus then we need to include the css file
+	addCSS("Prebuilt/maps/css/map.css", this.globals);
 	//When the campusMap object is created it does not create the map or load anything yet.  It must first load the maps
 	//api.  In the src for the maps api you can define a callback function to be run when the maps api loads which is what
 	//we are doing here to call the campusMap objects initializeMaps method
@@ -60,7 +61,6 @@ CampusMap.prototype.initializeMaps = function() {
 		map.initiateMap(this.globals);
 		//detect what kind of device the user is on
 		this.detectDevice();
-		this.loadProgress(20);
 
 		this.loadKMLFiles();
 		this.bindAllEvents();
@@ -74,14 +74,7 @@ CampusMap.prototype.initializeMaps = function() {
 		//some functions need to wait until this is done in order to run or else they lock up the 
 		//dom and prevent the map from loading
 		google.maps.event.addListenerOnce(map.map, 'tilesloaded', function() {
-			campusMap.loadProgress(90);
-			//places a marker if the embed options have been set
-			if (map.embedOptions.embed === false) {
-    			//if not then we know that they may be on the full maps experience and we should look for 
-    			//whether a building has been passed to show on the map when it has loaded
-    			campusMap.anchorLocation();
-    		}
-    		//set the height of the element that the map will be contained in so that the mapKey will 
+			//set the height of the element that the map will be contained in so that the mapKey will 
     		//not be lower then the bottom of the window
     		campusMap.setMapHeight();
 			//if they want to include the menus then we should build the mapkey and initialize the
@@ -90,7 +83,16 @@ CampusMap.prototype.initializeMaps = function() {
 				campusMap.buildMapKey();
 				campusMap.initializeSearch();
 			}
-			campusMap.loadProgress(100);
+			//places a marker if the embed options have been set
+			if (map.embedOptions.embed === false) {
+    			//if not then we know that they may be on the full maps experience and we should look for 
+    			//whether a building has been passed to show on the map when it has loaded
+    			campusMap.anchorLocation();
+    		} else if (!campusMap.includeMenus) {
+    			//display everything
+    			campusMap.displayAll();
+    		}
+			console.timeEnd("initialize js chain until ready");
 		});
 	}
 
@@ -98,11 +100,10 @@ CampusMap.prototype.initializeMaps = function() {
 //builds the needed HTML for the map
 CampusMap.prototype.buildHTML = function() {
 	//only include the header if they want it
-	var html = (this.includeMenus) ? '<div id="title"><h1 id="heading">BYU-Idaho Campus Map</h1><a id="device_type" href="#" onmousedown="toggleDevice(); return false;" title="Switch Device Type"><div id="device_container"><div class="device icon-desktop"></div><div class="device icon-mobile"></div></div></a><a id="menu_button" class="icon-settings" href="#" title="Open Menu. Click this or press [space] bar"></a></div>' : "";
+	var html = (this.includeMenus) ? '<div id="title"><h1 id="heading">BYU-Idaho Campus Map</h1><a style="display: none;" id="device_type" href="#" onmousedown="toggleDevice(); return false;" title="Switch Device Type"><div id="device_container"><div class="device icon-desktop"></div><div class="device icon-mobile"></div></div></a><a id="menu_button" class="icon-settings" href="#" title="Open Menu. Click this or press [space] bar"></a></div>' : "";
 	html += '<div id="container" name="container">';
 	//only include the menu if they want it
-	html += '<div id="loading"><div id="loading_inside"><span class="map-icon icon-compass"></span><p id="loading_text">[ LOADING... ]</p><div id="loading_bar" class="progress-bar blue stripes"><span id="loading_progress" style="width: 10%"></span><input id="loading_indicator" name="loading_indicator"type="hidden" value="loading" onchange="loadingComplete();"/></div></div></div>';
-	html += (this.includeMenus) ? '<div id="menu" name="menu" style="display:block; z-index: 2;"><div id="inner_menu" class="scrolling-element-class" ><div id="object_search"><input type="text" placeholder="Search"/><span class="icon-cancel"></span></div><nav id="categories" class="child-element"></nav><!-- // categories --></div><!-- // inner menu --></div><!-- // menu -->' : "";
+	html += (this.includeMenus) ? '<div id="menu" name="menu" style="display:block; z-index: 2;"><div id="inner_menu" class="scrolling-element-class" ><div id="object_search"><div class="search-wrapper"><input type="text" placeholder="Search"/><span class="icon-cancel"></span></div></div><nav id="categories" class="child-element"></nav><!-- // categories --></div><!-- // inner menu --></div><!-- // menu -->' : "";
 	html += '<div id="map_canvas"><div id="nojs-msg"><br/>This BYU-Idaho Campus Map application requires Javascript to run. <br/>Your device or browser doesn\'t appear to have JavaScript enabled. <br/>Please enable it and try again, or try another device or browser.</div></div>';
 	html += '<div id="map_keys"></div>';
 	//place the html into the dom where they have specified it to be located
@@ -116,20 +117,16 @@ CampusMap.prototype.loadKMLFiles = function(callback) {
 	//you can't use this in the onreadystatechange function because it will refer to 
 	//that function's attributes and not the CampusMap attributes
 	var parent = this;
-	
-	//to figure out how much each file influences the loading progress
-	var numFiles = this.KMLFiles.length;
-	var amount = 70 / numFiles;
-	var progress = 20;
 
 	//get any stored information from localStorage
 	var json = (localStorage) ? localStorage.mapData : undefined;
 	var mapData = (json) ? JSON.parse(json) : {};
 
 	//loop through all of the given KML files and load them
-	for (var i = 0, len = numFiles; i < len; i++) {
-		var filePath = this.KMLFiles[i],
-		index = filePath.split(".")[0];
+	for (var i = 0, len = this.KMLFiles.length; i < len; i++) {
+		var filePath = this.KMLFiles[i];
+		var split = filePath.split(".");
+		var index = split[split.length - 2];
 
 		if (mapData[index]) {
 			this.buildCategories(mapData[index]);
@@ -159,7 +156,6 @@ CampusMap.prototype.loadKMLFiles = function(callback) {
 			xmlhttp.open("GET",filePath,false);
 			xmlhttp.send();
 		}
-		this.loadProgress(progress += amount);
 	}
 
 	//once everything is done we will save the information to local storage
@@ -176,10 +172,10 @@ CampusMap.prototype.buildCategories = function(data) {
 	this.categories[index].markerLocations = this.parseLocations(data.Locations, "http://www.byui.edu/Prebuilt/maps/imgs/icons/numeral-icons/" + data.categoryColor + "/");
 	this.categories[index].polygonLocations = this.parseAreas(data.Areas);
 
-	//append this categories DOM structure to the menu, this includes the category button, it's descriptive text,
-	//and all of it's objects/polygons
-	this.globals.doc.getElementById('categories').appendChild(this.categories[index].getCatDOMObj());
-
+	//only do it if we need to inlude the menus
+	if (this.includeMenus) {
+		this.globals.doc.getElementById("categories").appendChild(this.categories[index].getCatDOMObj());
+	}
 }
 
 
@@ -193,8 +189,8 @@ CampusMap.prototype.parseLocations = function(locations, color) {
 	for (var j = 0, numberLocations = locations.length; j < numberLocations; j++) {
 		//create a new Location object and push it onto the markerLocations array
 		var marker = locations[j]
-		markerLocations.push(new Location(marker.name, marker.name.replace(" ", ""), marker.coordinates[0][0], marker.coordinates[0][1], marker.image, marker.hours, marker.description, marker.link, j, this.globals, (this.includeMenus) ? color + (j + 1) + ".png" : marker.icon));	
-	}
+		markerLocations.push(new Location(marker.name, marker.code, marker.coordinates[0][0], marker.coordinates[0][1], marker.image, marker.hours, marker.description, marker.link, j, this.globals, (this.includeMenus) ? color + (j + 1) + ".png" : marker.icon));	
+	} 
 	//send back the array of the Location objects for the category to hold
 	return markerLocations;
 }
@@ -207,7 +203,7 @@ CampusMap.prototype.parseAreas = function(areas) {
 	var polygonAreas = [];
 	for (var j = 0, numberAreas = areas.length; j < numberAreas; j++) {
 		var polygon = areas[j]
-		polygonAreas.push(new Area(polygon.name, polygon.name.replace(" ", ""), polygon.polygons, this.globals));
+		polygonAreas.push(new Area(polygon.name, polygon.code, polygon.polygons, this.globals));
 
 	}
 	return polygonAreas;
@@ -216,7 +212,7 @@ CampusMap.prototype.parseAreas = function(areas) {
 
 //detects what kind of device is being 
 CampusMap.prototype.detectDevice = function() {
-	var width = this.globals.doc.body.offsetWidth;
+	var width = this.globals.doc.getElementById(this.element).style.width;
  	//it was determined that anything less than 800 pixels would be considered a mobile device
  	this.device = (width < 800) ? 0 : 1;
  }
@@ -228,17 +224,20 @@ CampusMap.prototype.bindAllEvents = function() {
 	//loop through each category
 	for (var i = 0, len = this.categories.length; i < len; i++) {
 		category = this.categories[i];
-		//bind the categories event listener
-		category.bindEventListener();
-		//for each marker and each polygon we will bind their events
-		if (category.markerLocations) {
-			for (var j = 0, len2 = category.markerLocations.length; j < len2; j++) {
-				category.markerLocations[j].bindEventListener();
+		//only if they included the menus
+		if (this.includeMenus) {
+			//bind the categories event listener
+			category.bindEventListener();
+			//for each marker and each polygon we will bind their events
+			if (category.markerLocations) {
+				for (var j = 0, len2 = category.markerLocations.length; j < len2; j++) {
+					category.markerLocations[j].bindEventListener();
+				}
 			}
-		}
-		if (category.polygonLocations) {
-			for (var j = 0, len2 = category.polygonLocations.length; j < len2; j++) {
-				category.polygonLocations[j].bindEventListener();
+			if (category.polygonLocations) {
+				for (var j = 0, len2 = category.polygonLocations.length; j < len2; j++) {
+					category.polygonLocations[j].bindEventListener();
+				}
 			}
 		}
 	}
@@ -255,6 +254,12 @@ CampusMap.prototype.buildMapKey = function() {
 	//append the html to the map_keys element
 	//do it all at once so we are minimizing the amount of DOM manipulation we are doing
 	this.globals.doc.getElementById("map_keys").innerHTML = html;
+	//attach events to close it
+	for (var i = 0, len = this.categories.length; i < len; i++) {
+		this.globals.doc.getElementById("poly_key_" + (i + 1)).getElementsByTagName("a")[0].addEventListener('click', function() {
+			this.parentElement.style.display = "none";
+		});
+	}
 }
 
 
@@ -279,7 +284,7 @@ CampusMap.prototype.setMapHeight = function() {
 //initializes the search functionality mainly by binding the events to the 
 //proper elements
 CampusMap.prototype.initializeSearch = function() {
-	var search = this.globals.doc.getElementById('object_search').children[0];
+	var search = this.globals.doc.getElementById('object_search').children[0].children[0];
 	//binds keyup so that it will have a live search
 	//it will send the value of the search field on each key up
 	//the searching is fast enough to handle this although polygons can be
@@ -386,14 +391,14 @@ CampusMap.prototype.toggleMenu = function() {
 //hide the menu
 CampusMap.prototype.hideMenu = function() {
 	this.menuState = 0;
-	this.globals.doc.getElementById('menu').style.display = "none";
+	this.globals.doc.getElementById('menu').style.width = "0";
 }
 
 
 //show the menu
 CampusMap.prototype.showMenu = function() {
 	this.menuState = 1;
-	this.globals.doc.getElementById('menu').style.display = "block";
+	this.globals.doc.getElementById('menu').style.width = "";
 }
 
 
@@ -407,8 +412,11 @@ CampusMap.prototype.anchorLocation = function() {
 	    //since the Location and Area objects both have a showAll method that does the same thing we can call it without
 	    //worrying what type of object it is
 	    object.showAll();
-	    //fire the click event on the element in the menu to open the info window for the 
-	    this.fireEvent(this.globals.doc.getElementById(object.elementID), 'click');
+	    //only fire the event if it is a marker
+	    if (object.polygons === undefined) {
+		    //fire the click event on the element in the menu to open the info window for the 
+		    this.fireEvent(this.globals.doc.getElementById(object.elementID), 'click');
+		}
 	}
 }
 
@@ -428,7 +436,7 @@ CampusMap.prototype.findObject = function(code) {
 		}
 		if (cat.polygonLocations) {
 			for (var j = 0, len2 = cat.polygonLocations.length; j < len2 && object === null; j++) {
-				if (cat.markerLocations[j].code === code) {
+				if (cat.polygonLocations[j].code === code) {
 					object = cat.polygonLocations[j];
 				}
 			}
@@ -438,31 +446,25 @@ CampusMap.prototype.findObject = function(code) {
 }
 
 
-//this function is for handling the change in percentage for the loading screen
- // alter loading bar's visible progress %
-CampusMap.prototype.loadProgress = function(percentageComplete, callback){
-    var obj = this.globals.doc.getElementById('loading_progress');
-    obj.style.width = percentageComplete + '%';
+//this function will display everything.  Used when an object it is embeded and there are
+//no menus
+CampusMap.prototype.displayAll = function() {
+	//loop through each category and it's subsequent Location and Area objects until it finds a match
+	for (var i = 0, len = this.categories.length; i < len; i++) {
+		var cat = this.categories[i];
+		if (cat.markerLocations) {
+			for (var j = 0, len2 = cat.markerLocations.length; j < len2; j++) {
+				cat.markerLocations[j].showAll();
+			}
+		}
+		if (cat.polygonLocations) {
+			for (var j = 0, len2 = cat.polygonLocations.length; j < len2; j++) {
+				cat.polygonLocations[j].showPolygons();
+			}
+		}
+	}
+}
 
-    if (percentageComplete === 100) {
-    	this.loadComplete();
-    }
-
-    //console.log("Loaded " + percentageComplete);
-    if (callback && typeof(callback) === "function") {
-      callback();
-    }
-  }
-  
-  // Execute when page, data, and DOM is finished loading, then hide loading div
-  CampusMap.prototype.loadComplete = function(){
-   	
-   	var overlay = this.globals.doc.getElementById("loading");
-   	overlay.remove();
-
-    console.timeEnd("initialize js chain until ready");
-
-  }
 
 
 //crossbrowser solution to triggering an event on an element

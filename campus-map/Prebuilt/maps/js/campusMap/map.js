@@ -15,9 +15,6 @@
 * embedOptions - object literal - it's contents are as follows
 *                               - embed - bool - whether it should be embed or not
 *                               - coordinates - array - array of the latitude and longitude that the embedded map will center on 
-*                               - name - string - the name of the marker (used by google)
-*                               - icon - string - the name of the icon you wish to use, this string directly coorelates to filenames
-*                                                 in the icons folder
 *                               - zoom - int - the level of zoom for the embedded map
 *                               - mapView - string - the view you wish to use in the embed "map" or "satellite" (satellite does hybrid view but most people know it as satellite)
 * googleMapOptions - object literal - contains other options for google maps set at a later point
@@ -40,13 +37,10 @@ function Map(options) {
   this.mapOptions = {
     campusOverlayVisible : (options['campusOverlay'] == null) ? true : options['campusOverlay'],
     campusFile : 'http://www.byui.edu/Prebuilt/maps/campus_outline.xml',
-    centerCoordinates : [43.815045,-111.783515]
+    coordinates : (options['centerCoordinates'] !== undefined) ? options['centerCoordinates'] : [43.815045,-111.783515]
   },
   this.embedOptions = {
-    embed : options['embed'],
-    coordinates : (options['centerCoordinates'] !== null) ? options['centerCoordinates'] : [43.815045,-111.783515],
-    name : (options['locationName']) ? options['locationName'] : "",
-    icon : (options['icon']) ? options['icon'] : "blue",
+    embed : (options['embed'] === undefined) ? false : options['embed'],
     zoom: (options['zoom']) ? options['zoom'] : 16,
     mapView: (options['mapView']) ? options['mapView'] : "satellite"
   }
@@ -76,13 +70,10 @@ Map.prototype.setGoogleMapOptions = function() {
     var view = google.maps.MapTypeId.HYBRID;
   }
 
-  //determine the center coordinates based on the embed options
-  var coordinates = (this.embedOptions.embed === true) ? this.embedOptions.coordinates : this.mapOptions.centerCoordinates;
-
   //set the options
   this.googleMapOptions = {
     zoom: (this.embedOptions.embed) ? this.embedOptions.zoom : 16,
-    center: new google.maps.LatLng(coordinates[0], coordinates[1]),
+    center: new google.maps.LatLng(this.mapOptions.coordinates[0], this.mapOptions.coordinates[1]),
     mapTypeId: view,
     mapTypeControlOptions: {
       mapTypeIds: [google.maps.MapTypeId.ROADMAP,
@@ -167,7 +158,12 @@ Map.prototype.createInfoWindow = function(marker, obj) {
       content +=   '<div>';
       if (img){
         content += '<img src="' + img + '" alt="' + name + '"';
-        content += ' style="float:right;margin:0 0 10px 10px"/>';
+        content += ' style="float:right;margin:0 0 10px 10px;';
+        if (campusMap.device === 0 && window.map.embedOptions.embed === true) {
+          content += " width:100px; height:75px;";
+        }
+
+        content += '"/>';
       }
       content += '<div class="button-div">';
       if (phone){
@@ -210,10 +206,4 @@ Map.prototype.createInfoWindow = function(marker, obj) {
       }
       addthis.toolbox('.addthis_toolbox',{},addthis_share);
     });
-}
-
-
-//this function creates a marker on the map when someone wants to embed a map into their own page
-Map.prototype.createEmbedMarker = function() {
-  this.createMarker(this.embedOptions.coordinates[0], this.embedOptions.coordinates[1], this.embedOptions.name, "http://www.byui.edu/Prebuilt/maps/imgs/icons/" + this.embedOptions.icon + ".png").setVisible(true);
 }
