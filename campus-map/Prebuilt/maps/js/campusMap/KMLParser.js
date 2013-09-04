@@ -1,5 +1,13 @@
 function KMLParser() {
-	this.doc = arguments[0].childNodes[0].childNodes[1];
+	try {
+		var xml = new DOMParser().parseFromString(arguments[0], 'text/xml');
+		this.doc = xml.childNodes[0].childNodes[1];
+	} catch(e) {
+		var xml = new ActiveXObject("Microsoft.XMLDOM");
+		xml.async = "false";
+		xml.loadXML(arguments[0]);
+		this.doc = xml.documentElement.firstChild;
+	}
 	this.categoryName;
 	this.categoryText;
 	this.categoryColor;
@@ -19,10 +27,9 @@ function KMLParser() {
 KMLParser.prototype.parseKML = function() {
 	//get the category folder
 	var folder = this.doc.getElementsByTagName("Folder")[0];
-
-	this.categoryName = folder.getElementsByTagName("name")[0].textContent;
+	this.categoryName = this.getElementText(folder.getElementsByTagName("name")[0]);
 	var description = folder.getElementsByTagName("description")[0];
-	var result = this.extractLinkText((description === undefined) ? "" : description.textContent);
+	var result = this.extractLinkText((description === undefined) ? "" : this.getElementText(description));
 	this.categoryText = result[1];
 	this.link = result[0];
 	result = this.extractSrcFromImage(this.categoryText);
@@ -49,9 +56,16 @@ KMLParser.prototype.parseAllObjects = function(folder) {
 	//we want to do the Folders first because there are Placemark
 	//tags in Folders and we don't want them to be mistaken for
 	//markers
+	folders = Array.prototype.slice.call(folders);
 	if (folders !== undefined) {
 		while (folders.length) {
+			var cur = folders.length;
 			polygonContainer.push(this.parsePolygon(folders[0]));
+			folder.removeChild(folders[0]);
+			//if they are still equal then we need to shift the first element
+			if (cur === folders.length) {
+				folders.shift();
+			}
 		}
 	}
 
@@ -72,26 +86,24 @@ KMLParser.prototype.parseAllObjects = function(folder) {
 //parses all of the polygons
 KMLParser.prototype.parsePolygon = function(folder) {
 	var polygonFolder = {};
-	polygonFolder.name = folder.getElementsByTagName("name")[0].textContent;
-	polygonFolder.code = this.extractCode(folder.getElementsByTagName("description")[0].textContent)[0];
+	polygonFolder.name = this.getElementText(folder.getElementsByTagName("name")[0]);
+	polygonFolder.code = this.extractCode(this.getElementText(folder.getElementsByTagName("description")[0]))[0];
 	polygonFolder.polygons = [];
 
 	var placemarks = folder.getElementsByTagName("Placemark");
 	//get all of the individual polygons
 	for (var i = 0, len = placemarks.length; i < len; i++) {
 		var polygon = placemarks[i];
-		var style = this.getColors(polygon.getElementsByTagName("styleUrl")[0].textContent);
+		var style = this.getColors(this.getElementText(polygon.getElementsByTagName("styleUrl")[0]));
 		var description = polygon.getElementsByTagName("description")[0];
 		polygonFolder.polygons.push({
-			name: polygon.getElementsByTagName("name")[0].textContent,
-			description: (description) ? description.textContent : "",
-			coordinates: this.parseLatLng(polygon.getElementsByTagName("coordinates")[0].textContent),
+			name: this.getElementText(polygon.getElementsByTagName("name")[0]),
+			description: (description) ? this.getElementText(description) : "",
+			coordinates: this.parseLatLng(this.getElementText(polygon.getElementsByTagName("coordinates")[0])),
 			lineColor: style[0],
 			polyColor: style[1]
 		});
 	}
-
-	folder.remove();
 
 	return polygonFolder;
 }
@@ -100,9 +112,9 @@ KMLParser.prototype.parsePolygon = function(folder) {
 //parses all of the points
 KMLParser.prototype.parsePlacemark = function(placemark) {
 	var placemarkHolder = {};
-	placemarkHolder.name = placemark.getElementsByTagName("name")[0].textContent;
+	placemarkHolder.name = this.getElementText(placemark.getElementsByTagName("name")[0]);
 	var description = placemark.getElementsByTagName("description")[0];
-	var result = this.extractLinkText((description) ? description.textContent : "");
+	var result = this.extractLinkText((description) ? this.getElementText(description) : "");
 	placemarkHolder.link = result[0];
 	placemarkHolder.description = result[1];
 	result = this.extractSrcFromImage(placemarkHolder.description);
@@ -114,8 +126,8 @@ KMLParser.prototype.parsePlacemark = function(placemark) {
 	result = this.extractCode(placemarkHolder.description);
 	placemarkHolder.code = result[0];
 	placemarkHolder.description = result[1];	
-	placemarkHolder.coordinates = this.parseLatLng(placemark.getElementsByTagName("coordinates")[0].textContent);
-	placemarkHolder.icon = this.getIcon(placemark.getElementsByTagName("styleUrl")[0].textContent);
+	placemarkHolder.coordinates = this.parseLatLng(this.getElementText(placemark.getElementsByTagName("coordinates")[0]));
+	placemarkHolder.icon = this.getIcon(this.getElementText(placemark.getElementsByTagName("styleUrl")[0]));
 
 	return placemarkHolder;
 }
@@ -206,7 +218,10 @@ KMLParser.prototype.getIcon = function(id) {
 	if (this.foundStyles[id]) {
 		icon = this.foundStyles[id];
 	} else {
-		icon = this.doc.querySelector("[id='" + this.doc.querySelector("[id='" + id.substr(1) + "']").getElementsByTagName("styleUrl")[0].innerHTML.substr(1) + "']").querySelector("href").innerHTML;
+		var styleMap = this.getElement(id.substr(1), "StyleMap");
+		var styleUrl = this.getElementText(styleMap.getElementsByTagName("styleUrl")[0]).substr(1);
+		var style = this.getElement(styleUrl, "Style");
+		icon = this.getElementText(style.getElementsByTagName("href")[0]);
 		this.foundStyles[id] = icon;
 	}
 	return icon;
@@ -219,13 +234,56 @@ KMLParser.prototype.getColors = function(id) {
 	if (this.foundStyles[id]) {
 		style = this.foundStyles[id];
 	} else {
-		var styles = this.doc.querySelector("[id='" + this.doc.querySelector("[id='" + id.substr(1) + "']").getElementsByTagName("styleUrl")[0].innerHTML.substr(1) + "']");
-		var lineColor = (styles.querySelector("LineStyle")) ? styles.querySelector("LineStyle color").innerHTML.substr(2) : "FFFFF";
-		var polyColor = (styles.querySelector("PolyStyle")) ? styles.querySelector("PolyStyle color").innerHTML.substr(2) : "FFFFF";
+		var styleMap = this.getElement(id.substr(1), "StyleMap");
+		var styleUrl = this.getElementText(styleMap.getElementsByTagName("styleUrl")[0]).substr(1);
+		var styles = this.getElement(styleUrl, "Style");
+		var lineColor;
+		var line = styles.getElementsByTagName("LineStyle")[0];
+		if (line) {
+			lineColor = this.getElementText(line.getElementsByTagName("color")[0]).substr(2);
+		} else {
+			lineColor = "FFFFF";
+		}
+		var polyColor;
+		var poly = styles.getElementsByTagName("PolyStyle")[0];
+		if (poly) {
+			polyColor = this.getElementText(poly.getElementsByTagName("color")[0]).substr(2);
+		} else {
+			polyColor = "FFFFF";
+		}
 		style = ['#' + lineColor, '#' + polyColor];
 		this.foundStyles[id] = style;
 	}
 	return style;
 }
 
+KMLParser.prototype.getElementText = function(element) {
+	return (element.textContent === undefined) ? element.text : element.textContent;
+}
 
+KMLParser.prototype.getElement = function(id, tag) {
+	var element = null;
+
+	try {
+		element = this.doc.querySelector('[id="' + id + '"]');
+		if (element === null) {
+			element = this.getElementByTagName(id, tag);
+		}
+	} catch(e) {
+		element = this.getElementByTagName(id, tag);
+	}
+	return element;
+}
+
+
+KMLParser.prototype.getElementByTagName = function (id, tag) {
+	var element = null;
+	//loop through all of the elements and try to find the one with the right id
+		var elements = this.doc.getElementsByTagName(tag);
+		for (var i = 0, len = elements.length; i < len && element === null; i++) {
+			if (elements[i].getAttribute("id") === id) {
+				element = elements[i];
+			}
+		}
+		return element;
+}

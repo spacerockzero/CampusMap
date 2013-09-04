@@ -1,5 +1,3 @@
-console.time("initialize js chain until ready");
-
 //adds the script for the addthis social sharing api
 addScript("http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51f6872a25a1fb8c", { win: window, doc: document });
 //both of the constructors takes a global options object literal containing all of the options the user
@@ -73,7 +71,7 @@ function CampusMap(options) {
 		win: window
 	}
 	//if we want to include the menus then we need to include the css file
-	addCSS("http://www2.byui.edu/testFolder/maps/Prebuilt/maps/css/map.css", this.globals);
+	addCSS("Prebuilt/maps/css/map.css", this.globals);
 	//When the campusMap object is created it does not create the map or load anything yet.  It must first load the maps
 	//api.  In the src for the maps api you can define a callback function to be run when the maps api loads which is what
 	//we are doing here to call the campusMap objects initializeMaps method
@@ -122,7 +120,6 @@ CampusMap.prototype.initializeMaps = function() {
     			//display everything
     			campusMap.displayAll();
     		}
-			console.timeEnd("initialize js chain until ready");
 		});
 	}
 
@@ -175,7 +172,7 @@ CampusMap.prototype.loadKMLFiles = function(callback) {
 					//after parsing the JSON it will just create a bunch of object literals and thus won't have any methods or extra attributes
 					//attached to them until we create them for each object which is redundant.  So a category, location, and area classes have
 					//been created that match the structure of their respective objects loaded from the JSON.
-					var data = new KMLParser(xmlhttp.responseXML);
+					var data = new KMLParser(new DOMParser().parseFromString(xmlhttp.responseText, ''));
 					mapData[index] = data;
 					parent.buildCategories(data);
 					if (callback && typeof(callback) === "function") {
@@ -189,7 +186,7 @@ CampusMap.prototype.loadKMLFiles = function(callback) {
 	}
 
 	//once everything is done we will save the information to local storage
-	localStorage.mapData = JSON.stringify(mapData);
+	// localStorage.mapData = JSON.stringify(mapData);
 }
 
 
@@ -603,7 +600,7 @@ KMLParser.prototype.parsePolygon = function(folder) {
 		});
 	}
 
-	folder.remove();
+	folder.parentNode.removeChild(folder);
 
 	return polygonFolder;
 }
@@ -718,7 +715,10 @@ KMLParser.prototype.getIcon = function(id) {
 	if (this.foundStyles[id]) {
 		icon = this.foundStyles[id];
 	} else {
-		icon = this.doc.querySelector("[id='" + this.doc.querySelector("[id='" + id.substr(1) + "']").getElementsByTagName("styleUrl")[0].innerHTML.substr(1) + "']").querySelector("href").innerHTML;
+		var styleMap = this.doc.querySelector('[id="' + id.substr(1) + '"]');
+		var styleUrl = styleMap.getElementsByTagName("styleUrl")[0].textContent.substr(1);
+		var style = this.doc.querySelector('[id="' + styleUrl + '"]');
+		icon = style.querySelector("href").textContent;
 		this.foundStyles[id] = icon;
 	}
 	return icon;
@@ -731,9 +731,11 @@ KMLParser.prototype.getColors = function(id) {
 	if (this.foundStyles[id]) {
 		style = this.foundStyles[id];
 	} else {
-		var styles = this.doc.querySelector("[id='" + this.doc.querySelector("[id='" + id.substr(1) + "']").getElementsByTagName("styleUrl")[0].innerHTML.substr(1) + "']");
-		var lineColor = (styles.querySelector("LineStyle")) ? styles.querySelector("LineStyle color").innerHTML.substr(2) : "FFFFF";
-		var polyColor = (styles.querySelector("PolyStyle")) ? styles.querySelector("PolyStyle color").innerHTML.substr(2) : "FFFFF";
+		var styleMap = this.doc.querySelector('[id="' + id.substr(1) + '"]');
+		var styleUrl = styleMap.getElementsByTagName("styleUrl")[0].textContent.substr(1);
+		var styles = this.doc.querySelector('[id="' + styleUrl + '"]');
+		var lineColor = (styles.querySelector("LineStyle")) ? styles.querySelector("LineStyle color").textContent.substr(2) : "FFFFF";
+		var polyColor = (styles.querySelector("PolyStyle")) ? styles.querySelector("PolyStyle color").textContent.substr(2) : "FFFFF";
 		style = ['#' + lineColor, '#' + polyColor];
 		this.foundStyles[id] = style;
 	}

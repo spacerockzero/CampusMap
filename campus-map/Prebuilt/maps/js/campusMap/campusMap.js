@@ -92,7 +92,6 @@ CampusMap.prototype.initializeMaps = function() {
     			//display everything
     			campusMap.displayAll();
     		}
-			console.timeEnd("initialize js chain until ready");
 		});
 	}
 
@@ -145,7 +144,7 @@ CampusMap.prototype.loadKMLFiles = function(callback) {
 					//after parsing the JSON it will just create a bunch of object literals and thus won't have any methods or extra attributes
 					//attached to them until we create them for each object which is redundant.  So a category, location, and area classes have
 					//been created that match the structure of their respective objects loaded from the JSON.
-					var data = new KMLParser(xmlhttp.responseXML);
+					var data = new KMLParser(xmlhttp.responseText);
 					mapData[index] = data;
 					parent.buildCategories(data);
 					if (callback && typeof(callback) === "function") {
@@ -153,13 +152,14 @@ CampusMap.prototype.loadKMLFiles = function(callback) {
 					}
 				}
 			}
+			//cannot be asynchronous or else it will not load them all
 			xmlhttp.open("GET",filePath,false);
 			xmlhttp.send();
 		}
 	}
 
 	//once everything is done we will save the information to local storage
-	localStorage.mapData = JSON.stringify(mapData);
+	// localStorage.mapData = JSON.stringify(mapData);
 }
 
 
@@ -174,7 +174,9 @@ CampusMap.prototype.buildCategories = function(data) {
 
 	//only do it if we need to inlude the menus
 	if (this.includeMenus) {
-		this.globals.doc.getElementById("categories").appendChild(this.categories[index].getCatDOMObj());
+		var element = this.globals.doc.getElementById("categories")
+		var DOM = this.categories[index].getCatDOMObj();
+		element.appendChild(DOM);
 	}
 }
 

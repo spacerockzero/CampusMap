@@ -1,7 +1,6 @@
-console.time("initialize js chain until ready");
-
 //adds the script for the addthis social sharing api
 addScript("http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51f6872a25a1fb8c", { win: window, doc: document });
+addScript("Prebuilt/maps/js/vendor/modernizr-2.6.1.min.js", {doc: document});
 //both of the constructors takes a global options object literal containing all of the options the user
 //wishes to set for the campus map
 //it is optional for the Map constructor but not for the CampusMap object as you need to specify the id of the element
@@ -27,4 +26,9 @@ function addCSS(src, local) {
 	link.setAttribute("rel", "stylesheet");
 	link.href = src;
 	local.doc.getElementsByTagName("body")[0].appendChild(link);
+}
+if(typeof String.prototype.trim !== 'function') {
+  String.prototype.trim = function() {
+    return this.replace(/^\s+|\s+$/g, ''); 
+  }
 }
