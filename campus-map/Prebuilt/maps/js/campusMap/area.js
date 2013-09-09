@@ -51,7 +51,7 @@ Area.prototype.buildMapKey = function () {
 //binds the event listener for the HTML element in the right menu that represents this object
 Area.prototype.bindEventListener = function() {
 	var area = this;
-	this.globals.doc.getElementById(this.elementID).addEventListener('click', function() {
+	campusMap.addClickHandler(this.globals.doc.getElementById(this.elementID), function() {
 		area.togglePolygon();
 	});
 }

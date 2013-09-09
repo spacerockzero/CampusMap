@@ -56,7 +56,7 @@ KMLParser.prototype.parseAllObjects = function(folder) {
 	//we want to do the Folders first because there are Placemark
 	//tags in Folders and we don't want them to be mistaken for
 	//markers
-	folders = Array.prototype.slice.call(folders);
+	folders = this.convertToArray(folders);
 	if (folders !== undefined) {
 		while (folders.length) {
 			var cur = folders.length;
@@ -286,4 +286,12 @@ KMLParser.prototype.getElementByTagName = function (id, tag) {
 			}
 		}
 		return element;
+}
+
+KMLParser.prototype.convertToArray = function(collection) {
+	var array = [];
+	for (var i = 0, len = collection.length; i < len; i++) {
+		array[i] = collection[i];
+	}
+	return array;
 }

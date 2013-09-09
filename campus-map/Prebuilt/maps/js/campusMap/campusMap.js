@@ -159,7 +159,7 @@ CampusMap.prototype.loadKMLFiles = function(callback) {
 	}
 
 	//once everything is done we will save the information to local storage
-	// localStorage.mapData = JSON.stringify(mapData);
+	localStorage.mapData = JSON.stringify(mapData);
 }
 
 
@@ -258,9 +258,9 @@ CampusMap.prototype.buildMapKey = function() {
 	this.globals.doc.getElementById("map_keys").innerHTML = html;
 	//attach events to close it
 	for (var i = 0, len = this.categories.length; i < len; i++) {
-		this.globals.doc.getElementById("poly_key_" + (i + 1)).getElementsByTagName("a")[0].addEventListener('click', function() {
+		this.addClickHandler(this.globals.doc.getElementById("poly_key_" + (i + 1)).getElementsByTagName("a")[0], function() {
 			this.parentElement.style.display = "none";
-		});
+		})
 	}
 }
 
@@ -291,12 +291,13 @@ CampusMap.prototype.initializeSearch = function() {
 	//it will send the value of the search field on each key up
 	//the searching is fast enough to handle this although polygons can be
 	//a little laggy in rendering
-	search.addEventListener('keyup', function() {
-		campusMap.performSearch(this.value);
+	this.addKeyUpListener(search, function() {
+		campusMap.performSearch(search.value);
 	});
+	
 	//make the close button on the search clear the field and then perform the search with no value
 	//in order to clear everything
-	search.nextSibling.addEventListener('click', function() {
+	this.addClickHandler(search.nextSibling, function() {
 		search.value = "";
 		campusMap.performSearch("");
 	});
@@ -376,7 +377,7 @@ CampusMap.prototype.performSearch = function(val) {
 
 //attaches the event listener to the menu button to open and close it
 CampusMap.prototype.bindMenuButton = function() {
-	this.globals.doc.getElementById('menu_button').addEventListener('click', function() {
+	this.addClickHandler(this.globals.doc.getElementById('menu_button'), function() {
 		//uses the campusMap object to toggle the menu since the this keyword will refer
 		//to the current anonymous function
 		campusMap.toggleMenu();
@@ -481,4 +482,22 @@ CampusMap.prototype.fireEvent = function(element, event) {
        var evt = document.createEventObject();
        return element.fireEvent('on'+event,evt)
    }
+}
+
+
+//crossbrowser solution for adding click events
+CampusMap.prototype.addClickHandler = function(element, callback) {
+	try {
+		element.addEventListener('click', callback);
+	} catch(e) {
+		element.attachEvent("onclick", callback);
+	}
+} 
+
+CampusMap.prototype.addKeyUpListener = function(element, callback) {
+	try {
+		element.addEventListener('keyup', callback);
+	} catch(e) {
+		element.attachEvent("onkeyup", callback);
+	}
 }

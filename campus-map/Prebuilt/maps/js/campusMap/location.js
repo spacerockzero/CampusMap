@@ -60,7 +60,7 @@ Location.prototype.buildLocationDOM = function() {
 //to open it on the map
 Location.prototype.bindEventListener = function() {
 	var marker = this;
-	this.globals.doc.getElementById(this.elementID).addEventListener('click',function() {
+	campusMap.addClickHandler(this.globals.doc.getElementById(this.elementID),function() {
 		marker.panToMarker();
 	});
 }

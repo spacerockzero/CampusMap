@@ -100,7 +100,7 @@ Category.prototype.appendAreas = function(container) {
 //bind the click event listener to the category open and close
 Category.prototype.bindEventListener = function() {
 	var cat = this;
-	this.globals.doc.getElementById(this.elementID).addEventListener('click', function() {
+	campusMap.addClickHandler(this.globals.doc.getElementById(this.elementID), function() {
 		cat.toggle();
 	});
 }
