@@ -873,6 +873,7 @@
   margin-top: 0;
 }
 .infopane .btn {
+  color: white;
   width: 100%;
   min-height: 20px;
   padding-top: 6px;
@@ -882,12 +883,16 @@
   margin: 0px 2px 10px 0;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
 }
+.infopane .btn:hover {
+  color: white;
+}
 .infopane .button-div {
   width: 55%;
   float: left;
 }
 .infopane .info-row {
   margin: 0px 0px 4px;
+  clear: left;
 }
 .infopane .phone-call {
   display: none;
