@@ -73,7 +73,7 @@ function CampusMap(options) {
 		win: window
 	}
 	//if we want to include the menus then we need to include the css file
-	addCSS("http://www2.byui.edu/testFolder/maps/Prebuilt/maps/css/map.css", this.globals);
+	addCSS("Prebuilt/maps/css/map.min.css", this.globals);
 	//When the campusMap object is created it does not create the map or load anything yet.  It must first load the maps
 	//api.  In the src for the maps api you can define a callback function to be run when the maps api loads which is what
 	//we are doing here to call the campusMap objects initializeMaps method
