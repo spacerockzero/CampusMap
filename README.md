@@ -21,9 +21,6 @@
                 </ul>
           </ul>
         </section>
-
-        <!-- Why a new campus map?
-        ================================================== -->
         <section id="why-new">
           <div class="page-header">
             <h1>Why a new campus map?</h1>
@@ -41,9 +38,6 @@
           </div>
           <p>I don't have much to say about this other than that the maps have most of the parking outlined.</p>
         </section>
-
-        <!-- Content
-        ================================================== -->
         <section id="content">
           <div class="page-header">
             <h1>Content</h1>
@@ -52,18 +46,12 @@
           <p>There have been suggestions that now that Campus Maps is within Ingeniux we can automate some of the Data retrieval and processing so that we as developers do not need to be the only ones capable of updating information within maps.</p>
           <p>Other data such as Blue Emergency Phones, events, and other user submitted data have been suggested in order to allow the maps to more fully represent all points of interest on campus.</p>
         </section>
-
-        <!-- Extra functionality
-        ================================================== -->
         <section id="extra-functionality">
           <div class="page-header">
             <h1>Extra functionality</h1>
           </div>
           <p>Currently there is no functionality of the Maps that hasn't already been noted either as current or future, and isn't available to the public.</p>
         </section>
-
-        <!-- New changes
-        ================================================== -->
         <section id="new-changes">
           <div class="page-header">
             <h1>New Changes</h1>
