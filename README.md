@@ -28,10 +28,6 @@
           <p>The old campus map was a flash based version.  Because of the increasing use of mobile devices, flash quickly became obsolete and a new, javascript version needed to be created.  Because it needs to be optomized for mobile, it needed to be incorporate responsive design to allow it to scale between various devices.</p>
           <p>Also with the improvments to Google's mapping system it became obvious we needed to move to such a platform where some of the data and work could be abstracted away from our development and allow others to take up the harder challenges.</p>
         </section>
-
-
-        <!-- Parking information
-        ================================================== -->
         <section id="parking-information">
           <div class="page-header">
             <h1>Parking information</h1>
