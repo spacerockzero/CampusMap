@@ -1,3 +1,5 @@
+console.time("initialize js chain until ready");
+
 //adds the script for the addthis social sharing api
 addScript("http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51f6872a25a1fb8c", { win: window, doc: document });
 //both of the constructors takes a global options object literal containing all of the options the user
@@ -20,6 +22,12 @@ function addScript(src, local) {
 	script.src = src;
 	local.doc.getElementsByTagName("body")[0].appendChild(script);
 }
+function addCSS(src, local) {
+	var link = local.doc.createElement("link");
+	link.setAttribute("rel", "stylesheet");
+	link.href = src;
+	local.doc.getElementsByTagName("body")[0].appendChild(link);
+}
 /***************************************************************************************************
 * this class is the definition for the campusMap class
 * the object created from this class has all of the necessary code in order to create a campus map
@@ -30,7 +38,7 @@ function addScript(src, local) {
 * element - string - the id of the html element you wish to place the maps into
 * menuState - bool - the state of the right menu, 0 is closed and 1 is open
 * includeMenus - bool - a bool that determines if the header and menus will be included in the page
-* objectFile - string - the path to the file that contains all of the categories and the objects/polygons
+* KMLFiles - array - an array of strings that specify where the KML files you wish to load are located
 * device - int - stores the current device type, was initially used to keep track of the whether the user
 *				 was on a mobile device or a desktop to alter styling but is no longer necessary because
 *				 all of the styling between different devices is handles in the CSS with media queries
@@ -46,7 +54,6 @@ function addScript(src, local) {
 *
 * menuState - 1 (open)
 * includeMenus - true (include)
-* objectFile - the path
 * device - 0
 * globals - {doc: document, win: window}
 *
@@ -56,7 +63,7 @@ function CampusMap(options) {
 	this.element = (options['element']) ? options['element'] : console.log("No element provided.") ,
 	this.menuState = (options['menuState']) ? options['menuState'] : 1,
 	this.includeMenus = (options['includeMenus'] == null) ? true : options['includeMenus'],
-	this.objectFile = 'Prebuilt/maps/data/newCatObj.txt',
+	this.KMLFiles = (options['categories']) ? options['categories'] : console.log("No KML Files specified"),
 	this.device = 0,
 	this.categories = [];
 
@@ -65,6 +72,8 @@ function CampusMap(options) {
 		doc: document,
 		win: window
 	}
+	//if we want to include the menus then we need to include the css file
+	addCSS("Prebuilt/maps/css/map.min.css", this.globals);
 	//When the campusMap object is created it does not create the map or load anything yet.  It must first load the maps
 	//api.  In the src for the maps api you can define a callback function to be run when the maps api loads which is what
 	//we are doing here to call the campusMap objects initializeMaps method
@@ -82,43 +91,46 @@ CampusMap.prototype.initializeMaps = function() {
 		map.initiateMap(this.globals);
 		//detect what kind of device the user is on
 		this.detectDevice();
-		//load the category file and bind the menuButton event only if they want to include menus
+
+		this.loadKMLFiles();
+		this.bindAllEvents();
+
+		//bind the menuButton event only if they want to include menus
 		if (this.includeMenus) {
-			this.loadCatObjs();
 			this.bindMenuButton();
 		}
+
 		//this event runs after all of the tiles are loaded in the actual map
 		//some functions need to wait until this is done in order to run or else they lock up the 
 		//dom and prevent the map from loading
 		google.maps.event.addListenerOnce(map.map, 'tilesloaded', function() {
+			//set the height of the element that the map will be contained in so that the mapKey will 
+    		//not be lower then the bottom of the window
+    		campusMap.setMapHeight();
+			//if they want to include the menus then we should build the mapkey and initialize the
+			//search
+			if (campusMap.includeMenus) {
+				campusMap.buildMapKey();
+				campusMap.initializeSearch();
+			}
 			//places a marker if the embed options have been set
-			if (map.embedOptions.embed === true) {
-      			map.createEmbedMarker();
-    		} else {
+			if (map.embedOptions.embed === false) {
     			//if not then we know that they may be on the full maps experience and we should look for 
     			//whether a building has been passed to show on the map when it has loaded
     			campusMap.anchorLocation();
     		}
-    		//set the height of the element that the map will be contained in so that the mapKey will 
-    		//not be lower then the bottom of the window
-			campusMap.setMapHeight();
-			//if they want to include the menus then we should build the mapkey and initialize the
-			//search
-    		if (campusMap.includeMenus) {
-				campusMap.buildMapKey();
-				campusMap.initializeSearch();
-			}
+			console.timeEnd("initialize js chain until ready");
 		});
-}
+	}
 
 
 //builds the needed HTML for the map
 CampusMap.prototype.buildHTML = function() {
 	//only include the header if they want it
-	var html = (this.includeMenus) ? '<div id="title"><h1 id="heading">BYU-Idaho Campus Map</h1><a id="device_type" href="#" onmousedown="toggleDevice(); return false;" title="Switch Device Type"><div id="device_container"><div class="device icon-desktop"></div><div class="device icon-mobile"></div></div></a><a id="menu_button" class="icon-settings" href="#" title="Open Menu. Click this or press [space] bar"></a></div>' : "";
+	var html = (this.includeMenus) ? '<div id="title"><h1 id="heading">BYU-Idaho Campus Map</h1><a style="display: none;" id="device_type" href="#" onmousedown="toggleDevice(); return false;" title="Switch Device Type"><div id="device_container"><div class="device icon-desktop"></div><div class="device icon-mobile"></div></div></a><a id="menu_button" class="icon-settings" href="#" title="Open Menu. Click this or press [space] bar"></a></div>' : "";
 	html += '<div id="container" name="container">';
 	//only include the menu if they want it
-	html += (this.includeMenus) ? '<div id="menu" name="menu" style="display:block; z-index: 2;"><div id="inner_menu" class="scrolling-element-class" ><div id="object_search"><input type="text" placeholder="Search"/><span class="icon-cancel"></span></div><nav id="categories" class="child-element"></nav><!-- // categories --></div><!-- // inner menu --></div><!-- // menu -->' : "";
+	html += (this.includeMenus) ? '<div id="menu" name="menu" style="display:block; z-index: 2;"><div id="inner_menu" class="scrolling-element-class" ><div id="object_search"><div class="search-wrapper"><input type="text" placeholder="Search"/><span class="icon-cancel"></span></div></div><nav id="categories" class="child-element"></nav><!-- // categories --></div><!-- // inner menu --></div><!-- // menu -->' : "";
 	html += '<div id="map_canvas"><div id="nojs-msg"><br/>This BYU-Idaho Campus Map application requires Javascript to run. <br/>Your device or browser doesn\'t appear to have JavaScript enabled. <br/>Please enable it and try again, or try another device or browser.</div></div>';
 	html += '<div id="map_keys"></div>';
 	//place the html into the dom where they have specified it to be located
@@ -127,55 +139,66 @@ CampusMap.prototype.buildHTML = function() {
 
 
 //asynchronasly loads the category/objects file and then parses it
-CampusMap.prototype.loadCatObjs = function(callback) {
+CampusMap.prototype.loadKMLFiles = function(callback) {
 	//make local copies of these attributes so they can be used within this closure
 	//you can't use this in the onreadystatechange function because it will refer to 
 	//that function's attributes and not the CampusMap attributes
-	var filePath = this.objectFile;
 	var parent = this;
-	//create the xmlhttp object
-	var xmlhttp;
-	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-		xmlhttp=new XMLHttpRequest();
-	} else {// code for IE6, IE5
-		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.onreadystatechange=function() {
-		//after everything is loaded...
-		if (xmlhttp.readyState==4) {
-			//parse the JSON and pass the data to the parseCategories function
-			//after parsing the JSON it will just create a bunch of object literals and thus won't have any methods or extra attributes
-			//attached to them until we create them for each object which is redundant.  So a category, location, and area classes have
-			//been created that match the structure of their respective objects loaded from the JSON.
-			var data = JSON.parse(xmlhttp.responseText);
-			parent.parseCategories(data);
-			if (callback && typeof(callback) === "function") {
-				callback();
+
+	//get any stored information from localStorage
+	var json = (localStorage) ? localStorage.mapData : undefined;
+	var mapData = (json) ? JSON.parse(json) : {};
+
+	//loop through all of the given KML files and load them
+	for (var i = 0, len = this.KMLFiles.length; i < len; i++) {
+		var filePath = this.KMLFiles[i],
+		index = filePath.split(".")[0];
+
+		if (mapData[index]) {
+			this.buildCategories(mapData[index]);
+		} else {
+			//create the xmlhttp object
+			var xmlhttp;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp=new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 			}
+			xmlhttp.onreadystatechange=function() {
+				//after everything is loaded...
+				if (xmlhttp.readyState==4) {
+					//parse the JSON and pass the data to the parseCategories function
+					//after parsing the JSON it will just create a bunch of object literals and thus won't have any methods or extra attributes
+					//attached to them until we create them for each object which is redundant.  So a category, location, and area classes have
+					//been created that match the structure of their respective objects loaded from the JSON.
+					var data = new KMLParser(xmlhttp.responseXML);
+					mapData[index] = data;
+					parent.buildCategories(data);
+					if (callback && typeof(callback) === "function") {
+						callback();
+					}
+				}
+			}
+			xmlhttp.open("GET",filePath,false);
+			xmlhttp.send();
 		}
 	}
-	xmlhttp.open("GET",filePath,true);
-	xmlhttp.send();
+
+	//once everything is done we will save the information to local storage
+	// localStorage.mapData = JSON.stringify(mapData);
 }
 
 
-//parses the category file and creates category objects from them all
-CampusMap.prototype.parseCategories = function(data) {
-	//iterate through the array of categories
-	for (var i = 0, numberCategories = data.length; i < numberCategories; i++) {
-		var cat = data[i];
-		//push a new category onto the CampusMap object array of categories
-		this.categories.push(new Category(cat.ID, cat.name, cat.title, cat.text, cat.icon, cat.type, cat.link, this.globals, "cat_" + i));
-		//parse all of that categories objects/markers if it has any and assign it to that category
-		this.categories[i].markerLocations = (cat.objects) ? this.parseLocations(cat.objects,cat.icon) : null;
-		//parse all of that categories polygons/areas if it has any and assign it to that category
-		this.categories[i].polygonLocations = (cat.polygons) ? this.parseAreas(cat.polygons) : null;
-		//append this categories DOM structure to the menu, this includes the category button, it's descriptive text,
-		//and all of it's objects/polygons
-		this.globals.doc.getElementById('categories').appendChild(this.categories[i].getCatDOMObj());
-	}
-	//binds all of the events for every category and all of it's objects/polygons
-	this.bindAllEvents();
+//creates category objects from the category data
+CampusMap.prototype.buildCategories = function(data) {
+	var index = this.categories.length;
+
+	//create a new category for this KML File
+	this.categories[index] = new Category(index + 1, data.categoryName, data.categoryName, data.categoryText, data.categoryColor, data.link, this.globals, "cat_" + (index + 1));
+	this.categories[index].markerLocations = this.parseLocations(data.Locations, "http://www.byui.edu/Prebuilt/maps/imgs/icons/numeral-icons/" + data.categoryColor + "/");
+	this.categories[index].polygonLocations = this.parseAreas(data.Areas);
+
+	this.globals.doc.getElementById("categories").appendChild(this.categories[index].getCatDOMObj());
 }
 
 
@@ -189,8 +212,8 @@ CampusMap.prototype.parseLocations = function(locations, color) {
 	for (var j = 0, numberLocations = locations.length; j < numberLocations; j++) {
 		//create a new Location object and push it onto the markerLocations array
 		var marker = locations[j]
-		markerLocations.push(new Location(marker.name, marker.code, marker.lat, marker.lon, marker.img, marker.hours, marker.info, marker.link, j, this.globals, color));	
-	}
+		markerLocations.push(new Location(marker.name, marker.code, marker.coordinates[0][0], marker.coordinates[0][1], marker.image, marker.hours, marker.description, marker.link, j, this.globals, (this.includeMenus) ? color + (j + 1) + ".png" : marker.icon));	
+	} 
 	//send back the array of the Location objects for the category to hold
 	return markerLocations;
 }
@@ -200,22 +223,22 @@ CampusMap.prototype.parseLocations = function(locations, color) {
 //all of the logic is the same as the parseLocations method so one can refer to that method for 
 //more information about how this method is functioning
 CampusMap.prototype.parseAreas = function(areas) {
-		var polygonAreas = [];
-		for (var j = 0, numberAreas = areas.length; j < numberAreas; j++) {
-			var polygon = areas[j]
-				polygonAreas.push(new Area(polygon.name, polygon.code, polygon.contains, polygon.borderColor, polygon.fillColor, polygon.map, this.globals));
+	var polygonAreas = [];
+	for (var j = 0, numberAreas = areas.length; j < numberAreas; j++) {
+		var polygon = areas[j]
+		polygonAreas.push(new Area(polygon.name, polygon.code, polygon.polygons, this.globals));
 
-			}
-		return polygonAreas;
 	}
+	return polygonAreas;
+}
 
 
 //detects what kind of device is being 
 CampusMap.prototype.detectDevice = function() {
- var width = this.globals.doc.body.offsetWidth;
+	var width = this.globals.doc.body.offsetWidth;
  	//it was determined that anything less than 800 pixels would be considered a mobile device
-    this.device = (width < 800) ? 0 : 1;
-}
+ 	this.device = (width < 800) ? 0 : 1;
+ }
 
 
 //binds all of the events for each category the CampusMap object has and their subsequent Location and Area objects
@@ -251,12 +274,18 @@ CampusMap.prototype.buildMapKey = function() {
 	//append the html to the map_keys element
 	//do it all at once so we are minimizing the amount of DOM manipulation we are doing
 	this.globals.doc.getElementById("map_keys").innerHTML = html;
+	//attach events to close it
+	for (var i = 0, len = this.categories.length; i < len; i++) {
+		this.globals.doc.getElementById("poly_key_" + (i + 1)).getElementsByTagName("a")[0].addEventListener('click', function() {
+			this.parentElement.style.display = "none";
+		});
+	}
 }
 
 
 //gets the height of the element that the map is being embedded into
 CampusMap.prototype.getMapHeight = function() {
-var height = this.globals.doc.getElementById(this.element).offsetHeight;
+	var height = this.globals.doc.getElementById(this.element).offsetHeight;
 	return (this.includeMenus) ? height - 57 : height;
 }
 
@@ -275,7 +304,7 @@ CampusMap.prototype.setMapHeight = function() {
 //initializes the search functionality mainly by binding the events to the 
 //proper elements
 CampusMap.prototype.initializeSearch = function() {
-	var search = this.globals.doc.getElementById('object_search').children[0];
+	var search = this.globals.doc.getElementById('object_search').children[0].children[0];
 	//binds keyup so that it will have a live search
 	//it will send the value of the search field on each key up
 	//the searching is fast enough to handle this although polygons can be
@@ -382,29 +411,32 @@ CampusMap.prototype.toggleMenu = function() {
 //hide the menu
 CampusMap.prototype.hideMenu = function() {
 	this.menuState = 0;
-	this.globals.doc.getElementById('menu').style.display = "none";
+	this.globals.doc.getElementById('menu').style.width = "0";
 }
 
 
 //show the menu
 CampusMap.prototype.showMenu = function() {
 	this.menuState = 1;
-	this.globals.doc.getElementById('menu').style.display = "block";
+	this.globals.doc.getElementById('menu').style.width = "";
 }
 
 
 //displays a certain location depending on if a code has been sent in the hash of the url
 CampusMap.prototype.anchorLocation = function() {
 	//detect if a code has been sent in the url using an anchor
-  	if (window.location.hash) {
-	    var code = window.location.hash.substr(1);
+	if (window.location.hash) {
+		var code = window.location.hash.substr(1);
 	    //find the object it is referring to
 	    var object = this.findObject(code);
 	    //since the Location and Area objects both have a showAll method that does the same thing we can call it without
 	    //worrying what type of object it is
 	    object.showAll();
-	    //fire the click event on the element in the menu to open the info window for the 
-	    this.fireEvent(this.globals.doc.getElementById(object.elementID), 'click');
+	    //only fire the event if it is a marker
+	    if (object.polygons === undefined) {
+		    //fire the click event on the element in the menu to open the info window for the 
+		    this.fireEvent(this.globals.doc.getElementById(object.elementID), 'click');
+		}
 	}
 }
 
@@ -424,7 +456,7 @@ CampusMap.prototype.findObject = function(code) {
 		}
 		if (cat.polygonLocations) {
 			for (var j = 0, len2 = cat.polygonLocations.length; j < len2 && object === null; j++) {
-				if (cat.markerLocations[j].code === code) {
+				if (cat.polygonLocations[j].code === code) {
 					object = cat.polygonLocations[j];
 				}
 			}
@@ -436,7 +468,7 @@ CampusMap.prototype.findObject = function(code) {
 
 //crossbrowser solution to triggering an event on an element
 CampusMap.prototype.fireEvent = function(element, event) {
-   if (document.createEvent) {
+	if (document.createEvent) {
        // dispatch for firefox + others
        var evt = document.createEvent("HTMLEvents");
        evt.initEvent(event, true, true ); // event type,bubbling,cancelable
@@ -446,6 +478,235 @@ CampusMap.prototype.fireEvent = function(element, event) {
        var evt = document.createEventObject();
        return element.fireEvent('on'+event,evt)
    }
+}
+function KMLParser() {
+	this.doc = arguments[0].childNodes[0].childNodes[1];
+	this.categoryName;
+	this.categoryText;
+	this.categoryColor;
+	this.link;
+	this.image;
+
+	this.Locations = [];
+	this.Areas = [];
+
+	this.foundStyles = [];
+
+	this.parseKML();
+}
+
+
+//top level function to parse the KML
+KMLParser.prototype.parseKML = function() {
+	//get the category folder
+	var folder = this.doc.getElementsByTagName("Folder")[0];
+
+	this.categoryName = folder.getElementsByTagName("name")[0].textContent;
+	var description = folder.getElementsByTagName("description")[0];
+	var result = this.extractLinkText((description === undefined) ? "" : description.textContent);
+	this.categoryText = result[1];
+	this.link = result[0];
+	result = this.extractSrcFromImage(this.categoryText);
+	this.categoryColor = result[0].split("//")[1];
+	this.categoryText = result[1];
+
+	result = this.parseAllObjects(folder);
+
+	this.Locations = result[0];
+	this.Areas = result[1];
+	//we don't need the xml document anymore
+	this.doc = null;
+}
+
+
+//this function will parse all of the placemarks according to whether they are a marker or a polygon
+KMLParser.prototype.parseAllObjects = function(folder) {
+	var folders = folder.getElementsByTagName("Folder");
+
+	var placemarkContainer = [];
+	var polygonContainer = [];
+
+	//if there are polygons 
+	//we want to do the Folders first because there are Placemark
+	//tags in Folders and we don't want them to be mistaken for
+	//markers
+	if (folders !== undefined) {
+		while (folders.length) {
+			polygonContainer.push(this.parsePolygon(folders[0]));
+		}
+	}
+
+
+	var placemarks = folder.getElementsByTagName("Placemark");
+
+	//if there are points
+	if (placemarks !== undefined) {
+		for (var i = 0, len = placemarks.length; i < len; i++) {
+			placemarkContainer.push(this.parsePlacemark(placemarks[i]));
+		}
+	}
+
+	return [placemarkContainer, polygonContainer];
+}
+
+
+//parses all of the polygons
+KMLParser.prototype.parsePolygon = function(folder) {
+	var polygonFolder = {};
+	polygonFolder.name = folder.getElementsByTagName("name")[0].textContent;
+	polygonFolder.code = this.extractCode(folder.getElementsByTagName("description")[0].textContent)[0];
+	polygonFolder.polygons = [];
+
+	var placemarks = folder.getElementsByTagName("Placemark");
+	//get all of the individual polygons
+	for (var i = 0, len = placemarks.length; i < len; i++) {
+		var polygon = placemarks[i];
+		var style = this.getColors(polygon.getElementsByTagName("styleUrl")[0].textContent);
+		var description = polygon.getElementsByTagName("description")[0];
+		polygonFolder.polygons.push({
+			name: polygon.getElementsByTagName("name")[0].textContent,
+			description: (description) ? description.textContent : "",
+			coordinates: this.parseLatLng(polygon.getElementsByTagName("coordinates")[0].textContent),
+			lineColor: style[0],
+			polyColor: style[1]
+		});
+	}
+
+	folder.remove();
+
+	return polygonFolder;
+}
+
+
+//parses all of the points
+KMLParser.prototype.parsePlacemark = function(placemark) {
+	var placemarkHolder = {};
+	placemarkHolder.name = placemark.getElementsByTagName("name")[0].textContent;
+	var description = placemark.getElementsByTagName("description")[0];
+	var result = this.extractLinkText((description) ? description.textContent : "");
+	placemarkHolder.link = result[0];
+	placemarkHolder.description = result[1];
+	result = this.extractSrcFromImage(placemarkHolder.description);
+	placemarkHolder.image = result[0];
+	placemarkHolder.description = result[1];
+	result = this.extractHours(placemarkHolder.description);
+	placemarkHolder.hours = result[0];
+	placemarkHolder.description = result[1];
+	result = this.extractCode(placemarkHolder.description);
+	placemarkHolder.code = result[0];
+	placemarkHolder.description = result[1];	
+	placemarkHolder.coordinates = this.parseLatLng(placemark.getElementsByTagName("coordinates")[0].textContent);
+	placemarkHolder.icon = this.getIcon(placemark.getElementsByTagName("styleUrl")[0].textContent);
+
+	return placemarkHolder;
+}
+
+
+//this function will take a string of latitudes and longitudes and parse them into an array of just latitudes and longitudes
+//Google Earth outputs the Lat, Lng, and what I'm assuming is altitude but it's always zero so it has to get rid of the zero too
+KMLParser.prototype.parseLatLng = function(string) {
+	var latlngs = [];
+	var strings = string.replace('\n', '').trim().split(' ');
+	for (var i = 0, len = strings.length; i < len; i++) {
+		var split = strings[i].split(',');
+		//put the latitude first and then the longitude
+		latlngs.push([split[1], split[0]]);
+	}
+	return latlngs;
+}
+
+//this function will extract the url from the link in any string
+KMLParser.prototype.extractLinkText = function(string) {
+	var anchor = "";
+	if (string !== undefined) {
+		var stringAnchorStart = string.indexOf("<a");
+		if (stringAnchorStart !== -1) {
+			var stringAnchorEnd = string.indexOf("</a>") + 4;
+			anchor = string.substr(stringAnchorStart, stringAnchorEnd - stringAnchorStart);
+			endAnchorPos = anchor.indexOf('>') + 1;
+			anchor = anchor.substr(endAnchorPos, anchor.length - 4 - endAnchorPos);
+			string = string.substr(0, stringAnchorStart) + string.substr(stringAnchorEnd);
+		}
+	}
+
+	return [anchor, string];
+}
+
+
+//this function will extract the src from the image in any string
+KMLParser.prototype.extractSrcFromImage = function(string) {
+	var image = "";
+	if (string !== undefined) {
+		var stringImageStart = string.indexOf("<img");
+		if (stringImageStart !== -1) {
+			var stringImageEnd = string.indexOf("/>") + 2;
+			image = string.substr(stringImageStart, stringImageEnd - stringImageStart);
+			srcStartPos = image.indexOf('src=') + 5;
+			image = image.substr(srcStartPos, image.length - srcStartPos - 3);
+			string = string.substr(0, stringImageStart) + string.substr(stringImageEnd);
+		}
+	}
+
+	return [image, string];
+}
+
+
+//this function wll extract the hours from the string
+KMLParser.prototype.extractHours = function(string) {
+	var hours = "";
+	if (string !== undefined) {
+		var hoursStartTag = string.indexOf("<hours>");
+		if (hoursStartTag !== -1) {
+			var hoursEndTag = string.indexOf("</hours>");
+			hours = string.substr(hoursStartTag + 7, hoursEndTag - (hoursStartTag + 7));
+			string = string.substr(0, hoursStartTag) + string.substr(hoursEndTag + 8);
+		}
+	}
+
+	return [hours, string];
+}
+//this function wll extract the hours from the string
+KMLParser.prototype.extractCode = function(string) {
+	var code = "";
+	if (string !== undefined) {
+		var codeStartTag = string.indexOf("<code>");
+		if (codeStartTag !== -1) {
+			var codeEndTag = string.indexOf("</code>");
+			code = string.substr(codeStartTag + 6, codeEndTag - (codeStartTag + 6));
+			string = string.substr(0, codeStartTag) + string.substr(codeEndTag + 7);
+		}
+	}
+
+	return [code, string];
+}
+
+
+//these functions below are for getting the icon styles
+KMLParser.prototype.getIcon = function(id) {
+	var icon = "";
+	if (this.foundStyles[id]) {
+		icon = this.foundStyles[id];
+	} else {
+		icon = this.doc.querySelector("[id='" + this.doc.querySelector("[id='" + id.substr(1) + "']").getElementsByTagName("styleUrl")[0].innerHTML.substr(1) + "']").querySelector("href").innerHTML;
+		this.foundStyles[id] = icon;
+	}
+	return icon;
+}
+
+KMLParser.prototype.getColors = function(id) {
+	var lineColor = "";
+	var polyColor = "";
+	var style = [];
+	if (this.foundStyles[id]) {
+		style = this.foundStyles[id];
+	} else {
+		var styles = this.doc.querySelector("[id='" + this.doc.querySelector("[id='" + id.substr(1) + "']").getElementsByTagName("styleUrl")[0].innerHTML.substr(1) + "']");
+		var lineColor = (styles.querySelector("LineStyle")) ? styles.querySelector("LineStyle color").innerHTML.substr(2) : "FFFFF";
+		var polyColor = (styles.querySelector("PolyStyle")) ? styles.querySelector("PolyStyle color").innerHTML.substr(2) : "FFFFF";
+		style = ['#' + lineColor, '#' + polyColor];
+		this.foundStyles[id] = style;
+	}
+	return style;
 }
 
 /**********************************************************************************
@@ -464,9 +725,6 @@ CampusMap.prototype.fireEvent = function(element, event) {
 * embedOptions - object literal - it's contents are as follows
 *                               - embed - bool - whether it should be embed or not
 *                               - coordinates - array - array of the latitude and longitude that the embedded map will center on 
-*                               - name - string - the name of the marker (used by google)
-*                               - icon - string - the name of the icon you wish to use, this string directly coorelates to filenames
-*                                                 in the icons folder
 *                               - zoom - int - the level of zoom for the embedded map
 *                               - mapView - string - the view you wish to use in the embed "map" or "satellite" (satellite does hybrid view but most people know it as satellite)
 * googleMapOptions - object literal - contains other options for google maps set at a later point
@@ -489,13 +747,10 @@ function Map(options) {
   this.mapOptions = {
     campusOverlayVisible : (options['campusOverlay'] == null) ? true : options['campusOverlay'],
     campusFile : 'http://www.byui.edu/Prebuilt/maps/campus_outline.xml',
-    centerCoordinates : [43.815045,-111.783515]
+    coordinates : (options['centerCoordinates'] !== null) ? options['centerCoordinates'] : [43.815045,-111.783515]
   },
   this.embedOptions = {
-    embed : options['embed'],
-    coordinates : (options['centerCoordinates'] !== null) ? options['centerCoordinates'] : [43.815045,-111.783515],
-    name : (options['locationName']) ? options['locationName'] : "",
-    icon : (options['icon']) ? options['icon'] : "blue",
+    embed : (options['embed'] === undefined) ? false : options['embed'],
     zoom: (options['zoom']) ? options['zoom'] : 16,
     mapView: (options['mapView']) ? options['mapView'] : "satellite"
   }
@@ -525,13 +780,10 @@ Map.prototype.setGoogleMapOptions = function() {
     var view = google.maps.MapTypeId.HYBRID;
   }
 
-  //determine the center coordinates based on the embed options
-  var coordinates = (this.embedOptions.embed === true) ? this.embedOptions.coordinates : this.mapOptions.centerCoordinates;
-
   //set the options
   this.googleMapOptions = {
     zoom: (this.embedOptions.embed) ? this.embedOptions.zoom : 16,
-    center: new google.maps.LatLng(coordinates[0], coordinates[1]),
+    center: new google.maps.LatLng(this.mapOptions.coordinates[0], this.mapOptions.coordinates[1]),
     mapTypeId: view,
     mapTypeControlOptions: {
       mapTypeIds: [google.maps.MapTypeId.ROADMAP,
@@ -660,12 +912,6 @@ Map.prototype.createInfoWindow = function(marker, obj) {
       addthis.toolbox('.addthis_toolbox',{},addthis_share);
     });
 }
-
-
-//this function creates a marker on the map when someone wants to embed a map into their own page
-Map.prototype.createEmbedMarker = function() {
-  this.createMarker(this.embedOptions.coordinates[0], this.embedOptions.coordinates[1], this.embedOptions.name, "http://www.byui.edu/Prebuilt/maps/imgs/icons/" + this.embedOptions.icon + ".png").setVisible(true);
-}
 /********************************************************************************
 * this is the definition for the category class
 * uses arguments parameter to construct the object
@@ -692,13 +938,12 @@ function Category() {
 	this.title = arguments[2],
 	this.text = arguments[3],
 	this.iconColor = arguments[4],
-	this.type = arguments[5],
-	this.link = arguments[6],
+	this.link = arguments[5],
 	this.markerLocations = [],
 	this.polygonLocations = [],
 	this.state = 0,
-	this.elementID = arguments[8],
-	this.globals = arguments[7];
+	this.elementID = arguments[7],
+	this.globals = arguments[6];
 }
 
 
@@ -900,7 +1145,7 @@ function Location() {
 	this.hours = arguments[5],
 	this.info = arguments[6],
 	this.link = arguments[7],
-	this.color = arguments[10],
+	this.icon = arguments[10],
 	this.elementID = this.code + "_" + this.number, 
 	this.marker,
 	this.globals = arguments[9],
@@ -920,7 +1165,7 @@ Location.prototype.buildLocationDOM = function() {
 	element.id = this.elementID;
 	element.name = this.name;
 	element.setAttribute("href", "#" + this.code);
-    element.innerHTML += '<img  class="obj_icon" src="Prebuilt/maps/imgs/icons/numeral-icons/' + this.color + '/' + this.number + '.png" alt="' + name + '" />';
+    element.innerHTML += '<img  class="obj_icon" src="'+ this.icon + '" alt="' + name + '" />';
     element.innerHTML +=   '<div class="object_name">' + this.name + '</div>';
 
     return element;
@@ -950,7 +1195,7 @@ Location.prototype.panToMarker = function() {
 
 //creates a google maps marker for this object
 Location.prototype.createMarker = function() {
-	this.marker = map.createMarker(this.lat, this.lon, this.name, "Prebuilt/maps/imgs/icons/numeral-icons/" + this.color + "/" + this.number + ".png")
+	this.marker = map.createMarker(this.lat, this.lon, this.name, this.icon)
 }
 
 
@@ -1019,18 +1264,14 @@ Location.prototype.showNavigation = function() {
 function Area() {
 	this.name = arguments[0],
 	this.code = arguments[1],
-	this.contains = arguments[2],
-	this.borderColor = arguments[3],
-	this.fillColor = arguments[4],
-	this.map = arguments[5],
-	this.polygon,
+	this.lineColor = arguments[2][0].lineColor;
+	this.fillColor = arguments[2][0].polyColor;
+	this.polygons = this.createPolygons(arguments[2]);
+	this.numberOfPolygons = this.polygons.length;
 	this.elementID = this.code + "_poly",
-	this.globals = arguments[6];
+	this.globals = arguments[3];
 	this.state = 0,
 	this.hidden = false;
-
-	//create the google maps polygon for use with this object
-	this.createPolygon();
 }
 
 
@@ -1040,7 +1281,7 @@ Area.prototype.buildAreaDOM = function() {
 	element.className = "object polygon";
 	element.id = this.elementID;
 	element.setAttribute('href', '#' + this.code);
-	element.innerHTML = '<div class="polygon_key" id="poly_' + this.name + '" style="border-color:' + this.borderColor + '; background-color:' + this.fillColor + '"><span>&nbsp;</span></div>';
+	element.innerHTML = '<div class="polygon_key" id="poly_' + this.name + '" style="border-color:' + this.lineColor + '; background-color:' + this.fillColor + '"><span>&nbsp;</span></div>';
     element.innerHTML += '<div class="object_name polygon">' + this.name + '</div>';
 
     return element;
@@ -1069,46 +1310,72 @@ Area.prototype.togglePolygon = function() {
 	var polyKey = this.globals.doc.getElementById("poly_key_" + this.code);
 	//currently closed
 	if (this.state === 0) {
-		this.showPolygon(span, polyKey);
+		this.showPolygons(span, polyKey);
 	} 
 	//currently open
 	else if (this.state === 1) {
-		this.hidePolygon(span, polyKey);
+		this.hidePolygons(span, polyKey);
 	}
 }
 
 
 //shows the polygon on the map and in the MapKey
-Area.prototype.showPolygon = function(span, polyKey) {
-	this.polygon.setMap(map.map);
-		span.className = "icon-checkmark";
-		//display the mapkey
-		polyKey.parentElement.style.display = "block";
-		//make it appear in the map key
-		polyKey.className = "polygon_key active_key";
-		this.state = 1;
+Area.prototype.showPolygons = function(span, polyKey) {
+	for (var i = 0; i < this.numberOfPolygons; i++) {
+		this.polygons[i].setVisible(true);
+	}
+	span.className = "icon-checkmark";
+	//display the mapkey
+	polyKey.parentElement.style.display = "block";
+	//make it appear in the map key
+	polyKey.className = "polygon_key active_key";
+	this.state = 1;
 }
 
 
 //hides the polygon on the map and in the MapKey
-Area.prototype.hidePolygon = function(span, polyKey) {
-	this.polygon.setMap(null);
-		span.className = "";
-		polyKey.className = "polygon_key";
-		//determine if the mapkey needs to be closed or not
-		if (this.globals.doc.querySelectorAll('#' + polyKey.parentElement.id + " .active_key").length < 1) {
-			polyKey.parentElement.style.display = "none";
+Area.prototype.hidePolygons = function(span, polyKey) {
+	for (var i = 0; i < this.numberOfPolygons; i++) {
+		this.polygons[i].setVisible(false);
+	}
+	span.className = "";
+	polyKey.className = "polygon_key";
+	//determine if the mapkey needs to be closed or not
+	if (this.globals.doc.querySelectorAll('#' + polyKey.parentElement.id + " .active_key").length < 1) {
+		polyKey.parentElement.style.display = "none";
+	}
+	this.state = 0;
+}
+
+
+//creates all of the polygons for this Area object
+Area.prototype.createPolygons = function(polygons) {
+	var newPolygons = [];
+	//loop through all of the polygons
+	for (var i = 0, len = polygons.length; i < len; i++) {
+		var coordinates = [];
+		for (var j = 0, len2 = polygons[i].coordinates.length; j < len2; j++) {
+			var coords = polygons[i].coordinates[j];
+			coordinates.push(new google.maps.LatLng(coords[0], coords[1]));
 		}
-		this.state = 0;
+		newPolygons[i] = this.createPolygon(coordinates, polygons[i].lineColor, 1, 2, polygons[i].polyColor, 0.75);
+		newPolygons[i].setMap(map.map);
+	}
+	return newPolygons;
 }
 
 
 //creates a polygon for this area object
-Area.prototype.createPolygon = function() {
-	this.polygon = new google.maps.KmlLayer(this.map, {
-		suppressInfoWindows: false,
-		preserveViewport: true
-	});
+Area.prototype.createPolygon = function(coordinates, strokeColor, strokeOpacity, strokeWeight, fillColor, fillOpacity) {
+	return new google.maps.Polygon({
+		paths: coordinates,
+		strokeColor: strokeColor,
+		strokeOpacity: strokeOpacity,
+		strokeWeight: strokeWeight,
+		fillColor: fillColor,
+		fillOpacity: fillOpacity,
+		visible: false
+	})
 }
 
 
@@ -1125,7 +1392,7 @@ Area.prototype.hideMapKey = function() {
 	var span = this.globals.doc.getElementById(this.elementID).children[0].children[0];
 	var polyKey = this.globals.doc.getElementById("poly_key_" + this.code);
 		//make sure that it is not checked and therefore not showing up in the map
-	this.hidePolygon(span, polyKey);
+	this.hidePolygons(span, polyKey);
 }
 
 //hides the HTML element that represents this object in the navigation
@@ -1147,7 +1414,7 @@ Area.prototype.showMapKey = function() {
 	//show in mapkey
 	var span = this.globals.doc.getElementById(this.elementID).children[0].children[0];
 	var polyKey = this.globals.doc.getElementById("poly_key_" + this.code);
-	this.showPolygon(span, polyKey);
+	this.showPolygons(span, polyKey);
 }
 
 
