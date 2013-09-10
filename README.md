@@ -2,13 +2,13 @@
 <p>The Campus Maps contain several features that will allow students, faculty, parents, or other visitors to easily navigate the BYU-Idaho Campus.  It utilizes Google maps API, as well as some KML files to help others locate points of interest around campus.  It allows a user to navigate through a list of categories to find specific locations that they would like to find.  To aid in finding these points a search function has been added to allow users to search for what they are looking for.</p>
 <h1>How it Works</h1>
 <p>The Maps have been made to read a KML file. <a href="http://en.wikipedia.org/wiki/KML">(Information on KML)</a>. Each KML file represents a category and within this category a user can specify any number of points or polygons.</p>
-<p>Because the reading and parsing of the KML files can be slow at times, localStorage has been utilized so that after a KML file is parsed it will save it's information.  This when the person returns to the map it doesn't have to parse the files and just read the information from localStorage</p>
-<p>The maps are also embedable so that people can create their own KML files and have their own map experience on their web page</p>
+<p>Because the reading and parsing of the KML files can be slow at times, localStorage has been utilized so that after a KML file is parsed it will save it's information.  Then when the person returns to the map it doesn't have to parse the files and just read the information from localStorage.</p>
+<p>The maps are also embedable so that people can create their own KML files and have their own map experience on their web page.</p>
 <h1>How to use</h1>
-<strong>These instructions assume that you are using the Ingeniux CMS as that is what BYU-Idaho uses.  If you are not the responsibility is yours to alter any paths for your own use.</strong>
+<strong>These instructions assume that you are using the Ingeniux CMS as that is what BYU-Idaho uses.  If you are not, the responsibility is yours to alter any paths for your own use.</strong>
 <p>There is a single file needed and a global options object needed to make the Campus Maps work.</p>
 <p>First thing to do is to create an element that will house your map.
-<code>&lt;div id="map" style="width: 500px; height: 500px"&gt;&lt;div&gt;</code>
+<code>&lt;div id="map" style="width: 500px; height: 500px"&gt;&lt;/div&gt;</code>
 You should give your element an id and a width and height.</p>
 <p>Next you should create a global options object.  Then using Key Value pairs define your options.
 <code>var options = {
