@@ -1,6 +1,6 @@
 //adds the script for the addthis social sharing api
-addScript("http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51f6872a25a1fb8c", { win: window, doc: document });
-addScript("Prebuilt/maps/js/vendor/modernizr-2.6.1.min.js", {doc: document});
+addScript("https://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51f6872a25a1fb8c", { win: window, doc: document });
+addScript("https://www.byui.edu/Prebuilt/maps/js/vendor/modernizr-2.6.1.min.js", {doc: document});
 //both of the constructors takes a global options object literal containing all of the options the user
 //wishes to set for the campus map
 //it is optional for the Map constructor but not for the CampusMap object as you need to specify the id of the element

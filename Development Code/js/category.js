@@ -39,7 +39,7 @@ Category.prototype.buildCatDOM = function() {
 	  element.className = 'category_bar';
 	  element.id = this.elementID;
 	  element.setAttribute('href', '#');
-      element.innerHTML += '<img class="cat_icon" src="http://www.byui.edu/Prebuilt/maps/imgs/icons/blank-colors/'+ this.iconColor + '.png" />';
+      element.innerHTML += '<img class="cat_icon" src="https://www.byui.edu/Prebuilt/maps/imgs/icons/blank-colors/'+ this.iconColor + '.png" />';
       element.innerHTML += '<span class="category_name">' + this.title + '</span>';
       return element;
 }
@@ -100,7 +100,8 @@ Category.prototype.appendAreas = function(container) {
 //bind the click event listener to the category open and close
 Category.prototype.bindEventListener = function() {
 	var cat = this;
-	campusMap.addClickHandler(this.globals.doc.getElementById(this.elementID), function() {
+	campusMap.addClickHandler(this.globals.doc.getElementById(this.elementID), function(event) {
+		event.preventDefault();
 		cat.toggle();
 	});
 }

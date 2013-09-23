@@ -855,6 +855,17 @@
 #map_keys .polygon_key.active_key {
   display: block;
 }
+#embed .infopane {
+  width: 270px;
+  padding: 0;
+}
+#embed .infopane .phone-call {
+  display: block;
+}
+#embed .infopane img {
+  width: 100px;
+  height: 75px;
+}
 .infopane {
   width: 500px;
   margin: 0;

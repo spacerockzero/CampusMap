@@ -43,11 +43,11 @@ function CampusMap(options) {
 		win: window
 	}
 	//if we want to include the menus then we need to include the css file
-	addCSS("Prebuilt/maps/css/map.min.css", this.globals);
+	addCSS("//www.byui.edu/Prebuilt/maps/css/map.min.css", this.globals);
 	//When the campusMap object is created it does not create the map or load anything yet.  It must first load the maps
 	//api.  In the src for the maps api you can define a callback function to be run when the maps api loads which is what
 	//we are doing here to call the campusMap objects initializeMaps method
-	addScript("http://maps.googleapis.com/maps/api/js?v=3&sensor=false&callback=campusMap.initializeMaps",this.globals);
+	addScript("https://maps.googleapis.com/maps/api/js?v=3&sensor=false&callback=campusMap.initializeMaps",this.globals);
 }
 
 
@@ -55,6 +55,11 @@ function CampusMap(options) {
 * initializeMaps - calls the initialization stack
 */
 CampusMap.prototype.initializeMaps = function() {
+	//if it is being embeded, add an embed class to the element
+	if (map.embedOptions.embed) {
+		var element = this.globals.doc.getElementById(this.element)
+		element.className += " embed";
+	}
 		//builds the mark up based on the options sent in
 		this.buildHTML();
 		//initiate the google map
