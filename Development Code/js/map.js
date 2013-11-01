@@ -87,6 +87,32 @@ Map.prototype.setGoogleMapOptions = function() {
 
 //creates the google map
 Map.prototype.setGoogleMap = function(local) {
+  //add the prototype to find the center of a polygon for google maps
+    google.maps.Polygon.prototype.getCenter=function(){
+      var paths = this.getPaths().getArray()[0].b;
+      var latMin = paths[0].mb,
+          lonMin = paths[0].nb,
+          latMax = paths[0].mb,
+          lonMax = paths[0].nb;
+      for (var i = 1, len = paths.length; i < len; i++) {
+        if (paths[i].mb < latMin) {
+          latMin = paths[i].mb;
+        } else if (paths[i].mb > latMax) {
+          latMax = paths[i].mb;
+        }
+
+        if (paths[i].nb < lonMin) {
+          lonMin = paths[i].nb;
+        } else if (paths[i].nb > lonMax) {
+          lonMax = paths[i].nb;
+        }
+
+      }
+      var lat = latMin + ((latMax - latMin) / 2);
+      var lon = lonMin + ((lonMax - lonMin) / 2);
+      return new google.maps.LatLng(lat, lon);
+    }
+
   //pass the DOM element being used and the googleMapOptions
   this.map = new google.maps.Map(local.doc.getElementById('map_canvas'), this.googleMapOptions);
 }
@@ -198,6 +224,54 @@ Map.prototype.createInfoWindow = function(marker, obj) {
       infoWindow.setContent(content);
       // Open the InfoWindow
       infoWindow.open(map, marker);
+      //render the add this buttons
+      var addthis_share = 
+      {
+        url : "http://www.byui.edu/maps#" + obj.code,
+        title : obj.name
+      }
+      addthis.toolbox('.addthis_toolbox',{},addthis_share);
+    });
+}
+
+//creates an info window whenever a polygon is clicked and then displays it
+//it takes the polygon object and the Area object
+Map.prototype.createPolygonInfoWindow = function(polygon, obj) {
+  //create local versions so they are in the closure for the anonymous
+  //event function
+  var infoWindow = this.infoWindow;
+  var map = this.map;
+  // Listener that builds the infopane popups on marker click
+    google.maps.event.addListener(polygon, 'click', function(event) {
+
+      var content = '',
+             name = obj.name,
+             code = obj.code,
+             info = obj.info;
+             
+
+      // Create the info panes which hold content about each building
+      content += '<div class="infopane">';
+      content +=   '<h2>' + name + '</h2>';
+      content +=   '<div>';
+      if (info){
+        content += '<div class="info-row info-info"><strong>Info:</strong> ' + info + '</div>';
+      }
+      content += '</div>';
+      content += '</div>';
+      content += '<div class="addthis_toolbox addthis_32x32_style addthis_default_style">';
+      content += "<p>Share this location.</p>";
+      content += '<a class="addthis_button_facebook social_button"></a>';
+      content += '<a class="addthis_button_google_plusone_share social_button"></a>';
+      content += '<a class="addthis_button_twitter social_button"></a>';
+      content += '<a class="addthis_button_compact social_button"></a>';
+      content += '</div>';
+      // Set the content of the InfoWindow
+      infoWindow.setContent(content);
+      // Open the InfoWindow
+      var center = polygon.getCenter();
+      infoWindow.open(map);
+      infoWindow.setPosition(event.latLng);
       //render the add this buttons
       var addthis_share = 
       {

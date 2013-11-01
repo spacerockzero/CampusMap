@@ -18,14 +18,18 @@
 function Area() {
 	this.name = arguments[0],
 	this.code = arguments[1],
-	this.lineColor = arguments[2][0].lineColor;
-	this.fillColor = arguments[2][0].polyColor;
-	this.polygons = this.createPolygons(arguments[2]);
+	this.info = arguments[2],
+	this.lineColor = arguments[3][0].lineColor;
+	this.fillColor = arguments[3][0].polyColor;
+	this.polygons = this.createPolygons(arguments[3]);
 	this.numberOfPolygons = this.polygons.length;
 	this.elementID = this.code + "_poly",
-	this.globals = arguments[3];
+	this.globals = arguments[4];
 	this.state = 0,
 	this.hidden = false;
+
+	//attaches all of the info window events on the polygons
+	this.attachInfoWindowEvents();
 }
 
 
@@ -188,4 +192,11 @@ Area.prototype.showMapKey = function() {
 Area.prototype.showNavigation = function() {
 	this.hidden = false;
 	this.globals.doc.getElementById(this.elementID).style.display = "block";
+}
+
+//attaches all of the events onto each polygon when it is loaded on the google map
+Area.prototype.attachInfoWindowEvents = function() {
+	for (var i = 0; i < this.numberOfPolygons; i++) {
+		map.createPolygonInfoWindow(this.polygons[i], this);
+	}
 }

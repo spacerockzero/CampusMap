@@ -210,7 +210,7 @@ CampusMap.prototype.parseAreas = function(areas) {
 	var polygonAreas = [];
 	for (var j = 0, numberAreas = areas.length; j < numberAreas; j++) {
 		var polygon = areas[j]
-		polygonAreas.push(new Area(polygon.name, polygon.code, polygon.polygons, this.globals));
+		polygonAreas.push(new Area(polygon.name, polygon.code, polygon.description, polygon.polygons, this.globals));
 
 	}
 	return polygonAreas;
